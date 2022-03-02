@@ -11,7 +11,6 @@ h3 {
     text-align: left; }
 
 #sub {
-    margin-left: 0px;
     border-bottom: 1px solid #686099;
     text-align: left; }
 
@@ -21,8 +20,6 @@ h3 {
 
 #l-table {
     width: 600px;}
-    #l-table td {
-        padding: 5px; }
 
 #modify {
     display: inline-flex;
