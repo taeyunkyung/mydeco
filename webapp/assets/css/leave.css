@@ -1,0 +1,35 @@
+body {width: 1140px;}
+p {
+    font-family: 'SCDream4';
+    font-weight: 500;
+    font-size: 13px;
+}
+
+h3 {
+    font-family: 'SCDream4';
+    font-size: 20px;
+    text-align: left; }
+
+#sub {
+    margin-left: 0px;
+    border-bottom: 1px solid #686099;
+    text-align: left; }
+
+#l-table textarea {
+    height: 200px;
+}
+
+#l-table {
+    width: 600px;}
+    #l-table td {
+        padding: 5px; }
+
+#modify {
+    display: inline-flex;
+    margin-top: 30px;
+    padding-left: 20%; }
+    #modify .button {
+        margin-right: 3px; }
+    #modify #submitBtn {
+        width: 140px; }
+

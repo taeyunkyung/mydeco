@@ -1,0 +1,53 @@
+#main-content {
+    display: flex;
+    justify-content: center; }
+input[name=userSn] {
+    width: 49%;
+}
+
+h3 {
+    margin-top: 70px;
+    font-family: 'SCDream4';
+    font-size: 20px;
+    text-align: center;}
+    
+#sub {
+    border-bottom: 1px solid #686099;
+    text-align: right;
+    font-family: 'SCDream4';
+    font-size: small;
+    color: red;
+}
+
+label[for="mbti"]:after {
+    content:"*";
+    color:red;
+}
+
+.frame {
+    position: relative;
+    top: 50%; left: 25%;
+    width: 450px;
+    height: 500px;
+    margin-left: -200px;
+    border-radius: 2px;
+    box-shadow: .3rem .3rem 1rem rgba(0, 0, 0, 0.356);
+    background: #d7cfe8;
+    color: #d7cfe8;
+    font-size: .9rem;
+  }
+  
+  .pad {
+    position: relative;
+    width: 420px; height: 470px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    background: #fff;
+    box-shadow: 1rem 1rem .5rem rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+  }
+  #l-pad {
+    border: none;
+    width: 420px; height: 470px;
+}

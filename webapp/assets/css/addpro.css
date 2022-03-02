@@ -1,0 +1,56 @@
+#a-table {
+    width: 700px; }
+
+h3 {
+    font-size: 20px;
+    font-family: 'SCDream4'; }
+
+#sub {
+    margin-left: 0px;
+    border-bottom: 1px solid #686099;
+    text-align: left;
+    font-family: 'SCDream4'; }
+
+
+#a-table #imgarea {
+    width: 200px; height: 160px;
+}
+
+#btn-right {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    display: inline-flex;
+} 
+
+input[id="imgfile"] {
+    visibility: hidden;
+    width:0px; height:0px;
+}
+
+label[for="imgfile"] {
+    margin-right: 220px;
+    width:120px;
+    height: 40px;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'SCDream4';
+    padding: 10px;
+    border: 1px solid #686099;    
+    cursor: pointer; 
+    background: #fff;
+    color: #757686; }
+    label:hover{
+        background-color: #ebebeb;}
+
+
+#long {
+    width:240px;
+    margin-right: 40px; }
+
+#a-textarea {
+    width: 700px;
+    height: 200px; }
+
+#check {
+    margin-top: 30px;
+    padding-left: 30%; }

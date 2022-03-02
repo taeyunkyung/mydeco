@@ -1,0 +1,75 @@
+h3 {
+    font-size: 20px;
+    font-family: 'SCDream4';
+    margin: 20px 0px; }
+
+#div-sub {
+    width: 696.8px;
+    padding: 10px;
+    border-bottom: 1px solid #686099;
+    text-align: left; }
+
+.ct-list {
+    padding: 10px; }
+
+.ct-list li {
+    width: 680px; height: 160px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+    counter-increment: gradient-counter;
+    margin-top: 1rem;
+    min-height: 3rem;
+    padding: 1rem 1rem 1rem 1rem;
+    position: relative; }
+
+/*ol li:nth-of-type(2) {
+    animation: slide-up 1s;
+}
+
+ol li:nth-of-type(3) {
+    animation: slide-up 1.5s;
+}
+
+ol li:nth-of-type(4) {
+    animation: slide-up 2s;}
+
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+}*/
+
+.product .img {
+    float: left;
+    width: 120px; height: 120px;
+    margin: 10px;
+}
+
+label[for="prodImg"] {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'SCDream4';
+    margin: 5px; }
+
+.text p {
+    width: 360px; height: 40px;
+    float: left;
+    font-size: 14px;
+    font-family: 'SCDream4';
+    margin: 5px; }
+
+.text #recent {
+    width: 360px; height: 55px; 
+}
+
+.side-area {
+    display: inline-block;
+    margin-top: 40px; margin-left: 20px;
+    width: 90px;
+}
+#side-btn {
+    width: 120px;
+    font-size: 11px;
+}
