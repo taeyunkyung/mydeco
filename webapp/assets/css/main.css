@@ -3,6 +3,7 @@
     font-family: 'main';
     src: url(../fonts/BinggraeⅡ-Bold.ttf);
 }
+
 html {
     display: flex;
     justify-content: center;
@@ -26,7 +27,6 @@ a:hover {text-decoration: none; color: #000000;}
 #header>h1 {
     width: 200px;
     height: 100px;
-    font-family: 'main';
     float: left;
     padding: 0px 0px 0px 0px;
     margin: 20px 0px 0px 30px;
@@ -38,7 +38,7 @@ a:hover {text-decoration: none; color: #000000;}
 }
 
 #category {
-    font-family: 'main';
+    font-family: 'SCDream4';
     float: left;
     margin: 30px 10px 30px 10px;
     text-align: center;
@@ -52,7 +52,7 @@ a:hover {text-decoration: none; color: #000000;}
 
 #user {
     margin: 0px;
-    font-family: 'main';
+    font-family: 'SCDream4';
     float: left;
     text-align: center;
 }
@@ -98,8 +98,10 @@ a:hover {text-decoration: none; color: #000000;}
 /* aside */
 #aside #title {
     font-family: 'SCDream4';
-    font-weight: bold; font-size: 20px;
-    color:#686099;
+    font-weight: bold; 
+    font-size: 20px;
+    background-color:#686099;
+    color: white;
     border: none;
 }
 
@@ -128,11 +130,131 @@ a:hover {text-decoration: none; color: #000000;}
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 13px; }
-    li:focus, select:focus {
-        border: 1px solid #686099; }
-    #aside li:hover {
-        background-color: #ebebeb;
-    }
+    
+li:focus, select:focus {
+	border: 1px solid #686099; 
+}
+
+#aside li:hover {
+	background-color: #ebebeb;
+}
+    
+    
+/*이미지 슬라이드*/
+#visual {
+    position: relative;
+    width: 1140px;
+    height: 624px;
+    margin: 0 auto;
+    overflow: hidden;           
+    box-shadow: 1px 5px 10px 2px #CEC9EF;
+}
+
+  #visual>div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+    opacity: 0;
+  }
+  #visual>div.on{
+    opacity: 1;
+  }
+  #control { 
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+    text-align: center;         
+  }
+  #control a {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #f6f5f5;                       
+    line-height: 26px;
+    font-size: 0.8em;
+    border-radius: 14px;
+    margin: 0 2px
+  }
+  
+  #control a.on {
+    background: #686099;
+  }
+  div#left>span:first-child{
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    height: 8px;
+    background-color: #686099;
+    border-radius: 10px;
+    transform: translateY(63px) rotate(50deg);  
+  }
+  
+  div#left>span:last-child{
+    position: absolute;
+    width: 50px;
+    height: 8px;
+    background-color: #686099;
+    border-radius: 10px;
+    transform: translateY(30px) rotate(-50deg);  
+  }
+  
+  div#left:hover span{
+    background-color: #CEC9EF;
+    transition: 0.2s ease;
+  }
+  
+  
+  div#left{
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    top: 50%;
+    left: 2.5%;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: .4s ease;
+  }
+  
+  div#right{
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    top: 50%;
+    left: 90%;
+    transform: translate(0%, -50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: .4s ease;
+  }
+  
+  div#right>span:first-child{
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    height: 8px;
+    background-color: #686099;
+    border-radius: 10px;
+    transform: translateY(63px) rotate(-50deg);  
+  }
+  
+  div#right>span:last-child{
+    position: absolute;
+    width: 50px;
+    height: 8px;
+    background-color: #686099;
+    border-radius: 10px;
+    transform: translateY(30px) rotate(50deg);  
+  }
+  
+  div#right:hover span{
+    background-color: #CEC9EF;
+    transition: 0.2s ease;
+  }    
+
 
 /*footer-search*/ 
 #search {
@@ -165,12 +287,19 @@ input[id="keyword"] {
 
 /*footer*/
 #footer {
-    text-align: center;    
-    font-family: 'main';
-    background-color: #686099;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    font-family: 'SCDream4';
+    font-size: small;
+    border-top: #f7f6ff;
+    border-width: 2px;
+    border-top-style: solid;
     margin-top: 50px;
     padding-top: 30px;
 }
+
+
 /* des */
 @font-face {
     src:url(../fonts/SCDream4.otf); 
