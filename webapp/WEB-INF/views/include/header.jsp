@@ -3,7 +3,7 @@
 				
 				<div class="col-xs-12" id="header">
                     <h1>
-                        <a href=""><img id="logo" src="./assets/img/logo.png"></a>
+                        <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
                     </h1>
             
                     <ul id="category" class="clearfix">
