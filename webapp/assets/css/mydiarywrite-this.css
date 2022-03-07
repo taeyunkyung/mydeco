@@ -1,0 +1,348 @@
+div.mydiarywriteForm-write-region{
+    font-family: 'SCDream4';
+    font-size: 18px;
+}
+
+.mydiarywriteForm-write-region{
+    /*border: 1px solid #000000; */
+    text-align: center;
+   
+    margin-left: 50px;
+
+}
+
+.mydiarywriteForm-left{
+    float: left;
+    width: 706px;
+    height: 690px;
+    border: 1px solid  #000000;
+    
+}
+
+.mydiarywriteForm-right{
+    float: left;
+    width: 240px;
+    height: 690px;
+    border: 1px solid  #ebebeb;
+    margin-left: 10px;
+    background-color: rgb(54, 54, 54);
+
+}
+
+.mydiarywriteForm-da-we{
+    padding-top: 20px;
+}
+
+.mydiarywriteForm-inform{
+    float: left;
+    padding-left: 8px; 
+    margin-bottom: -40px;
+   
+}
+
+.selectbox-weather{
+    width: 100px;
+    height: 20px;
+    float: left;
+}
+
+.selectbox-we{
+    padding: 5px;
+    padding-right: 8px;
+    height: 30px;
+   
+}
+
+.margin-right-20{
+    margin-right: 18px;
+}
+
+.mydiary-weather-img{
+    float: right; 
+    width: 25px; 
+    height: 25px; 
+
+}
+
+.mydiary-weather{
+    float: right; 
+    width: 60px;
+    height: 20px;
+    font-size: 15px;
+    margin-right: 5px;
+    margin-top: 5px;
+
+}
+
+.writeform-button{
+    margin-left: 395px;
+    margin-top: 10px;
+}
+
+.writeform-save{
+    display: inline-block;
+}
+
+.writeform-deco-btn{
+    width: 109px;
+    height: 40px;
+    margin: 5px;
+    justify-content: center;
+}
+
+a.writeform-modify{
+    border: 1px solid #6667AB;
+    background: #fff;
+    color: #6667AB; 
+    font-family: 'SCDream4';
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px;
+    cursor: pointer; 
+}
+
+
+.writeform-modify:hover {
+background-color: #ebebeb; }
+
+
+#chooseFile {
+    visibility: hidden;
+}
+
+label[for=chooseFile]{
+    font-weight: 50;
+}
+
+.writeform-btn-right{
+    float: right;
+}
+
+.writeform-btn-left{
+    float: left;
+}
+
+/*꾸미기내용 들어가는 박스 배경색*/
+.sticker-bgm-plus-menu-box{
+    width: 238px;
+    height: 639px;
+    background-color: #2e2e2e;
+} 
+
+
+
+
+/*탭메뉴*/
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
+  ul.tabs li{
+    background: #686099;
+    width: 228px;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  ul.tabs li.current{
+    background: #4b4b7a;
+    /*background: #686099;*/
+    color: rgb(255, 255, 255);
+    width: 228px;
+  }
+
+  .tab-link{
+    text-align: center;
+    
+  }
+
+  .tab-link:hover{
+    background-color: #ebebeb;
+    width: 228px;
+    color: #686099;
+  }
+
+  .tab-content{
+    display: none;  
+    padding: 15px 0;
+    border-top:3px solid #1d1d1d;
+  }
+  
+  .tab-content.current{
+    display: inherit;
+  }
+
+  /*스티커 사이즈*/
+  .writeform-sticker-size{
+    width:100px; 
+    height:100px; 
+    /* margin-left: 30px; 
+    margin-top: 20px; */
+    padding: 10px;
+  }
+  
+  .sticker-bgm-box{
+      width:238px;
+      height: 549px;
+      overflow-y: auto;
+  }
+
+  .sticker-bgm-box2{
+    width:238px;
+    height: 504px;
+    overflow-y: auto;
+}
+
+
+
+ /*스크롤바 설정*/ 
+.sticker-bgm-box2::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 12px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.sticker-bgm-box2::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.sticker-bgm-box2::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+
+/*일기종이*/
+.sticker-bgm-box3{
+    width:238px;
+    height: 504px;
+    overflow-y: auto;
+}
+
+
+
+ /*스크롤바 설정*/ 
+.sticker-bgm-box3::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 12px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.sticker-bgm-box3::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.sticker-bgm-box3::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+
+.mydiary-writeForm-content{
+    width: 680px;
+    height: 490px;
+    margin-top: 15px;
+    resize: none;
+    padding: 60px;
+}
+
+
+/*bgm 목록*/
+
+.mydiary-writeForm-bgmList{
+    width: 228px;
+    height: 20px;
+    background-color: #2e2e2e;
+    color: #b3b3b3;
+    font-family: 'SCDream4';
+    font-size: 13px;
+    padding-bottom: 30px;
+    padding-top: 12px;
+}
+
+.mydiary-writeForm-bgmList:hover{
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+
+/*배경종이 박스*/
+.mydiaryImg-box8{
+    
+    width: 90px;
+    height: 90px;
+    margin-left: 16px;
+    margin-bottom: 2px;
+    margin-top: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;  
+    
+}
+
+.mydiary-weather2{
+    float: left;
+    width: 50px;
+    height: 20px;
+    padding-top: 11px;
+    font-size: 14px;
+}
+
+.mydiary-weather3{
+    float: right;
+    width: 80px;
+    height: 20px;
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.mydiary-we_sel{
+    float: left; 
+    margin-left: 220px;
+}
+
+input[type=radio]{
+	visibility:visible;
+}
+
+.diaryset{
+    width: 70px;
+    margin-top: 8px;
+}
+
+.diary-all{
+    float: right; 
+    margin-right: 5px; 
+    padding-right: 10px;
+}
+
+.diary-private{
+    float: right; 
+    margin-right: 5px; 
+    padding-left: 15px;
+}
+
+.diaryset_private{
+    width: 95px;  
+    margin-top: 8px;
+}
+
+.photowid{
+	width:110px;
+	height:30px;
+	padding:-10px;
+	margin-left:-10px;
+	
+}
+

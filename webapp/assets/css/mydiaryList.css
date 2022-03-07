@@ -1,0 +1,787 @@
+@font-face {
+    src:url(../fonts/Binggrae-Bold.otf); font-family: "Bbingrae";
+} 
+
+@font-face {
+    src:url(../fonts/Binggrae.otf); font-family: "bingrae";
+} 
+
+@font-face {
+    src:url(../fonts/SCDream6.otf); font-family: "SCDream6";
+} 
+
+/*나의 일기 날짜 + 리스트창*/   
+.mydiarydiv{
+    display:flex; 
+    flex-direction: row; 
+    height:530px; 
+    width: 705px;
+    background-color: beige;
+    margin-top: 29px;
+}
+
+
+/*달력*/
+.left_div{
+    flex:1.1;
+    background-color: #686099;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+
+/*일기목록+스크롤바*/
+.right_div{
+    flex:3;
+    background-color: #fafafa;
+    font-family: 'main';
+}
+
+/*스크롤바*/
+.height_scroll{
+    height:530px; 
+    width: 10px;
+    overflow-x:hidden; 
+    overflow-y:scroll;    
+ }
+
+ /*달력*/
+ /* .cal_nav{
+    width:705px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "SCDream4";
+    font-weight: 700;
+    font-size: 60px;
+    background-color: #686099;
+    color: #ffffff;
+  
+ } */
+
+ .cal_nav{
+    width:705px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "SCDream4";
+    font-weight: 700;
+    font-size: 30px;
+    background-color: #686099;
+    color: #ffffff;
+  
+ }
+
+ 
+
+.li_nav{
+    margin-top: 20px;
+}
+
+.li_nav2{
+    margin-top: 20px;
+}
+
+ /*검색*/
+.searchfor{
+    margin-bottom: 60px;
+    float: left;
+}
+
+ .search{
+    width: 150px;
+    height: 30px;
+    position: relative;
+    
+    border: 1px solid #ebebeb;
+    border-radius: 2px;
+
+}.glass {
+    position : relative;
+    width: 17px;
+    height: 17px;
+    left: -27px;
+    top: 2px;
+    margin: 0;
+   
+  }
+  
+ /*selectbox?? 연한 선 설정 어디에 있는건지--bootstrap-desc*/ 
+.selectbox.sel-diary{
+    /*margin-top: 60px;*/
+    margin-bottom: 20px;
+    width: 100px;
+    height: 30px;
+    float: right;
+}
+
+
+a.btn-diarylist {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 10px;
+    font-family: 'SCDream4';
+    color: #ffffff;
+    float: right;
+    margin-right: -100px;
+}
+
+.selectbox-small{
+    padding: 6px;
+    margin-left: 116px;
+}
+
+
+
+
+/*mydiarylist-2*/
+  
+/*아이보리 영역 다이어리 선*/
+
+.firstdiaryline{
+    margin-bottom: 200px;
+    width: 530px;
+    height: 5px;
+    background-color: #DFDED9;
+    margin:0px auto;
+    margin-top: 47px;
+    margin-bottom: 20px;
+    
+}
+
+.diaryline{
+    width: 530px;
+    height: 5px;
+    background-color: #DFDED9;
+    margin:0px auto;
+    margin-top: 170px;
+    margin-bottom: 20px;
+  
+}
+
+.weathersize{
+    width:3%;
+    height:3%;
+    margin-left: -280px;
+    margin-top: 4px;
+   
+    float: left;
+}
+
+.Date{
+    font-family: 'SCDream6';
+    font-size: 19px; 
+    margin-left: 160px;
+}
+
+.date{
+    margin-left: 200px;
+   
+    color: #302918;
+}
+
+.likesticker{
+    width: 14%;
+    height: 14%;
+    /* margin-left: 110px; */
+    /* margin-top: 10px; */
+    float: left;
+    margin: 26px;
+    padding-left: 21px;
+}
+
+#diarytitle{
+    margin-top: 60px;
+    margin-left: 25px;
+    font-size: 20px;
+    display: inline-block;
+}
+/* 2 */
+
+
+/*3*/
+.diaryline3{
+    border: 1px solid #686099; 
+    width: 600px;
+    margin-top: 40px;
+    margin-left: -100px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.mydiarydiv3{
+    height:500px; 
+    width: 705px;
+    background-color: #ffffff;
+    border: 1px solid #ebebeb;
+    overflow-y: auto;
+}
+
+/* 스크롤바 설정*/ 
+.mydiarydiv3::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 11px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.mydiarydiv3::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.mydiarydiv3::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+
+/* .height_scroll3{
+    height:530px; 
+    width: 10px;
+    overflow-x:hidden; 
+    overflow-y:scroll;  
+ } */
+
+ .listmargin{
+     margin-top: 30px;
+     
+ }
+
+
+
+ /*4*/
+/* 스크롤바 설정*/ 
+.mydiarydiv4::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 13px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.mydiarydiv4::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.mydiarydiv4::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+
+ .mydiarydiv4{
+    height:250px; 
+    width: 705px;
+    background-color: #ffffff;
+    /*border: 1px solid #ebebeb;*/
+    /*overflow-y: auto;*/
+    /*margin-top: 25px;*/
+}
+
+/*더 얇게하고싶음*/
+.diaryline4{ 
+    border: 1px solid #686099; 
+    width: 600px;
+    margin-top: 20px;
+    margin-left: -100px;
+    margin-bottom: 20px;
+    float: left;
+}
+ 
+.cal_nav4{
+    width:705px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "SCDream4";
+    font-weight: 700;
+    font-size: 30px;
+    background-color: #686099;
+    color: #ffffff;
+    margin-top: 23px;
+  
+ }
+
+ .cal_nav5{
+    width:705px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "SCDream4";
+    font-weight: 700;
+    font-size: 30px;
+    background-color: #686099;
+    color: #ffffff;
+    margin-top: 7px;
+  
+ }
+
+
+ /*5-deleteform*/
+ .mydiarydiv5{
+    height:500px; 
+    width: 705px;
+    background-color: #ffffff;
+    border: 1px solid #ebebeb;
+    overflow-y: auto;
+}
+
+.searchfor5{
+    margin-bottom: 23px;
+    float: left;
+}
+
+/*수정 삭제 버튼 사이즈*/
+a.btn-diarylist5 {
+    width: 53px;
+    height: 30px;
+    text-align: center;
+    line-height: 10px;
+    font-family: 'SCDream4';
+    color: #ffffff;
+    float: right;
+    margin-right: -100px;
+}
+
+/* 스크롤바 설정*/ 
+.mydiarydiv5::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 13px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.mydiarydiv5::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.mydiarydiv5::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+ 
+.mydiaryImg-box{
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    padding-left: 5px;
+    margin-top: -4px;
+    
+}
+
+
+/*mydiarylist-list-usediv*/
+.likestickermydiary{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    justify-content: center;
+}
+
+.mydiaryText{
+    display: flex;
+    font-size: 14px;
+    font-family: 'SCDream4';
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: -5px;
+}
+
+.mydiaryText-list{
+   
+   width: 550px;
+   padding-top: 15px;
+   padding-left: 10px;
+  
+}
+
+.mydiaryText-list2{
+    width:550px; 
+    height:155px; 
+    float:left; 
+    padding-top: 20px; 
+    padding-left: 10px;
+}
+
+.mydiaryImg{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.mydiary-check{
+    padding-left: 300px;
+}
+
+div.mydiary-Date{
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.mydiary-weather{
+   width: 21px;
+   height: 21px;
+   margin-left: 5px;
+}
+
+.mydiary-weather2{
+    width: 21px;
+    height: 21px;
+    margin-top: -8px;
+    margin-left: -5px;
+ }
+
+.mydiary-list-box{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.mydiary-list-box2{
+    width: 705px; height: 155px;
+}
+
+
+
+/*writecontent position*/
+.mydiaryText6{
+    display: flex;
+    font-size: 14px;
+    font-family: 'SCDream4';
+    padding-bottom: 20px;
+    padding-left: 10px;
+    margin-top: -5px;
+}
+
+.mydiaryText7{
+    display: flex;
+    font-size: 16px;
+    font-family: 'SCDream4';
+    padding-bottom: 20px;
+   
+}
+
+.mydiaryText6.mydiary-content{
+    padding-left: 40px;
+}
+
+.mydiaryText6.mydiary-con-wea{
+    padding-left: 355px;
+    padding-top: 3px;
+}
+
+.mydiaryImg-box6{
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    padding-left: 5px;
+    margin-top: 10px;
+    
+}
+
+.mydiaryImg-innerbox7{
+    width: 100px; height: 100px;
+}
+
+.mydiaryImg-box7{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*float: right;*/
+   
+    
+}
+
+.mydiary-box7-support{
+    width: 155px; 
+    height:155px; 
+    float:right;
+}
+
+.diaryline6{ 
+    border: 1px solid #686099; 
+    width: 600px;
+    margin-top: 30px;
+    margin-left: -100px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.diaryline7{ 
+    border: 1px solid #686099; 
+    width: 705px;
+    margin-bottom: 10px;
+    float: left;
+    margin-left: -5px;
+    margin-top: -45px;
+}
+
+
+/*writecontent position deleteform*/
+.mydiary-check6{
+    padding-left: 15px;
+}
+
+.mydiaryText6.mydiary-con-wea2{
+    padding-left: 310px;
+    padding-top: 3px;
+    
+}
+
+/* 삭제버튼*/
+button.btn-diarylist6 {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 10px;
+    font-family: 'SCDream4';
+    color: #ffffff;
+    float: right;
+    margin-right: -170px;
+    margin-top: 20px;
+}
+
+/*수정버튼*/
+
+a.button.btn-diarylist6.modify {
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 10px;
+    font-family: 'SCDream4';
+    border: 1px solid #6667AB;
+    color: #6667AB;
+    background-color: #ffffff;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+a.button.btn-diarylist6.modify:hover{
+        background-color: #ebebeb; 
+}
+
+.mydiarydeleteForm-btn-position{
+    margin-right: -46px;
+}
+
+/*체크박스*/
+input[type=checkbox].mydiary-checkbox-all{
+    zoom: 2.2;
+    margin-left: 42px;
+    margin-top: 1px;
+}
+
+input[type=checkbox].mydiary-checkbox{
+    zoom: 1.5;
+    margin-top: 0px;
+    margin-left: 9px;
+}
+
+.mydiary-selectbox-checkall{
+    /*margin-right: -60px;*/
+    margin-right: -40px;
+    margin-right: -12px;
+    
+}
+
+/*읽기영역*/
+
+.mydiary-read-box{
+    width: 680px;
+    /*height: 490px;*/
+    height: 600px;
+    margin-left: 60px;
+    margin-top: -25px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.39), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+    counter-increment: gradient-counter;
+    overflow-y: auto;
+    
+}
+
+/*읽기영역 안보이는 스크롤*/
+.mydiary-read-box::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 13px;
+    display: none; 
+} 
+/* 스크롤바 막대 설정*/ 
+.mydiary-read-box::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.mydiary-read-box::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+.read-modal-content{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background:rgba(128, 128, 128, 0.603);
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.modal-read{ 
+    position:absolute; width:1000px; height:1000px; background: rgba(105, 105, 105, 0.8); top:0; left:0; display:none;
+  }
+  /*
+  .modal_content_read{
+    width: 680px;
+    height: 490px;
+    background:#fff; border-radius:10px;
+    position:relative; top:20%; left:25%;
+    margin-top: 100px;
+     margin-left:-200px;
+    text-align:center;
+    box-sizing:border-box; padding:74px 0;
+    line-height:23px; cursor:pointer;
+  }
+
+.modal-read2{
+    position: absolute; top: 0; left: 0; width: 2000px; height: 2000px; display: none; background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+}
+
+
+.modal-button-read{
+    width: 140px;
+    height: 40px;
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px;
+    border: none;
+    cursor: pointer; 
+    background: #686099;
+    color: #fff; 
+    margin-left: 500px;
+    margin-top: 20px;
+    font-family: 'SCDream4';
+}
+
+.modal-button-read:hover{
+    background-color: #4b4b7a;}  */
+
+
+/*모달창*/
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal.modal-window {
+    background: rgba( 69, 139, 197, 0.70 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 400px;
+    height: 500px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+}
+#modal.title {
+    padding-left: 10px;
+    display: inline;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    
+}
+#modal.title h2 {
+    display: inline;
+}
+#modal.close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+#modal.content {
+    margin-top: 20px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+}
+
+.glass_new{
+    position : relative;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+}
+
+button.btn-search{
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    line-height: 10px;
+    font-family: 'SCDream4';
+    border: 1px solid #d8d8d8;
+    color: #6667AB;
+    background-color: #ececec;
+    float: right;
+}   
+
+/*
+button.btn-search:hover{
+    background-color: #cccccc;
+}*/
+
+.search_new{
+    width: 150px;
+    height: 30px;
+    position: relative;   
+    border: 1px solid #ebebeb;
+    border-radius: 2px;
+    padding: 10px;
+
+}
+
+.sectionLine{
+    width: 705px;
+    border-bottom: 1px solid #686099;
+}
+
+.opensetting{
+    font-family: 'SCDream4';
+    font-size: 13px;
+    padding-bottom: 10px;
+}
