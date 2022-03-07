@@ -1,0 +1,204 @@
+/*daily*/
+
+#result {
+    display: none;
+}
+
+#daily-img {
+    width: 500px;
+}
+
+.daily-btn {
+    width: 100px;
+    margin: 10px 50px 0px 50px;
+    padding: 10px;
+    color:#686099;
+    border: #686099;
+    border-radius: 5px;
+    font-family: 'main';
+  }
+
+.daily-btn:hover {
+    color: #f6f5f5;
+    background-color: #686099;
+    cursor: pointer;
+}
+
+
+#audio {
+	width: 200px;
+    height: 25px;
+}
+
+/*Q&A*/
+
+#qna {
+    display: none;
+    text-align: center;
+    padding: 20px 0px 0px 80px;
+}
+
+.qBox {
+    font-size: 25px;
+    font-weight: bolder;
+    width: 550px;
+    margin: 40px 0px 40px 40px;
+    text-align: center;
+}
+
+.answerList {
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    display: block;
+    width: 80%;
+    border: 0px;
+    font-size: 20px;
+    margin: 15px 30px 40px 30px;
+    padding: 10px;
+  }
+  
+  .answerList:hover, .answerList:focus {
+    background-color: #686099;
+    color: whitesmoke;
+  }
+
+  .status {
+    height: 20px;
+    width: 80%;
+    background-color: white;
+    border-radius: 20px;
+    margin: 0px 10px 10px 20px;
+  }
+  
+  .statusBar {
+    height: 100%;
+    border-radius: 20px;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#febbbb+0,fe9090+52,ff5c5c+100;Red+3D+%231 */
+    background: #686099;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #CEC9EF 0%, #978ecf 52%, #686099 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #CEC9EF 0%, #978ecf 52%, #686099 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #CEC9EF 0%, #978ecf 52%, #686099 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CEC9EF', endColorstr='#686099', GradientType=0);
+    /* IE6-9 */
+  }
+
+/*result*/
+
+@font-face {
+    font-family: 'main';
+    src: url(/mydeco/assets/fonts/BinggraeⅡ-Bold.ttf) format('truetype');
+}
+
+
+#result {
+    display: none;
+}
+
+#result>h2 {
+    padding: 20px;
+}
+
+#resultImg {
+	width: 200px;
+    height: 100px;
+    margin: 10px 0px 10px 20px;
+    padding: 0px 0px 0px 300px;
+}
+
+#resultImg2 {
+    width: 400px;
+}
+
+.img-fluid {
+    height: 100px;
+    margin: 15px;
+}
+
+.resultDesc {
+    width: 600px;
+    margin: 30px 30px 0px 75px;
+    padding: 20px 30px 20px 30px;
+    background-color: #f6f5f5;
+    
+}
+
+#result>h2 {
+    font-family: 'main';
+}
+
+/*animation*/
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  .fadeIn{
+    animation: fadeIn;
+    animation-duration: 0.5s;
+  }
+  
+  .fadeOut{
+    animation: fadeOut;
+    animation-duration: 0.5s;
+  }
+
+  
+/*mood contents*/
+
+#main-content {
+  background-color: #CEC9EF;
+  height: 600px;
+  width: 800px;
+  text-align: center;
+  padding: 60px 20px 80px 20px;
+  margin: 15px 0px 0px 0px;
+}
+
+#main-img {
+  height: 250px;
+  margin: 30px;
+}
+
+#main-btn {
+  margin: 30px;
+  padding: 10px;
+  color:#686099;
+  border: #686099;
+  border-radius: 5px;
+  font-family: 'main';
+}
+
+#main-btn:hover {
+  color: #f6f5f5;
+  background-color: #686099;
+  cursor: pointer;
+}
+
+#main>h2 {
+  font-family: 'main';
+}
+
+#main>p {
+  font-family: 'SCDream4';
+}

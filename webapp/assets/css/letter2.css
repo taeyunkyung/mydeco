@@ -1,0 +1,204 @@
+/*writeForm*/
+
+div.letterwriteForm-write-region{
+    font-family: 'SCDream4';
+    font-size: 18px;
+}
+
+.letterwriteForm-write-region{
+    /*border: 1px solid #000000; */
+    text-align: center;
+   
+    margin-left: 50px;
+
+}
+
+.letterwriteForm-left{
+    float: left;
+    width: 706px;
+    height: 688px;
+    border: 1px solid  #000000;
+    padding: 10px 0px 0px 0px;
+    
+}
+
+.letterwriteForm-right{
+    float: left;
+    width: 240px;
+    height: 690px;
+    border: 1px solid  #ebebeb;
+    margin-left: 10px;
+    background-color: rgb(54, 54, 54);
+    padding: 5px 0px 0px 0px;
+}
+
+.letter-openday{
+	float: left;
+	font-size: 15px;
+	margin: 10px 0px 0px 0px;
+}
+
+#openday-select {
+	float: left;
+	width: 150px;
+	padding: 5px 10px 5px 10px;
+	margin: 5px 0px 0px 10px;
+	text-align: center;
+}
+
+.writeform-button{
+	text-align: center;
+
+}
+
+.writeform-top-button{
+	text-align: right;
+	padding: 0px 15px 0px 0px;
+
+}
+
+.writeform-save{
+    display: inline-block;
+}
+
+
+a.writeform-modify{
+    border: 1px solid #6667AB;
+    background: #fff;
+    color: #6667AB; 
+    font-family: 'SCDream4';
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px;
+    cursor: pointer; 
+    margin: 0px 10px 0px 0px;
+}
+
+
+.writeform-modify:hover {
+background-color: #ebebeb; }
+
+
+.writeform-btn-right{
+    float: right;
+}
+
+.writeform-btn-left{
+    float: left;
+}
+
+/*꾸미기내용 들어가는 박스 배경색*/
+.menu-box{
+    width: 238px;
+    height: 639px;
+    background-color: #2e2e2e;
+} 
+
+
+/*탭메뉴*/
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
+  ul.tabs li{
+    background: #686099;
+    width: 228px;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  ul.tabs li.current{
+    background: #4b4b7a;
+    /*background: #686099;*/
+    color: rgb(255, 255, 255);
+    width: 228px;
+  }
+
+  .tab-link{
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    
+  }
+
+  .tab-link:hover{
+    background-color: #ebebeb;
+    width: 228px;
+    color: #686099;
+  }
+
+  .tab-content{
+    display: none;  
+    padding: 15px 0;
+    border-top:3px solid #1d1d1d;
+  }
+  
+  .tab-content.current{
+    display: inherit;
+  }
+
+
+#chooseFile {
+    visibility: hidden;
+}
+
+.letter-file {
+	width: 198px;
+	height: 26px;
+	margin: 0px 0px 0px 0px;
+}
+
+.file-font {
+	font-size: 18px;
+	font-weight: normal;
+	
+}
+
+/*편지지*/
+.menu-box3{
+    width:238px;
+    height: 504px;
+    overflow-y: auto;
+}
+
+img {
+	width: 180px;
+	margin: 20px 0px 0px 0px;
+}
+
+.letter-writeForm-content{
+    width: 680px;
+    height: 600px;
+    margin-top: 15px;
+    resize: none;
+    padding: 60px;
+}
+
+.letter-content {
+	margin: 0px 0px 30px 0px;
+}
+
+
+/*bgm 목록*/
+
+.letter-writeForm-bgmList{
+    width: 228px;
+    height: 20px;
+    background-color: #2e2e2e;
+    color: #b3b3b3;
+    font-family: 'SCDream4';
+    font-size: 13px;
+    padding-bottom: 30px;
+    padding-top: 12px;
+}
+
+.letter-writeForm-bgmList:hover{
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+

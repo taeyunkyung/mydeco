@@ -1,0 +1,281 @@
+
+
+.btn-letter-write {
+	color: white;
+	float: right;
+	background:#686099;
+    font-weight:bold;
+    text-align:center;
+    width:150px;
+    height:40px;
+    margin: 0px 0px 0px 0px;
+    border:0;
+    outline:0;  
+}
+
+.btn-letter-write:hover {
+	background-color: #877fb9;
+}
+
+h3 {
+	margin: 20px 0px 15px 0px;
+	font-weight:bold;
+}
+
+div#cTitle {
+	border-bottom: #CEC9EF;
+    border-width: 2px;
+    border-bottom-style: solid;
+    width: 705px;
+    margin: 0px 0px 0px 0px;
+}
+
+/*letter*/
+
+.tap_content {
+	width: 685px;
+	height: 450px;
+  	margin: 0 0 50px 0px;
+  	line-height: 1.5;
+  	display: block;
+}
+
+.letter_list{
+  height: 500px;
+
+}
+.list_top {
+  width: 705px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #686099;
+  text-align: left;}
+
+h3 {
+    font-size: 20px;
+    font-family: 'SCDream4'; }
+  
+#letter_tap {
+  padding: 10px 0px 0px 0px;
+  width: 705px;
+  height: 650px;
+  background: #ffffff;}
+
+section {
+  	display: none;
+    background-color: #CEC9EF;
+    display:none;
+    width:100%;
+    height:550px;
+    padding:10px;
+    box-sizing:border-box
+}
+
+/*라디오버튼 숨김*/
+input {
+    display: none;
+    }
+
+label {
+   width:150px;
+   height:40px;
+   background:#f6f5f5;
+   border-radius:10px 10px 0 0;
+   text-align:center;
+   border:0;
+   outline:0;
+   line-height:40px;
+   margin: 10px 0px 0px 0px;
+}
+
+label:hover {
+  background-color: #CEC9EF;
+  cursor: pointer;
+}
+
+/*input 클릭시, label 스타일*/
+input:checked + label {
+    background:#686099;
+    font-weight:bold;
+    color: white;
+    border:0;
+    outline:0;
+    margin: 10px 0px 0px 0px;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2{
+  display: block;
+}
+
+
+/*봉투 이미지*/
+.envelope {
+	float: left;
+	width: 340px;
+	position: relative;
+}
+
+.envelope img {
+	float: left;
+	width: 320px;
+	margin: 10px 10px 10px 10px;
+}
+
+img .day {
+	position: absolute;
+	text-align:center;
+	height: 233px;
+}
+
+.day {
+	padding: 30px 30px 30px 30px;
+	position: absolute;
+	text-align:center;
+	height: 233px;
+	width: 340px;
+	font-weight: bold;
+	color:#686099;
+	font-family: 'SCDream4';
+}
+
+/*안 열린 편지지*/
+
+.sendDay {
+	float: left;
+	font-size: 12px;
+	height: 30px;
+	margin: 20px 5px 0px 5px;
+	padding: 0px 5px 0px 0px;
+}
+
+.openDay {
+	float: right;
+	font-size: 12px;
+	height: 30px;
+	margin: 20px 5px 0px 5px;
+	padding: 0px 0px 0px 5px;
+}
+
+.Dday {
+	font-family: 'main';
+	text-align: center;
+	font-style: italic;
+	font-size: 45px;
+	height: 50px;
+	margin: 55px 40px 30px 40px;
+	padding: 5px 0px 0px 0px;
+	background-color:#CEC9EF;
+	color: black;
+}
+
+/*읽은 편지지*/
+.RsendDay {
+	font-size: 12px;
+	height: 25px;
+	margin: 0px 60px 0px 0px;
+	padding: 0px 90px 0px 0px;
+	color: white;
+}
+
+.RopenDay {
+	font-size: 12px;
+	height: 30px;
+	margin: 7px 0px 0px 60px;
+	padding: 0px 0px 0px 90px;
+	color: white;
+}
+
+.read {
+	font-weight: normal;
+	font-size: 15px;
+	height: 120px;
+	padding: 5px 5px 5px 5px;
+	margin: 0px 0px 0px 0px;
+	color: black;
+	background-color: white;
+	background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.saveday {
+	font-size: 12px;
+	height: 25px;
+	margin: 0px 60px 0px 0px;
+	padding: 5px 100px 5px 0px;
+	color: white;
+}
+
+.letter-ing {
+	font-weight: normal;
+	font-size: 15px;
+	height: 140px;
+	padding: 5px 5px 5px 5px;
+	margin: 0px 0px 0px 0px;
+	color: black;
+	background-color: white;
+	background-color: rgba( 255, 255, 255, 0.5 )
+}
+
+
+.page {
+	text-align: center;
+	font-size: 16px;
+	width: 685px;
+}
+
+.page-no {
+	width: 685px;
+}
+
+/*모달창*/
+
+#my_modal {
+	display: none;
+    width: 800px;
+    height: 700px;
+    padding: 10px 40px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+#my_modal h3 {
+	margin: 25px 0px;
+}
+
+#letter-read {
+	height: 520px;
+	margin: 0px 0px 5px 0px;
+}
+
+.modal-day-left {
+	float: left;
+	margin: 0px 0px 0px 20px;
+}
+
+.modal-day-right {
+	float: right;
+	margin: 0px 20px 0px 0px;
+}
+
+.btn-letter-close {
+	color: white;
+	background:#686099;
+    font-weight:bold;
+    text-align:center;
+    width:150px;
+    height:40px;
+    margin: 0px 0px 0px 0px;
+    border:0;
+    outline:0;  
+}
+
+.btn-center {
+	text-align: center;
+}
+
+.days {
+	color: white;
+	background:#686099;
+	padding: 10px 0px 0px 0px;
+	height:35px;
+}
