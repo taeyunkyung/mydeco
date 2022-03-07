@@ -8,18 +8,19 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/jquery-ui/jquery-ui.css">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiaryList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiarywrite-this.css">
 
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jquery-ui.css">
-<!-- Toast UI Editor -->
-<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
- 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui/jquery-ui.js"></script>
+
+
+
 </head>
 
 <body>
@@ -50,9 +51,9 @@
                                     <form>
                                         <select name="weather-option" class="selectbox-we">
                                             <option value="none">ㅡㅡ 선택 ㅡㅡ</option>
-                                            <option value="sunny"><img class="mydiary-weather-img" src="./assets/img/weather/sunny-day.png">맑음</option>
-                                            <option value="rainy"><img class="mydiary-weather-img" src="./assets/img/weather/rainy.png">비</option>
-                                            <option value="snow"><img class="mydiary-weather-img" src="./assets/img/weather/snowflake.png">눈</option>
+                                            <option value="sunny">맑음</option>
+                                            <option value="rainy">비</option>
+                                            <option value="snow">눈</option>
                                         </select>
                                     </form>    
                                 </div>
@@ -83,12 +84,6 @@
                                 <input id="saveBtn" type="submit" class="button writeform-save" value="저장하기">
                             </div>
 
-                            <!-- <div class="mydiarywriteForm-btn-position">                          
-                                <form action="" method="get"><!--controller-저장으로 이동 insert문-->             
-                                    <!-- <button class="button btn-diarylist6" type="submit">저장하기</button>
-                                </form>                                   
-                                
-                            </div> -->
                         </div>
                         
                     </div>                                                    
@@ -126,8 +121,8 @@
                            
                             <div id="tab-1" class="tab-content current sticker-bgm-box2">
                                 <div>
-                                    <img class="" src="./assets/img/sticker/100px.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
+                                    <img class="writeform-sticker-size" src="${pageContext.request.contextPath}/assets/img/sticker/1.png">
+                                    <img class="writeform-sticker-size" src="${pageContext.request.contextPath}/assets/img/sticker/rabbit.png">                             
                                 </div>
 
                                 <div>
@@ -228,20 +223,33 @@
             </div>
         </div>    
     </div>
-    
-    <div id="editor"></div>
 
 </body>
 
 <script>
 
 $(document).ready(function() {
-    $("#datepicker").datepicker();
+
+	//탭메뉴관련
+	$('ul.tabs li').on("click", function(){
+		var tab_id = $(this).attr('data-tab');
+		
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+		
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	 });
+	
+	//달력
+	$("#datepicker").datepicker();
 });
+ 
+
+
 
 $("#datepicker").datepicker({
         showOn:"button"
-       	,autoSize: true
         , buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
         ,buttonImageOnly: true
         ,changeMonth:true
@@ -259,32 +267,6 @@ $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'10px'});
 /*textarea 개행처리*/
 
 
-/*탭메뉴*/
-$(document).ready(function(){
-     
-   $('ul.tabs li').click(function(){
-     var tab_id = $(this).attr('data-tab');
-  
-     $('ul.tabs li').removeClass('current');
-     $('.tab-content').removeClass('current');
-  
-     $(this).addClass('current');
-     $("#"+tab_id).addClass('current');
-   });
-  
-  
- })
- 
-/*toast ui editor*/
-const Editor = toastui.Editor;
- 
-const editor = new Editor({
-	  el: document.querySelector('#editor'),
-	  width: '500px',
-	  height: '400px',
-	  initialEditType: 'markdown',
-	  
-	});
 
 
 </script>
