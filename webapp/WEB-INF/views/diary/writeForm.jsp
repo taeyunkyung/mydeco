@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 
 
 
@@ -76,7 +77,7 @@
                             <input type="text" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요">
                         </div>
                         <div>
-                            <textarea name="mydiary-writeForm-content" class="mydiary-writeForm-content" cols="600" rows="5"></textarea>                                                               
+                            <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
                         </div>
                         <div>
                             <div class="writeform-button">
@@ -226,7 +227,15 @@
 
 </body>
 
-<script>
+<script type="text/javascript">
+
+//캔버스 초기화 설정
+var canvas = new fabric.Canvas("paper", {
+	 width: 680,
+	 height: 490,
+	 backgroundColor: 'rgb(100,150,134)'
+});
+
 
 $(document).ready(function() {
 

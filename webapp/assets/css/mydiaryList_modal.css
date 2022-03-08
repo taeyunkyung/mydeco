@@ -1,0 +1,114 @@
+.modal_content_read{
+    /*textarea-680-컨텐츠자체크기가680 모달창 흰부분은 좀더 커야함*/
+    width: 800px;
+    min-height: 850px;
+    background:rgb(255, 255, 255); border-radius:10px;
+    position:relative; top:20%; /* left:24%; */
+    margin-top: 50px;
+    /* margin-left:180px; */
+    text-align:center;
+    box-sizing:border-box; padding:74px 0;
+    line-height:23px; cursor:pointer;
+  }
+
+.modal-read2{
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; background-color: rgba(0, 0, 0, 0.4);
+    
+}
+
+
+.modal-button-read{
+    width: 140px;
+    height: 40px;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px;
+    border: none;
+    cursor: pointer; 
+    background: #686099;
+    color: #fff; 
+    /*margin-left: 100px;*/
+    margin-top: 20px;
+    font-family: 'SCDream4';
+}
+
+.modal-button-read:hover{
+    background-color: #4b4b7a;}  
+
+
+.mydiary-read-box-content{
+    padding: 2rem;
+    /* border: 1px solid rgb(27, 24, 24);*/
+    background-color: rgb(219, 211, 199);
+}    
+/*이거문제*/
+.mydiary-read-btnset{
+    /* margin-left: 750px;
+    margin-top: px;*/
+    
+}
+
+.mydiary-read-title{
+    margin-top: -30px; 
+    margin-left: -495px;
+    margin-bottom: 50px;
+
+}
+
+
+button.mydiary-read-close-btn{
+    width: 70px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    border: none;
+    cursor: pointer; 
+    background: none;
+    color: #fff; 
+    margin-left: 100px;
+    font-family: 'SCDream4';
+    margin-top: -70px;
+    float: right;
+}
+
+.read-close-btn{
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+
+button.mydiary-read-save-btn{
+    width: 70px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    border: none;
+    cursor: pointer; 
+    background: none;
+    color: #fff; 
+    margin-left: 50px;
+    font-family: 'SCDream4';
+    margin-top: -70px;
+    float: right;
+}
+
+.read-save-btn{
+    width: 23px;
+    height: 23px;
+    margin-right: 100px;
+}
+
+.read-save-icon{
+    float: right; 
+    margin-top: -63px;
+    margin-right: -40px;
+}
+
+.read-bgm-play{
+    float: left; 
+    margin-top: -62px;
+    margin-left: 60px;
+    font-family: 'SCDream4';
+}
