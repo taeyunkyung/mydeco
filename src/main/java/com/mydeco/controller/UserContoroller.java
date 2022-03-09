@@ -11,13 +11,14 @@ import com.mydeco.service.UserService;
 import com.mydeco.vo.UserVo;
 
 @Controller
+@RequestMapping("/user")
 public class UserContoroller {
 
 	@Autowired
 	private UserService userService;
 	
 	//로그인
-	@RequestMapping("/loginform")
+	@RequestMapping("/loginForm")
 	public String mainlogin() {
 		System.out.println("메인로그인 도킹");
 		
