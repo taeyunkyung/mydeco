@@ -187,37 +187,19 @@
                                 <!--/ajax로 출력할부분  -->
                             </div>
                         </div>
-
-                        
-
-
-
-
-
-
-
-                       <div>
-                    </div>
-
-
-
-
-
-
-
-
-
-			
-			
-			
 		                </div>
-		
-		                <div class="row">
-		                    <div class="col-xs-12">푸터</div>
-		                </div>
+		                
+		                
+		                
 		            </div>
 		        </div>
-        	</div>
-        </div>
+		        <!-- 메인끝 -->   
+		        <div class="row">
+		            <div class="col-xs-12">
+		            	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		         	</div>
+		        </div>
+        	</div>	        
+    	</div>
     </body>
 </html>

@@ -54,6 +54,8 @@
 		                    </div>
 		                </div>    
 		            </div>
+		            
+		           <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
           </div>
         </div>
     </body>

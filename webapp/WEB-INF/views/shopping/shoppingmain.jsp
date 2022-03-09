@@ -106,6 +106,7 @@
                                     </div>
                                     <!-- /여기 3줄나눔 -->
                                 </div>
+                                
                                 <div class="col-xs-1">
                                     <button type="button" class="btn btn-default btn-sm">
                                         <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
@@ -116,14 +117,14 @@
                             <!-- /포문으로돌림 -->
 
 
-                        <div>
-                    </div>
 
-
+                	</div>
                 </div>
-
+				<!-- 푸터부분 -->
                 <div class="row">
-                    <div class="col-xs-12">푸터</div>
+                    <div class="col-xs-12">
+                    	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+                    </div>
                 </div>
             </div>
         </div>
