@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myProduct">
+
+	<select id="diaryList" parameterType="int" resultType="com.mydeco.vo.DiaryVo2">
+		<![CDATA[
+			select  diaryNo,
+        			title,
+        			diaryDate
+			from diary
+			where userNo = #{userNo}
+		]]>
+	</select>
+
+	<insert id="addProduct" parameterType="ProductVo">
+		<selectKey keyProperty="prodNo" resultType="int" order="BEFORE">
+			select seq_product_no.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into product 
+			values(#{prodNo}, 
+				#{userNo}, 
+				#{prodName}, 
+				#{emotion}, 
+				#{price}, 
+				#{delivery}, 
+				#{prodInfo}, 
+				sysdate, 
+				#{diaryLink})
+		]]>
+	</insert>
+
+</mapper>

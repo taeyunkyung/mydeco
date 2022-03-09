@@ -8,9 +8,9 @@
 <title>My Deco</title>
 
 <link rel="stylesheet"
-	href="./assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./assets/css/main.css">
-<link rel="stylesheet" href="./assets/css/shop-my.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop-my.css">
 </head>
 <body>
 	<div id="wrap">
@@ -37,7 +37,7 @@
 						</select> <input type="text" id="keyword" name="" value=""
 							placeholder="검색어를 입력해주세요">
 						<button id="searchBtn">
-							<img id="btnImg" src="./assets/img/magnifying-glass.png">
+							<img id="btnImg" src="${pageContext.request.contextPath}/assets/img/magnifying-glass.png">
 						</button>
 						<input class="adddelBtn button" type="button" value="새상품등록">
 						<input class="adddelBtn button" type="button" value="목록에서삭제">

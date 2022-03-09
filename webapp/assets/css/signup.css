@@ -1,7 +1,7 @@
 #main-content {
-    display: flex;
-    justify-content: center; }
-input[name=userSn] {
+    display: inline-flex;
+    flex-direction: column; }
+input[name=pn1], input[name=pn2] {
     width: 49%;
 }
 

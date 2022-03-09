@@ -22,6 +22,21 @@ table {
     font-family: 'SCDream4';
 }
 
+#chat-list::-webkit-scrollbar-track, #chat::-webkit-scrollbar-track
+, #img-area::-webkit-scrollbar-track {    
+    background-color: #fff;
+}    
+#chat-list::-webkit-scrollbar, #chat::-webkit-scrollbar
+, #img-area::-webkit-scrollbar {
+    width: 8px;
+}    
+#chat-list::-webkit-scrollbar-thumb, #chat::-webkit-scrollbar-thumb
+, #img-area::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border: 1px solid #686099;
+    border-radius: 10px;
+}
+
 /*seller-be*/
 #bs-list {
 position: relative;
@@ -125,14 +140,23 @@ label[for="prod-img"], label[for="prod-diary"] {
         background-color: #ebebeb;}
 
 #img-area {
-    width: 560px; height: 115px; overflow: hidden; display: inline-block;
-} 
-#next {
-    margin: 0px; padding: 0px; border: none; background-color: #fff;
+    width: 560px; height: 115px; overflow-y: scroll; 
+    display: inline-flex;
+} #img-area ul {padding-left: 0px;}
+
+.img-img {
+    border: 1px solid #ebebeb; width: 136px; height: 115px;
+    display: inline-block;
+} .img-img img {
+	width: 136px; height: 115px;
 }
 
 #prod-story {
     width: 578px;
+}
+
+#add {
+    display: inline-flex; justify-content: center; width: 80%;
 }
 
 /*shop-chatList*/
@@ -186,17 +210,6 @@ p {
     height: 296px; margin-bottom: 2px; 
     overflow-y: scroll ;
 } #chat li {padding-bottom: 10px;}
-    #chat-list::-webkit-scrollbar-track, #chat::-webkit-scrollbar-track {    
-        background-color: #fff;
-    }    
-    #chat-list::-webkit-scrollbar, #chat::-webkit-scrollbar {
-        width: 8px;
-    }    
-    #chat-list::-webkit-scrollbar-thumb, #chat::-webkit-scrollbar-thumb {
-        background-color: #fff;
-        border: 1px solid #686099;
-        border-radius: 10px;
-    }
 
 .speech {
     transform: scale(-1); opacity: 0.3; 

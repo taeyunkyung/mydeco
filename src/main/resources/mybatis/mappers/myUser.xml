@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="myUser">
+	
+	<insert id="signup" parameterType="UserVo">
+		<![CDATA[
+			insert into users
+			values(seq_users_no.nextval, 
+				#{id}, 
+				#{password}, 
+				#{name}, 
+				#{personalNo}, 
+				#{hp}, 
+				#{gender}, 
+				#{mbti}, 
+				sysdate, 
+				'no')
+		]]>
+	</insert>
+	
+	<select id="login" parameterType="UserVo" resultType="UserVo">
+		<![CDATA[
+			select  userNo,
+        			name,
+        			id,
+        			password
+			from users
+			where id = #{id}
+			and password = #{password}
+		]]>
+	</select>
 </mapper>

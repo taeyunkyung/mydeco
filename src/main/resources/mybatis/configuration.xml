@@ -3,10 +3,16 @@
 
 <configuration>
     <typeAliases>
+    	<typeAlias alias="UserVo" type="com.mydeco.vo.UserVo" />
+    	<typeAlias alias="ProductVo" type="com.mydeco.vo.ProductVo" />
+    	<typeAlias alias="ProdImgVo" type="com.mydeco.vo.ProdImgVo" />
     </typeAliases>
 
     <mappers>
         <mapper resource="mybatis/mappers/myUser.xml" />
+    	<mapper resource="mybatis/mappers/myProduct.xml" />
+        <mapper resource="mybatis/mappers/myProdImg.xml" />
+        
         <mapper resource="mybatis/mappers/mydiary.xml" />
     </mappers>
 </configuration>
