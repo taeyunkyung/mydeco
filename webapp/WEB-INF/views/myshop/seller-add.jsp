@@ -8,9 +8,12 @@
 <title>My Deco</title>
 
 <link rel="stylesheet"
-	href="./assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./assets/css/main.css">
-<link rel="stylesheet" href="./assets/css/shop-my.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop-my.css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -25,7 +28,7 @@
 				
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
-					<form action="" method="">
+					<form action="${pageContext.request.contextPath}/myshop/add" method="post" enctype="multipart/form-data">
 						<table id="a-table">
 							<tr>
 								<td id="sub" colspan="2">
@@ -35,29 +38,29 @@
 
 							<tr>
 								<td><label for="prod-title">상품 이름</label></td>
-								<td><input id="prod-title" type="text" name="" value=""></td>
+								<td><input id="prod-title" type="text" name="prodName" value=""></td>
 							</tr>
 							<tr>
 								<td><label for="prod-emo">감정</label></td>
 								<td class="a-chk">
 									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="happy"> <label
+										<input type="radio" name="emotion" id="happy" value="happy"> <label
 											for="happy">기쁨</label> <span class="check"></span>
 									</div>
 									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="sad"> <label
+										<input type="radio" name="emotion" id="sad" value="sad"> <label
 											for="sad">슬픔</label> <span class="check"></span>
 									</div>
 									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="angry"> <label
+										<input type="radio" name="emotion" id="angry" value="angry"> <label
 											for="angry">화남</label> <span class="check"></span>
 									</div>
 									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="annoyed"> <label
+										<input type="radio" name="emotion" id="annoyed" value="annoyed"> <label
 											for="annoyed">짜증</label> <span class="check"></span>
 									</div>
 									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="relieved"> <label
+										<input type="radio" name="emotion" id="relieved" value="relieved"> <label
 											for="relieved">홀가분</label> <span class="check"></span>
 									</div>
 								</td>
@@ -71,43 +74,114 @@
 								<td><label for="prod-deliv">배송방법</label></td>
 								<td class="a-chk">
 									<div class="form-radio-item">
-										<input type="radio" name="delivery" id="post"> <label
+										<input type="radio" name="delivery" id="post" value="post"> <label
 											for="post">택배</label> <span class="check"></span>
 									</div>
 									<div class="form-radio-item">
-										<input type="radio" name="delivery" id="meet"> <label
+										<input type="radio" name="delivery" id="meet" value="meet"> <label
 											for="meet">직거래</label> <span class="check"></span>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td><label for="img-td">이미지</label></td>
-								<td id="img-td"><label for="prod-img">이미지 추가</label> <input
-									id="prod-img" type="file">
+								<td id="img-td"><label for="prod-img">이미지 추가</label> 
+								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">								
 									<div id="img-area">
-										<ul>
-											<li class="img-img"></li>
-											<li class="img-img"></li>
-											<li class="img-img"></li>
-											<li class="img-img"></li>
-										</ul>
 									</div>
-									<button id="next">▶</button></td>
+								</td>
 							</tr>
 							<tr>
 								<td><label for="prod-story">상품설명</label></td>
-								<td><textarea id="prod-story"></textarea></td>
+								<td><textarea id="prod-story" name="prodInfo"></textarea></td>
 							</tr>
 							<tr>
 								<td><label for="diary-td">일기</label></td>
-								<td id="diary-td"><label for="prod-diary">일기 추가</label> <input
-									id="prod-diary" type="file"></td>
+								<td id="diary-td"><label for="prod-diary">일기 추가</label> 
+								<input id="prod-diary" type="button" data-toggle="modal" data-target=".diaryList" value="일기 불러오기">
+								
+									<div class="modal fade diaryList" tabindex="-1"
+										role="dialog" aria-labelledby="myLargeModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">x</span>
+													</button>
+													<h4 class="modal-title">일기장 불러오기</h4>
+												</div>
+												<div class="modal-body">
+													<table id="d-table">
+														<tr>
+															<td>번호</td>
+															<td>제목</td>
+															<td>날짜</td>
+															<td>선택</td>
+														</tr>
+														<c:forEach items="${diaryList}" var="diaryVo">
+															<tr>
+																<td>${diaryVo.diaryNo}</td>
+																<td>${diaryVo.title}</td>
+																<td>${diaryVo.diaryDate}</td>
+																<td><input type="checkbox" class="diarySelect" name="diaryLink" value="${diaryVo.diaryNo}"></td>
+															</tr>
+														</c:forEach>														
+													</table>
+													<button type="button" id="diarySelBtn" data-dismiss="modal">선택</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="diary-area">
+										<input type="text" name="diaryLink" value="">
+									</div>
+								</td> 
 							</tr>
 						</table>
+						<div id="add">
+							<input type="submit" id="submitBtn" value="등록하기">
+						</div>
 					</form>
 				</div> <!-- content -->
 			</div> <!-- row -->
 		</div> <!-- container -->
 	</div> <!-- wrap -->
 </body>
+
+<script type="text/javascript">
+
+	var inputMultipleImage = document.getElementById("prod-img");
+	inputMultipleImage.addEventListener("change", e => {
+		readMultipleImage(e.target)
+	});
+	
+	function readMultipleImage(input) {
+		var imgarea = document.getElementById("img-area");
+		
+		if(input.files) {
+			var fileArr = Array.from(input.files);
+			console.log(fileArr);
+						
+			fileArr.forEach((file, index)=> {
+				var reader = new FileReader();
+				
+				reader.onload = e => {
+					var img = document.createElement("img");
+					img.setAttribute("src", e.target.result);
+					img.setAttribute("class", "img-img");
+					document.querySelector("div#img-area").appendChild(img);					
+				}				
+				console.log(file.name);
+				reader.readAsDataURL(file);
+			});					
+		}
+	}
+	
+	$("#diarySelBtn").on("click", function() {
+		var diary = $(".diarySelect").val();
+		console.log(diary);
+	})
+	
+</script>
 </html>

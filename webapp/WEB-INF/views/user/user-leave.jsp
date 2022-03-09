@@ -8,9 +8,9 @@
 <title>My Deco</title>
 
 <link rel="stylesheet"
-	href="./assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./assets/css/main.css">
-<link rel="stylesheet" href="./assets/css/user.css">
+	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
 </head>
 <body>
 	<div id="wrap">
