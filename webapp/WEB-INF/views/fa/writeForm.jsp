@@ -207,7 +207,22 @@ $("#btnSave").on("click", function(){
 
 //저장 함수
 function writeDiary(paperItemList){
-	console.log(paperItemList);
+   
+   console.log(paperItemList);   
+   $.ajax({
+      url : "${pageContext.request.contextPath }/faWrite",
+      type : "post",
+      contentType : "application/json",
+      data : JSON.stringify(paperItemList),
+      dataType : "json",
+      success : function() {
+         //이부분 처리 한거 없음 
+         //컨트롤러에 데디터 잘 전달 되는지만 확인
+      },
+      error : function(XHR, status, error) {
+         console.error(status + " : " + error);
+      }
+   });
 }
 
 </script>
