@@ -1,14 +1,17 @@
 package com.mydeco.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
-import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.DiaryItemVo;
+import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.StickerVo2;
 
 @Controller
@@ -26,12 +29,25 @@ public class MydiaryController {
 	
 
 	@RequestMapping("/writeForm")
-	public String writeForm() {
+	public String writeForm(Model model) {
 		System.out.println("mydiarycontroller-writeForm");
 		
 		//db에 있는 이미지경로 이용해서 스티커들 갖고와야함.
+		List<StickerVo2> stickerList = mydiaryService.getStickerList();
+		model.addAttribute("stickerList",stickerList);
 		
 		return "diary/writeForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/write")
+	public String write(@RequestBody List<DiaryItemVo> diaryItemVo) {
+		System.out.println("mydiarycontroller-write");
+		System.out.println(diaryItemVo);
+		
+		mydiaryService.addSticker(diaryItemVo);
+		
+		return "";
 	}
 	
 	

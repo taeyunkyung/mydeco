@@ -12,7 +12,6 @@ public class StickerVo2 {
 	}
 
 	
-	
 	public StickerVo2(String stickerName, String stickerSrc) {
 		super();
 		this.stickerName = stickerName;

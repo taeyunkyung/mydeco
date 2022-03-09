@@ -129,7 +129,6 @@ $("#sticker-text").on("dblclick", function(){
 	});
 	
 	canvas.add(text);
-	
 	canvas.setActiveObject(text);
 	text.selectAll();
 	text.enterEditing();

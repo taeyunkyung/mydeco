@@ -1,12 +1,12 @@
 package com.mydeco.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mydeco.dao.MydiaryDao;
+import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.StickerVo2;
 
 @Service
@@ -27,4 +27,17 @@ public class MydiaryService {
 	}
 	
 
+	/*스티커목록 가져오기*/
+	public List<StickerVo2> getStickerList(){
+		
+		return mydiaryDao.getStickerList();
+	}
+	
+	/*일기에 쓴 스티커 저장하기*/
+	public void addSticker(List<DiaryItemVo> diaryItemVo){
+		
+		mydiaryDao.addSticker(diaryItemVo);
+	}
+	
+	
 }

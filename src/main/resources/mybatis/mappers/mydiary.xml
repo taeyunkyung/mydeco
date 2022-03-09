@@ -8,4 +8,21 @@
 				values(seq_sticker_no.nextval,#{stickerName},#{stickerSrc})		
 			]]>
 	</insert>
+	
+	<!-- 스티커 목록 가져오기 -->
+	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo2">
+			<![CDATA[
+				select stickerNo,
+       				   stickerSrc
+				from sticker
+			]]>
+	</select>
+	
+	<!-- 일기에 쓴 스티커 db에 저장 -->
+	<insert id="diaryItem" parameterType="com.mydeco.vo.DiaryItemVo">
+			<![CDATA[
+				insert into diaryitem(diaryitemNo, diaryNo, stickerNo, top, left, scaleX, scaleY, angle, text)
+				values(seq_diaryitem_no.nextval,seq_diary_no.nextval, #{stickerNo}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
+			]]>
+	</insert>
 </mapper>

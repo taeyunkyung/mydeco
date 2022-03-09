@@ -22,7 +22,7 @@
 				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
     
                	<!-- aside -->
-				<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+				<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
                 
     
                 <!--컨텐츠 영역-->

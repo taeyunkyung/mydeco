@@ -8,19 +8,16 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/jquery-ui/jquery-ui.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/jquery-ui-1.13.1/jquery-ui.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiaryList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiarywrite-this.css">
 
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui-1.13.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
-
-
 
 </head>
 
@@ -39,7 +36,7 @@
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
                                 <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
-                                <input type="text" id="datepicker" name="writeform-date" value="2022-03-24" style="width: 110px; height: 30px; padding: 15px;">
+                                <input type="text" id="datepicker" name="diaryDate" value="2022-03-24" style="width: 110px; height: 30px; padding: 15px;">
                             </div>                          
  
                             <!--날씨/선택박스-->
@@ -50,7 +47,7 @@
                                 <!--선택박스-->
                                 <div class="selectbox-weather">
                                     <form>
-                                        <select name="weather-option" class="selectbox-we">
+                                        <select name="weather" class="selectbox-we">
                                             <option value="none">ㅡㅡ 선택 ㅡㅡ</option>
                                             <option value="sunny">맑음</option>
                                             <option value="rainy">비</option>
@@ -62,10 +59,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="diaryset" value="diary-private">비공개</label>
+                                    <label><input class="diaryset_private" type="radio" name="protect" value="diary-private">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="diaryset" value="diary-all">공개</label>                                                                     
+                                    <label><input class="diaryset" type="radio" name="protect" value="diary-all">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -74,15 +71,15 @@
                         
                         <!--제목/내용-->
                         <div>
-                            <input type="text" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요">
+                            <input type="text" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
                         </div>
                         <div>
                             <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
                         </div>
                         <div>
                             <div class="writeform-button">
-                                <a class="writeform-modify" href="mydiary_List.html">목록</a><!--list페이지로 이동-->
-                                <input id="saveBtn" type="submit" class="button writeform-save" value="저장하기">
+                                <a class="writeform-modify" href="${pageContext.request.contextPath}/diary/list">목록</a><!--list페이지로 이동-->
+                                <input id="saveBtn" type="button" class="button writeform-save" value="저장하기"><!-- submit->button 바꿈. ajax사용하기 -->
                             </div>
 
                         </div>
@@ -102,7 +99,7 @@
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" class="button writeform-deco-btn" value="지도">
+                                <input type="submit" class="button writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -112,44 +109,21 @@
  
                             <ul class="tabs">
                               <li class="tab-link current" data-tab="tab-1">스티커</li>
-                              <div>
+                              
                                 <li class="tab-link" data-tab="tab-2">종이</li>
-                              </div>
-                              <div>
+                              
                                 <li class="tab-link" data-tab="tab-3">bgm</li>
-                              </div>
+                             
                             </ul>
                            
                             <div id="tab-1" class="tab-content current sticker-bgm-box2">
-                                <div>
-                                    <img class="writeform-sticker-size" src="${pageContext.request.contextPath}/assets/img/sticker/1.png">
-                                    <img class="writeform-sticker-size" src="${pageContext.request.contextPath}/assets/img/sticker/rabbit.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/icon/leftbtn.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/mainbook.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/KakaoTalk_20220228_225353529.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
+                            
+                            	<c:forEach items="${stickerList}" var="stList">
+                            		<div style="float:left; margin-left:12px;">
+	                                    <img class="writeform-sticker-size" name="sticker" data-stickerno="${stList.stickerNo}" data-stickersrc="${stList.stickerSrc}" src="${stList.stickerSrc}">
+                                	</div>
+                            	</c:forEach>
+                               
                             </div>
 
                             <div id="tab-2" class="tab-content sticker-bgm-box3">
@@ -229,53 +203,155 @@
 
 <script type="text/javascript">
 
-//캔버스 초기화 설정
-var canvas = new fabric.Canvas("paper", {
-	 width: 680,
-	 height: 490,
-	 backgroundColor: 'rgb(100,150,134)'
-});
-
-
-$(document).ready(function() {
-
-	//탭메뉴관련
-	$('ul.tabs li').on("click", function(){
-		var tab_id = $(this).attr('data-tab');
-		
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-		
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	 });
+	//캔버스 초기화 설정
+	var canvas = new fabric.Canvas("paper", {
+		 width: 680,
+		 height: 490,
+		 backgroundColor: 'rgb(100,150,134)'
+	});
 	
-	//달력
-	$("#datepicker").datepicker();
-});
- 
+	
+	$(document).ready(function() {
+	
+		//탭메뉴관련
+		$('ul.tabs li').on("click", function(){
+			var tab_id = $(this).attr('data-tab');
+			
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+			
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+		 });
+		
+		//달력
+		$("#datepicker").datepicker();
+	});
+	 
+	
+	
+	
+	$("#datepicker").datepicker({
+	        showOn:"button"
+	        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
+	        ,buttonImageOnly: true
+	        ,changeMonth:true
+	        ,changeYear:true
+	        ,dateFormat:"yy-mm-dd"
+	        ,dayNames : ['월요일','화요일','수요일','목요일','금요일','토요일','일요일']
+	        ,dayNamesMin : ['월','화','수','목','금','토','일']
+	        ,monthNamesShort:  [ "1월", "2월", "3월", "4월", "5월", "6월","7월", "8월", "9월", "10월", "11월", "12월" ]
+	    
+	});
+	
+	$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'10px'}); 
+
+
+	//로딩된 후 요청
+	
+	//스티커를 클릭했을때
+	$("[name=sticker]").on("click", function(){
+		var stickerNo = $(this).data("stickerno")
+		var stickerSrc = $(this).data("stickersrc")
+		
+		console.log(stickerNo);
+		console.log(stickerSrc);
+		
+		fabric.Image.fromURL(stickerSrc, function(oImg) {
+
+			//객체에 스티커번호 추가
+			oImg.stickerNo = stickerNo;
+			canvas.add(oImg);
+			console.log(oImg);
+		});
+		
+	});
 
 
 
-$("#datepicker").datepicker({
-        showOn:"button"
-        , buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
-        ,buttonImageOnly: true
-        ,changeMonth:true
-        ,changeYear:true
-        ,dateFormat:"yy-mm-dd"
-        ,dayNames : ['월요일','화요일','수요일','목요일','금요일','토요일','일요일']
-        ,dayNamesMin : ['월','화','수','목','금','토','일']
-        ,monthNamesShort:  [ "1월", "2월", "3월", "4월", "5월", "6월","7월", "8월", "9월", "10월", "11월", "12월" ]
-    
-});
+	$(window).load(function(){
+		
+		/*저장 버튼을 눌렀을때*/
+		$("#saveBtn").on("click",function(){
+			
+			var diaryDate = $("[name=diaryDate]").val();
+			var weather = $("[name=weather]").val();
+			var protect = $("[name=protect]").val();
+			var title = $("[name=title]").val();
+			
+			var diaryvo2 = {
+					diaryDate: diaryDate,
+					weather: weather,
+					protect: protect,
+					title: title
+			};
+			console.log(diaryvo2);
+			/*
+			 $.ajax({
+			      url : "${pageContext.request.contextPath }/diary/write",
+			      type : "post",
+			      contentType : "application/json",
+			      data : JSON.stringify(diaryvo2),
+			      dataType : "json",
+			      success : function() {
+			         //이부분 처리 한거 없음 
+			         //컨트롤러에 데디터 잘 전달 되는지만 확인
+			      },
+			      error : function(XHR, status, error) {
+			         console.error(status + " : " + error);
+			      }
+			   });
+			*/
+			
+			
+			
+			//캔버스에 있는 전체 객체를 배열로 가져온다
+			var canvasObjList = canvas.getObjects();
 
-$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'10px'}); 
+			//서버로 전송할 객체들 배열
+			var paperItemList = [];
+			
+			for(var i=0; i<canvasObjList.length; i++){
+				var paperVo = {};
+				paperVo.top = canvasObjList[i].top;
+				paperVo.left = canvasObjList[i].left;
+				paperVo.scaleX = canvasObjList[i].scaleX;
+				paperVo.scaleY = canvasObjList[i].scaleY;
+				paperVo.angle = canvasObjList[i].angle;
+				
+				paperVo.stickerNo = canvasObjList[i].stickerNo;
+				
+				paperVo.text = canvasObjList[i].text;
+				
+				paperItemList.push(paperVo);//배열에 추가
+			}
 
+			writeDiary(paperItemList);
+			
+			
+		});
+		
+	});
 
-/*textarea 개행처리*/
-
-
+	//저장 함수
+	function writeDiary(paperItemList){
+	   
+	   console.log(paperItemList);   
+	   $.ajax({
+	      url : "${pageContext.request.contextPath }/diary/write",
+	      type : "post",
+	      contentType : "application/json",
+	      data : JSON.stringify(paperItemList),
+	      dataType : "json",
+	      success : function() {
+	         //이부분 처리 한거 없음 
+	         //컨트롤러에 데디터 잘 전달 되는지만 확인
+	      },
+	      error : function(XHR, status, error) {
+	         console.error(status + " : " + error);
+	      }
+	   });
+	}
 
 
 </script>
