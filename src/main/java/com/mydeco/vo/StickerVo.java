@@ -1,68 +1,71 @@
 package com.mydeco.vo;
 
 public class StickerVo {
-	
-	private int cateNo;
+
 	private int stickerNo;
-	private String stickerPath;
+	private int stickerCateNo;
 	private String stickerName;
+	private String stickerSrc;
 	
 	public StickerVo() {
+		
 	}
 
-
-	public StickerVo(int cateNo, int stickerNo, String stickerPath, String stickerName) {
-		this.cateNo = cateNo;
-		this.stickerNo = stickerNo;
-		this.stickerPath = stickerPath;
+	
+	public StickerVo(String stickerName, String stickerSrc) {
+		super();
 		this.stickerName = stickerName;
+		this.stickerSrc = stickerSrc;
 	}
 
 
-	public int getCateNo() {
-		return cateNo;
+
+	public StickerVo(int stickerNo, int stickerCateNo, String stickerName, String stickerSrc) {
+		this.stickerNo = stickerNo;
+		this.stickerCateNo = stickerCateNo;
+		this.stickerName = stickerName;
+		this.stickerSrc = stickerSrc;
 	}
 
-
-	public void setCateNo(int cateNo) {
-		this.cateNo = cateNo;
-	}
-
-
+	//게터세터
 	public int getStickerNo() {
 		return stickerNo;
 	}
-
 
 	public void setStickerNo(int stickerNo) {
 		this.stickerNo = stickerNo;
 	}
 
-
-	public String getStickerPath() {
-		return stickerPath;
+	public int getStickerCateNo() {
+		return stickerCateNo;
 	}
 
-
-	public void setStickerPath(String stickerPath) {
-		this.stickerPath = stickerPath;
+	public void setStickerCateNo(int stickerCateNo) {
+		this.stickerCateNo = stickerCateNo;
 	}
-
 
 	public String getStickerName() {
 		return stickerName;
 	}
 
-
 	public void setStickerName(String stickerName) {
 		this.stickerName = stickerName;
 	}
 
+	public String getStickerSrc() {
+		return stickerSrc;
+	}
+
+	public void setStickerSrc(String stickerSrc) {
+		this.stickerSrc = stickerSrc;
+	}
 
 	@Override
 	public String toString() {
-		return "StickerVo [cateNo=" + cateNo + ", stickerNo=" + stickerNo + ", stickerPath=" + stickerPath
-				+ ", stickerName=" + stickerName + "]";
+		return "StickerVo2 [stickerNo=" + stickerNo + ", stickerCateNo=" + stickerCateNo + ", stickerName="
+				+ stickerName + ", stickerSrc=" + stickerSrc + "]";
 	}
+	
+	
 	
 }

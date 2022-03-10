@@ -129,6 +129,16 @@
                             <div id="tab-2" class="tab-content sticker-bgm-box3">
                                 <!--div안에 꽉차게 보이게 만들기 원본 이미지사이즈 줄이기x-->
                                 <!--용지가로2개-->
+                                
+                                <c:forEach items="${paperList}" var="pList">
+                                	<div class="clearfix">
+                                		<div class="mydiaryImg-box8">
+	                                    	<img name="paper" data-paperno="${pList.paperNo}" data-papersrc="${pList.paperSrc}" src="${pList.paperSrc}">
+                                		</div>
+                                	</div>
+                            	</c:forEach>
+                                
+                                
                                 <div class="clearfix">
                                     <div class="mydiaryImg-box8">
                                         <img src="./assets/img/diarypaper/monoon1.JPG">                                        
@@ -206,7 +216,7 @@
 	//캔버스 초기화 설정
 	var canvas = new fabric.Canvas("paper", {
 		 width: 680,
-		 height: 490,
+		 height: 510,
 		 backgroundColor: 'rgb(100,150,134)'
 	});
 	
@@ -248,6 +258,8 @@
 
 
 	//로딩된 후 요청
+	
+	//종이를 클릭했을때
 	
 	//스티커를 클릭했을때
 	$("[name=sticker]").on("click", function(){
