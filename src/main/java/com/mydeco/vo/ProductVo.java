@@ -1,5 +1,7 @@
 package com.mydeco.vo;
 
+import java.util.List;
+
 public class ProductVo {
 
 	private int prodNo;
@@ -10,6 +12,7 @@ public class ProductVo {
 	private String delivery;
 	private String prodInfo;
 	private String regDate;
+	private List<ProdImgVo> prodImgList;
 
 	public ProductVo() {
 	}
@@ -24,6 +27,19 @@ public class ProductVo {
 		this.delivery = delivery;
 		this.prodInfo = prodInfo;
 		this.regDate = regDate;
+	}
+		
+	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
+			String prodInfo, String regDate, List<ProdImgVo> prodImgList) {
+		this.prodNo = prodNo;
+		this.userNo = userNo;
+		this.prodName = prodName;
+		this.emotion = emotion;
+		this.price = price;
+		this.delivery = delivery;
+		this.prodInfo = prodInfo;
+		this.regDate = regDate;
+		this.prodImgList = prodImgList;
 	}
 
 	public int getProdNo() {
@@ -90,11 +106,19 @@ public class ProductVo {
 		this.regDate = regDate;
 	}
 
+	public List<ProdImgVo> getProdImgList() {
+		return prodImgList;
+	}
+
+	public void setProdImgList(List<ProdImgVo> prodImgList) {
+		this.prodImgList = prodImgList;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion=" + emotion
 				+ ", price=" + price + ", delivery=" + delivery + ", prodInfo=" + prodInfo + ", regDate=" + regDate
-				+ "]";
+				+ ", prodImgList=" + prodImgList + "]";
 	}
 
 }
