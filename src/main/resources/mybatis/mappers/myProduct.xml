@@ -27,8 +27,7 @@
 				#{price}, 
 				#{delivery}, 
 				#{prodInfo}, 
-				sysdate, 
-				#{diaryLink})
+				sysdate)
 		]]>
 	</insert>
 
