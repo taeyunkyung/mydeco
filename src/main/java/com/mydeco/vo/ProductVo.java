@@ -10,13 +10,12 @@ public class ProductVo {
 	private String delivery;
 	private String prodInfo;
 	private String regDate;
-	private String diaryLink;
 
 	public ProductVo() {
 	}
 
 	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
-			String prodInfo, String regDate, String diaryLink) {
+			String prodInfo, String regDate) {
 		this.prodNo = prodNo;
 		this.userNo = userNo;
 		this.prodName = prodName;
@@ -25,7 +24,6 @@ public class ProductVo {
 		this.delivery = delivery;
 		this.prodInfo = prodInfo;
 		this.regDate = regDate;
-		this.diaryLink = diaryLink;
 	}
 
 	public int getProdNo() {
@@ -92,19 +90,11 @@ public class ProductVo {
 		this.regDate = regDate;
 	}
 
-	public String getDiaryLink() {
-		return diaryLink;
-	}
-
-	public void setDiaryLink(String diaryLink) {
-		this.diaryLink = diaryLink;
-	}
-
 	@Override
 	public String toString() {
 		return "ProductVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion=" + emotion
 				+ ", price=" + price + ", delivery=" + delivery + ", prodInfo=" + prodInfo + ", regDate=" + regDate
-				+ ", diaryLink=" + diaryLink + "]";
+				+ "]";
 	}
 
 }

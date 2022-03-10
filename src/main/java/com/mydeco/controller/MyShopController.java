@@ -42,11 +42,12 @@ public class MyShopController {
 	@RequestMapping("/add")
 	public String add(@ModelAttribute ProductVo productVo, 
 			@RequestParam("prodImgFile") MultipartFile[] file,
+			@RequestParam("diaryNo[]") String[] diaryNoArr,
 			HttpSession session) {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		productVo.setUserNo(authUser.getUserNo());
-		myShopService.addProduct(productVo, file);
+		myShopService.addProduct(productVo, file, diaryNoArr);
 		
 		return "redirect:/myshop/myProducts";
 	}

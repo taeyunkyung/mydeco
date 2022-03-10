@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mydeco.dao.MyProdImgDao;
 import com.mydeco.dao.MyProductDao;
 import com.mydeco.vo.DiaryVo2;
+import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
 
@@ -29,12 +30,14 @@ public class MyShopService {
 		return myProductDao.diaryList(userNo);
 	}
 	
-	public void addProduct(ProductVo productVo, MultipartFile[] file) {
+	public void addProduct(ProductVo productVo, MultipartFile[] file, String[] diaryNoArr) {
 		System.out.println("add.service");
 		
-		myProductDao.add(productVo);		
+		myProductDao.add(productVo);
+		
+		// 이미지추가
 		int prodNo = productVo.getProdNo(); 
-		System.out.println(prodNo);	System.out.println(file);
+		System.out.println(prodNo);	
 		
 		for(int i=0; i<file.length; i++ ) {
 			
@@ -59,5 +62,10 @@ public class MyShopService {
 			myProdImgDao.add(prodImgVo);
 		}
 		
+		// 일기추가
+		for(int i=0; i<diaryNoArr.length; i++) {
+			ProdDiaryVo prodDiaryVo = new ProdDiaryVo(prodNo, Integer.parseInt(diaryNoArr[i]));
+			myProdImgDao.addDiary(prodDiaryVo);
+		}		
 	}
 }

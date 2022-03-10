@@ -116,7 +116,7 @@
 													<h4 class="modal-title">일기장 불러오기</h4>
 												</div>
 												<div class="modal-body">
-													<table id="d-table" width="100%">
+													<table id="d-table">
 														<tr>
 															<td>번호</td>
 															<td>제목</td>
@@ -154,6 +154,55 @@
 
 <script type="text/javascript">
 
+	// input multiple 초기화 및 새로운 배열 만들기
+	var submitFiles = []; 
+	
+	$(document).ready(function() {
+		$("#prod-img").on("change", fileCheck)
+	});
+	
+	function fileCheck(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+						
+		filesArr.forEach(function (f) {
+			submitFiles.push(f);
+			
+			var reader = new FileReader();			
+			reader.onload = function(e) {	
+								
+				var img = document.createElement("img");
+				img.setAttribute("src", e.target.result);
+				img.setAttribute("class", "img-img");
+				img.setAttribute("id", "imgId+"+ index);
+				img.setAttribute("data-file", f.name);
+				img.setAttribute("onclick", "delImg("+ index +")");
+				document.querySelector("div#img-area").appendChild(img);
+				
+				
+				//$("#img-area").append(html);
+				index++;
+			}
+			reader.readAsDataURL(f);
+		});
+		console.log(submitFiles);
+		//$("#prod-img").val(submitFiles);
+	}
+	
+	var index = 0;
+	/*var html = 
+		'<a href="javascript:void(0)" onclick="delImg('+ index +')" id="imgId+'+ index +'"><img src="'+ e.target.result +'" data-file="'+ f.name +'" class="img-img" title=""></a>';
+	*/
+	function delImg(index) {
+		console.log("index:"+index);
+		submitFiles.splice(index, 1);
+		
+		$("#imgId" +index).remove();
+		
+		console.log(submitFiles);		
+	}
+	
+	/* 선택한 이미지 미리보기
 	var inputMultipleImage = document.getElementById("prod-img");
 	inputMultipleImage.addEventListener("change", e => {
 		readMultipleImage(e.target)
@@ -179,23 +228,25 @@
 				reader.readAsDataURL(file);
 			});					
 		}
-	}
+	}*/
 	
-	$("#diarySelBtn").on("click", function() {
+	// 일기 추가
+	var diary = [];
+	$("#d-table").on("click", ".diarySelect", function() {
+		var $this = $(this);
+		var diaryNo = $this.data("no");
+		diary.push(diaryNo);
+		console.log(diaryNo);
+	});
 		
-		var diarySelect = document.getElementsByClassName("diarySelect");
-		var diary = [];
-		for(var i=0; i<diarySelect.length; i++) {
-			diary[i] = $("[class='diarySelect']").data("no");
-			
-			var input = document.createElement("input");
-			input.setAttribute("name", "diaryLink");
-			input.setAttribute("value", diary[i]);
-			document.querySelector("div#diary-area").appendChild(input);
-			
-			console.log(diary[i]);
-		}				
-	})
+	$("#diarySelBtn").on("click", function() {
+		console.log(diary);
+		
+		var input = document.createElement("input");
+		input.setAttribute("name", "diaryNo[]");
+		input.setAttribute("value", diary);
+		document.querySelector("div#diary-area").appendChild(input);			
+	});
 	
 </script>
 </html>
