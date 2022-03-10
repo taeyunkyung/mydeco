@@ -2,19 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mydiary">
-	<insert id="diary-db" parameterType="com.mydeco.vo.StickerVo2">
+	<insert id="diary-db" parameterType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				insert into sticker(stickerNo, stickerName, stickerSrc)
 				values(seq_sticker_no.nextval,#{stickerName},#{stickerSrc})		
 			]]>
 	</insert>
 	
+	<insert id="diary-db-p" parameterType="com.mydeco.vo.PaperVo">
+			<![CDATA[
+				insert into paper(paperNo, paperName, paperSrc)
+				values(seq_paper_no.nextval,#{paperName},#{paperSrc})		
+			]]>
+	</insert>
+	
+	
 	<!-- 스티커 목록 가져오기 -->
-	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo2">
+	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				select stickerNo,
        				   stickerSrc
 				from sticker
+			]]>
+	</select>
+	
+	<!-- 종이 목록 가져오기 -->
+	<select id="getPaperList" resultType="com.mydeco.vo.PaperVo">
+			<![CDATA[
+				select paperNo,
+       				   paperSrc
+				from paper
 			]]>
 	</select>
 	

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myLetter">
+	
+	<!-- DB에 스티커 저장 -->
+	<insert id="stickerDB" parameterType="com.mydeco.vo.StickerVo">
+			<![CDATA[
+				insert into sticker
+				values(seq_sticker_no.nextval,#{stickerName},#{stickerSrc})		
+			]]>
+	</insert>
+
+</mapper>

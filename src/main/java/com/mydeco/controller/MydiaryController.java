@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
 import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.DiaryVo2;
-import com.mydeco.vo.StickerVo2;
+import com.mydeco.vo.PaperVo;
+import com.mydeco.vo.StickerVo;
 
 @Controller
 @RequestMapping("/diary")
@@ -33,8 +33,13 @@ public class MydiaryController {
 		System.out.println("mydiarycontroller-writeForm");
 		
 		//db에 있는 이미지경로 이용해서 스티커들 갖고와야함.
-		List<StickerVo2> stickerList = mydiaryService.getStickerList();
+		List<StickerVo> stickerList = mydiaryService.getStickerList();
 		model.addAttribute("stickerList",stickerList);
+		
+		//db의 종이 갖고오기
+		List<PaperVo> paperList = mydiaryService.getPaperList();
+		model.addAttribute("paperList",paperList);
+		System.out.println(paperList);
 		
 		return "diary/writeForm";
 	}
@@ -57,6 +62,15 @@ public class MydiaryController {
 		System.out.println("dbs");
 			
 		mydiaryService.dbsticker();
+		return "";
+	}
+	
+	/*db에 종이 이미지 경로,이름 저장하기*/
+	@RequestMapping("/dbpaper")
+	public String dbpaper() {
+		System.out.println("dbp");
+			
+		mydiaryService.dbpaper();
 		return "";
 	}
 }

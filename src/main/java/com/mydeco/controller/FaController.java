@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.vo.PaperItemVo;
-import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.StickerVo3;
 
 @Controller
 public class FaController {
@@ -20,13 +20,13 @@ public class FaController {
 		System.out.println("faWriteForm");
 		
 		//��ƼĿ������ ��񿡼� ������
-		List<StickerVo> stickerList = new ArrayList<StickerVo>();
+		List<StickerVo3> stickerList = new ArrayList<StickerVo3>();
 		
 		for(int i=0; i<12; i++) {
 			String stickerName = i +".jpg"; 
 			String stickerPath = "/mydeco/assets/sticker/"+stickerName;
 			
-			StickerVo vo = new StickerVo(1, i, stickerPath, stickerName);
+			StickerVo3 vo = new StickerVo3(1, i, stickerPath, stickerName);
 			stickerList.add(vo);
 		}
 	
