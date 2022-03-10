@@ -49,10 +49,10 @@
                             <!--/ --쇼핑-------------------- -->
                         <div class="row">
                             <div class="col-xs-11">
-                                <h3 class="text-left">20대를 함께했던 카세트 플레이어</h3>
+                                <h3 class="text-left">${product.prodName}</h3>
                             </div>
                             <div class="col-xs-1">
-                                하트
+                                <a href="">♥</a>
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@
                             <div class="col-xs-5 bs-list height320">
                                 <div class="row infomargin">
                                     <div class="col-xs-5"><span class="infotext">감정</span></div>
-                                    <div class="col-xs-7">홀가분버튼</div>
+                                    <div class="col-xs-7"> ${product.emotion} </div>
                                 </div>
                                 <div class="row infomargin">
                                     <div class="col-xs-5"><span class="infotext">판매자</span></div>
@@ -92,14 +92,14 @@
                                 </div>
                                 <div class="row infomargin">
                                     <div class="col-xs-5"><span class="infotext">배송방법</span></div>
-                                    <div class="col-xs-7">직거래</div>
+                                    <div class="col-xs-7">${product.delivery}</div>
                                 </div>
                                 <div class="row infomargin div-sub">
                                     <div class="col-xs-5"><span class="infotext">공유</span></div>
                                     <div class="col-xs-7">이미지</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 text-right"><p class="infotext">30000원</p></div>
+                                    <div class="col-xs-12 text-right"><p class="infotext"> ${product.price} 원</p></div>
                                 </div>
                                 <div class="row text-center">
                                     <div class="col-xs-12"><a href="#" class="button marginauto" id="r-button">채팅 거래하기</a></div>
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="merchaninfobox">
                                     <p class="text-left">
-                                        그녀랑 헤어졌다 그리고 난 울었다 그래서 난 기타를 쳤다.
+                                        ${product.prodInfo}
                                     </p>
                                 </div>
 
