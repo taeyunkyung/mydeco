@@ -12,7 +12,7 @@ public class ProductVo {
 	private String delivery;
 	private String prodInfo;
 	private String regDate;
-	private List<ProdImgVo> prodImgList;
+	private List<ProdImgVo> prodImgList; //추가
 
 	public ProductVo() {
 	}
