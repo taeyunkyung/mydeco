@@ -18,22 +18,5 @@ public class TestController {
 		testService.tests();
 		return "user/modifyForm";
 	}
-	
-	@RequestMapping("/main")
-	public String main() {
-		System.out.println("main");
-		return "main/main";
-	}
-	
-	@RequestMapping("/mtest")
-	public String mtest() {
-		System.out.println("mood test");
-		return "mood/test";
-	}
-	
-	@RequestMapping("/daily")
-	public String daily() {
-		System.out.println("daily");
-		return "mood/daily";
-	}
+
 }
