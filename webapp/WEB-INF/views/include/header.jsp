@@ -3,7 +3,7 @@
 				
 				<div class="col-xs-12" id="header">
                     <h1>
-                        <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
+                        <a href="${pageContext.request.contextPath}/main"><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
                     </h1>
             
                     <ul id="category" class="clearfix">
@@ -15,26 +15,26 @@
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <li class="dropbtn"><a href="">Pen & Paper</a></li>
+                            <li class="dropbtn"><a href="${pageContext.request.contextPath}/diary/list">Pen & Paper</a></li>
                             <ul class="dropdown-content">
-                                <li><a href="">나의 일기</a></li>
+                                <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
                                 <li><a href="">쪽지</a></li>
                                 <li><a href="">우체통</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <li class="dropbtn"><a href="">Shopping</a></li>
+                            <li class="dropbtn"><a href="${pageContext.request.contextPath}/shopping/main">Shopping</a></li>
                         </div>
                         <div class="dropdown">
                             <li class="dropbtn"><a href="">Mood</a></li>
                             <ul class="dropdown-content">
-                                <li><a href="">마법의 소라고둥</a></li>
+                                <li><a href="${pageContext.request.contextPath}/mood/daily">마법의 소라고둥</a></li>
                                 <li><a href="">심리 테스트</a></li>
                             </ul>
                         </div>
                     </ul>
                     <ul id="user" class="clearfix">
-                        <li><a href="">로그인</a></li>
-                        <li><a href="">회원가입</a></li>
+                        <li><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>
+                        <li><a href="${pageContext.request.contextPath}/my/signup">회원가입</a></li>
                     </ul>
                 </div>   
