@@ -9,5 +9,12 @@
 			values(seq_prodImg_no.nextval, #{prodImgSrc}, #{prodImgName}, #{prodNo})
 		]]>
 	</insert>
+	
+	<insert id="addDiary" parameterType="com.mydeco.vo.ProdDiaryVo">
+		<![CDATA[
+			insert into prodDiary
+			values(seq_prodDiary_no.nextval, #{prodNo}, #{diaryNo})
+		]]>
+	</insert>
 
 </mapper>
