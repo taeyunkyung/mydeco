@@ -154,7 +154,7 @@
 
 <script type="text/javascript">
 
-	// input multiple 초기화 및 새로운 배열 만들기
+	// input multiple 초기화, 새로운 배열 만들기
 	var submitFiles = []; 
 	
 	$(document).ready(function() {
