@@ -14,6 +14,10 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+
+<style>
+.diarySelect {width: 13px}
+</style>
 </head>
 <body>
 	<div id="wrap">
@@ -24,7 +28,7 @@
 				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 				
 				<!-- aside -->
-				<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+				<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 				
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
@@ -112,7 +116,7 @@
 													<h4 class="modal-title">일기장 불러오기</h4>
 												</div>
 												<div class="modal-body">
-													<table id="d-table">
+													<table id="d-table" width="100%">
 														<tr>
 															<td>번호</td>
 															<td>제목</td>
@@ -124,7 +128,7 @@
 																<td>${diaryVo.diaryNo}</td>
 																<td>${diaryVo.title}</td>
 																<td>${diaryVo.diaryDate}</td>
-																<td><input type="checkbox" class="diarySelect" name="diaryLink" value="${diaryVo.diaryNo}"></td>
+																<td><input type="checkbox" class="diarySelect" data-no="${diaryVo.diaryNo}"></td>
 															</tr>
 														</c:forEach>														
 													</table>
@@ -134,7 +138,6 @@
 										</div>
 									</div>
 									<div id="diary-area">
-										<input type="text" name="diaryLink" value="">
 									</div>
 								</td> 
 							</tr>
@@ -179,8 +182,19 @@
 	}
 	
 	$("#diarySelBtn").on("click", function() {
-		var diary = $(".diarySelect").val();
-		console.log(diary);
+		
+		var diarySelect = document.getElementsByClassName("diarySelect");
+		var diary = [];
+		for(var i=0; i<diarySelect.length; i++) {
+			diary[i] = $("[class='diarySelect']").data("no");
+			
+			var input = document.createElement("input");
+			input.setAttribute("name", "diaryLink");
+			input.setAttribute("value", diary[i]);
+			document.querySelector("div#diary-area").appendChild(input);
+			
+			console.log(diary[i]);
+		}				
 	})
 	
 </script>
