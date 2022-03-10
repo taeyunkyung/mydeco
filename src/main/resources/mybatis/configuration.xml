@@ -14,5 +14,7 @@
         <mapper resource="mybatis/mappers/myProdImg.xml" />
         
         <mapper resource="mybatis/mappers/mydiary.xml" />
+        
+        <mapper resource="mybatis/mappers/myletter.xml" />
     </mappers>
 </configuration>
