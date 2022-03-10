@@ -35,14 +35,14 @@
 #qna {
     display: none;
     text-align: center;
-    padding: 20px 0px 0px 80px;
+    padding: 20px 0px 0px 50px;
 }
 
 .qBox {
     font-size: 25px;
     font-weight: bolder;
     width: 550px;
-    margin: 40px 0px 40px 40px;
+    margin: 30px 0px 30px 10px;
     text-align: center;
 }
 
@@ -107,7 +107,7 @@
 	width: 200px;
     height: 100px;
     margin: 10px 0px 10px 20px;
-    padding: 0px 0px 0px 300px;
+    padding: 0px 0px 0px 250px;
 }
 
 #resultImg2 {
@@ -121,7 +121,7 @@
 
 .resultDesc {
     width: 600px;
-    margin: 30px 30px 0px 75px;
+    margin: 30px 30px 0px 40px;
     padding: 20px 30px 20px 30px;
     background-color: #f6f5f5;
     
@@ -168,11 +168,11 @@
 
 #main-content {
   background-color: #CEC9EF;
-  height: 600px;
-  width: 800px;
+  height: 570px;
+  width: 720px;
   text-align: center;
-  padding: 60px 20px 80px 20px;
-  margin: 15px 0px 0px 0px;
+  padding: 40px 20px 80px 20px;
+  margin: 0px 0px 0px 0px;
 }
 
 #main-img {

@@ -1,186 +1,3 @@
-@charset "UTF-8";
-@font-face {
-    src: url(../font/BinggraeⅡ-Bold.ttf); font-family: 'main';
-}
-@font-face {
-  src:url(../fonts/Binggrae-Bold.otf); font-family: "Bbingrae";
-} 
-
-@font-face {
-  src:url(../fonts/Binggrae.otf); font-family: "bingrae";
-} 
-@font-face {
-  src:url(../font/SCDream4.otf); font-family: "SCDream4";
-} 
-
-@font-face {
-  src:url(../fonts/SCDream6.otf); font-family: "SCDream6";
-} 
-
-
-.clearfix{*zoom:1;}
-.clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
-.clearfix:after {clear: both;} 
-
-ul, ol {list-style: none;}
-a:link {text-decoration: none; color: #000000;}
-a:visited {text-decoration: none; color: #000000;}
-a:hover {text-decoration: none; color: #000000;}
-
-*{ box-sizing: border-box; }
-
-#header>h1 {
-    width: 200px;
-    height: 100px;
-    font-family: 'main';
-    float: left;
-    padding: 0px 0px 0px 0px;
-    margin: 20px 0px 0px 30px;
-}
-
-#logo {
-    width: 200px;
-    padding: 0px 0px 0px 0px;
-}
-
-#category {
-    font-family: 'main';
-    float: left;
-    margin: 30px 10px 30px 10px;
-    text-align: center;
-}
-#category>li {
-    float: left;
-    margin: 50px 0px 50px 0px;
-    padding: 10px 10px 10px 10px;
-    text-align: center;
-}
-
-#user {
-    margin: 0px;
-    font-family: 'main';
-    float: left;
-    text-align: center;
-}
-#user>li {
-    float: left;
-    padding: 10px 10px 10px 10px;
-    margin: 30px 0px 30px 0px;
-    text-align: center;
-}
-
-.dropdown {
-    width: 130px;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-    padding: 10px 10px 10px 10px;
-}
-
-.dropdown-content {
-    width: 130px;
-    text-align: center;
-    display: none;
-    position: absolute;
-    z-index: 1; /*다른 요소들보다 앞에 배치*/
-    background: rgba(240, 239, 247, 0.5);
-    padding: 10px 10px 10px 10px;
-    font-size: 14px;
-}
-
-.dropdown-content>li {
-    margin: 10px 0px 10px 0px;
-}
-
-.dropdown-content a:hover{
-    display: block;
-    color: #CEC9EF;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-
-/*aside*/
-
-    /*li:hover {
-        background-color: #ebebeb;
-    }*/
-
-#aside ul{
-  padding-left: 20px;
-}
-
-#aside #title {
-  font-family: 'SCDream4';
-  font-weight: bold; font-size: 20px;
-  color:#686099;
-  border: none;
-}
-
-#aside .color {
-  font-weight: 700%;
-  color:#686099;
-}
-
-#aside a {
-  text-decoration: none;
-  outline: none;
-  font-weight: 400%;
-  font-family: 'SCDream4';
-  color: #000000;
-  transition: all 300ms ease 0s;
-  -moz-transition: all 300ms ease 0s;
-  -webkit-transition: all 300ms ease 0s;
-  -o-transition: all 300ms ease 0s;
-  -ms-transition: all 300ms ease 0s; }
-
-#aside li {
-  border: 1px solid #ebebeb;
-  padding: 16px 20px;
-  margin-bottom: 2px;
-  box-sizing: border-box;
-  font-family: 'Montserrat';
-  font-weight: 500;
-  font-size: 13px; }
-  li:focus, select:focus {
-      border: 1px solid #686099; }
-  #aside li:hover {
-      background-color: #ebebeb;
-  }
-
-/*footer-search*/ 
-#search {
-  display: inline-flex;
-  margin-top: 30px;
-  padding-left: 42%;
-}
-
-input[id="keyword"] {
-  width: 200px; height: 35px;
-  margin: 0px 2px;   
-}
-
-#searchBtn {
-  width: 35px; height: 35px;
-  border: 1px solid #ebebeb;
-  box-sizing: border-box;
-  font-family: 'SCDream4';
-  padding: 6px 5px 5px 5px;
-}
-
-#btnImg {
-  width: 20px; height: 20px;
-}
-
-#keyword-cate {
-  padding: 5px 10px;
-  width: 80px; height: 35px;
-} 
-
-
-
 /*card main tab */
 
 h3 {
@@ -201,6 +18,7 @@ div#cTitle {
  line-height: 1.5;}
 
 .card_list{
+  font-family: 'SCDream4';
  height: 700px;
 
 }
@@ -288,11 +106,13 @@ input {
 
 
 
-.btn-card-write {
+.btn-card-write >a{
+  font-family: 'SCDream4';
   color: white;
   position: absolute;
   left: 570px;
   top: 70px;
+  padding-top: 10px;
   font-weight: bold;
   text-align: center;
   width: 150px;
@@ -309,6 +129,7 @@ input {
 
 
 .btn-card-del{
+  font-family: 'SCDream4';
   position: relative;
   top: 305px;
   left: 290px;
@@ -357,7 +178,7 @@ input {
 
 .divPaging1 {
   position: relative;
-  top: 65px;
+  top: 45px;
   left: 220px;
 }
 
@@ -724,10 +545,11 @@ input, select, textarea {
   height: 520px;
 }
 
-.btn-ReplyComment{
+.btn-ReplyComment a{
   font-family: 'SCDream4';
   width: 140px;
   height: 40px;
+  padding-top: 10px;
   margin: 15px 15px 15px 0px;
   font-weight: 400;
   font-size: 13px;

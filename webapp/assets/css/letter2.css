@@ -59,6 +59,7 @@ div.letterwriteForm-write-region{
 
 .writeform-save{
     display: inline-block;
+    margin: 0px 0px 0px 550px;
 }
 
 
@@ -207,7 +208,7 @@ img {
 }
 
 #letter-content {
-	height: 725px;
+	height: 720px;
 }
 
 
@@ -216,7 +217,7 @@ img {
 
 #paper {
 	padding: 10px 10px 4px 0px;
-	margin: 10px 10px 10px 10px;
+	margin: 0px 10px 0px 10px;
 }
 
 #sticker-text {
