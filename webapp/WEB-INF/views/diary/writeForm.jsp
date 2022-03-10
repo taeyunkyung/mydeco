@@ -92,10 +92,10 @@
                             <form method="post" enctype="multipart/form-data">
                                 <div class="button writeform-btn-left writeform-deco-btn">
                                     <label for="chooseFile">
-                                    	<div class="photowid">사진</div>
+                                    	<div id="btnPhoto" class="photowid">사진</div>
                                     </label>
                             
-                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+                                    <!-- <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> -->
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
@@ -389,6 +389,23 @@
 	   });
 	}
 
+	
+	
+	
+	
+	///////////////////////////////////////////////////
+	$("#btnPhoto").on("click", function(){
+		console.log("btnPhoto");
+		
+		var tmpUrl ="https://www.google.com//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png/"
+		
+		fabric.Image.fromURL(tmpUrl, function(oImg) {
+
+			//객체에 스티커번호 추가
+			canvas.add(oImg);
+			console.log(oImg);
+		});
+	});
 
 </script>
 

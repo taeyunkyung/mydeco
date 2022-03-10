@@ -3,7 +3,8 @@
 
 					<div class="col-xs-3" id="aside">
                         <ul>
-                            <li id="title">나의 일기</li>
+                            <li id="title">Pen & Paper</li>
+                            <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
                             <li><a href="">소통카드</a></li>
                             <li><a href="">우체통</a></li>
                         </ul>
