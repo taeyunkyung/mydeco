@@ -7,8 +7,17 @@
 	<insert id="stickerDB" parameterType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				insert into sticker
-				values(seq_sticker_no.nextval,#{stickerName},#{stickerSrc})		
+				values(seq_sticker_no.nextval, #{stickerName}, #{stickerSrc})		
 			]]>
 	</insert>
+	
+	<!-- 스티커 목록 -->
+	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo">
+			<![CDATA[
+				select stickerNo,
+       				   stickerSrc
+				from sticker
+			]]>
+	</select>
 
 </mapper>
