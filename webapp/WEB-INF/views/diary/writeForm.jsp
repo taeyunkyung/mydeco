@@ -99,7 +99,7 @@
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="9999999" class="button writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -279,81 +279,105 @@
 		
 	});
 
-
-
-	$(window).load(function(){
+	//텍스트박스를 클릭했을때
+	$("[name=textbox]").on("click", function(){
+		var stickerNo= $(this).data("stickerno")
 		
-		/*저장 버튼을 눌렀을때*/
-		$("#saveBtn").on("click",function(){
-			
-			var diaryDate = $("[name=diaryDate]").val();
-			var weather = $("[name=weather]").val();
-			var protect = $("[name=protect]").val();
-			var title = $("[name=title]").val();
-			
-			var diaryvo2 = {
-					diaryDate: diaryDate,
-					weather: weather,
-					protect: protect,
-					title: title
-			};
-			console.log(diaryvo2);
-			/*
-			 $.ajax({
-			      url : "${pageContext.request.contextPath }/diary/write",
-			      type : "post",
-			      contentType : "application/json",
-			      data : JSON.stringify(diaryvo2),
-			      dataType : "json",
-			      success : function() {
-			         //이부분 처리 한거 없음 
-			         //컨트롤러에 데디터 잘 전달 되는지만 확인
-			      },
-			      error : function(XHR, status, error) {
-			         console.error(status + " : " + error);
-			      }
-			   });
-			*/
-			
-			
-			
-			//캔버스에 있는 전체 객체를 배열로 가져온다
-			var canvasObjList = canvas.getObjects();
-
-			//서버로 전송할 객체들 배열
-			var paperItemList = [];
-			
-			for(var i=0; i<canvasObjList.length; i++){
-				var paperVo = {};
-				paperVo.top = canvasObjList[i].top;
-				paperVo.left = canvasObjList[i].left;
-				paperVo.scaleX = canvasObjList[i].scaleX;
-				paperVo.scaleY = canvasObjList[i].scaleY;
-				paperVo.angle = canvasObjList[i].angle;
-				
-				paperVo.stickerNo = canvasObjList[i].stickerNo;
-				
-				paperVo.text = canvasObjList[i].text;
-				
-				paperItemList.push(paperVo);//배열에 추가
-			}
-
-			writeDiary(paperItemList);
-			
-			
+		var text = new fabric.Textbox("텍스트를 입력하세요", {
+			stickerNo: stickerNo,
+			top: 30,
+			left: 30,
+			width: 300,
+			height: 300,
+			fontSize: 16
 		});
 		
+		canvas.add(text);
+		canvas.setActiveObject(text);
+		text.selectAll();
+		text.enterEditing();
+		text.hiddenTextarea.focus();
+	})
+
+	
+	/*저장 버튼을 눌렀을때*/
+	$("#saveBtn").on("click",function(){
+		
+		var diaryDate = $("[name=diaryDate]").val();
+		var weather = $("[name=weather]").val();
+		var protect = $("[name=protect]").val();
+		var title = $("[name=title]").val();
+		
+		var diaryvo2 = {
+				diaryDate: diaryDate,
+				weather: weather,
+				protect: protect,
+				title: title
+		};
+		//console.log(diaryvo2);
+		/*
+		 $.ajax({
+		      url : "${pageContext.request.contextPath }/diary/write",
+		      type : "post",
+		      contentType : "application/json",
+		      data : JSON.stringify(diaryvo2),
+		      dataType : "json",
+		      success : function() {
+		         //이부분 처리 한거 없음 
+		         //컨트롤러에 데디터 잘 전달 되는지만 확인
+		      },
+		      error : function(XHR, status, error) {
+		         console.error(status + " : " + error);
+		      }
+		   });
+		*/
+		
+		
+		
+		//캔버스에 있는 전체 객체를 배열로 가져온다
+		var canvasObjList = canvas.getObjects();
+
+		//서버로 전송할 객체들 배열
+		var diaryItemList = [];
+		
+		for(var i=0; i<canvasObjList.length; i++){
+			var diaryItemVo = {};
+			diaryItemVo.top = canvasObjList[i].top;
+			diaryItemVo.left = canvasObjList[i].left;
+			diaryItemVo.scaleX = canvasObjList[i].scaleX;
+			diaryItemVo.scaleY = canvasObjList[i].scaleY;
+			diaryItemVo.angle = canvasObjList[i].angle;
+			
+			diaryItemVo.stickerNo = canvasObjList[i].stickerNo;
+			
+			diaryItemVo.text = canvasObjList[i].text;
+			
+			diaryItemList.push(diaryItemVo);//배열에 추가
+		}
+
+		console.log(diaryvo2);
+		console.log(diaryItemList);   
+		
+		diaryvo2.itemList = diaryItemList
+		
+		console.log("==========================");
+		console.log(diaryvo2);
+		
+		writeDiary(diaryvo2);
+		
+		
 	});
+	
+
 
 	//저장 함수
-	function writeDiary(paperItemList){
+	function writeDiary(diaryvo2){
 	   
-	   console.log(paperItemList);   
 	   $.ajax({
 	      url : "${pageContext.request.contextPath }/diary/write",
 	      type : "post",
 	      contentType : "application/json",
-	      data : JSON.stringify(paperItemList),
+	      data : JSON.stringify(diaryvo2),//바꿔줬음
 	      dataType : "json",
 	      success : function() {
 	         //이부분 처리 한거 없음 

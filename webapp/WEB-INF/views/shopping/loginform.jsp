@@ -25,18 +25,18 @@
 		                        <div class="head">
 		                            <div class="title">로그인</div>
 		                        </div>
-		                            <form>
+		                            <form action="${pageContext.request.contextPath}/login" method="get">
 		                                <ul>
 		                                    <li>
 		                                        <div class="li-div text-left">
 		                                            아이디
-		                                            <input id="startdate" type="text" name="" value="leessun">
+		                                            <input id="startdate" type="text" name="id" value="" placeholder="아이디를 입력해주세요">
 		                                        </div>
 		                                    </li>
 		                                    <li>
 		                                        <div class="li-div text-left">
 		                                            비밀번호
-		                                            <input id="totalcnt" type="text" name="" value="****">
+		                                            <input id="totalcnt" type="password" name="password" value="" placeholder="비밀번호를 입력해주세요">
 		                                        </div>
 		                                    </li>
 		                                    <li>
@@ -45,9 +45,9 @@
 		                                        </div>
 		                                    </li>
 		                                    <li class="height37">
-		                                        <a href="">회원가입</a>
-		                                        <a href="">아이디찾기</a>
-		                                        <a href="">비밀번호찾기</a>
+		                                        <a href="${pageContext.request.contextPath}/my/signup">회원가입</a>
+		                                        <a href="${pageContext.request.contextPath}/my/signup">아이디찾기</a>
+		                                        <a href="${pageContext.request.contextPath}/my/signup">비밀번호찾기</a>
 		                                    </li>
 		                                </ul>
 		                            </form>

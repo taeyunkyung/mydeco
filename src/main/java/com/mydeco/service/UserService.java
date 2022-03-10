@@ -13,6 +13,7 @@ public class UserService {
 	private UserDao userDao;
 	
 	public UserVo login(UserVo userVo) {
+		System.out.println("유저서비스접근");
 		UserVo authUser = userDao.selectUser(userVo);
 		
 		return authUser;

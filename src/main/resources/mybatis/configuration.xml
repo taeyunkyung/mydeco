@@ -16,5 +16,7 @@
         <mapper resource="mybatis/mappers/mydiary.xml" />
         
         <mapper resource="mybatis/mappers/myLetter.xml" />
+        <mapper resource="mybatis/mappers/user.xml" />
+        <mapper resource="mybatis/mappers/shopping.xml" />   
     </mappers>
 </configuration>

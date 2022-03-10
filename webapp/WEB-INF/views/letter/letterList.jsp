@@ -131,42 +131,47 @@
                                     	<div class="envelope">
                                     		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
                                     		<div class="day">
-                                    		<p class="saveday">저장일: 2021-02-14</p>
-                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-                                    		</p>
-
-                                   		</div>
+	                                    		<p class="saveday">저장일: 2021-02-14</p>
+	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
+	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
+	                                    		</p>
+                                   			</div>
+                                   		</div> <!-- //envelope -->
+                                   		
                                    		<div class="envelope">
                                     		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
                                     		<div class="day">
-                                    		<p class="saveday">저장일: 2021-02-14</p>
-                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-                                    		</p>
-
-                                   		</div>
+	                                    		<p class="saveday">저장일: 2021-02-14</p>
+	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
+	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
+	                                    		</p>
+	                                    	</div>
+                                   		</div> <!-- //envelope -->
+                                   		
                                    		<div class="envelope">
                                     		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
                                     		<div class="day">
-                                    		<p class="saveday">저장일: 2021-02-14</p>
-                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-                                    		</p>
-
-                                   		</div>
+	                                    		<p class="saveday">저장일: 2021-02-14</p>
+	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
+	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
+	                                    		</p>
+											</div>
+                                   		</div> <!-- //envelope -->
+                                   		
                                    		<div class="envelope">
                                     		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
                                     		<div class="day">
-                                    		<p class="saveday">저장일: 2021-02-14</p>
-                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-                                    		</p>
-
-                                   		</div>
+	                                    		<p class="saveday">저장일: 2021-02-14</p>
+	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
+	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
+	                                    		</p>
+											</div>
+                                   		</div> <!-- //envelope -->
+                                   		
                                     </div>
+                                    <!-- //tap_content -->
                                     
-                                    <div class="page">
+                                   	<div class="page">
                                 		<p class="page-no">◀  1  2  3  4  5  6  7  8  9  10  ▶</p>
                                 	</div>
                                 </section>

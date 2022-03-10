@@ -11,9 +11,15 @@ import com.mydeco.service.UserService;
 import com.mydeco.vo.UserVo;
 
 @Controller
-@RequestMapping("/user")
 public class UserContoroller {
 
+	
+	
+	
+	
+	
+	
+	
 	@Autowired
 	private UserService userService;
 	
@@ -31,6 +37,8 @@ public class UserContoroller {
 	@RequestMapping("/login")
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("로그인");
+		System.out.println(userVo);
+		System.out.println(session);
 		
 		UserVo authUser = userService.login(userVo);
 		

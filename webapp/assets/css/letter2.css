@@ -93,12 +93,12 @@ background-color: #ebebeb; }
 
 
  /*스크롤바 설정*/ 
-.menu-box3::-webkit-scrollbar{ 
+.content-box::-webkit-scrollbar{ 
     /* 스크롤바 막대 너비 설정 */ 
     width: 12px; 
 } 
 /* 스크롤바 막대 설정*/ 
-.menu-box3::-webkit-scrollbar-thumb{ 
+.content-box::-webkit-scrollbar-thumb{ 
     /* 스크롤바 막대 높이 설정 */ 
     height: 17%; 
     background-color: #686099; 
@@ -106,7 +106,7 @@ background-color: #ebebeb; }
     border-radius: 0px; 
 } 
 /* 스크롤바 뒷 배경 설정*/ 
-.menu-box3::-webkit-scrollbar-track{ 
+.content-box::-webkit-scrollbar-track{ 
     background-color: rgba(0,0,0,0); 
 }
 
@@ -119,6 +119,11 @@ background-color: #ebebeb; }
     background-color: #2e2e2e;
 } 
 
+.content-box {
+	width:238px;
+    height: 504px;
+    overflow-y: auto;
+}
 
 /*탭메뉴*/
 ul.tabs{
@@ -224,7 +229,14 @@ img {
 	color: white;
 }
 	
-	
+.sticker {
+	float:left;
+	width: 100px;
+	height: 100px;
+	margin: 0px 5px 10px 5px;
+	cursor: pointer;
+}
+		
 	
 	
 
