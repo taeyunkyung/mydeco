@@ -36,7 +36,6 @@ div#cTitle {
 	width: 685px;
 	height: 450px;
   	margin: 0 0 50px 0px;
-  	line-height: 1.5;
   	display: block;
 }
 
@@ -44,11 +43,6 @@ div#cTitle {
   height: 500px;
 
 }
-.list_top {
-  width: 705px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #686099;
-  text-align: left;}
 
 h3 {
     font-size: 20px;
@@ -112,7 +106,7 @@ input:checked + label {
 .envelope {
 	float: left;
 	width: 340px;
-	position: relative;
+
 }
 
 .envelope img {
@@ -128,6 +122,7 @@ img .day {
 }
 
 .day {
+	float: left;
 	padding: 30px 30px 30px 30px;
 	position: absolute;
 	text-align:center;
