@@ -12,9 +12,8 @@
 			        prodInfo,
 			        prodName
 			from product p, users u
-			where p.userNo = p.userNo
-			and p.prodno = p.prodno 
-			and p.prodNo = #{no}
+			where p.userNo = u.userNo
+			and p.prodno = #{no}
 		]]>
 	</select>
 </mapper>
