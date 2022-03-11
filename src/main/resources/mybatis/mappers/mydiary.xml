@@ -35,8 +35,18 @@
 			]]>
 	</select>
 	
+	
+	<!-- 일기content(스티커제외) db에 저장 -->
+	<insert id="diaryContent" parameterType="com.mydeco.vo.DiaryContentVo">
+		<![CDATA[
+				insert into diary
+				values (seq_diary_no.nextval, #{userNo}, #{diaryDate}, #{weather}, #{protect}, #{title}, #{diaryBgmSrc})	
+		]]>
+	</insert>
+	
+	
 	<!-- 일기에 쓴 스티커 db에 저장 -->
-	<insert id="diaryItem" parameterType="com.mydeco.vo.DiaryItemVo">
+	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryContentVo">
 			<![CDATA[
 				insert into diaryitem(diaryitemNo, diaryNo, stickerNo, top, left, scaleX, scaleY, angle, text)
 				values(seq_diaryitem_no.nextval,seq_diary_no.nextval, #{stickerNo}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		

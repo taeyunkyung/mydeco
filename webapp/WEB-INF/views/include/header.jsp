@@ -33,8 +33,19 @@
                             </ul>
                         </div>
                     </ul>
-                    <ul id="user" class="clearfix">
-                        <li><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>
-                        <li><a href="${pageContext.request.contextPath}/my/signup">회원가입</a></li>
-                    </ul>
+                    
+                    <c:choose>
+                    	<c:when test="${empty authUser}">
+                    		<ul id="user" class="clearfix">
+		                        <li><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>
+		                        <li><a href="${pageContext.request.contextPath}/my/signup">회원가입</a></li>
+		                    </ul>
+                    	</c:when>
+                    	<c:otherwise>
+                    		 <ul id="user" class="clearfix">
+		                        <li><a href="${pageContext.request.contextPath}/loginForm">로그아웃</a></li>
+		                        <li><a href="${pageContext.request.contextPath}/my/signup">내정보</a></li>
+		                    </ul>
+                    	</c:otherwise>
+                    </c:choose>
                 </div>   

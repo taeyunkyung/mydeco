@@ -2,6 +2,8 @@ package com.mydeco.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
-import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.PaperVo;
+import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.StickerVo;
 
 @Controller
@@ -37,20 +38,21 @@ public class MydiaryController {
 		model.addAttribute("stickerList",stickerList);
 		
 		//db의 종이 갖고오기
+		/*
 		List<PaperVo> paperList = mydiaryService.getPaperList();
 		model.addAttribute("paperList",paperList);
-		System.out.println(paperList);
+		System.out.println(paperList);*/
 		
 		return "diary/writeForm";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/write")
-	public String write(@RequestBody List<DiaryItemVo> diaryItemVo) {
+	public String write(@RequestBody DiaryContentVo diarycontentvo) {
 		System.out.println("mydiarycontroller-write");
-		System.out.println(diaryItemVo);
+		System.out.println(diarycontentvo);
 		
-		mydiaryService.addSticker(diaryItemVo);
+		mydiaryService.addContent(diarycontentvo);
 		
 		return "";
 	}
@@ -66,11 +68,12 @@ public class MydiaryController {
 	}
 	
 	/*db에 종이 이미지 경로,이름 저장하기*/
+	/*
 	@RequestMapping("/dbpaper")
 	public String dbpaper() {
 		System.out.println("dbp");
 			
 		mydiaryService.dbpaper();
 		return "";
-	}
+	}*/
 }

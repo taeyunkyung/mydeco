@@ -33,6 +33,8 @@
                     <div class="mydiarywriteForm-left">
                         <div class="mydiarywriteForm-da-we clearfix">
                           
+                          	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
+                          
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
                                 <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
@@ -289,7 +291,7 @@
 			left: 30,
 			width: 300,
 			height: 300,
-			fontSize: 16
+			fontSize: 18
 		});
 		
 		canvas.add(text);
@@ -303,36 +305,20 @@
 	/*저장 버튼을 눌렀을때*/
 	$("#saveBtn").on("click",function(){
 		
+		var userNo = $("[name=userNo]").val();
 		var diaryDate = $("[name=diaryDate]").val();
 		var weather = $("[name=weather]").val();
 		var protect = $("[name=protect]").val();
 		var title = $("[name=title]").val();
 		
-		var diaryvo2 = {
+		var diarycontentvo = {
+				userNo: userNo,
 				diaryDate: diaryDate,
 				weather: weather,
 				protect: protect,
 				title: title
 		};
 		//console.log(diaryvo2);
-		/*
-		 $.ajax({
-		      url : "${pageContext.request.contextPath }/diary/write",
-		      type : "post",
-		      contentType : "application/json",
-		      data : JSON.stringify(diaryvo2),
-		      dataType : "json",
-		      success : function() {
-		         //이부분 처리 한거 없음 
-		         //컨트롤러에 데디터 잘 전달 되는지만 확인
-		      },
-		      error : function(XHR, status, error) {
-		         console.error(status + " : " + error);
-		      }
-		   });
-		*/
-		
-		
 		
 		//캔버스에 있는 전체 객체를 배열로 가져온다
 		var canvasObjList = canvas.getObjects();
@@ -352,18 +338,20 @@
 			
 			diaryItemVo.text = canvasObjList[i].text;
 			
+			diaryItemVo.diaryItemNo = i;
+			
 			diaryItemList.push(diaryItemVo);//배열에 추가
 		}
 
-		console.log(diaryvo2);
+		console.log(diarycontentvo);
 		console.log(diaryItemList);   
 		
-		diaryvo2.itemList = diaryItemList
+		diarycontentvo.itemList = diaryItemList//
 		
 		console.log("==========================");
-		console.log(diaryvo2);
+		console.log(diarycontentvo);
 		
-		writeDiary(diaryvo2);
+		writeDiary(diarycontentvo);
 		
 		
 	});
@@ -371,13 +359,13 @@
 
 
 	//저장 함수
-	function writeDiary(diaryvo2){
+	function writeDiary(diarycontentvo){
 	   
 	   $.ajax({
 	      url : "${pageContext.request.contextPath }/diary/write",
 	      type : "post",
 	      contentType : "application/json",
-	      data : JSON.stringify(diaryvo2),//바꿔줬음
+	      data : JSON.stringify(diarycontentvo),//바꿔줬음
 	      dataType : "json",
 	      success : function() {
 	         //이부분 처리 한거 없음 
