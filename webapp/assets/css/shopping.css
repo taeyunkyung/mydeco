@@ -133,4 +133,12 @@ color: #fff;
 	width: 1140px;
 }
 
+#share{
+    margin-left: 0px;
+}
+
+#share img{
+    width : 30px;
+    height : 30px;
+}
   

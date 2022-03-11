@@ -16,29 +16,8 @@
                     			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
                 <!-- 메인 -->
                 <div class="row">
-                    <!-- 어사이드부분 -->
-                    <div class="col-xs-3" id="aside"> 
-                        <div>
-                            <ul>
-                                <li id="title">Shopping</li>
-                                <li><a href="">전체</a></li>
-                                <li><a href="">기쁨</a></li>
-                                <li><a href="">슬픔</a></li>
-                                <li><a href="">화남</a></li>
-                                <li><a href="">홀가분</a></li>
-                                <li><a href="">짜증</a></li>
-                                <li><a href="">얼탱이없음</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul>
-                                <li id="title">나의 쇼핑관리</li>
-                                <li><a href="">내상품관리</a></li>
-                                <li><a href="">찜하기</a></li>
-                                <li><a href="">1:1채팅</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- 어사이드부분 -->                   
+                       <c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
                     <!-- /어사이드부분 -->
                     <!-- 메인컨텐츠 -->
                     <div class="col-xs-9">
@@ -63,7 +42,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class=" mainImgbox imgcenter">
-                                            <img class="mainImgbox" src="C:/javaStudy/upload/${product.prodImgList[0].prodImgSrc}">
+                                            <img class="mainImgbox" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
                                            
                                         </div>
                                     </div>
@@ -71,9 +50,9 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="imgcenter">
-                                            <img class="prodImg2" src="../assets/img/대동경운기.jpg">
-                                            <img class="prodImg2" src="../assets/img/대동경운기.jpg">
-                                            <img class="prodImg2" src="../assets/img/대동경운기.jpg">
+                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}">
+                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}">
+                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +76,12 @@
                                 </div>
                                 <div class="row infomargin div-sub">
                                     <div class="col-xs-5"><span class="infotext">공유</span></div>
-                                    <div class="col-xs-7">이미지</div>
+                                    <div class="col-xs-7" id="share">
+                                    	 <img src="${pageContext.request.contextPath}/assets/img/icon/ }">
+                                    	 <img src="../assets/img/plusglass.png">
+                                    	 <img src="../assets/img/포켓몬스티커.jpg">
+                                    	 <img src="../assets/img/화면 캡처 2022-02-28 104212.png">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-right"><p class="infotext"> ${product.price} 원</p></div>
