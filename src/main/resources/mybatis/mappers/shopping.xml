@@ -17,4 +17,17 @@
 			and p.prodNo = #{no}
 		]]>
 	</select>
+	
+	
+	<select id="getImg" parameterType="Int" resultType="ProdImgVo">
+		<![CDATA[
+			select  prodImgNo,
+			        prodImgSrc,
+			        prodImgName,
+			        ProdNo
+			from prodImg
+			where prodno = #{no}
+		]]>
+	
+	</select>
 </mapper>

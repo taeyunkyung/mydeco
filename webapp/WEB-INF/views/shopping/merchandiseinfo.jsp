@@ -63,7 +63,8 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class=" mainImgbox imgcenter">
-                                            <img class="mainImgbox" src="../assets/img/대동경운기.jpg">
+                                            <img class="mainImgbox" src="C:/javaStudy/upload/${product.prodImgList[0].prodImgSrc}">
+                                           
                                         </div>
                                     </div>
                                 </div>
