@@ -12,7 +12,8 @@ public class ProductVo {
 	private String delivery;
 	private String prodInfo;
 	private String regDate;
-	private List<ProdImgVo> prodImgList; //추가
+	private List<ProdImgVo> prodImgList; // 추가
+	private String userName;
 
 	public ProductVo() {
 	}
@@ -28,9 +29,10 @@ public class ProductVo {
 		this.prodInfo = prodInfo;
 		this.regDate = regDate;
 	}
-		
+
 	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
-			String prodInfo, String regDate, List<ProdImgVo> prodImgList) {
+			String prodInfo, String regDate, List<ProdImgVo> prodImgList, String userName) {
+		super();
 		this.prodNo = prodNo;
 		this.userNo = userNo;
 		this.prodName = prodName;
@@ -40,6 +42,7 @@ public class ProductVo {
 		this.prodInfo = prodInfo;
 		this.regDate = regDate;
 		this.prodImgList = prodImgList;
+		this.userName = userName;
 	}
 
 	public int getProdNo() {
@@ -114,11 +117,19 @@ public class ProductVo {
 		this.prodImgList = prodImgList;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion=" + emotion
 				+ ", price=" + price + ", delivery=" + delivery + ", prodInfo=" + prodInfo + ", regDate=" + regDate
-				+ ", prodImgList=" + prodImgList + "]";
+				+ ", prodImgList=" + prodImgList + ", userName=" + userName + "]";
 	}
 
 }

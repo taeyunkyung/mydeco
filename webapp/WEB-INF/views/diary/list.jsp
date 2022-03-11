@@ -68,8 +68,11 @@
                                     </select>
                                 </form>    
                             </div>
-
-                            <a class="button btn-diarylist" href="${pageContext.request.contextPath}/diary/writeForm">일기 쓰기</a>
+						
+							<c:if test="${!empty authUser}">  
+								<a class="button btn-diarylist" href="${pageContext.request.contextPath}/diary/writeForm">일기 쓰기</a>
+							</c:if>
+                        
                         </div>
 
                         <!--중간선-->
