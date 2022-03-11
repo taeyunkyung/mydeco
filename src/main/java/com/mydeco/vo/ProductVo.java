@@ -14,6 +14,54 @@ public class ProductVo {
 	private String regDate;
 	private List<ProdImgVo> prodImgList; // 추가
 	private String userName;
+	
+	// 나의상품, 찜한상품 //
+	private String prodImgSrc;
+	private int diaryCnt;
+	private int pickNo;
+	private String id;
+	private int pickCnt;
+
+	public String getProdImgSrc() {
+		return prodImgSrc;
+	}
+
+	public void setProdImgSrc(String prodImgSrc) {
+		this.prodImgSrc = prodImgSrc;
+	}
+
+	public int getDiaryCnt() {
+		return diaryCnt;
+	}
+
+	public void setDiaryCnt(int diaryCnt) {
+		this.diaryCnt = diaryCnt;
+	}
+
+	public int getPickNo() {
+		return pickNo;
+	}
+
+	public void setPickNo(int pickNo) {
+		this.pickNo = pickNo;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getPickCnt() {
+		return pickCnt;
+	}
+
+	public void setPickCnt(int pickCnt) {
+		this.pickCnt = pickCnt;
+	}
+	// 나의상품, 찜한상품 //
 
 	public ProductVo() {
 	}
