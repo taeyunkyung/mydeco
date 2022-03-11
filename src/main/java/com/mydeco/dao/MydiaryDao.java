@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.PaperVo;
 import com.mydeco.vo.StickerVo;
 
 @Repository
@@ -40,7 +39,30 @@ public class MydiaryDao {
 	}*/
 	
 	/*일기에 쓴 컨텐츠 추가하기*/
-	public void addContent(DiaryContentVo diarycontentvo) {
-		sqlSession.insert("mydiary.diaryContent",diarycontentvo);
+	public int addContent(DiaryContentVo diarycontentvo) {
+		return sqlSession.insert("mydiary.diaryContent",diarycontentvo);
 	}
+	
+	public int selectDiaryNo() {
+		return sqlSession.selectOne("mydiary.selectDiaryNo");
+	}
+	
+	/*일기에 쓴 스티커 저장하기*/
+	
+	public void addSticker(DiaryItemVo diarySticker) {
+		sqlSession.insert("mydiary.diaryitem",diarySticker);
+	}
+	
+	/*일기에 쓴 스티커 저장하기2*/
+	/*public void addSticker(DiaryContentVo diarycontentvo) {
+		
+		List<DiaryItemVo> diarystickerList = diarycontentvo.getItemList();
+
+		for(int i=0; i<diarystickerList.size(); i++) {
+			//DiaryItemVo diarysticker = diarystickerList.get(i);
+			//System.out.println(diarysticker);
+			sqlSession.insert("mydiary.diaryitem",diarystickerList.get(i));
+		}
+	}*/
+	
 }

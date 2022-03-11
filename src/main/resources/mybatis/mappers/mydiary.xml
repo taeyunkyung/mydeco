@@ -39,17 +39,22 @@
 	<!-- 일기content(스티커제외) db에 저장 -->
 	<insert id="diaryContent" parameterType="com.mydeco.vo.DiaryContentVo">
 		<![CDATA[
-				insert into diary
-				values (seq_diary_no.nextval, #{userNo}, #{diaryDate}, #{weather}, #{protect}, #{title}, #{diaryBgmSrc})	
+				insert into diary(diaryNo, userNo, diaryDate, weather, protect, title)
+				values(seq_diary_no.nextval, #{userNo}, #{diaryDate}, #{weather}, #{protect}, #{title})	
 		]]>
 	</insert>
 	
+	<select id="selectDiaryNo" resultType="int">
+		SELECT seq_diary_no.currval FROM dual
+	</select><!-- 요기 -->
+	
 	
 	<!-- 일기에 쓴 스티커 db에 저장 -->
-	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryContentVo">
+	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryItemVo">
+	
 			<![CDATA[
-				insert into diaryitem(diaryitemNo, diaryNo, stickerNo, top, left, scaleX, scaleY, angle, text)
-				values(seq_diaryitem_no.nextval,seq_diary_no.nextval, #{stickerNo}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
+				insert into item(diaryitemNo, diaryNo, stickerNo, top, left, scaleX, scaleY, angle, text)
+				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
 			]]>
 	</insert>
 </mapper>

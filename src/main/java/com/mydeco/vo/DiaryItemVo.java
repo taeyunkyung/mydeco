@@ -32,7 +32,22 @@ public class DiaryItemVo {
 		this.angle = angle;
 		this.text = text;
 	}
+	
 
+
+	public DiaryItemVo(int diaryItemNo, int stickerNo, String stickerSrc, double top, double left, double scaleX,
+			double scaleY, double angle, String text) {
+		super();
+		this.diaryItemNo = diaryItemNo;
+		this.stickerNo = stickerNo;
+		this.stickerSrc = stickerSrc;
+		this.top = top;
+		this.left = left;
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+		this.angle = angle;
+		this.text = text;
+	}
 
 
 	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, String stickerSrc, double top, double left,

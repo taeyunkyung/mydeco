@@ -18,6 +18,15 @@ public class DiaryContentVo {
 	}
 	
 	
+	public DiaryContentVo(int userNo, String diaryDate, String weather, String protect, String title) {
+		super();
+		this.userNo = userNo;
+		this.diaryDate = diaryDate;
+		this.weather = weather;
+		this.protect = protect;
+		this.title = title;
+	}
+
 
 	public DiaryContentVo(int userNo, String diaryDate, String weather, String protect, String title,
 			String diaryBgmSrc, List<DiaryItemVo> itemList) {

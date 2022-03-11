@@ -48,13 +48,21 @@ public class MydiaryController {
 	
 	@ResponseBody
 	@RequestMapping("/write")
-	public String write(@RequestBody DiaryContentVo diarycontentvo) {
+	public int write(@RequestBody DiaryContentVo diarycontentvo) {
 		System.out.println("mydiarycontroller-write");
 		System.out.println(diarycontentvo);
 		
-		mydiaryService.addContent(diarycontentvo);
+		return mydiaryService.addContent(diarycontentvo);
 		
-		return "";
+		
+		/*
+		try {
+			return "success";
+		} catch (Exception e) {
+			System.out.println(e);
+			return "fail";
+		}
+		// mydiaryService.addSticker(diarycontentvo);*/
 	}
 	
 	
@@ -77,3 +85,4 @@ public class MydiaryController {
 		return "";
 	}*/
 }
+
