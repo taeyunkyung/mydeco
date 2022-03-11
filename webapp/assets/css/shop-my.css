@@ -22,20 +22,42 @@ table {
     font-family: 'SCDream4';
 }
 
-#chat-list::-webkit-scrollbar-track, #chat::-webkit-scrollbar-track
+.chat-list::-webkit-scrollbar-track, .chat::-webkit-scrollbar-track
 , #img-area::-webkit-scrollbar-track {    
     background-color: #fff;
 }    
-#chat-list::-webkit-scrollbar, #chat::-webkit-scrollbar
+.chat-list::-webkit-scrollbar, .chat::-webkit-scrollbar
 , #img-area::-webkit-scrollbar {
     width: 8px;
 }    
-#chat-list::-webkit-scrollbar-thumb, #chat::-webkit-scrollbar-thumb
+.chat-list::-webkit-scrollbar-thumb, .chat::-webkit-scrollbar-thumb
 , #img-area::-webkit-scrollbar-thumb {
     background-color: #fff;
     border: 1px solid #686099;
     border-radius: 10px;
 }
+
+.pagination-sm>li:first-child>a {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pagination>.active>a {
+	background-color: #686099;
+    border-color: #686099;
+}
+
+nav {
+	display:inline-flex; justify-content: center; padding: 10px; width: 678.9px;
+}
+
+#showSearch{padding:5px;}
+
+.happy{color: rgb(255, 217, 0);} 
+.sad{color: rgba(0, 174, 255, 0.842);} 
+.angry{color: rgba(255, 145, 0, 0.952);} 
+.annoyed{color: rgba(47, 255, 92, 0.959);} 
+.relieved{color: rgb(255, 192, 195);}
 
 /*seller-be*/
 #bs-list {
@@ -188,15 +210,15 @@ p {
     .details-btn:hover{
         background-color: #ebebeb;}
 
-#chat-list li {
+.chat-list li {
     margin: 5px;
     border-bottom: solid 1px #ebebeb;
 }
-#chat-list{ margin-right: 2px;
-    width: 280px;} #chat-list ol {padding: 5px;}
-#chat{
+.chat-list{ margin-right: 2px;
+    width: 280px;} .chat-list ol {padding: 5px;}
+.chat{
     width: 390px; padding: 5px;}
-#chat-list {
+.chat-list {
     border: solid 1px #ebebeb;
     height: 500px; padding: 5px; 
     overflow-y: scroll ;
@@ -205,11 +227,11 @@ p {
     display: inline-flex;
     flex-direction: column;
 } 
-#chat {
+.chat {
     border: solid 1px #ebebeb;
     height: 296px; margin-bottom: 2px; 
     overflow-y: scroll ;
-} #chat li {padding-bottom: 10px;}
+} .chat li {padding-bottom: 10px;}
 
 .speech {
     transform: scale(-1); opacity: 0.3; 
@@ -249,6 +271,23 @@ p {
     justify-content: right; width: 100%;
 }
 
+.opt-btn {
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    font-size: 6px;
+    font-family: 'SCDream4';
+    padding: 3px; margin-left: 2px;
+    border: none;    
+    cursor: pointer; 
+    background: #d7cfe8; }
+    .send-btn:hover{
+        background-color: #ebebeb;} 
+#option {
+    display: inline-flex;
+    justify-content: left; width: 100%;
+}
+
 /*myList, likedList*/
 #product-area ol {
     padding: 10px;}
@@ -258,7 +297,7 @@ p {
     border-bottom: 1px solid #ebebeb;
 }
 .prod-img {width: 150px; height: 150px;}
-.info {padding: 5px 10px; width: 70%;} h4 {font-family: 'SCDream4';}
+.info {padding: 5px 10px; width: 70%;} h4 {font-family: 'SCDream4'; margin-left: 4px;}
 .etc {
     display: inline-flex; width: 100%;
     justify-content: space-between;

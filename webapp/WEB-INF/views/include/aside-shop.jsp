@@ -12,10 +12,10 @@
                         </ol>
                         <ol>
                             <li class="title">My</li>                            
-                            <li><a href="">회원정보수정</a></li>
-                            <li><a href="">1:1 채팅내역</a></li>
-                            <li><a href="">찜한 상품</a></li>
-                            <li><a class="color" href="">나의 상품</a></li>
-                            <li><a class="color" href="">판매자등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/my/modifyForm">회원정보수정</a></li>
+                            <li><a href="${pageContext.request.contextPath}/myshop/chatList">1:1 채팅내역</a></li>
+                            <li><a href="${pageContext.request.contextPath}/myshop/pickedProducts">찜한 상품</a></li>
+                            <li><a class="color" href="${pageContext.request.contextPath}/myshop/myProducts">나의 상품</a></li>
+                            <li><a class="color" href="${pageContext.request.contextPath}/myshop/beSeller">판매자등록</a></li>
                         </ol>
                     </div>

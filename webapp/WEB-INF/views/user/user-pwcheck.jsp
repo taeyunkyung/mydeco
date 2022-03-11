@@ -23,7 +23,7 @@
 				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 				
 				<!-- aside -->
-				<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+				<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 				
 				<!-- content -->
 				<div class="col-xs-9 " id="main-content">

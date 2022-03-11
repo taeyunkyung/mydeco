@@ -22,4 +22,16 @@ public class MyProdImgDao {
 		System.out.println("diaryadd.dao");
 		return sqlSession.insert("myProdImg.addDiary", prodDiaryVo);
 	}
+	
+	public String previewImg(int prodNo) {
+		return sqlSession.selectOne("myProdImg.previewImg", prodNo);
+	}
+	
+	public int diaryCnt(int prodNo) {
+		return sqlSession.selectOne("myProdImg.diaryCnt", prodNo);
+	}
+	
+	public int pickCnt(int prodNo) {
+		return sqlSession.selectOne("myProdImg.pickCnt", prodNo);
+	}
 }

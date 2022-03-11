@@ -16,5 +16,34 @@
 			values(seq_prodDiary_no.nextval, #{prodNo}, #{diaryNo})
 		]]>
 	</insert>
+	
+	<select id="previewImg" parameterType="int" resultType="String">
+		<![CDATA[
+			select  prodImgSrc
+			from(select  rownum,
+        				 prodImgSrc
+				from (select  prodImgSrc
+					  from prodImg
+					  where prodNo = #{prodNo})
+				)
+			where rownum = 1
+		]]>
+	</select>
+	
+	<select id="diaryCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select  count(*) diaryCnt
+			from prodDiary
+			where prodNo = #{prodNo}
+		]]>
+	</select>
+	
+	<select id="pickCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select  count(*) pickCnt
+			from pick
+			where prodNo = #{prodNo}
+		]]>
+	</select>
 
 </mapper>

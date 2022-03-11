@@ -30,5 +30,178 @@
 				sysdate)
 		]]>
 	</insert>
+	
+	<select id="myProductList" parameterType="int" resultType="ProductVo">
+		<![CDATA[
+			select  prodNo,
+        			userNo,
+        			prodName,
+        			emotion,
+        			price,
+        			delivery
+			from product
+			where userNo = #{userNo}
+		]]>
+	</select>
+	
+	<select id="myProductpgList" parameterType="map" resultType="ProductVo">
+		<![CDATA[
+			select  rt.rn,
+        			rt.prodNo,
+        			rt.userNo,
+        			rt.prodName,
+        			rt.emotion,
+        			rt.price,
+        			rt.delivery
+			from(select  rownum rn,
+        				 ot.prodNo,
+        				 ot.userNo,
+        				 ot.prodName,
+        				 ot.emotion,
+        				 ot.price,
+        				 ot.delivery
+				 from (select  prodNo,
+        					   userNo,
+        					   prodName,
+        					   emotion,
+        					   price,
+        					   delivery
+					   from product p
+					   where userNo = #{userNo}
+					   and prodName like '%'||#{keyword}||'%'
+					   order by regDate desc) ot
+			) rt
+			where rt.rn >= #{startNum}
+			and rt.rn < #{endNum}
+		]]>
+	</select>
+	
+	<select id="totalCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*)
+			from product
+			where userNo = #{userNo}
+		]]>
+	</select>
+	
+	<delete id="myProductRemove" parameterType="ProductVo">
+		<![CDATA[
+			delete from product
+			where prodNo = #{prodNo}
+			and userNo = #{userNo}
+		]]>
+	</delete>
+	
+	<select id="myPickpgList" parameterType="map" resultType="ProductVo">
+		<![CDATA[
+			select  rt.rn,
+        			rt.pickNo,
+        			rt.userNo,
+        			rt.id,
+        			rt.prodNo,
+        			rt.prodName,
+        			rt.emotion,
+        			rt.price,
+        			rt.delivery
+			from (select  rownum rn,
+        				  ot.pickNo,
+        				  ot.userNo,
+        				  ot.id,
+        				  ot.prodNo,
+        				  ot.prodName,
+        				  ot.emotion,
+        				  ot.price,
+        				  ot.delivery
+				  from (select  pickNo,
+        					    pr.userNo,
+        						us.id,
+        						pi.prodNo,
+        						prodName,
+        						emotion,
+        						price,
+        						delivery
+						from pick pi, product pr, users us
+						where pi.prodNo = pr.prodNo
+						and us.userNo = pr.userNo
+						and pi.userNo = #{userNo}
+						and prodName like '%'||#{keyword}||'%'
+						order by pi.regDate desc) ot
+			) rt
+			where rt.rn >= #{startNum}
+			and rt.rn < #{endNum}
+		]]>
+	</select>
+	
+	<select id="totalpickCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*)
+			from pick
+			where userNo = #{userNo}
+		]]>
+	</select>
+	
+	<delete id="myPickRemove" parameterType="ProductVo">
+		<![CDATA[
+			delete from pick
+			where prodNo = #{prodNo}
+			and userNo = #{userNo}
+		]]>
+	</delete>
+	
+	<select id="myBuyList" parameterType="int" resultType="com.mydeco.vo.UserChatVo">
+		<![CDATA[
+			select  chatNo,
+        			ch.prodNo,
+        			prodName,
+        			ch.sellerNo,
+        			us.id,
+        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
+			from chat ch, product pr, users us
+			where ch.prodNo = pr.prodNo
+			and ch.sellerNo = us.userNo
+			and buyerNo = #{authUserNo}
+		]]>
+	</select>
+	
+	<select id="mySellList" parameterType="int" resultType="com.mydeco.vo.UserChatVo">
+		<![CDATA[
+			select  chatNo,
+        			ch.prodNo,
+        			prodName,
+        			ch.buyerNo,
+        			us.id,
+        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
+			from chat ch, product pr, users us
+			where ch.prodNo = pr.prodNo
+			and ch.buyerNo = us.userNo
+			and sellerNo = #{authUserNo}
+		]]>
+	</select>
+	
+	<select id="buychatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
+		<![CDATA[
+			select  sellerNo,
+        			us.id,
+        			chatContent,
+        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
+			from chat ch, users us
+			where ch.sellerNo = us.userNo
+			and prodNo = #{prodNo}
+			and buyerNo = #{userNo}
+		]]>
+	</select>
+	
+	<select id="sellchatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
+		<![CDATA[
+			select  buyerNo,
+        			us.id,
+        			chatContent,
+        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
+			from chat ch, users us
+			where ch.buyerNo = us.userNo
+			and prodNo = #{prodNo}
+			and sellerNo = #{userNo}
+		]]>
+	</select>
 
 </mapper>

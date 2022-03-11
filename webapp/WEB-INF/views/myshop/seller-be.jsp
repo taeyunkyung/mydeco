@@ -21,7 +21,7 @@
 				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 				
 				<!-- aside -->
-				<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+				<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 				
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
@@ -55,6 +55,10 @@
 						</ul>
 					</div> <!-- bs-list -->
 				</div> <!-- content -->
+				
+				<!-- footer -->
+				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
+			
 			</div> <!-- row -->
 		</div> <!-- container -->
 	</div> <!-- wrap -->
