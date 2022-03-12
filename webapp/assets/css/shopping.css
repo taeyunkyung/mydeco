@@ -99,7 +99,7 @@
     padding: 0px 0px;
 }
 
-#r-button {
+.r-button {
 display: inline-block;
 color: #fff;
 }
@@ -135,9 +135,10 @@ color: #fff;
 
 #share{
     margin-left: 0px;
+    text-align: right;
 }
 
-#share img{
+.shareimg{
     width : 30px;
     height : 30px;
 }

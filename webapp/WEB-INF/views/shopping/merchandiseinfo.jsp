@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
     </head>
     <body>
         <div id="wrap">
@@ -68,7 +71,7 @@
                                 </div>
                                 <div class="row infomargin">
                                     <div class="col-xs-5"><span class="infotext">판매자</span></div>
-                                    <div class="col-xs-7">정우성님</div>
+                                    <div class="col-xs-7">${product.userName}</div>
                                 </div>
                                 <div class="row infomargin">
                                     <div class="col-xs-5"><span class="infotext">배송방법</span></div>
@@ -77,17 +80,17 @@
                                 <div class="row infomargin div-sub">
                                     <div class="col-xs-5"><span class="infotext">공유</span></div>
                                     <div class="col-xs-7" id="share">
-                                    	 <img src="${pageContext.request.contextPath}/assets/img/icon/ }">
-                                    	 <img src="../assets/img/plusglass.png">
-                                    	 <img src="../assets/img/포켓몬스티커.jpg">
-                                    	 <img src="../assets/img/화면 캡처 2022-02-28 104212.png">
+                                    	 <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/instagram.jpg"></a>
+                                    	 <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/facebook.jpg"></a>
+                                    	 <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/twiter.png"></a>
+                                    	 <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/youtube.png"></a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-right"><p class="infotext"> ${product.price} 원</p></div>
                                 </div>
                                 <div class="row text-center">
-                                    <div class="col-xs-12"><a href="#" class="button marginauto" id="r-button">채팅 거래하기</a></div>
+                                    <div class="col-xs-12"><a href="${pageContext.request.contextPath}/myshop/chatList" class="button marginauto r-button">채팅 거래하기</a></div>
                                 </div>
                             </div>
                         </div>
@@ -126,9 +129,9 @@
                                 댓글
                             </div>
                             <div class="col-xs-10 padding0">
-                                <textarea></textarea>
+                                <textarea id="cmttext"></textarea>
                             </div>
-                            <div class="col-xs-2 padding0"><button class="button button2 marginauto" id="r-button">댓글 달기</button></div>
+                            <div class="col-xs-2 padding0"><button class="button button2 marginauto r-button" id="cmtsend">댓글 달기</button></div>
                         </div>
                         <!-- 댓글 -->
                         <div class="row text-left">
@@ -187,4 +190,42 @@
         	</div>	        
     	</div>
     </body>
+    
+    <script type="text/javascript">
+    
+    $("#cmtsend").on("click",function(){
+
+    	var cmttext = $("#cmttext").val();
+    	
+    	var ShoppingCmtVo = {cmtContent: cmttext};
+    	console.log(cmttext);
+    	$.ajax({
+    		
+    		url : "${pageContext.request.contextPath }/shopping/cmtwrite",		
+    		type : "post",
+    		contentType : "application/json",
+    		data : JSON.stringify(ShoppingCmtVo),
+
+    		dataType : "json",
+    		success : function(result){
+    			
+    			//입력화면 초기화
+				$("#cmttext").val("");
+    			
+    			
+    			
+    			
+    			
+    			
+    		},
+    		error : function(XHR, status, error) {
+    			console.error(status + " : " + error);
+    		}
+    	});
+    });
+    </script>
+    
+    
+    <!--  코멘트 에이젝스 시작 -->
+  
 </html>
