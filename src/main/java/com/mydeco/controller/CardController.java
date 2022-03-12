@@ -33,5 +33,26 @@ public class CardController {
 		return "card/cardWriteForm";
 	}
 	
+	@RequestMapping("/reply")
+	public String replyWriteForm(Model model) {
+		System.out.println("card/replyWriteForm");
+		
+		return "card/replyWriteForm";
+	}
+	
+	@RequestMapping("/sendList")
+	public String cardReadForm(Model model) {
+		System.out.println("card/cardReadForm");
+		
+		return "card/cardReadForm";
+	}
+	
+	@RequestMapping("/receiveList")
+	public String replyReadForm(Model model) {
+		System.out.println("card/replyReadForm");
+		
+		return "card/replyReadForm";
+	}
+	
 	
 }
