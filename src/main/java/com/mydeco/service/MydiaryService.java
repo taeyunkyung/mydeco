@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mydeco.dao.MydiaryDao;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.PaperVo;
 import com.mydeco.vo.StickerVo;
 
 @Service
@@ -55,10 +55,56 @@ public class MydiaryService {
 	}*/
 	
 	/*일기에 쓴 컨텐츠 저장하기*/
-	public void addContent(DiaryContentVo diarycontentvo){
+	// db error rollback
+	//	@Transactional
+	public int addContent(DiaryContentVo diarycontentvo){
 		
 		mydiaryDao.addContent(diarycontentvo);
+		int diaryno = mydiaryDao.selectDiaryNo();
+		System.out.println(diaryno);
+		
+		List<DiaryItemVo> diarysticker = diarycontentvo.getItemList();
+		for(int i = 0; i<diarysticker.size(); i++) {
+			DiaryItemVo diarySticker = diarysticker.get(i);
+			diarySticker.setDiaryNo(diaryno);
+			
+			if(diarySticker.getText() == null) {
+				diarySticker.setText("");
+			}
+			mydiaryDao.addSticker(diarySticker);
+		}
+		
+		return 1;
 	}
 	
+	/*일기에 쓴 스티커 저장하기*/
+	public void addSticker(DiaryContentVo diarycontentvo) {
+		/*
+		List<DiaryItemVo> diarysticker = diarycontentvo.getItemList();
+		System.out.println(diarysticker);
+		System.out.println("-=====================");
+		System.out.println(diarysticker.get(2));
+		
+		for(int i=0; i<diarysticker.size(); i++) {
+			/*
+			diarysticker.get(i).getDiaryItemNo();
+			diarysticker.get(i).getDiaryNo();
+			diarysticker.get(i).getStickerNo();
+			diarysticker.get(i).getTop();
+			diarysticker.get(i).getLeft();
+			diarysticker.get(i).getScaleX();
+			diarysticker.get(i).getScaleY();
+			diarysticker.get(i).getAngle();
+			diarysticker.get(i).getText();*/
+			/*
+			DiaryItemVo diarySticker = diarysticker.get(i);
+			System.out.println(diarySticker);
+			System.out.println(diarysticker.size());
+			mydiaryDao.addSticker(diarySticker);*/
+		/*}*/
+		
+		// mydiaryDao.addSticker(diarycontentvo);
+		
+	}
 	
 }

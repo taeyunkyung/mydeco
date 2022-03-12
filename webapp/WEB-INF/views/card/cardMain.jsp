@@ -1,205 +1,282 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
-<html>
+
+<html lang="ko">
+<!-- ÌïúÍµ≠Ïñ¥Î¨∏ÏÑúÎßå Í≤ÄÏÉâÌï†Îïå, ÏùåÏÑ±ÏúºÎ°ú Ìï†Îïå ÌïúÍµ≠Ïñ¥ ÏùåÏÑ±ÏßÄÏõê -->
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<!-- Î∏åÎùºÏö∞Ï†ÄÍ∞Ä Î¨∏ÏÑúÎ•º Ìï¥ÏÑùÌï†Îïå ÌïÑÏöîÌïú Ï†ïÎ≥¥ -->
 <title>Mydeco</title>
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/card.css">
-<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/card.css">
 </head>
+
 <body>
-  <div id="wrap">
-      <!-- header -->
-      <div id="header" class="clearfix">
-          <h1>
-              <a href=""><img id="logo" src="../assets/img/logo.png"></a>
-          </h1>
+	<div class="wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- header -->
+					<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+					<!-- headerÎÅù -->
+					<!--aside&contents-->
+					<div class="row">
+						<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
+						<!--aside ÎÅù-->
 
-          <ul id="category" class="clearfix">
-              <div class="dropdown">
-                  <li class="dropbtn"><a href="">About</a></li>
-                  <ul class="dropdown-content">
-                      <li><a href="">¿ÃøÎ æ»≥ª</a></li>
-                      <li><a href="">1¥Î1 πÆ¿«</a></li>
-                  </ul>
-              </div>
-              <div class="dropdown">
-                  <li class="dropbtn"><a href="">Pen & Paper</a></li>
-                  <ul class="dropdown-content">
-                      <li><a href="">≥™¿« ¿œ±‚</a></li>
-                      <li><a href="">¬ ¡ˆ</a></li>
-                      <li><a href="">øÏ√º≈Î</a></li>
-                  </ul>
-              </div>
-              <div class="dropdown">
-                  <li class="dropbtn"><a href="">Shopping</a></li>
-              </div>
-              <div class="dropdown">
-                  <li class="dropbtn"><a href="">Mood</a></li>
-                  <ul class="dropdown-content">
-                      <li><a href="">∏∂π˝¿« º“∂Û∞Ìµ’</a></li>
-                      <li><a href="">Ω…∏Æ ≈◊Ω∫∆Æ</a></li>
-                  </ul>
-              </div>
-          </ul>
-          <ul id="user" class="clearfix">
-              <li><a href="">»∏ø¯∞°¿‘</a></li>
-              <li><a href="">∑Œ±◊¿Œ</a></li>
-          </ul>
-      </div>
+						<!--contents ÏãúÏûë-->
+						<div class="col-xs-9">
+							<div id="cTitle">
+								<h3>ÏÜåÌÜµ Ïπ¥Îìú</h3>
+							</div>
 
-  <!-- header≥° -->
-      <div id="container">
-          <!-- aside -->
-          <div class="col-xs-3">
-              <div id="aside">
-                  <ul id="aside_ul" class="clearfix">
-                      <li class="aside_top">pen&paper</li>
-                      <li>≥™¿« ¿œ±‚</li>
-                      <li>º“≈Î ƒ´µÂ</li>
-                      <li>πÃ∑° ∆Ì¡ˆ</li>
-                  </ul>
-              </div>
-          </div>
-          <!-- aside ≥° -->
-          <!--content-->
-          <div class="col-xs-9">
-              <div class="card_list">
-                  <div id="cTitle">
-                      <h3>º“≈Î ƒ´µÂ</h3>
-                   </div>
-                   
-                  <div id="card_tap">
-                      <input id="tab1" type="radio" name="tabs" checked> <!--µ∆˙∆Æ ∏ﬁ¥∫-->
-                      <label for="tab1">¿€º∫ ƒ´µÂ</label>
-                  
-                      <input id="tab2" type="radio" name="tabs">
-                      <label for="tab2">πﬁ¿∫ ƒ´µÂ</label>
+							<div class="card_list">
+								<div id="card_tap">
 
-                          <section id="content1">
-                              <button class="btn-card-write" type="button"><a class="cardWriteForm" href="cardWrite.html">ƒ´µÂ æ≤±‚</a></button>
-                          
-                              <div class="tap_content">
-                                  <div class="card-letter">
-                                      <div class="card-text">
-                                              <div class="subcard">
-                                                  <img src="../assets/img/img (1).jpg" alt="">
-                                                  <span class="imgdate">2022-03-03</span>
-                                                  <span class="imgtext">ø©∑Ø∫–<br>¿˙ ø¿¥√ ª˝¿œ¿Œµ•<br>√‡«œ«ÿ¡÷ººø‰¢Ω</span>
-                                                  <span class="imgnum">¥‰¿Â10∞≥</span>
-                                              </div>
-                                              <div class="subcard">
-                                                  <img src="../assets/img/img (2).jpg" alt="">
-                                                  <span class="imgdate">2022-01-14</span>
-                                                  <span class="imgtext">ªÏ¬«º≠ πŸ¡ˆ∞° æ»∏¬æ∆ø‰ ºˆº±∏¿¡˝ √£æ∆ø‰ ∞¸æ«±∏ ¿ß¡÷!!</span>
-                                                  <span class="imgnum">¥‰¿Â0∞≥</span>
-                                              </div>
-                                              <div class="subcard">
-                                                  <img src="../assets/img/img (3).jpg" alt="">
-                                                  <span class="imgdate">2022-01-01</span>
-                                                  <span class="imgtext">√Îæ˜¿Ã «œ∞ÌΩÕæÓø‰§–§–¡¶ ∞ÌπŒ ¡ª µÈæÓ¡÷Ω«∫–</span>
-                                                  <span class="imgnum">¥‰¿Â3∞≥</span>
-                                              </div>
-                                      </div>
-                                      <div class="card-text">
-                                          <div class="subcard">
-                                              <img src="../assets/img/img (4).jpg" alt="">
-                                              <span class="imgdate">2021-12-01</span>
-                                              <span class="imgtext">ø¿¥√π„ ¥ﬁ¿Ã ¬˜¥Ÿ<br>≥Õ ≥ª ª˝∞¢¿ª «“±Ó?</span>
-                                              <span class="imgnum">¥‰¿Â1∞≥</span>
-                                          </div>
-                                          <div class="subcard">
-                                              <img src="../assets/img/img (5).jpg" alt="">
-                                              <span class="imgdate">2021-12-25</span>
-                                              <span class="imgtext">¬¶ªÁ∂˚ ±◊∏∏«œ∞Ì ΩÕæÓø‰...«œ¡ˆ∏∏ ∆˜±‚∞° µ«¡ˆ æ ≥◊ø‰</span>
-                                              <span class="imgnum">¥‰¿Â10∞≥</span>
-                                          </div>
-                                          <div class="subcard">
-                                              <img src="../assets/img/img (6).jpg" alt="">
-                                              <span class="imgdate">2021-12-24</span>
-                                              <span class="imgtext">≥ª¿œ ≈©∏ÆΩ∫∏∂Ω∫¿Œµ• ¥ŸµÈ º÷≈© ∏¬¡“??</span>
-                                              <span class="imgnum">¥‰¿Â8∞≥</span>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-xs-12">
-                                              <li>
-                                                  <div id="divPaging" class="divPaging1">
-                                                      <div>¢∏</div>
-                                                      <div><b>1</b></div>
-                                                      <div>2</div>
-                                                      <div>3</div>
-                                                      <div>4</div>
-                                                      <div>5</div>
-                                                      <div>¢∫</div>
-                                                  </div>
-                                              </li>
-                                          </div>
-                                          
-                                      </div>
-                                  </div>
-                              </div>
-                          </section>
-                      
-                          <section id="content2">
-                              <div class="tap_content">
-                                  <div class="card-letter">
-                                      <div class="card-text">
-                                          <div class="subcard">
-                                              <img src="../assets/img/img (7).jpg" alt="">
-                                              <span class="imgdate">2022-03-07</span>
-                                              <input type="checkbox" class="chk-del" name="del" />
-                                              <span class="imgtext">Ω…Ω…«—µ• ≥°∏ª¿’±‚ «œ∞Ì ≥Ó¿⁄</span>
-                                              <span class="imgnum">¥‰¿Â11∞≥</span>
-                                          </div>
-                                          <div class="subcard">
-                                              <img src="../assets/img/img (8).jpg" alt="">
-                                              <span class="imgdate">2022-03-01</span>
-                                              <input type="checkbox" class="chk-del" name="chk-del" value="del"/>
-                                              <span class="imgtext">ø¿∫¸ ø©¿⁄ƒ£±∏∏¶ ∫√¥¬µ• ≥ π´ øπªµø‰!!æÓ∂ª∞‘ øÏ∏Æ ø¿∫¸∂˚..</span>
-                                              <span class="imgnum">¥‰¿Â3∞≥</span>
-                                          </div>
-                                      </div>
+									<div class="btn-card-write">
+										<a href="cardWrite.html">Ïπ¥Îìú Ïì∞Í∏∞</a>
+									</div>
+									<input id="tab1" type="radio" name="tabs" checked>
+									<!--ÎîîÌè¥Ìä∏ Î©îÎâ¥-->
+									<label for="tab1">ÏûëÏÑ± Ïπ¥Îìú</label> <input id="tab2" type="radio"
+										name="tabs"> <label for="tab2">Î∞õÏùÄ Ïπ¥Îìú</label>
 
-                                      <div class="row">
-                                          <div class="col-xs-9">
-                                              <li>
-                                                  <div id="divPaging" class="divPaging2">
-                                                      <div>¢∏</div>
-                                                      <div><b>1</b></div>
-                                                      <div>2</div>
-                                                      <div>3</div>
-                                                      <div>4</div>
-                                                      <div>5</div>
-                                                      <div>¢∫</div>
-                                                  </div>
-                                              </li>
-                                          </div>
-                                          <div class="col-xs-3">
-                                              <button class="btn-card-del" type="reset">ªË¡¶</button>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </section>
-                     
-                  </div>
-              </div>
-          </div>
-          <!--content≥°-->
-      </div>
-      <!--wrap ≥°-->
-     
+									<!-------section1----->
+									<section id="content1">
+										<div class="tap_content">
 
-       
-      <!--footer-->
-      
-      <!--footer≥°-->
-  </div>
-  <!--wrap≥°-->
- 
+
+
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="height500">
+														<div class="row">
+															<div class="col-xs-4">
+
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-03</div>
+																	<div class="imgtext">
+																		Ïó¨Îü¨Î∂Ñ<br>Ï†Ä Ïò§Îäò ÏÉùÏùºÏù∏Îç∞<br>Ï∂ïÌïòÌï¥Ï£ºÏÑ∏Ïöî‚ô°
+																	</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg" alt="">
+																	<div class="imgdate">2022-01-14</div>
+																	<div class="imgtext">ÏÇ¥Ï™ÑÏÑú Î∞îÏßÄÍ∞Ä ÏïàÎßûÏïÑÏöî ÏàòÏÑ†ÎßõÏßë Ï∞æÏïÑÏöî Í¥ÄÏïÖÍµ¨ ÏúÑÏ£º!!</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt="">
+																	<div class="imgdate">2022-01-01</div>
+																	<div class="imgtext">Ï∑®ÏóÖÏù¥ ÌïòÍ≥†Ïã∂Ïñ¥Ïöî„Ö†„Ö†Ï†ú Í≥†ÎØº Ï¢Ä Îì§Ïñ¥Ï£ºÏã§Î∂Ñ</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+															</div>
+														</div>
+
+
+														<div class="row">
+															<div class="col-xs-4">
+
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg"
+																		alt="">
+																	<div class="imgdate">2021-12-01</div>
+																	<div class="imgtext">
+																		Ïò§ÎäòÎ∞§ Îã¨Ïù¥ Ï∞®Îã§<br>ÎÑå ÎÇ¥ ÏÉùÍ∞ÅÏùÑ Ìï†Íπå?
+																	</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+
+															</div>
+
+															<div class="col-xs-4">
+
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg"
+																		alt="">
+																	<div class="imgdate">2021-12-25</div>
+																	<div class="imgtext">ÏßùÏÇ¨Îûë Í∑∏ÎßåÌïòÍ≥† Ïã∂Ïñ¥Ïöî...ÌïòÏßÄÎßå Ìè¨Í∏∞Í∞Ä ÎêòÏßÄ
+																		ÏïäÎÑ§Ïöî</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+
+															</div>
+
+															<div class="col-xs-4">
+
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg"
+																		alt="">
+																	<div class="imgdate">2021-12-24</div>
+																	<div class="imgtext">ÎÇ¥Ïùº ÌÅ¨Î¶¨Ïä§ÎßàÏä§Ïù∏Îç∞ Îã§Îì§ ÏÜîÌÅ¨ ÎßûÏ£†??</div>
+																	<div class="imgnum">ÎãµÏû•10Í∞ú</div>
+																</div>
+
+															</div>
+
+
+														</div><!-- Ïó¨Í∏∞ÍπåÏßÄ row -->
+
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="divPaging">
+														<span>‚óÄ</span> <span>num</span> <span>‚ñ∂</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+									</section>
+									<!------------------section1ÎÅù----------------------->
+									<!------------------section2----------------------->
+									<section id="content2">
+										<div class="tap_content">
+
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="height500">
+														<div class="row">
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (7).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-07</div>
+																	<div class="imgtext">Ïã¨Ïã¨ÌïúÎç∞ ÎÅùÎßêÏûáÍ∏∞ ÌïòÍ≥† ÎÜÄÏûê</div>
+																	<div class="imgnum">ÎãµÏû•11Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-01</div>
+																	<div class="imgtext">Ïò§Îπ† Ïó¨ÏûêÏπúÍµ¨Î•º Î¥§ÎäîÎç∞ ÎÑàÎ¨¥ ÏòàÎªêÏöî!!Ïñ¥ÎñªÍ≤å Ïö∞Î¶¨
+																		Ïò§Îπ†Îûë..</div>
+																	<div class="imgnum">ÎãµÏû•3Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-01</div>
+																	<div class="imgtext">Ïò§Îπ† Ïó¨ÏûêÏπúÍµ¨Î•º Î¥§ÎäîÎç∞ ÎÑàÎ¨¥ ÏòàÎªêÏöî!!Ïñ¥ÎñªÍ≤å Ïö∞Î¶¨
+																		Ïò§Îπ†Îûë..</div>
+																	<div class="imgnum">ÎãµÏû•3Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+														</div><!-- Ïó¨Í∏∞ÍπåÏßÄ row -->
+
+
+
+														<div class="row">
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (7).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-07</div>
+																	<div class="imgtext">Ïã¨Ïã¨ÌïúÎç∞ ÎÅùÎßêÏûáÍ∏∞ ÌïòÍ≥† ÎÜÄÏûê</div>
+																	<div class="imgnum">ÎãµÏû•11Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-01</div>
+																	<div class="imgtext">Ïò§Îπ† Ïó¨ÏûêÏπúÍµ¨Î•º Î¥§ÎäîÎç∞ ÎÑàÎ¨¥ ÏòàÎªêÏöî!!Ïñ¥ÎñªÍ≤å Ïö∞Î¶¨
+																		Ïò§Îπ†Îûë..</div>
+																	<div class="imgnum">ÎãµÏû•3Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+															<div class="col-xs-4">
+																<div class="subcard">
+																	<img
+																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		alt="">
+																	<div class="imgdate">2022-03-01</div>
+																	<div class="imgtext">Ïò§Îπ† Ïó¨ÏûêÏπúÍµ¨Î•º Î¥§ÎäîÎç∞ ÎÑàÎ¨¥ ÏòàÎªêÏöî!!Ïñ¥ÎñªÍ≤å Ïö∞Î¶¨
+																		Ïò§Îπ†Îûë..</div>
+																	<div class="imgnum">ÎãµÏû•3Í∞ú</div>
+																</div>
+																<div class="chk-subcard">
+																	<input type="checkbox" class="chk-del" name="del" />
+																</div>
+															</div>
+														</div><!-- Ïó¨Í∏∞ÍπåÏßÄ row -->
+														
+
+
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-xs-9">
+													<div class="divPaging">
+														<span>‚óÄ</span> <span>num</span> <span>‚ñ∂</span>
+													</div>
+												</div>
+												<div class="col-xs-3">
+													<button class="btn-card-del" type="reset">ÏÇ≠Ï†ú</button>
+												</div>
+											</div>
+										</div>
+									</section>
+
+									<!------------------section2ÎÅù----------------------->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--aside&contentÎÅù-->
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

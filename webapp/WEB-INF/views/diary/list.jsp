@@ -137,7 +137,8 @@
                                     <div class="mydiaryText7 clearfix">
                                         <div class="mydiary-Date">Date:</div>
                                         <div class="mydiary-Date">2022-03.24</div>
-                                        <div><img id="se_weather_img" class="mydiary-weather2" src="./assets/img/weather/sunny-day.png"></div>
+                                        
+                                       <!-- 날씨이미지 -->
                                     </div>
 
                                     <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>

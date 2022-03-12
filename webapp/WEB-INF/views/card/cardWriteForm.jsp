@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mydeco</title>
-<link rel="stylesheet" href="../assets/css/main.css">
-<link rel="stylesheet" href="../assets/css/card.css">
-<link rel="stylesheet" href="../assets/css/bootstrap.css">
-<!--¡¶¿Ãƒı∏Æ-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
+<!--Ï†úÏù¥ÏøºÎ¶¨-->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -17,23 +18,23 @@
             <!-- header -->
             <div id="header" class="clearfix">
                 <h1>
-                    <a href=""><img id="logo" src="../assets/img/logo.png"></a>
+                    <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
                 </h1>
 
                 <ul id="category" class="clearfix">
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">About</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">¿ÃøÎ æ»≥ª</a></li>
-                            <li><a href="">1¥Î1 πÆ¿«</a></li>
+                            <li><a href="">Ïù¥Ïö© ÏïàÎÇ¥</a></li>
+                            <li><a href="">1ÎåÄ1 Î¨∏Ïùò</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Pen & Paper</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">≥™¿« ¿œ±‚</a></li>
-                            <li><a href="">¬ ¡ˆ</a></li>
-                            <li><a href="">øÏ√º≈Î</a></li>
+                            <li><a href="">ÎÇòÏùò ÏùºÍ∏∞</a></li>
+                            <li><a href="">Ï™ΩÏßÄ</a></li>
+                            <li><a href="">Ïö∞Ï≤¥ÌÜµ</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -42,27 +43,27 @@
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Mood</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">∏∂π˝¿« º“∂Û∞Ìµ’</a></li>
-                            <li><a href="">Ω…∏Æ ≈◊Ω∫∆Æ</a></li>
+                            <li><a href="">ÎßàÎ≤ïÏùò ÏÜåÎùºÍ≥†Îë•</a></li>
+                            <li><a href="">Ïã¨Î¶¨ ÌÖåÏä§Ìä∏</a></li>
                         </ul>
                     </div>
                 </ul>
                 <ul id="user" class="clearfix">
-                    <li><a href="">»∏ø¯∞°¿‘</a></li>
-                    <li><a href="">∑Œ±◊¿Œ</a></li>
+                    <li><a href="">ÌöåÏõêÍ∞ÄÏûÖ</a></li>
+                    <li><a href="">Î°úÍ∑∏Ïù∏</a></li>
                 </ul>
             </div>
 
-        <!-- header≥° -->
+        <!-- headerÎÅù -->
         <!--content-->
             <div class="cwTitle">
-                <h3>º“≈Î ƒ´µÂ</h3>
+                <h3>ÏÜåÌÜµ Ïπ¥Îìú</h3>
             </div>
             <div class="cardWrap"><!--height700-->
                 <div class="cardWrite-left">
                     <div class="cardSendbox">                    
                         <div class="cardWrite-subcard">
-                            <img src="../assets/img/img (1).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt="">
                             <span class="imgdate">2022-02-03</span>
                             <span class="imgtext">
                                 <textarea id="c-text" name="c-text" cols="30" rows="10"></textarea>
@@ -70,39 +71,39 @@
                             </span>
                         </div>
                         <div class="cardSet">
-                            <div class="card-age">ø¨∑…</div>
+                            <div class="card-age">Ïó∞Î†π</div>
                                 <div class="card-set1">
-                                    <label><input class="cardset" type="checkbox" name="age" value="teen">10¥Î</label>
-                                    <label><input class="cardset" type="checkbox" name="age" value="twn">20¥Î</label>                                                                     
-                                    <label><input class="cardset" type="checkbox" name="age" value="trn">30¥Î</label>                                                                     
-                                    <label><input class="cardset" type="checkbox" name="age" value="frn">40¥Î ¿ÃªÛ</label>                                                                     
+                                    <label><input class="cardset" type="checkbox" name="age" value="teen">10ÎåÄ</label>
+                                    <label><input class="cardset" type="checkbox" name="age" value="twn">20ÎåÄ</label>                                                                     
+                                    <label><input class="cardset" type="checkbox" name="age" value="trn">30ÎåÄ</label>                                                                     
+                                    <label><input class="cardset" type="checkbox" name="age" value="frn">40ÎåÄ Ïù¥ÏÉÅ</label>                                                                     
                                 </div>
-                            <div class="card-gender">º∫∫∞</div>
+                            <div class="card-gender">ÏÑ±Î≥Ñ</div>
                                 <div class="card-set2">
-                                    <label><input class="cardset" type="checkbox" name="gender" value="female">ø©º∫</label>
-                                    <label><input class="cardset" type="checkbox" name="gender" value="male">≥≤º∫</label>                                                                     
+                                    <label><input class="cardset" type="checkbox" name="gender" value="female">Ïó¨ÏÑ±</label>
+                                    <label><input class="cardset" type="checkbox" name="gender" value="male">ÎÇ®ÏÑ±</label>                                                                     
                                 </div>
                         </div>
                     </div>                     
                 </div>
-                <!--ªÁ¡¯≥÷±‚-->
+                <!--ÏÇ¨ÏßÑÎÑ£Í∏∞-->
                 <div class="cardWrite-right">
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (1).jpg" alt=""></a></div>
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (2).jpg" alt=""></a></div>
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (3).jpg" alt=""></a></div>
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (4).jpg" alt=""></a></div>
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (5).jpg" alt=""></a></div>
-                    <div class="cardWriteImg"><a href=""><img src="../assets/img/img (6).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (2).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (3).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (4).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (5).jpg" alt=""></a></div>
+                    <div class="cardWriteImg"><a href=""><img src="${pageContext.request.contextPath}/assets/img/img (6).jpg" alt=""></a></div>
                 </div>
                 <div class="cardWritePage">
-                    <p class="page-no">¢∏  1  2  3  4  5  ¢∫</p>
+                    <p class="page-no">‚óÄ  1  2  3  4  5  ‚ñ∂</p>
                 </div>
                 
-                <!--content≥°-->
+                <!--contentÎÅù-->
                 <div class="clearfix">
                     <div class="cardWrite-bottom">
-                        <input id="saveBtn" type="submit" class="btn-writeform-save" value="∫∏≥ª±‚">
-                        <button type="reset" class="btn-writeform-reset"><a class="cardMainForm" href="cardMain.html">√Îº“</a></button><!--list∆‰¿Ã¡ˆ∑Œ ¿Ãµø-->
+                        <input id="saveBtn" type="submit" class="btn-writeform-save" value="Î≥¥ÎÇ¥Í∏∞">
+                        <button type="reset" class="btn-writeform-reset"><a class="cardMainForm" href="cardMain.html">Ï∑®ÏÜå</a></button><!--listÌéòÏù¥ÏßÄÎ°ú Ïù¥Îèô-->
                     </div>
                 </div>
             </div>

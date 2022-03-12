@@ -11,6 +11,13 @@ public class CardImgVo {
 		
 	}
 	
+	public CardImgVo(String cardImgName, String cardImgSrc) {
+		super();
+		this.cardImgName = cardImgName;
+		this.cardImgSrc = cardImgSrc;
+	}
+
+	
 	public CardImgVo(int cardImgNo, String cardImgName, String cardImgSrc, String cardImgInfo) {
 		super();
 		this.cardImgNo = cardImgNo;

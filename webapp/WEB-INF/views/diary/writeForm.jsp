@@ -160,6 +160,7 @@
                                 </div>
 
                                 <div>
+                                
                                     <img class="writeform-sticker-size" src="./assets/img/mainbook.png">
                                     <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
                                 </div>
@@ -311,6 +312,24 @@
 		var protect = $("[name=protect]").val();
 		var title = $("[name=title]").val();
 		
+		/*글쓰기폼 입력경고창*/
+		if(diaryDate == null || diaryDate == '' || diaryDate.trim() == ''){
+			alert('날짜를 선택해주세요');
+			return;
+		}
+		if(weather == null){
+			alert('날씨를 선택해주세요');
+			return;
+		}
+		if(protect == null){
+			alert('공개여부를 선택해주세요');
+			return;
+		}
+		if(title == null || title == '' || title.trim() == ''){
+			alert('제목을 입력해주세요');
+			return;
+		}
+		
 		var diarycontentvo = {
 				userNo: userNo,
 				diaryDate: diaryDate,
@@ -338,8 +357,6 @@
 			
 			diaryItemVo.text = canvasObjList[i].text;
 			
-			diaryItemVo.diaryItemNo = i;
-			
 			diaryItemList.push(diaryItemVo);//배열에 추가
 		}
 
@@ -362,12 +379,18 @@
 	function writeDiary(diarycontentvo){
 	   
 	   $.ajax({
-	      url : "${pageContext.request.contextPath }/diary/write",
+	      url : "${pageContext.request.contextPath}/diary/write",
 	      type : "post",
 	      contentType : "application/json",
 	      data : JSON.stringify(diarycontentvo),//바꿔줬음
 	      dataType : "json",
-	      success : function() {
+	      success : function(result) {
+	    	  if(result == 1){
+	    		  location.href="${pageContext.request.contextPath}/diary/list";
+	    	  }else {
+	    		  alert('Fail to saving');
+	    	  }
+	    	  
 	         //이부분 처리 한거 없음 
 	         //컨트롤러에 데디터 잘 전달 되는지만 확인
 	      },

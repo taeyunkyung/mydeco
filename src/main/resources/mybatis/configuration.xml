@@ -12,6 +12,7 @@
         <mapper resource="mybatis/mappers/myUser.xml" />
     	<mapper resource="mybatis/mappers/myProduct.xml" />
         <mapper resource="mybatis/mappers/myProdImg.xml" />
+        <mapper resource="mybatis/mappers/Card.xml" />
         
         <mapper resource="mybatis/mappers/mydiary.xml" />
         
