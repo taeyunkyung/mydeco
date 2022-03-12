@@ -177,13 +177,14 @@
 
 			//dataType : "json",
 			success : function(){
-				window.location.href = "${pageContext.request.contextPath}/myshop/pickedProducts?keyword="+keyword;			
-				$("p#keyword").text(keyword);		
+				window.location.href = "${pageContext.request.contextPath}/myshop/pickedProducts?keyword="+keyword;
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}				
 		});
+		
+		$("p#keyword").text(keyword);
 	});
 </script>
 </html>

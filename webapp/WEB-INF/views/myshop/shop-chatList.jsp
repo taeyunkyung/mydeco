@@ -31,10 +31,11 @@
 					<div id="div-sub">
 						<h3>1:1 채팅 목록</h3>
 					</div>
-					<div class="searchTop">						
+					<div class="searchTop">
 						<div id="option">
-									<input type="button" class="opt-btn" id="buyOpt" value="구매"> <input
-										type="button" class="opt-btn" id="sellOpt" value="판매">
+							<input type="button" class="opt-btn" id="buyOpt" value="구매">
+							<input type="button" class="opt-btn" id="sellOpt" value="판매">
+							<p id="chatroom-id"></p>
 						</div>
 					</div>
 					<div id="c-list">
@@ -44,7 +45,7 @@
 									<li>
 										<p>상품이름: ${UserChatVo.prodName}</p>
 										<div class="btn-area">
-											<input type="button" data-no="buy_${UserChatVo.prodNo}" class="details-btn" value="상세보기">
+											<input type="button" data-no="sellerNo_${UserChatVo.sellerNo}_${UserChatVo.id}_${UserChatVo.prodNo}" class="details-btn" value="상세보기">
 											<p>판매자: ${UserChatVo.id}</p>
 										</div>
 									</li>
@@ -57,57 +58,28 @@
 									<li>
 										<p>상품이름: ${UserChatVo.prodName}</p>
 										<div class="btn-area">
-											<input type="button" data-no="sell_${UserChatVo.prodNo}" class="details-btn" value="상세보기">
+											<input type="button" data-no="buyerNo_${UserChatVo.buyerNo}_${UserChatVo.id}_${UserChatVo.prodNo}" class="details-btn" value="상세보기">
 											<p>구매자: ${UserChatVo.id}</p>
 										</div>
 									</li>
 								</c:forEach>
 							</ol>
 						</div>
-						
+
 						<div id="chat-box">
-							<ol class="chat" id="buyDetails">
-								<c:forEach items="${map.myBuyDetails}" var="UserChatVo">
-									<li class="l-align" data-no="${UserChatVo.prodNo}">
-									
-										<c:if test=""></c:if>
-										<p>아이디</p> <br>
-										<p class="l-answ">${UserChatVo.chatContent}</p>
-									</li>
-								</c:forEach>
-
-
-								<li class="r-align">
-										<p>나의 답변</p>
-								</li>
-								
+							<ol id="chatview" style="padding-left: 5px">
 							</ol>
-							<ol class="chat" id="sellDetails">
-								<c:forEach items="${map.myBuyDetails}" var="UserChatVo">
-									<li class="l-align" data-no="${UserChatVo.prodNo}">
-									
-										<c:if test=""></c:if>
-										<p>아이디</p> <br>
-										<p class="l-answ">${UserChatVo.chatContent}</p>
-									</li>
-								</c:forEach>
+							<div id="type">
+								<textarea id="typearea" name="chatContent" value=""></textarea>
+								<input type="hidden" name="prodNo" value=""> <input
+									type="hidden" name="buyerNo" value=""> <input
+									type="hidden" name="sellerNo" value="">
+							</div>
+							<div id="send-area">
+								<input id="sendChat" type="submit" class="send-btn" value="전송">
+								<input type="button" class="send-btn" value="나가기">
+							</div>
 
-
-								<li class="r-align">
-										<p>나의 답변</p>
-									</li>
-								
-							</ol>
-
-							<form>
-								<div id="type">
-									<textarea id="typearea"></textarea>
-								</div>
-								<div id="send-area">
-									<input type="button" class="send-btn" value="전송"> <input
-										type="button" class="send-btn" value="삭제">
-								</div>
-							</form>
 						</div>
 					</div>
 				</div> <!-- content -->
@@ -119,7 +91,6 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#mySell").hide();
-		$("#chat").hide();
 	});	
 	$("#sellOpt").on("click", function() {
 		$("#myBuy").hide();
@@ -131,31 +102,117 @@
 	});
 	
 	$(".chat-list").on("click", ".details-btn", function() {
+		$("#chatview").empty();
 		var $this = $(this);
-		var prodNo = $this.data("no");
-		console.log(prodNo);
+		var str = $this.data("no");
+		console.log(str);
+		
+		var arr = str.split('_');
+		$("#chatroom-id").text(arr[2]);
+		$("input[name='prodNo']").val(parseInt(arr[3]));
+		
+		if(arr[0]=='buyerNo') {
+			var buyerNo = arr[1];
+			var prodNo = arr[3];
+			$("input[name='buyerNo']").val(parseInt(buyerNo));
+			$("input[name='sellerNo']").val(0);
+			
+			var userChatVo = {
+				buyerNo: buyerNo, prodNo: prodNo
+			}
+		} else if(arr[0]=='sellerNo') {
+			var sellerNo = arr[1];
+			var prodNo = arr[3];
+			$("input[name='buyerNo']").val(0);
+			$("input[name='sellerNo']").val(parseInt(sellerNo));
+			
+			var userChatVo = {
+				sellerNo: sellerNo, prodNo: prodNo
+			}
+		}		
+		console.log(userChatVo);
+		console.log($("input[name='buyerNo']").val());
+		console.log($("input[name='sellerNo']").val());
 
-		/*$.ajax({			
-			url : "${pageContext.request.contextPath}/myshop/myProducts/remove",		
+		$.ajax({			
+			url : "${pageContext.request.contextPath}/myshop/chatList/chatDetails",		
 			type : "post",
 			// contentType : "application/json",
-			data : {delprodNo: delprodNo},
+			data : userChatVo,
 
 			dataType : "json",
-			success : function(result){
-				console.log(result);	
+			success : function(userChatList){
+				console.log(userChatList)			
 				
-				if(result === 'success') {					
-					$("#l"+ delprodNo).remove();
-					$('.delModal').modal('hide');
-					window.location.href = "${pageContext.request.contextPath}/myshop/myProducts?crtPage=1"
-				} 								
+				for(var i=0; i<userChatList.length; i++) {
+					renderLeft(userChatList[i])
+				}
+				
+				/*for(var i=1; chatDetails.length; i+=2) {
+					renderRight(chatDetails[i])
+				}*/
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}				
-		});	*/	
-	})
+		});		
+	});
+	
+	function renderLeft(userChatVo) {		
+		var str = '';
+		str += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
+		str += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';
+		$("#chatview").append(str);
+	}
+	
+	
+	$("#sendChat").on("click", function() {
+		var prodNo = $("input[name='prodNo']").val();
+		var sellerNo = $("input[name='sellerNo']").val();
+		var buyerNo = $("input[name='buyerNo']").val();
+		var chatContent = $("[name='chatContent']").val();
+		
+		var userChatVo = {
+			prodNo: prodNo,
+			sellerNo: sellerNo,
+			buyerNo: buyerNo,
+			chatContent: chatContent
+		}
+		console.log(userChatVo);
+		$.ajax({			
+			url : "${pageContext.request.contextPath}/myshop/chat",		
+			type : "post",
+			// contentType : "application/json",
+			data : userChatVo,
+
+			dataType : "json",
+			success : function(userChatVo){
+				console.log(userChatVo);
+				var add = '';
+				add += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
+				add += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
+				
+				$("#chatview").append(add);
+				$("[name='chatContent']").val("");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}	
+		}); 
+	});
+	
+	
+	/*function renderRight(userChatVo) {
+		var str = '';
+		str += '<ol class="chatview" id="">';
+		str += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
+		str += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
+		str += '</ol>';
+		
+		document.getElementById("chat").appendChild = str;
+	}*/
+	
+	
 </script>
 
 </html>

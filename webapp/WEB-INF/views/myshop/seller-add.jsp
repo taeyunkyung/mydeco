@@ -104,9 +104,7 @@
 								<td id="diary-td"><label for="prod-diary">일기 추가</label> 
 								<input id="prod-diary" type="button" data-toggle="modal" data-target=".diaryList" value="일기 불러오기">
 								
-									<div class="modal fade diaryList" tabindex="-1"
-										role="dialog" aria-labelledby="myLargeModalLabel"
-										aria-hidden="true">
+									<div class="modal fade diaryList" tabindex="-1"	role="dialog">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -119,8 +117,8 @@
 													<table id="d-table">
 														<tr>
 															<td>번호</td>
-															<td>제목</td>
-															<td>날짜</td>
+															<td style="width: 260px">제목</td>
+															<td style="width: 240px">날짜</td>
 															<td>선택</td>
 														</tr>
 														<c:forEach items="${diaryList}" var="diaryVo">
@@ -128,7 +126,7 @@
 																<td>${diaryVo.diaryNo}</td>
 																<td>${diaryVo.title}</td>
 																<td>${diaryVo.diaryDate}</td>
-																<td><input type="checkbox" class="diarySelect" data-no="${diaryVo.diaryNo}"></td>
+																<td><input style="width:13px" type="checkbox" class="diarySelect" data-no="${diaryVo.diaryNo}"></td>
 															</tr>
 														</c:forEach>														
 													</table>
@@ -249,7 +247,8 @@
 		var input = document.createElement("input");
 		input.setAttribute("name", "diaryNo[]");
 		input.setAttribute("value", diary);
-		document.querySelector("div#diary-area").appendChild(input);			
+		document.querySelector("div#diary-area").appendChild(input);
+				
 	});
 	
 </script>

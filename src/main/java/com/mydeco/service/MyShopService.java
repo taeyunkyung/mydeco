@@ -205,14 +205,34 @@ public class MyShopService {
 		return map;
 	}
 	
-	public Map<String, Object> getChatDetails(UserChatVo userChatVo) {
-		List<UserChatVo> myBuyDetails = myProductDao.buyDetails(userChatVo);
-		List<UserChatVo> mySellDetails = myProductDao.sellDetails(userChatVo);
+	public List<UserChatVo> getChatDetails(UserChatVo userChatVo) {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("myBuyDetails", myBuyDetails);
-		map.put("mySellDetails", mySellDetails);
+		List<UserChatVo> chatDetails = null;		
+		if(userChatVo.getBuyerNo()==0) {
+			List<UserChatVo> myBuyDetails = myProductDao.buyDetails(userChatVo);
+			chatDetails =  myBuyDetails;
+			
+		} else if(userChatVo.getSellerNo()==0) {
+			List<UserChatVo> mySellDetails = myProductDao.sellDetails(userChatVo);
+			chatDetails = mySellDetails;
+		}			
+		return chatDetails;
+	}
+	
+	public UserChatVo insertChat(UserChatVo userChatVo) {
+		UserChatVo addReturn = null;
 		
-		return map;
+		if(userChatVo.getBuyerNo()==0) {
+			myProductDao.buyChat(userChatVo);
+			int chatNo = userChatVo.getChatNo();
+			addReturn = myProductDao.addReturn(chatNo);
+			
+		} else if(userChatVo.getSellerNo()==0) {
+			myProductDao.sellChat(userChatVo);
+			int chatNo = userChatVo.getChatNo();
+			addReturn = myProductDao.addReturn(chatNo);
+		}
+		
+		return addReturn;
 	}
 }
