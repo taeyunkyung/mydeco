@@ -130,11 +130,27 @@ public class MyShopController {
 		return "myshop/shop-chatList";
 	}
 	
-	/*@RequestMapping("/chatList/chatDetails")
-	public void chatDetails(@RequestParam("prodNo") int prodNo, HttpSession session) {
+	@ResponseBody
+	@RequestMapping("/chatList/chatDetails")
+	public List<UserChatVo> chatDetails(@ModelAttribute UserChatVo userChatVo, HttpSession session) {
+		System.out.println(userChatVo);
+		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		UserChatVo userChatVo = new UserChatVo();
 		userChatVo.setUserNo(authUser.getUserNo());
-		userChatVo.setProdNo(prodNo);
-	}*/
+		List<UserChatVo> chatDetails = myShopService.getChatDetails(userChatVo);
+		System.out.println(chatDetails);
+		return chatDetails;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/chat")
+	public UserChatVo insertChat(@ModelAttribute UserChatVo userChatVo, HttpSession session) {
+		System.out.println("chat.service");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		userChatVo.setUserNo(authUser.getUserNo());
+		UserChatVo addReturn = myShopService.insertChat(userChatVo);
+		
+		return addReturn;
+	}
 } 

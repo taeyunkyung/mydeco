@@ -73,6 +73,7 @@ public class MyProductDao {
 		return sqlSession.delete("myProduct.myPickRemove", productVo);
 	}
 	
+	//채팅방리스트-고유번호:prodNo, authUserNo//
 	public List<UserChatVo> buyList(int authUserNo) {
 		return sqlSession.selectList("myProduct.myBuyList", authUserNo);
 	}
@@ -80,7 +81,8 @@ public class MyProductDao {
 	public List<UserChatVo> sellList(int authUserNo) {
 		return sqlSession.selectList("myProduct.mySellList", authUserNo);
 	}
-	
+	//채팅방리스트-고유번호:prodNo, authUserNo//
+		
 	public List<UserChatVo> buyDetails(UserChatVo userChatVo) {
 		return sqlSession.selectList("myProduct.buychatDetails", userChatVo);
 	}
@@ -88,4 +90,18 @@ public class MyProductDao {
 	public List<UserChatVo> sellDetails(UserChatVo userChatVo) {
 		return sqlSession.selectList("myProduct.sellchatDetails", userChatVo);
 	}
+	
+	// addReturn chat//
+	public int buyChat(UserChatVo userChatVo) {
+		return sqlSession.insert("myProduct.buyChat", userChatVo);
+	}
+	
+	public int sellChat(UserChatVo userChatVo) {
+		return sqlSession.insert("myProduct.sellChat", userChatVo);
+	}
+	
+	public UserChatVo addReturn(int chatNo) {
+		return sqlSession.selectOne("myProduct.selectByNo", chatNo);
+	}
+	// addReturn chat//
 }

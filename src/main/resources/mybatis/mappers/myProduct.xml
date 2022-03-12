@@ -7,7 +7,7 @@
 		<![CDATA[
 			select  diaryNo,
         			title,
-        			diaryDate
+        			to_char(diaryDate, 'YYYY/MM/DD') diaryDate
 			from diary
 			where userNo = #{userNo}
 		]]>
@@ -150,58 +150,85 @@
 	
 	<select id="myBuyList" parameterType="int" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  chatNo,
-        			ch.prodNo,
-        			prodName,
-        			ch.sellerNo,
-        			us.id,
-        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
-			from chat ch, product pr, users us
-			where ch.prodNo = pr.prodNo
-			and ch.sellerNo = us.userNo
-			and buyerNo = #{authUserNo}
+			select  pr.prodNo,
+        			pr.prodName,
+        			dc.sellerNo,
+        			us.id
+			from product pr, (select distinct prodNo, 
+									 sellerNo
+							  from chat
+							  where buyerNo = #{authUserNo}) dc, users us
+			where pr.prodNo = dc.prodNo
+			and dc.sellerNo = us.userNo
 		]]>
 	</select>
 	
 	<select id="mySellList" parameterType="int" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  chatNo,
-        			ch.prodNo,
-        			prodName,
-        			ch.buyerNo,
-        			us.id,
-        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
-			from chat ch, product pr, users us
-			where ch.prodNo = pr.prodNo
-			and ch.buyerNo = us.userNo
-			and sellerNo = #{authUserNo}
+			select  pr.prodNo,
+        			pr.prodName,
+        			dc.buyerNo,
+        			us.id
+			from product pr, (select distinct prodNo, 
+									 buyerNo
+							  from chat
+							  where sellerNo = #{authUserNo}) dc, users us
+			where pr.prodNo = dc.prodNo
+			and dc.buyerNo = us.userNo
 		]]>
 	</select>
 	
 	<select id="buychatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  sellerNo,
-        			us.id,
-        			chatContent,
-        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
-			from chat ch, users us
-			where ch.sellerNo = us.userNo
-			and prodNo = #{prodNo}
+			select  chatContent,
+        			to_char(regDate,'mm/dd - hh:mi') regDate
+			from chat
+			where prodNo = #{prodNo}
+			and sellerNo = #{sellerNo}
 			and buyerNo = #{userNo}
-		]]>
+			order by chatNo asc
+		]]>	
 	</select>
 	
 	<select id="sellchatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  buyerNo,
-        			us.id,
-        			chatContent,
-        			to_char(ch.regDate,'mm/dd - hh:mi') regDate
-			from chat ch, users us
-			where ch.buyerNo = us.userNo
-			and prodNo = #{prodNo}
+			select  chatContent,
+        			to_char(regDate,'mm/dd - hh:mi') regDate
+			from chat
+			where prodNo = #{prodNo}
+			and buyerNo = #{buyerNo}
 			and sellerNo = #{userNo}
+			order by chatNo asc
+		]]>	
+	</select>
+	
+	<insert id="buyChat" parameterType="com.mydeco.vo.UserChatVo">
+		<selectKey keyProperty="chatNo" resultType="int" order="BEFORE">
+			select seq_chat_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into chat
+			values(#{chatNo}, #{prodNo}, #{sellerNo}, #{userNo}, #{chatContent}, sysdate)
+		]]>
+	</insert>
+	
+	<insert id="sellChat" parameterType="com.mydeco.vo.UserChatVo">
+		<selectKey keyProperty="chatNo" resultType="int" order="BEFORE">
+			select seq_chat_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into chat
+			values(#{chatNo}, #{prodNo}, #{userNo}, #{buyerNo}, #{chatContent}, sysdate)
+		]]>
+	</insert>
+	
+	<select id="selectByNo" parameterType="int" resultType="com.mydeco.vo.UserChatVo">
+		<![CDATA[
+			select  chatContent,
+        			to_char(regDate,'mm/dd - hh:mi') regDate
+			from chat
+			where chatNo = #{chatNo}
 		]]>
 	</select>
-
+	
 </mapper>

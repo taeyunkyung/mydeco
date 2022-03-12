@@ -22,15 +22,15 @@ table {
     font-family: 'SCDream4';
 }
 
-.chat-list::-webkit-scrollbar-track, .chat::-webkit-scrollbar-track
+.chat-list::-webkit-scrollbar-track, #chatview::-webkit-scrollbar-track
 , #img-area::-webkit-scrollbar-track {    
     background-color: #fff;
 }    
-.chat-list::-webkit-scrollbar, .chat::-webkit-scrollbar
-, #img-area::-webkit-scrollbar {
+.chat-list::-webkit-scrollbar, #chatview::-webkit-scrollbar {
     width: 8px;
-}    
-.chat-list::-webkit-scrollbar-thumb, .chat::-webkit-scrollbar-thumb
+} #img-area::-webkit-scrollbar {width: 4px;}
+
+.chat-list::-webkit-scrollbar-thumb, #chatview::-webkit-scrollbar-thumb
 , #img-area::-webkit-scrollbar-thumb {
     background-color: #fff;
     border: 1px solid #686099;
@@ -216,22 +216,22 @@ p {
 }
 .chat-list{ margin-right: 2px;
     width: 280px;} .chat-list ol {padding: 5px;}
-.chat{
-    width: 390px; padding: 5px;}
 .chat-list {
     border: solid 1px #ebebeb;
     height: 500px; padding: 5px; 
     overflow-y: scroll ;
 }
+
 #chat-box {
     display: inline-flex;
     flex-direction: column;
 } 
-.chat {
+#chatview {
+	width: 390px; padding: 5px;
     border: solid 1px #ebebeb;
     height: 296px; margin-bottom: 2px; 
     overflow-y: scroll ;
-} .chat li {padding-bottom: 10px;}
+} #chat li {padding-bottom: 10px;}
 
 .speech {
     transform: scale(-1); opacity: 0.3; 
@@ -271,6 +271,7 @@ p {
     justify-content: right; width: 100%;
 }
 
+#chatroom-id {margin-left: 170px}
 .opt-btn {
     width: 60px;
     height: 20px;

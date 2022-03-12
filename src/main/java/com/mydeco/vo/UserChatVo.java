@@ -5,6 +5,8 @@ public class UserChatVo {
 	private int chatNo;
 	private int prodNo;
 	private String prodName;
+	private int buyerNo;
+	private int sellerNo;
 	private int userNo;
 	private String id;
 	private String chatContent;
@@ -12,18 +14,37 @@ public class UserChatVo {
 
 	public UserChatVo() {
 	}
-
-	public UserChatVo(int chatNo, int prodNo, String prodName, int userNo, String id, String chatContent,
-			String regDate) {
+	
+	public UserChatVo(int chatNo, int prodNo, String prodName, int buyerNo, int sellerNo, int userNo, String id,
+			String chatContent, String regDate) {
+		super();
 		this.chatNo = chatNo;
 		this.prodNo = prodNo;
 		this.prodName = prodName;
+		this.buyerNo = buyerNo;
+		this.sellerNo = sellerNo;
 		this.userNo = userNo;
 		this.id = id;
 		this.chatContent = chatContent;
 		this.regDate = regDate;
 	}
 
+	public int getBuyerNo() {
+		return buyerNo;
+	}
+
+	public void setBuyerNo(int buyerNo) {
+		this.buyerNo = buyerNo;
+	}
+
+	public int getSellerNo() {
+		return sellerNo;
+	}
+
+	public void setSellerNo(int sellerNo) {
+		this.sellerNo = sellerNo;
+	}
+	
 	public int getChatNo() {
 		return chatNo;
 	}
