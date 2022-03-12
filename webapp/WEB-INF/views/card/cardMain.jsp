@@ -41,7 +41,9 @@
 								<div id="card_tap">
 
 									<div class="btn-card-write">
-										<a href="cardWrite.html">카드 쓰기</a>
+										<c:if test="${!empty authUser}">  
+										<a href="${pageContext.request.contextPath}/card/write">카드 쓰기</a>
+										</c:if>
 									</div>
 									<input id="tab1" type="radio" name="tabs" checked>
 									<!--디폴트 메뉴-->

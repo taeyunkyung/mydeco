@@ -18,7 +18,7 @@
                             <li class="dropbtn"><a href="${pageContext.request.contextPath}/diary/list">Pen & Paper</a></li>
                             <ul class="dropdown-content">
                                 <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
-                                <li><a href="${pageContext.request.contextPath}/card/cardMain">카드</a></li>
+                                <li><a href="${pageContext.request.contextPath}/card/main">카드</a></li>
                                 <li><a href="">우체통</a></li>
                             </ul>
                         </div>

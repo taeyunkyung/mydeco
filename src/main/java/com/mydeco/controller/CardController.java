@@ -23,21 +23,15 @@ public class CardController {
 		return "card/main";
 	}
 	
-	@RequestMapping("/cardWrite")
+	@RequestMapping("/write")
 	public String cardWriteForm(Model model) {
 		System.out.println("card/cardWriteForm");
 		
 		List<CardImgVo> cardimgList = cardService.getCardImgList();
 		model.addAttribute("cardimgList",cardimgList);
 		
-		return "card/cardWriteForm";
+		return "card/write";
 	}
 	
-	@RequestMapping("/cardWriteForm")
-	public String writeForm(Model model) {
-		System.out.println("card/cardWriteForm");
-		
-		return "card/cardWriteForm";
-	}
 	
 }
