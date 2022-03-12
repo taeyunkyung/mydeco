@@ -20,7 +20,7 @@ public class CardController {
 	@RequestMapping("/main")
 	public String card() {
 		System.out.println("card");
-		return "card/main";
+		return "card/cardMain";
 	}
 	
 	@RequestMapping("/write")
@@ -30,7 +30,7 @@ public class CardController {
 		List<CardImgVo> cardimgList = cardService.getCardImgList();
 		model.addAttribute("cardimgList",cardimgList);
 		
-		return "card/write";
+		return "card/cardWriteForm";
 	}
 	
 	
