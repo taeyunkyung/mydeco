@@ -2,6 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mydiary">
+
+	<!-- 다이어리 리스트 가져오기 -->
+	<select id="getDiaryContentList" parameterType="com.mydeco.vo.UserVo" resultType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				select diaryNo,
+				       userNo,
+				       to_char(diaryDate, 'YYYY-MM-DD')diaryDate,
+				       weather,
+				       protect,
+				       title,
+				       diaryBgmSrc
+				from diary
+				where userNo = #{userNo}
+			]]>
+	</select>
+	
+	<!-- 다이어리에 사용된 스티커리스트 가져오기 -->
+	<select id="getDiaryStickerList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
+			<![CDATA[
+				select diaryItemNo,
+				       stickerNo,
+				       top,
+				       left,
+				       scaleX,
+				       scaleY,
+				       angle,
+				       text
+				from item
+				where diaryNo = #{diaryNo}
+			]]>
+	</select>
+
+
 	<insert id="diary-db" parameterType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				insert into sticker(stickerNo, stickerName, stickerSrc)

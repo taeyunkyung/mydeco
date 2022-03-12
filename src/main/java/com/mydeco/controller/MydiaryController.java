@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mydeco.service.MydiaryService;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.UserVo;
 
 @Controller
 @RequestMapping("/diary")
@@ -23,8 +24,16 @@ public class MydiaryController {
 	MydiaryService mydiaryService;
 	
 	@RequestMapping("/list")
-	public String list() {
+	public String list(Model model, HttpSession Session) {
 		System.out.println("mydiarycontroller-list");
+		UserVo authUser = (UserVo)Session.getAttribute("authUser");
+		
+		List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+		System.out.println("=============================");
+		System.out.println(diarycontentList);
+		
+		model.addAttribute("diarycontentList", diarycontentList);
+		
 		return "diary/list";
 	}
 	

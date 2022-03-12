@@ -43,11 +43,12 @@
     background-color: rgb(219, 211, 199);
 }    
 /*이거문제*/
+/*
 .mydiary-read-btnset{
-    /* margin-left: 750px;
-    margin-top: px;*/
+     margin-left: 750px;
+    margin-top: px;
     
-}
+}*/
 
 .mydiary-read-title{
     margin-top: -30px; 
@@ -111,4 +112,9 @@ button.mydiary-read-save-btn{
     margin-top: -62px;
     margin-left: 60px;
     font-family: 'SCDream4';
+}
+
+/*content영역 left-15px*/
+.setContent{
+	margin-left: -15px;
 }

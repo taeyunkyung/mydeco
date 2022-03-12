@@ -1,21 +1,51 @@
 package com.mydeco.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mydeco.dao.MydiaryDao;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.UserVo;
 
 @Service
 public class MydiaryService {
 	
 	@Autowired 
 	MydiaryDao mydiaryDao;
+	
+	/*다이어리 리스트 가져오기*/
+	public List<DiaryContentVo> getDiaryContentList(UserVo authUser){
+		
+		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(authUser);
+		List<DiaryContentVo> diarycontentList = new ArrayList<DiaryContentVo>();
+		//List<DiaryItemVo> diarySticker = mydiaryDao.getDiaryStickerList();
+		for(int i=0; i<dcList.size(); i++) {
+			
+			/*다이어리 리스트 중 하나--##*/
+			DiaryContentVo diarycontent = dcList.get(i);
+			
+			/*다이어리 개별 다이어리번호 가져오기*/
+			int diaryNo = dcList.get(i).getDiaryNo();
+			
+			/*각 다이어리마다 사용된 스티커 가져오기--$$*/
+			List<DiaryItemVo> diaryitemList = mydiaryDao.getDiaryStickerList(diaryNo);
+			
+			/* ##의 itemList에 $$ 추가하기*/
+			diarycontent.setItemList(diaryitemList);
+			
+			/*리스트로 모으기*/
+			diarycontentList.add(diarycontent);
+		}
+		System.out.println(diarycontentList);
+		
+		return diarycontentList;
+	}
+	
 	
 	public void dbsticker() {
 		
@@ -60,6 +90,8 @@ public class MydiaryService {
 	public int addContent(DiaryContentVo diarycontentvo){
 		
 		mydiaryDao.addContent(diarycontentvo);
+		
+		/*다이어리 번호(seq_diary_no.nextval) 가져오기*/
 		int diaryno = mydiaryDao.selectDiaryNo();
 		System.out.println(diaryno);
 		
@@ -78,6 +110,7 @@ public class MydiaryService {
 	}
 	
 	/*일기에 쓴 스티커 저장하기*/
+	/*
 	public void addSticker(DiaryContentVo diarycontentvo) {
 		/*
 		List<DiaryItemVo> diarysticker = diarycontentvo.getItemList();
@@ -105,6 +138,6 @@ public class MydiaryService {
 		
 		// mydiaryDao.addSticker(diarycontentvo);
 		
-	}
+	//}
 	
 }

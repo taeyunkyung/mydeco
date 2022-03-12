@@ -61,10 +61,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="diary-private">비공개</label>
+                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="diary-all">공개</label>                                                                     
+                                    <label><input class="diaryset" style="margin-left:-100px;" type="radio" name="protect" value="공개">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -220,7 +220,8 @@
 	var canvas = new fabric.Canvas("paper", {
 		 width: 680,
 		 height: 510,
-		 backgroundColor: 'rgb(100,150,134)'
+		 //backgroundColor: 'rgb(100,150,134)'
+		 backgroundColor: '#dbd3c7'
 	});
 	
 	
