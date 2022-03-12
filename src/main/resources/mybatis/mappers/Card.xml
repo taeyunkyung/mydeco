@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="card">
+
+	<!-- 디비 넣기 -->
+	<insert id="cardimgDB" parameterType="com.mydeco.vo.CardImgVo">
+		<![CDATA[
+			insert into cardImg
+			values(seq_cardImg_no.nextval,#{cardImgName},#{cardImgSrc},#{cardImgInfo})
+		]]>
+	</insert>
+
+	<!-- 사진 목록 가져오기 -->
+	<select id="getCardImgList" resultType="com.mydeco.vo.CardImgVo">
+		<![CDATA[
+			select  cardImgNo,
+       				cardImgSrc
+			from CardImg
+		]]>
+	</select>
+
+	<!-- 내가 쓴 카드 목록 가져오기 -->
+
+	<!-- 답장 카드 목록 가져오기 -->
+
+
+
+
+
+
+</mapper>

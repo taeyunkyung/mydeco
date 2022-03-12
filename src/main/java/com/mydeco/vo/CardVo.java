@@ -1,6 +1,6 @@
 package com.mydeco.vo;
 
-public class MyCardVo {
+public class CardVo {
 
 	private int cardNo;
 	private int userNo;
@@ -10,11 +10,11 @@ public class MyCardVo {
 	private String cardGender;
 	private int cardImgNo;
 	
-	public MyCardVo() {
+	public CardVo() {
 		
 	}
 	
-	public MyCardVo(int cardNo, int userNo, String cardContent, int cardRegdate, String cardAge, String cardGender,
+	public CardVo(int cardNo, int userNo, String cardContent, int cardRegdate, String cardAge, String cardGender,
 			int cardImgNo) {
 		super();
 		this.cardNo = cardNo;
@@ -84,7 +84,7 @@ public class MyCardVo {
 
 	@Override
 	public String toString() {
-		return "MyCardVo [cardNo=" + cardNo + ", userNo=" + userNo + ", cardContent=" + cardContent + ", cardRegdate="
+		return "CardVo [cardNo=" + cardNo + ", userNo=" + userNo + ", cardContent=" + cardContent + ", cardRegdate="
 				+ cardRegdate + ", cardAge=" + cardAge + ", cardGender=" + cardGender + ", cardImgNo=" + cardImgNo
 				+ "]";
 	}

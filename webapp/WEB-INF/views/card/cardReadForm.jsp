@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mydeco</title>
-        <link rel="stylesheet" href="../assets/css/main.css">
-        <link rel="stylesheet" href="../assets/css/card.css">
-        <link rel="stylesheet" href="../assets/css/bootstrap.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> 
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
@@ -17,23 +18,23 @@
             <!-- header -->
             <div id="header" class="clearfix">
                 <h1>
-                    <a href=""><img id="logo" src="../assets/img/logo.png"></a>
+                    <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
                 </h1>
 
                 <ul id="category" class="clearfix">
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">About</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">¿ÃøÎ æ»≥ª</a></li>
-                            <li><a href="">1¥Î1 πÆ¿«</a></li>
+                            <li><a href="">Ïù¥Ïö© ÏïàÎÇ¥</a></li>
+                            <li><a href="">1ÎåÄ1 Î¨∏Ïùò</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Pen & Paper</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">≥™¿« ¿œ±‚</a></li>
-                            <li><a href="">¬ ¡ˆ</a></li>
-                            <li><a href="">øÏ√º≈Î</a></li>
+                            <li><a href="">ÎÇòÏùò ÏùºÍ∏∞</a></li>
+                            <li><a href="">Ï™ΩÏßÄ</a></li>
+                            <li><a href="">Ïö∞Ï≤¥ÌÜµ</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -42,36 +43,36 @@
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Mood</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">∏∂π˝¿« º“∂Û∞Ìµ’</a></li>
-                            <li><a href="">Ω…∏Æ ≈◊Ω∫∆Æ</a></li>
+                            <li><a href="">ÎßàÎ≤ïÏùò ÏÜåÎùºÍ≥†Îë•</a></li>
+                            <li><a href="">Ïã¨Î¶¨ ÌÖåÏä§Ìä∏</a></li>
                         </ul>
                     </div>
                 </ul>
                 <ul id="user" class="clearfix">
-                    <li><a href="">»∏ø¯∞°¿‘</a></li>
-                    <li><a href="">∑Œ±◊¿Œ</a></li>
+                    <li><a href="">ÌöåÏõêÍ∞ÄÏûÖ</a></li>
+                    <li><a href="">Î°úÍ∑∏Ïù∏</a></li>
                 </ul>
             </div>
 
-        <!-- header≥° -->
+        <!-- headerÎÅù -->
         <!--content-->
         <div class="cwTitle">
-                <h3>º“≈Î ƒ´µÂ</h3>
+                <h3>ÏÜåÌÜµ Ïπ¥Îìú</h3>
         </div>
         <div class="cardWrap"><!--height700-->
             <div class="cardRead-left">                 
                 <div class="cardRead-subcard">
                     <span class="imgdate">2022-02-03</span>
-                    <img src="../assets/img/img (7).jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
                 </div>
-                <div class="ment">≥™¥‘¿Ã ¿€º∫«— √÷±Ÿ ƒ´µÂ</div>
+                <div class="ment">ÎÇòÎãòÏù¥ ÏûëÏÑ±Ìïú ÏµúÍ∑º Ïπ¥Îìú</div>
                     <div class="cardReadImg">
                         <div id="slick-container">
-                            <img src="../assets/img/img (3).jpg" alt="">
-                            <img src="../assets/img/img (4).jpg" alt="">
-                            <img src="../assets/img/img (5).jpg" alt="">
-                            <img src="../assets/img/img (6).jpg" alt="">
-                            <img src="../assets/img/img (7).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (3).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (4).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (5).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (6).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -81,23 +82,23 @@
                     <span class="imgdate">2022-02-03</span>
                     <img src="../assets/img/img (1).jpg" alt="">
                 </div>
-                <div class="ment">√— 50∞≥ ¥Ò±€</div>
+                <div class="ment">Ï¥ù 50Í∞ú ÎåìÍ∏Ä</div>
                     <div class="cardReadImg">
                         <div id="slick-container" class="slick-box">
-                            <div class="slick-box" src="../assets/img/slideLeft.png">
-                            <img class="slick-box" src="../assets/img/img (3).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (4).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (5).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (6).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (7).jpg" alt="">
-                            <div class="slick-box" src="../assets/img/slideRight.png"></div>
+                            <div class="slick-box" src="${pageContext.request.contextPath}/assets/img/slideLeft.png">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (3).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (4).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (5).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (6).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
+                            <div class="slick-box" src="${pageContext.request.contextPath}/assets/img/slideRight.png"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="btn-ReadBottom">
-            <button type="button" class="btn-ReadList"><a class="cardMainForm" href="cardMain.html">¿€º∫ƒ´µÂ ∏ÆΩ∫∆Æ</a></button><!--list∆‰¿Ã¡ˆ∑Œ ¿Ãµø-->
+            <button type="button" class="btn-ReadList"><a class="cardMainForm" href="cardMain.html">ÏûëÏÑ±Ïπ¥Îìú Î¶¨Ïä§Ìä∏</a></button><!--listÌéòÏù¥ÏßÄÎ°ú Ïù¥Îèô-->
         </div>
 
         <script>

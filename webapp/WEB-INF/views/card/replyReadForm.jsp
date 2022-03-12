@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mydeco</title>
-        <link rel="stylesheet" href="../assets/css/main.css">
-        <link rel="stylesheet" href="../assets/css/card.css">
-        <link rel="stylesheet" href="../assets/css/bootstrap.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> 
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
@@ -18,23 +19,23 @@
             <!-- header -->
             <div id="header" class="clearfix">
                 <h1>
-                    <a href=""><img id="logo" src="../assets/img/logo.png"></a>
+                    <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
                 </h1>
 
                 <ul id="category" class="clearfix">
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">About</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">ÀÌ¿ë ¾È³»</a></li>
-                            <li><a href="">1´ë1 ¹®ÀÇ</a></li>
+                            <li><a href="">ì´ìš© ì•ˆë‚´</a></li>
+                            <li><a href="">1ëŒ€1 ë¬¸ì˜</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Pen & Paper</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">³ªÀÇ ÀÏ±â</a></li>
-                            <li><a href="">ÂÊÁö</a></li>
-                            <li><a href="">¿ìÃ¼Åë</a></li>
+                            <li><a href="">ë‚˜ì˜ ì¼ê¸°</a></li>
+                            <li><a href="">ìª½ì§€</a></li>
+                            <li><a href="">ìš°ì²´í†µ</a></li>
                         </ul>
                     </div>
                     <div class="dropdown">
@@ -43,36 +44,36 @@
                     <div class="dropdown">
                         <li class="dropbtn"><a href="">Mood</a></li>
                         <ul class="dropdown-content">
-                            <li><a href="">¸¶¹ýÀÇ ¼Ò¶ó°íµÕ</a></li>
-                            <li><a href="">½É¸® Å×½ºÆ®</a></li>
+                            <li><a href="">ë§ˆë²•ì˜ ì†Œë¼ê³ ë‘¥</a></li>
+                            <li><a href="">ì‹¬ë¦¬ í…ŒìŠ¤íŠ¸</a></li>
                         </ul>
                     </div>
                 </ul>
                 <ul id="user" class="clearfix">
-                    <li><a href="">È¸¿ø°¡ÀÔ</a></li>
-                    <li><a href="">·Î±×ÀÎ</a></li>
+                    <li><a href="">íšŒì›ê°€ìž…</a></li>
+                    <li><a href="">ë¡œê·¸ì¸</a></li>
                 </ul>
             </div>
 
-        <!-- header³¡ -->
+        <!-- headerë -->
         <!--content-->
         <div class="cwTitle">
-                <h3>¼ÒÅë Ä«µå</h3>
+                <h3>ì†Œí†µ ì¹´ë“œ</h3>
         </div>
         <div class="cardWrap"><!--height700-->
             <div class="cardRead-left">                 
                 <div class="cardRead-subcard">
                     <span class="imgdate">2022-02-03</span>
-                    <img src="../assets/img/img (1).jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt="">
                 </div>
-                <div class="ment">³ª´ÔÀÌ ÀÛ¼ºÇÑ ÃÖ±Ù ´ñ±ÛÄ«µå</div>
+                <div class="ment">ë‚˜ë‹˜ì´ ìž‘ì„±í•œ ìµœê·¼ ëŒ“ê¸€ì¹´ë“œ</div>
                     <div class="cardReadImg">
                         <div id="slick-container">
-                            <img src="../assets/img/img (3).jpg" alt="">
-                            <img src="../assets/img/img (4).jpg" alt="">
-                            <img src="../assets/img/img (5).jpg" alt="">
-                            <img src="../assets/img/img (6).jpg" alt="">
-                            <img src="../assets/img/img (7).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (3).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (4).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (5).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (6).jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -82,24 +83,24 @@
                     <span class="imgdate">2022-02-03</span>
                     <img src="../assets/img/img (8).jpg" alt="">
                 </div>
-                <div class="ment">ÃÑ 50°³ ´ñ±Û</div>
+                <div class="ment">ì´ 50ê°œ ëŒ“ê¸€</div>
                     <div class="cardReadImg">
                         <div id="slick-container" class="slick-box">
-                            <div class="slick-box" src="../assets/img/slideLeft.png">
-                            <img class="slick-box" src="../assets/img/img (3).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (4).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (5).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (6).jpg" alt="">
-                            <img class="slick-box" src="../assets/img/img (7).jpg" alt="">
-                            <div class="slick-box" src="../assets/img/slideRight.png">
+                            <div class="slick-box" src="${pageContext.request.contextPath}/assets/img/slideLeft.png">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (3).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (4).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (5).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (6).jpg" alt="">
+                            <img class="slick-box" src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
+                            <div class="slick-box" src="${pageContext.request.contextPath}/assets/img/slideRight.png">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="btn-ReadBottom">
-            <button type="button" class="btn-ReadList"><a class="cardMainForm" href="cardMain.html">¹ÞÀºÄ«µå ¸®½ºÆ®</a></button><!--listÆäÀÌÁö·Î ÀÌµ¿-->
-            <button type="submit" class="btn-ReadComment"><a class="cardReplyForm" href="cardReply.html">´ñ±ÛÄ«µå ÀÛ¼º</a></button>
+            <button type="button" class="btn-ReadList"><a class="cardMainForm" href="cardMain.html">ë°›ì€ì¹´ë“œ ë¦¬ìŠ¤íŠ¸</a></button><!--listíŽ˜ì´ì§€ë¡œ ì´ë™-->
+            <button type="submit" class="btn-ReadComment"><a class="cardReplyForm" href="cardReply.html">ëŒ“ê¸€ì¹´ë“œ ìž‘ì„±</a></button>
         </div>
 
         <script>

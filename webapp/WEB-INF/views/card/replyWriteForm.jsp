@@ -1,112 +1,128 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mydeco</title>
-        <link rel="stylesheet" href="../assets/css/main.css">
-        <link rel="stylesheet" href="../assets/css/card.css">
-        <link rel="stylesheet" href="../assets/css/bootstrap.css">
-        <!--Á¦ÀÌÄõ¸®-->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
+        <!--ì œì´ì¿¼ë¦¬-->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
  
 </head>
-<body>
-			<div id="wrap">
-            <!-- header -->
-            <div id="header" class="clearfix">
-                <h1>
-                    <a href=""><img id="logo" src="../assets/img/logo.png"></a>
-                </h1>
+    <body>
+        <div id="wrap">
+            <div class="container">
+                <!-- header -->
+                <div id="header" class="clearfix">
+                    <h1>
+                        <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
+                    </h1>
 
-                <ul id="category" class="clearfix">
-                    <div class="dropdown">
-                        <li class="dropbtn"><a href="">About</a></li>
-                        <ul class="dropdown-content">
-                            <li><a href="">ÀÌ¿ë ¾È³»</a></li>
-                            <li><a href="">1´ë1 ¹®ÀÇ</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown">
-                        <li class="dropbtn"><a href="">Pen & Paper</a></li>
-                        <ul class="dropdown-content">
-                            <li><a href="">³ªÀÇ ÀÏ±â</a></li>
-                            <li><a href="">ÂÊÁö</a></li>
-                            <li><a href="">¿ìÃ¼Åë</a></li>
-                        </ul>
-                    </div>
-                    <div class="dropdown">
-                        <li class="dropbtn"><a href="">Shopping</a></li>
-                    </div>
-                    <div class="dropdown">
-                        <li class="dropbtn"><a href="">Mood</a></li>
-                        <ul class="dropdown-content">
-                            <li><a href="">¸¶¹ıÀÇ ¼Ò¶ó°íµÕ</a></li>
-                            <li><a href="">½É¸® Å×½ºÆ®</a></li>
-                        </ul>
-                    </div>
-                </ul>
-                <ul id="user" class="clearfix">
-                    <li><a href="">È¸¿ø°¡ÀÔ</a></li>
-                    <li><a href="">·Î±×ÀÎ</a></li>
-                </ul>
-            </div>
-
-        <!-- header³¡ -->
-        <!--content-->
-            <div class="cwTitle">
-                <h3>¼ÒÅë Ä«µå</h3>
-            </div>
-            <div class="col-xs-6">
-                <div class="cardReply-left"><!--º¸´õ»óÀÚ-->
-                    <div class="Reply-LB"><img src="../assets/img/img (1).jpg" alt=""></div>
+                    <ul id="category" class="clearfix">
+                        <div class="dropdown">
+                            <li class="dropbtn"><a href="">About</a></li>
+                            <ul class="dropdown-content">
+                                <li><a href="">ì´ìš© ì•ˆë‚´</a></li>
+                                <li><a href="">1ëŒ€1 ë¬¸ì˜</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <li class="dropbtn"><a href="">Pen & Paper</a></li>
+                            <ul class="dropdown-content">
+                                <li><a href="">ë‚˜ì˜ ì¼ê¸°</a></li>
+                                <li><a href="">ìª½ì§€</a></li>
+                                <li><a href="">ìš°ì²´í†µ</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <li class="dropbtn"><a href="">Shopping</a></li>
+                        </div>
+                        <div class="dropdown">
+                            <li class="dropbtn"><a href="">Mood</a></li>
+                            <ul class="dropdown-content">
+                                <li><a href="">ë§ˆë²•ì˜ ì†Œë¼ê³ ë‘¥</a></li>
+                                <li><a href="">ì‹¬ë¦¬ í…ŒìŠ¤íŠ¸</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                    <ul id="user" class="clearfix">
+                        <li><a href="">íšŒì›ê°€ì…</a></li>
+                        <li><a href="">ë¡œê·¸ì¸</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="cardReply-right"><!--º¸´õ»óÀÚ-->
-                    <div class="Reply-RB"><img class="ReplyRightImg" src="../assets/img/img (2).jpg" alt=""></div>
-                </div>
-            </div>
-            <div class="r-text">¿øº»±Û</div>
-            <div class="r-bgtext"><button type="button" id="popup_open_btn">¹è°æ¼±ÅÃ</button></div><!--¸ğ´ŞÃ¢-->
-            
-            <div>
-                <button type="submit" class="btn-ReplyComment"><a href="cardReply.html">´ñ±ÛÄ«µå ÀÛ¼º</a></button>
-            </div>
 
-            <div id="my_modal">
+            <!-- headerë -->
+            <!--content-->
+                <div class="cwTitle">
+                    <h3>ì†Œí†µ ì¹´ë“œ</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="cardReply-left"><!--ë³´ë”ìƒì-->
+                            <div class="Reply-LB"><img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="cardReply-right"><!--ë³´ë”ìƒì-->
+                            <div class="Reply-RB"><img class="ReplyRightImg" src="${pageContext.request.contextPath}/assets/img/img (2).jpg" alt=""></div>
+                        </div>
+                    </div>
                 
-                <div>
-                    <div class="bgs">
-                        ¹è°æ ¼±ÅÃ
-                    </div>
-                    
-                    <div id="card-read">
-                        <img src="../assets/img/img (1).jpg"><!--´©¸£¸é Àû¿ë-->
-                        <img src="../assets/img/img (2).jpg">
-                        <img src="../assets/img/img (3).jpg">
-                        <img src="../assets/img/img (4).jpg">
-                        <img src="../assets/img/img (5).jpg">
-                        <img src="../assets/img/img (6).jpg">
-                        <img src="../assets/img/img (7).jpg">
-                        <img src="../assets/img/img (8).jpg">
+                    <div class="r-text">ì›ë³¸ê¸€</div>
+                    <div class="r-bgtext"><button type="button" id="popup_open_btn">ë°°ê²½ì„ íƒ</button></div><!--ëª¨ë‹¬ì°½-->
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="btn-ReplyComment">
+                            <a href="cardReply.html">ëŒ“ê¸€ì¹´ë“œ ì‘ì„±</a>
+                        </div>
                     </div>
                 </div>
-                <div class="btn-center">
-                    <button class="btn-card-close" type="button">´İ±â</button>
+                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="height30">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="my_modal">
+                    
+                    <div>
+                        <div class="bgs">
+                            ë°°ê²½ ì„ íƒ
+                        </div>
+                        
+                        <div id="card-read">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg"><!--ëˆ„ë¥´ë©´ ì ìš©-->
+                            <img src="${pageContext.request.contextPath}/assets/img/img (2).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (3).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (4).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (5).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (6).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/img (8).jpg">
+                        </div>
+                    </div>
+                    <div class="btn-center">
+                        <button class="btn-card-application" type="button">ì ìš©</button>
+                    </div>
                 </div>
             </div>
-            
-        </body>
-
+        </div>
+    </body>
     <script type="text/javascript">
         function modal(id) {
             var zIndex = 9999;
             var modal = document.getElementById(id);
         
-            // ¸ğ´Ş div µÚ¿¡ Èñ²ô¹«·¹ÇÑ ·¹ÀÌ¾î
+            // ëª¨ë‹¬ div ë’¤ì— í¬ë„ë¬´ë ˆí•œ ë ˆì´ì–´
             var bg = document.createElement('div');
             bg.setStyle({
                 position: 'fixed',
@@ -116,12 +132,12 @@
                 width: '100%',
                 height: '100%',
                 overflow: 'auto',
-                // ·¹ÀÌ¾î »ö°¥Àº ¿©±â¼­ ¹Ù²Ù¸é µÊ
+                // ë ˆì´ì–´ ìƒ‰ê°ˆì€ ì—¬ê¸°ì„œ ë°”ê¾¸ë©´ ë¨
                 backgroundColor: 'rgba(0,0,0,0.4)'
             });
             document.body.append(bg);
         
-            // ´İ±â ¹öÆ° Ã³¸®, ½Ã²¨¸Õ ·¹ÀÌ¾î¿Í ¸ğ´Ş div Áö¿ì±â
+            // ë‹«ê¸° ë²„íŠ¼ ì²˜ë¦¬, ì‹œêº¼ë¨¼ ë ˆì´ì–´ì™€ ëª¨ë‹¬ div ì§€ìš°ê¸°
             modal.querySelector('.btn-card-close').addEventListener('click', function() {
                 bg.remove();
                 modal.style.display = 'none';
@@ -132,10 +148,10 @@
                 display: 'block',
                 boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
         
-                // ½Ã²¨¸Õ ·¹ÀÌ¾î º¸´Ù ÇÑÄ­ À§¿¡ º¸ÀÌ±â
+                // ì‹œêº¼ë¨¼ ë ˆì´ì–´ ë³´ë‹¤ í•œì¹¸ ìœ„ì— ë³´ì´ê¸°
                 zIndex: zIndex + 1,
         
-                // div center Á¤·Ä
+                // div center ì •ë ¬
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
@@ -144,14 +160,14 @@
             });
         }
         
-        // Element ¿¡ style ÇÑ¹ø¿¡ ¿ÀºêÁ§Æ®·Î ¼³Á¤ÇÏ´Â ÇÔ¼ö Ãß°¡
+        // Element ì— style í•œë²ˆì— ì˜¤ë¸Œì íŠ¸ë¡œ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜ ì¶”ê°€
         Element.prototype.setStyle = function(styles) {
             for (var k in styles) this.style[k] = styles[k];
             return this;
         };
         
         document.getElementById('popup_open_btn').addEventListener('click', function() {
-            // ¸ğ´ŞÃ¢ ¶ç¿ì±â
+            // ëª¨ë‹¬ì°½ ë„ìš°ê¸°
             modal('my_modal');
         });
         </script>
