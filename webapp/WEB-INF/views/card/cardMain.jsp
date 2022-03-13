@@ -41,7 +41,9 @@
 								<div id="card_tap">
 
 									<div class="btn-card-write">
-										<a href="cardWrite.html">카드 쓰기</a>
+										<c:if test="${!empty authUser}">  
+										<a href="${pageContext.request.contextPath}/card/write">카드 쓰기</a>
+										</c:if>
 									</div>
 									<input id="tab1" type="radio" name="tabs" checked>
 									<!--디폴트 메뉴-->
@@ -142,12 +144,14 @@
 											</div>
 
 											<div class="row">
-												<div class="col-xs-12">
-													<div class="divPaging">
-														<span>◀</span> <span>num</span> <span>▶</span>
-													</div>
-												</div>
-											</div>
+	                                            <div class="col-xs-12">
+	                                                <div class="divPaging">
+	                                                    <span>◀</span>
+	                                                    <span>num</span>
+	                                                    <span>▶</span>
+	                                                </div>
+	                                            </div>
+                                        	</div>
 										</div>
 										
 									</section>
@@ -163,7 +167,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (7).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-07</div>
 																	<div class="imgtext">심심한데 끝말잇기 하고 놀자</div>
@@ -176,7 +180,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (8).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-01</div>
 																	<div class="imgtext">오빠 여자친구를 봤는데 너무 예뻐요!!어떻게 우리
@@ -190,7 +194,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-01</div>
 																	<div class="imgtext">오빠 여자친구를 봤는데 너무 예뻐요!!어떻게 우리
@@ -209,7 +213,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (7).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-07</div>
 																	<div class="imgtext">심심한데 끝말잇기 하고 놀자</div>
@@ -222,7 +226,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-01</div>
 																	<div class="imgtext">오빠 여자친구를 봤는데 너무 예뻐요!!어떻게 우리
@@ -236,7 +240,7 @@
 															<div class="col-xs-4">
 																<div class="subcard">
 																	<img
-																		src="${pageContext.request.contextPath}/assets/img/img (8).jpg"
+																		src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg"
 																		alt="">
 																	<div class="imgdate">2022-03-01</div>
 																	<div class="imgtext">오빠 여자친구를 봤는데 너무 예뻐요!!어떻게 우리
@@ -256,15 +260,17 @@
 											</div>
 
 											<div class="row">
-												<div class="col-xs-9">
-													<div class="divPaging">
-														<span>◀</span> <span>num</span> <span>▶</span>
-													</div>
-												</div>
-												<div class="col-xs-3">
-													<button class="btn-card-del" type="reset">삭제</button>
-												</div>
-											</div>
+	                                            <div class="col-xs-9">
+	                                                <div class="divPaging">
+	                                                    <span>◀</span>
+	                                                    <span>num</span>
+	                                                    <span>▶</span>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-xs-3">
+	                                                <button class="btn-card-del" type="reset">삭제</button>
+	                                            </div>                                
+                                        	</div>
 										</div>
 									</section>
 

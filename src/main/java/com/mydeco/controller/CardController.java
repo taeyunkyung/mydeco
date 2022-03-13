@@ -20,10 +20,10 @@ public class CardController {
 	@RequestMapping("/main")
 	public String card() {
 		System.out.println("card");
-		return "card/main";
+		return "card/cardMain";
 	}
 	
-	@RequestMapping("/cardWrite")
+	@RequestMapping("/write")
 	public String cardWriteForm(Model model) {
 		System.out.println("card/cardWriteForm");
 		
@@ -33,11 +33,26 @@ public class CardController {
 		return "card/cardWriteForm";
 	}
 	
-	@RequestMapping("/cardWriteForm")
-	public String writeForm(Model model) {
-		System.out.println("card/cardWriteForm");
+	@RequestMapping("/reply")
+	public String replyWriteForm(Model model) {
+		System.out.println("card/replyWriteForm");
 		
-		return "card/cardWriteForm";
+		return "card/replyWriteForm";
 	}
+	
+	@RequestMapping("/sendList")
+	public String cardReadForm(Model model) {
+		System.out.println("card/cardReadForm");
+		
+		return "card/cardReadForm";
+	}
+	
+	@RequestMapping("/receiveList")
+	public String replyReadForm(Model model) {
+		System.out.println("card/replyReadForm");
+		
+		return "card/replyReadForm";
+	}
+	
 	
 }

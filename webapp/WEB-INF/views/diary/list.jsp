@@ -14,7 +14,7 @@
 	   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>
 </head>
 <body>
-	 <div id="wrap">
+	 <div id="wrap" style="margin-left:17px;">
         <div class="container">
             <div class="row">
 
@@ -26,9 +26,11 @@
                 
     
                 <!--컨텐츠 영역-->
-                <div class="col-xs-9" id="main-content">
+                <div class="col-xs-9" id="main-content" style="margin-left:-15px; margin-top:15px;">
                     <div id="div-sub">
-                        <h3>나의 일기 목록</h3>
+                        <h3 style="font-family: 'SCDream4';font-size: 20px; margin-left:20px;">
+                        나의 일기 목록
+                        </h3>
                     </div>
     
                     <!-- <div class="mydiarydiv">
@@ -82,6 +84,40 @@
                         <div class="mydiarydiv4">                       
 
                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
+                            <c:forEach items="${diarycontentList}" var="dcvo">
+	                            <div class="clearfix mydiary-list-box2">
+	                                
+	                                <div class="mydiaryText-list2">
+	                                    <div class="mydiaryText7 clearfix">
+	                                        <div class="mydiary-Date">Date:</div>
+	                                        <div class="mydiary-Date">${dcvo.diaryDate}</div>
+	                                        
+			                                <c:choose>
+			                                	<c:when test="${dcvo.weather == sunny}">
+			                                	 	<div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png"></div>	
+			                                	</c:when>
+			                                	<c:when test="${dcvo.weather == rainy}">
+			                                		<div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/rainy.png"></div>
+			                                	</c:when>
+			                                	<c:otherwise><div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/snowflake.png"></div></c:otherwise>
+			                                </c:choose>
+	                                    </div>
+	
+	                                    <div class="mydiaryText7 mydiary-content">${dcvo.title}</div>
+	                                    <div class="opensetting">
+	                                        ${dcvo.protect}
+	                                    </div>
+	                                </div>
+	
+	                               
+	                                <div class="mydiaryImg-box7 mydiary-box7-support">
+	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
+	                                </div>
+	                            </div>
+                            </c:forEach>
+                            
+                            
+                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
                             <div class="clearfix mydiary-list-box2">
                                 
                                 <!--왼쪽 날짜 일기 비공개-->
@@ -104,55 +140,7 @@
                                     <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
                                 </div>
                             </div>
-
-                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
-                             <div class="clearfix mydiary-list-box2">
-                                
-                                <!--왼쪽 날짜 일기 비공개-->
-                                <div class="mydiaryText-list2">
-                                    <div class="mydiaryText7 clearfix">
-                                        <div class="mydiary-Date">Date:</div>
-                                        <div class="mydiary-Date">2022-03.24</div>
-                                        <div><img id="se_weather_img" class="mydiary-weather2" src="./assets/img/weather/sunny-day.png"></div>
-                                    </div>
-
-                                    <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>
-                                    
-                                    <div class="opensetting">
-                                        비공개
-                                    </div>
-                                </div>
-
-                                <!--오른쪽 사진-->
-                                <div class="mydiaryImg-box7 mydiary-box7-support">
-                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-                                </div>
-                            </div>
-
-                            <!--목록/사진 하나분량의 박스-일기 하나의  div-->
-                            <div class="clearfix mydiary-list-box2">
-                                
-                                <!--왼쪽 날짜 일기 비공개-->
-                                <div class="mydiaryText-list2">
-                                    <div class="mydiaryText7 clearfix">
-                                        <div class="mydiary-Date">Date:</div>
-                                        <div class="mydiary-Date">2022-03.24</div>
-                                        
-                                       <!-- 날씨이미지 -->
-                                    </div>
-
-                                    <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>
-                                    
-                                    <div class="opensetting">
-                                        비공개
-                                    </div>
-                                </div>
-
-                                <!--오른쪽 사진-->
-                                <div class="mydiaryImg-box7 mydiary-box7-support">
-                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-                                </div>
-                            </div>
+                            
                             
                         </div>
 
@@ -172,10 +160,10 @@
                         || 자동재생되는중 노래제목 
                     </div>
                     <div class="read-save-icon">
-                        <img class="read-save-btn" src="./assets/img/icon/save.png" onclick="downImg();">
+                        <img class="read-save-btn" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
                     </div>
                     <div>
-                        <button class="mydiary-read-close-btn"><img class="read-close-btn" src="./assets/img/icon/close.png"></button>
+                        <button class="mydiary-read-close-btn"><img class="read-close-btn" src="${pageContext.request.contextPath}/assets/img/icon/close.png"></button>
                     </div>
                 </div>     
                    

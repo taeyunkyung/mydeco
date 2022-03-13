@@ -412,6 +412,7 @@ a.btn-diarylist5 {
     float:left; 
     padding-top: 20px; 
     padding-left: 10px;
+    border-bottom: 1px solid #686099; 
 }
 
 .mydiaryImg{
@@ -787,3 +788,10 @@ button.btn-search:hover{
     font-size: 13px;
     padding-bottom: 10px;
 }
+
+h3.subtitle{
+	font-family: 'SCDream4';
+    font-size: 20px;
+}
+
+

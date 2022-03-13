@@ -9,12 +9,25 @@ import org.springframework.stereotype.Repository;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.UserVo;
 
 @Repository
 public class MydiaryDao {
 
 	@Autowired 
 	SqlSession sqlSession;
+	
+	/*다이어리 리스트 가져오기*/
+	public List<DiaryContentVo> getDiaryContentList(UserVo authUser){
+		
+		return sqlSession.selectList("mydiary.getDiaryContentList", authUser);
+	}
+	
+	/*다이어리에 사용된 스티커리스트 가져오기 */
+	public List<DiaryItemVo> getDiaryStickerList(int diaryNo){
+		return sqlSession.selectList("mydiary.getDiaryStickerList", diaryNo);
+	}
+	
 	
 	public void dbsticker(StickerVo vo) {
 		
