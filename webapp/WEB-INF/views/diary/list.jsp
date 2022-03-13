@@ -18,6 +18,7 @@
 	 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 	 
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>
+	    <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 	   
 	   <!-- css에 넣으면 안먹음 -->
 	   <style>
@@ -108,7 +109,7 @@
 	                                    <div class="mydiaryText7 clearfix">
 	                                    	<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
 	                                        <div class="mydiary-Date">Date:</div>
-	                                        <div class="mydiary-Date">${dcvo.diaryDate}</div>
+	                                        <div class="mydiary-Date" data-diaryDate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
 	                                        
 			                                <c:choose>
 			                                	<c:when test="${dcvo.weather eq 'sunny'}">
@@ -121,17 +122,29 @@
 			                                </c:choose>
 	                                    </div>
 	
-	                                    <div class="mydiaryText7 mydiary-content">${dcvo.title}</div>
-	                                    <div class="opensetting">
+	                                    <div class="mydiaryText7 mydiary-content" data-title="${dcvo.title}">${dcvo.title}</div>
+	                                    <div class="opensetting" data-protect="${dcvo.protect}">
 	                                        ${dcvo.protect}
 	                                    </div>
 	                                </div>
+	                                
+	                                
 	                               
 	                                <div class="mydiaryImg-box7 mydiary-box7-support">
 	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
 	                                </div>
 	                            </div>
                             </c:forEach>
+                            
+                            
+                             <!--  
+	                                <input type="hidden" data-stickerno="${dcvo.stickerNo}">
+	                                <input type="hidden" data-top="${dcvo.top}">
+	                                <input type="hidden" data-left="${dcvo.left}">
+	                                <input type="hidden" data-scalex="${dcvo.scaleX}">
+	                                <input type="hidden" data-scaley="${dcvo.scaleY}">
+	                                <input type="hidden" data-angle="${dcvo.angle}">
+	                                <input type="hidden" data-text="${dcvo.text}">-->
                             
                             
                              <!--목록/사진 하나분량의 박스-일기 하나의  div-->
@@ -172,10 +185,34 @@
 
      <!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
      <c:forEach items="${diarycontentList}" var="diarycontent">
+	     <div id="delModal" class="modal fade">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">"${diarycontent.title}"</h4>
+		      </div>
+		      <div class="modal-body">
+		      
+		      <canvas class="readCanvas" id="paper"></canvas>
+		      	
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		        <button id="modalBtnDel" type="button" class="btn btn-primary">삭제</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+     </c:forEach>
+     
+     
+     <!--  
 	     	<div class="modal-read2"> 
 		        <div class="modal_body" style="display: flex;align-items: center;justify-content: center;">                  
 		            <div class="modal_content_read" title="클릭하면 창이 닫힙니다.">   
 		                <!--상단-->
+		    <!--  
 		                <div class="clearfix" style="padding-top: 10px; margin-bottom: 30px; ">
 		                    <div class="read-bgm-play">
 		                        || 자동재생되는중 노래제목 
@@ -194,32 +231,6 @@
 		                
 		                <canvas class="readCanvas" id="paper"></canvas>
 		                
-		                <!--  
-		                <div class="mydiary-read-box">
-		                    <div id="modalData" class="mydiary-read-box-content" style="text-align: left;">
-		                        <!-- <br><br> -->
-		                        <!--  
-		                        일기쓰고 저장된내용나올곳
-		                        textarea에 적은 내용-스티커붙였으면 스티커도 나오고 <br>
-		                        bgm넣었으면 이 창이 떴을때 자동으로 bgm재생도 가능하게끔
-		                        <br><br><br><br><br>
-		                        글 길어지면어떻게될런지
-		                        <br><br><br><br><br>
-		                        textarea 사이즈 가로 680px 
-		                        <br><br><br><br><br>
-		                        글의 세로길이가 너무 길면 모달창에서 한번에 보여주기 어려울듯 
-		                        <br>
-		                        한번에 보여줄거 아니라면 스크롤 달면 됨
-		                        <br><br><br><br><br>
-		                        ??
-		                        <br><br><br><br><br><br><br><br><br><br>
-		                        안보이는 스크롤바
-		                        <br><br><br><br><br><br><br><br><br><br>
-		                        ??
-		                    </div>
-		                </div>-->
-		                
-		                
 		                <div class="mydiary-read-btnset">
 		                    <button class="modal-button-read">수정하기</button>
 		                    <button class="modal-button-read">삭제하기</button>
@@ -227,8 +238,7 @@
 		            </div>
 		            
 		        </div> 
-	    	</div> 
-     </c:forEach>
+	    	</div> -->
     
 </body>
 
@@ -248,6 +258,17 @@ function downloadURI(uri, name){
     document.body.appendChild(link);
     link.click();
 }
+
+/*실험*/
+$(".mydiary-list-box2").on("click",function(){
+	var diaryNo = $(this).data("diaryno")
+	console.log(diaryNo);
+	
+	var itemList = $(this).data("itemlist")
+	console.log(itemList);
+	
+	$("#delModal").modal('show');
+})
 
 /*클릭한 일기의 정보*/
  function diaryContent(){
@@ -293,7 +314,6 @@ function downloadURI(uri, name){
 $(function(){ 
 
     $(".mydiary-list-box2").click(function(){
-    	var diaryNo = $(this).data("diaryno")
     	
         $(".modal-read2").fadeIn();
     });

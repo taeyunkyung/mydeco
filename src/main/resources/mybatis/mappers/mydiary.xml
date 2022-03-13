@@ -40,6 +40,7 @@
 	<select id="getDiaryStickerList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
 			<![CDATA[
 				select diaryItemNo,
+					   diaryNo,
 				       stickerNo,
 				       top,
 				       left,
