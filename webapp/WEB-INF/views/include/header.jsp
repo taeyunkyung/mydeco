@@ -19,7 +19,7 @@
                             <ul class="dropdown-content">
                                 <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
                                 <li><a href="${pageContext.request.contextPath}/card/main">소통카드</a></li>
-                                <li><a href="">우체통</a></li>
+                                <li><a href="${pageContext.request.contextPath}/letter">우체통</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
@@ -29,7 +29,7 @@
                             <li class="dropbtn"><a href="">Mood</a></li>
                             <ul class="dropdown-content">
                                 <li><a href="${pageContext.request.contextPath}/mood/daily">마법의 소라고둥</a></li>
-                                <li><a href="">심리 테스트</a></li>
+                                <li><a href="${pageContext.request.contextPath}/mood/test">심리 테스트</a></li>
                             </ul>
                         </div>
                     </ul>
