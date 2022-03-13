@@ -31,9 +31,11 @@ public class MydiaryService {
 			
 			/*다이어리 개별 다이어리번호 가져오기*/
 			int diaryNo = dcList.get(i).getDiaryNo();
+			System.out.println(diaryNo);
 			
 			/*각 다이어리마다 사용된 스티커 가져오기--$$*/
 			List<DiaryItemVo> diaryitemList = mydiaryDao.getDiaryStickerList(diaryNo);
+			
 			
 			/* ##의 itemList에 $$ 추가하기*/
 			diarycontent.setItemList(diaryitemList);
@@ -42,8 +44,40 @@ public class MydiaryService {
 			diarycontentList.add(diarycontent);
 		}
 		System.out.println(diarycontentList);
-		
+		System.out.println("=======");
 		return diarycontentList;
+		//return dcList;
+	}
+	
+	/*다이어리 번호별 리스트*/
+	/*
+	public List<DiaryContentVo> getDiaryNoContentList(UserVo authUser){
+		
+		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(authUser);
+		List<DiaryContentVo> diarycontentList = new ArrayList<DiaryContentVo>();
+		
+		for(int i=0; i<dcList.size(); i++) {
+		
+			/*다이어리 개별 다이어리번호 가져오기*/
+			
+			//int diaryNo = dcList.get(i).getDiaryNo();
+			
+			/*다이어리 내용 번호별로 가져오기--##*/
+			//List<DiaryContentVo> diaryContent = mydiaryDao.getDiaryNoContentList(diaryNo);
+			
+			/*각 다이어리마다 사용된 스티커 가져오기--$$*/
+			//List<DiaryItemVo> diaryitemList = mydiaryDao.getDiaryStickerList(diaryNo);
+		
+			/* ##의 itemList에 $$ 추가하기*/
+			//diaryContent.setItemList(diaryitemList);
+	/*	}
+		
+		return "";
+	}*/
+	
+	/*다이어리 쓴 날짜 리스트*/
+	public List<DiaryContentVo> getDiaryDateList(UserVo authUser){
+		return mydiaryDao.getDiaryDateList(authUser);
 	}
 	
 	
@@ -105,7 +139,8 @@ public class MydiaryService {
 			}
 			mydiaryDao.addSticker(diarySticker);
 		}
-		
+		System.out.println("aaa");
+	
 		return 1;
 	}
 	

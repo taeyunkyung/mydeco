@@ -28,6 +28,10 @@ public class MydiaryDao {
 		return sqlSession.selectList("mydiary.getDiaryStickerList", diaryNo);
 	}
 	
+	/*다이어리 쓴 날짜 리스트*/
+	public List<DiaryContentVo> getDiaryDateList(UserVo authUser){
+		return sqlSession.selectList("mydiary.getDiaryDateList",authUser);
+	}
 	
 	public void dbsticker(StickerVo vo) {
 		
