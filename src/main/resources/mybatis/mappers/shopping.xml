@@ -10,7 +10,8 @@
 			        delivery,
 			        price,
 			        prodInfo,
-			        prodName
+			        prodName,
+			        prodNo
 			from product p, users u
 			where p.userNo = u.userNo
 			and p.prodno = #{no}
@@ -29,4 +30,48 @@
 		]]>
 	
 	</select>
+	
+	<insert id="addcmt" parameterType="ShoppingCmtVo">
+		<![CDATA[
+			insert into comments
+			values(seq_comment_no.nextval,#{prodNo},#{userNo},#{cmtContent},sysdate,1,1,0)
+		]]>
+	
+	</insert>
+	
+	
+	<select id="cmtList" parameterType="Int" resultType="ShoppingCmtVo">
+		<![CDATA[
+		select  cmtNo,
+		        prodNo,
+		        c.userNo userNo,
+		        cmtContent,
+		        regDate,
+		        groupNo,
+		        cmtSeq,
+		        depth,
+		        name
+		from comments c, users u
+		where u.userNo = c.userNo
+		and prodNo = #{no}
+		order by groupNo asc
+		]]>	
+	</select>
+
+
+	<select id="merchandiseList" resultType="ProductVo">
+		<![CDATA[
+			select  p.prodNo,
+			        userNo,
+			        prodName,
+			        emotion,
+			        price,
+			        delivery,
+			        prodImgSrc
+			from product p ,prodImg pi
+			where p.prodNo = pi.prodno
+		]]>
+	
+	</select>
+
 </mapper>

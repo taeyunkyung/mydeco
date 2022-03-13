@@ -74,46 +74,48 @@
                             <!-- /옵션 검색창 -->
                            
                            <!-- 포문으로 돌림 -->
-                            <div class="row div-sub">
-                                <div class="col-xs-2 imgbox">
-                                    <div class="padding0">
-                                        <a href=""><img class="prodImg" src="../assets/img/중고그릇.jpg"></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-9">
-                                    <!-- 여기 3줄나눔 -->
-                                    <div class="row">
-                                        <div class="col-xs-12"><button type="button">홀가분버튼</button></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 fontstyle">
-	                                        <h4>
-	                                        	<a href="">
-	                                        		제목
-	                                        	</a>
-	                                        </h4>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12"><span class="marginRight10">30000원</span><span class="margin5">직거래</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <a href="#"><span class="">일기</span><span class="marginRight10">10개</span></a>
-                                            <a href="#"><span class="margin5"> 댓글</span><span class="marginRight10">23개</span></a>
-                                            <a href="#"><span class="margin5">찜</span><span class="marginRight10">54개</span></a>
-                                        </div>
-                                    </div>
-                                    <!-- /여기 3줄나눔 -->
-                                </div>
-                                
-                                <div class="col-xs-1">
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-                                      </button>
-                                </div>
-
-                            </div>
+                           <c:forEach items="${merchandiseList}" var="vo">
+	                            <div class="row div-sub">
+	                                <div class="col-xs-2 imgbox">
+	                                    <div class="padding0">
+	                                        <a href="${pageContext.request.contextPath}/shopping/merchandise?no=${vo.prodNo}"><img class="prodImg" src="${pageContext.request.contextPath}/upload/${vo.prodImgSrc}"></a>
+	                                    </div>
+	                                </div>
+	                                <div class="col-xs-9">
+	                                    <!-- 여기 3줄나눔 -->
+	                                    <div class="row">
+	                                        <div class="col-xs-12"><button type="button">${vo.emotion}</button><input type="hidden" name="no" value="${vo.prodNo}"></div>
+	                                    </div>
+	                                    <div class="row">
+	                                        <div class="col-xs-12 fontstyle">
+		                                        <h4>
+		                                        	<a href="${pageContext.request.contextPath}/shopping/merchandise?no=${vo.prodNo}">
+		                                        		${vo.prodName}
+		                                        	</a>
+		                                        </h4>
+	                                        </div>
+	                                    </div>
+	                                    <div class="row">
+	                                        <div class="col-xs-12"><span class="marginRight10">${vo.price}원</span><span class="margin5">${vo.delivery}</span></div>
+	                                    </div>
+	                                    <div class="row">
+	                                        <div class="col-xs-12">
+	                                            <a href="#"><span class="">일기</span><span class="marginRight10">10개</span></a>
+	                                            <a href="#"><span class="margin5"> 댓글</span><span class="marginRight10">23개</span></a>
+	                                            <a href="#"><span class="margin5">찜</span><span class="marginRight10">54개</span></a>
+	                                        </div>
+	                                    </div>
+	                                    <!-- /여기 3줄나눔 -->
+	                                </div>
+	                                
+	                                <div class="col-xs-1">
+	                                    <button type="button" class="btn btn-default btn-sm">
+	                                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+	                                      </button>
+	                                </div>
+	
+	                            </div>
+                            </c:forEach>
                             <!-- /포문으로돌림 -->
 
 
@@ -129,7 +131,6 @@
             </div>
         </div>
         
-        </div>
         </div>
     </body>
 </html>

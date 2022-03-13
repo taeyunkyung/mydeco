@@ -43,7 +43,7 @@
                     	</c:when>
                     	<c:otherwise>
                     		 <ul id="user" class="clearfix">
-		                        <li><a href="${pageContext.request.contextPath}/loginForm">로그아웃</a></li>
+		                        <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 		                        <li><a href="${pageContext.request.contextPath}/my/signup">내정보</a></li>
 		                    </ul>
                     	</c:otherwise>

@@ -156,21 +156,24 @@
                                 <!--/ajax로 출력할부분  -->
 
                                  <!-- ajax로 출력할부분 -->
-                                 <div class="row backgroundgray">
-                                    <div class="col-xs-10">
-                                        <span class="recomandfontstyle">명수박님</span>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <span class="text-right">2022-02-22</span>
-                                    </div>
-                                </div>
-                                <div class="row backgroundgray">
-                                    <div class="col-xs-12">
-                                        <div class="height60">
-                                            <span>오랜 친구를 보내시는군요 섭섭하시겠어요</span>
-                                        </div>    
-                                    </div>
-                                </div>
+                                 <c:forEach items="${cmtList}" var="vo">    
+											<div class="row backgroundgray">
+		
+			                                    <div class="col-xs-10">
+			                                        <span class="recomandfontstyle">${vo.name }님</span>
+			                                    </div>
+			                                    <div class="col-xs-2">
+			                                        <span class="text-right">${vo.regDate}</span>
+			                                    </div>
+		                              		</div>	                            	
+		                                	<div class="row backgroundgray">	                             
+		                                  	  	<div class="col-xs-12">
+			                                        <div class="height60">
+			                                            <span>${vo.cmtContent}</span>
+			                                        </div>    
+		                                   		</div>	                              
+			                                </div>
+                                </c:forEach>
 
                                 <!--/ajax로 출력할부분  -->
                             </div>
@@ -197,8 +200,13 @@
 
     	var cmttext = $("#cmttext").val();
     	
-    	var ShoppingCmtVo = {cmtContent: cmttext};
+    	var prodNo = ${product.prodNo};
+    	
+    	var ShoppingCmtVo = {cmtContent: cmttext,
+    						 prodNo: prodNo};
     	console.log(cmttext);
+    	console.log(prodNo);
+    	
     	$.ajax({
     		
     		url : "${pageContext.request.contextPath }/shopping/cmtwrite",		
@@ -223,6 +231,37 @@
     		}
     	});
     });
+    
+    //////////////////////////////////////////이미지 순서바꾸기//////////////////
+    
+    
+	   $("#cmtsend").on("click",function(){
+		   
+		   
+		   
+		   
+		   
+		   
+	   });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </script>
     
     
