@@ -97,8 +97,8 @@ a:hover {text-decoration: none; color: #000000;}
     display: block;
   }
 
-/* aside */
-#aside #title {
+/* aside, aside-shop */
+#aside #title, #aside .title {
     font-family: 'SCDream4';
     font-weight: bold; 
     font-size: 20px;
@@ -106,6 +106,12 @@ a:hover {text-decoration: none; color: #000000;}
     color: white;
     border: none;
 }
+
+#yellow{color: rgb(255, 217, 0);} 
+#blue{color: rgba(0, 174, 255, 0.842);} 
+#orange{color: rgba(255, 145, 0, 0.952);} 
+#green{color: rgba(47, 255, 92, 0.959);} 
+#pink{color: rgb(255, 192, 195);}
 
 #aside .color {
     font-weight: 700%;
