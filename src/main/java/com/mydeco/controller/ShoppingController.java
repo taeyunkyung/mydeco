@@ -31,6 +31,8 @@ public class ShoppingController {
 		
 		List<ProductVo> merchandiseList = shoppingService.getmerchandiseList();
 		model.addAttribute("merchandiseList",merchandiseList);
+		
+	
 		return "shopping/shoppingmain";
 	}
 	
@@ -85,7 +87,7 @@ public class ShoppingController {
 	}
 	
 	
-	
+
 
 }
 

@@ -73,5 +73,14 @@
 		]]>
 	
 	</select>
+	
+	<select id="countdiary" parameterType="Int" resultType="ProductVo">
+		<![CDATA[
+			select count(diaryNo) diaryCnt
+			from proddiary pd, product p
+			where p.prodNo = pd.prodNo
+			and pd.prodNo = #{no}
+		]]>
+	</select>
 
 </mapper>

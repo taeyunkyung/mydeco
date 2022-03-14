@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class=" mainImgbox imgcenter">
-                                            <img class="mainImgbox" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
+                                           <img class="mainImgbox" id="img0" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
                                            
                                         </div>
                                     </div>
@@ -53,9 +53,10 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="imgcenter">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}">
+                                            <img class="prodImg2" id="img1" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
+                                            <img class="prodImg2" id="img2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}">
+                                            <img class="prodImg2" id="img3" src="${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}">
+                                            <img class="prodImg2" id="img4" src="${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}">
                                         </div>
                                     </div>
                                 </div>
@@ -234,18 +235,45 @@
     
     //////////////////////////////////////////이미지 순서바꾸기//////////////////
     
+    $("#img1").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
     
-	   $("#cmtsend").on("click",function(){
-		   
-		   
-		   
-		   
-		   
-		   
-	   });
+    $("#img2").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
     
+    $("#img3").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
     
-    
+    $("#img4").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
     
     
     

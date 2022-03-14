@@ -35,14 +35,14 @@ public class ShoppingDao {
 	/////////////////////////코멘트넣기////////////////////////////
 	
 	public void addcmt(ShoppingCmtVo shoppingCmtVo) {
-		System.out.println("cmt 다오 진입");
+		System.out.println("다오의 cmt 넣기 도킹");
 		System.out.println(shoppingCmtVo);
 		sqlSession.insert("shopping.addcmt", shoppingCmtVo);
 	}
 	///////////////////////코멘트리스트가져오기//////////////////////////
 
 	public List<ShoppingCmtVo> getCmtList(int no) {
-		System.out.println("다오의 cmt list 가져오기");
+		System.out.println("다오의 cmt list 가져오기 도킹");
 		
 		List<ShoppingCmtVo> shoppingCmtVo = sqlSession.selectList("shopping.cmtList", no);
 		
@@ -50,10 +50,20 @@ public class ShoppingDao {
 	}
 	/////////////////////////쇼핑메인페이지 리스트 가져오기////////////////////
 	public List<ProductVo> getmerchandiseList(){
-		System.out.println("메인페이지 리스트가져오기 다오도킹");
+		System.out.println("다오의 메인페이지 리스트 가져오기 도킹");
 		List<ProductVo> productList = sqlSession.selectList("shopping.merchandiseList");
 		
 		System.out.println(productList);
 		return productList;
+	}
+	
+	///////////////////////쇼핑 메인페이지의 다이어리 카운트////////////////
+	
+	public int diarycount(int no) {
+		System.out.println("다오의 다이어리카운트 도킹");
+		
+		int diaryNo =sqlSession.selectOne("shopping.countdiary", no);
+	
+		return diaryNo;
 	}
 }

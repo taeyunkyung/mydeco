@@ -57,4 +57,11 @@ public class ShoppingService {
 		
 		return merchandiseList;
 	}
+	////////////////////////쇼핑 리스트의 다이어리합계///////////
+	
+	public int countdiary(int no) {
+		int diaryNo = shoppingDao.diarycount(no);
+		
+		return diaryNo +1;
+	}
 }
