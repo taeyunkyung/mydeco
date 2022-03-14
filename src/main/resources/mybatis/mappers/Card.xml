@@ -5,7 +5,7 @@
 
 	<!-- 디비 넣기 -->
 
-	<insert id="sendcard" parameterType="CardVo">
+	<insert id="sendcard" parameterType="com.mydeco.vo.CardVo">
 		<![CDATA[
 			insert into card
 			values (seq_card_no.nextval,#{userNo},#{cardContent},sysdate,#{cardAge},#{cardGender},#{cardImgNo})

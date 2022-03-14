@@ -9,7 +9,7 @@
     	<typeAlias alias="ShoppingCmtVo" type="com.mydeco.vo.ShoppingCmtVo" />
     	<typeAlias alias="LetterVo" type="com.mydeco.vo.LetterVo" />
     	<typeAlias alias="LetterItemVo" type="com.mydeco.vo.LetterItemVo" />
-    	
+    	<typeAlias alias="CardVo" type="com.mydeco.vo.CardVo" />
     </typeAliases>
 
     <mappers>

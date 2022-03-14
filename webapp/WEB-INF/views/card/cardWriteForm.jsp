@@ -36,22 +36,22 @@
                         </div>
                     </div>
                 </div>
-                
+                <form action="${pageContext.request.contextPath}/card/writecard" method="get">
                 <div class="row">
                     <div class="col-xs-8">
                         
                         
                             <div class="row">
+                            
                                 <div class="col-xs-12">
                                     <div class="height600">
                                     
-										<form action="${pageContext.request.contextPath}/card/writecard" method="get">
-                                        
+										
                                         <div class="cardwrite-imgdate">2022-02-03</div>
                                         <img class="cardwriteimg" src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
                                         <textarea id="c-text" name="c-text" cols="30" rows="10"></textarea>
                                         <div id="text_cnt">(0 / 300)</div>
-                                        </form>
+                                         
                                     </div>
                                 </div>
                             </div>
@@ -104,37 +104,37 @@
                     </div>
                         
                 </div>
-
+				</form>
                 <div class="row">
                     <div class="col-xs-8">
-                            <div class="row">
-                                <div class="col-xs-12 cardwriteradio">       
-                                    <h4 class="r-age">성별</h4>
-                                    <label><input type="radio" name="gender" value="male">남성</label>
-                                    <label><input type="radio" name="gender" value="female">여성</label>                                      
-                                </div>
-                            </div> 
-                            <div class="row">
-                                <div class="col-xs-12 cardwriteradio">
-                                    <h4 class="r-gender">연령</h4>
-                                    <label><input type="radio" name="age" value="teen">10대</label>
-                                    <label><input type="radio" name="age" value="twn">20대</label>
-                                    <label><input type="radio" name="age" value="trn">30대</label>
-                                    <label><input type="radio" name="age" value="ftn" >40대 이상</label>
-                                </div>
-                            </div>
+                         <div class="row">
+                             <div class="col-xs-12 cardwriteradio">       
+                                 <h4 class="r-age">성별</h4>
+                                 <label><input type="radio" name="gender" value="male">남성</label>
+                                 <label><input type="radio" name="gender" value="female">여성</label>                                      
+                             </div>
+                         </div> 
+                         <div class="row">
+                             <div class="col-xs-12 cardwriteradio">
+                                 <h4 class="r-gender">연령</h4>
+                                 <label><input type="radio" name="age" value="teen">10대</label>
+                                 <label><input type="radio" name="age" value="twn">20대</label>
+                                 <label><input type="radio" name="age" value="trn">30대</label>
+                                 <label><input type="radio" name="age" value="ftn" >40대 이상</label>
+                             </div>
+                         </div>
                         
                     </div>
                    
                     <!--보내기/취소-->
                     <div class="col-xs-4">
                         <input id="saveBtn" type="submit" class="btn-writeform-save" value="보내기">
-                    
+                           
                     
                         <a class="cardMainForm" href="${pageContext.request.contextPath}/card/main">취소</a><!--list페이지로 이동-->
                     </div>
 					
-                
+
                 </div>
 
                 
