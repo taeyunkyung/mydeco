@@ -104,4 +104,12 @@ public class MyProductDao {
 		return sqlSession.selectOne("myProduct.selectByNo", chatNo);
 	}
 	// addReturn chat//
+	
+	public ProductVo selectOne(int prodNo) {
+		return sqlSession.selectOne("myProduct.selectOneProd", prodNo);
+	}
+	
+	public int addpick(ProductVo productVo) {
+		return sqlSession.insert("myProduct.addpick", productVo);
+	}
 }

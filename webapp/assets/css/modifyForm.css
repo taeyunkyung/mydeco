@@ -1,3 +1,5 @@
+#m-table {width: 678.9px;}
+
 h3 {
     text-align: left;
     font-size: 20px;
@@ -7,6 +9,8 @@ h3 {
     margin-left: 0px;
     border-bottom: 1px solid #686099;
     text-align: left; }
+
+p {margin-bottom:0px; padding: 4px; display: inline-block; font-family: 'SCDream4';}
 
 input[name=userSn] {
     width: 49%; }.radio-label {

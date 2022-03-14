@@ -102,10 +102,12 @@ public class MyShopService {
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
+			int commentCnt = myProdImgDao.commentCnt(prodNo);
 			
 			myProductList.get(i).setProdImgSrc(prodImgSrc);
 			myProductList.get(i).setDiaryCnt(diaryCnt);
 			myProductList.get(i).setPickCnt(pickCnt);
+			myProductList.get(i).setCommentCnt(commentCnt);
 		}
 		
 		int totalCnt = myProductDao.selectTotal(userNo);
@@ -155,10 +157,12 @@ public class MyShopService {
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
+			int commentCnt = myProdImgDao.commentCnt(prodNo);
 			
 			myPickList.get(i).setProdImgSrc(prodImgSrc);
 			myPickList.get(i).setDiaryCnt(diaryCnt);
 			myPickList.get(i).setPickCnt(pickCnt);
+			myPickList.get(i).setCommentCnt(commentCnt);
 		}
 		
 		int totalCnt = myProductDao.selectTotalPick(userNo);
@@ -234,5 +238,15 @@ public class MyShopService {
 		}
 		
 		return addReturn;
+	}
+	
+	public ProductVo selectOneProd(int prodNo) {
+		ProductVo productVo = myProductDao.selectOne(prodNo);
+		productVo.setProdImgList(myProdImgDao.prodImgList(prodNo));
+		return productVo;
+	}
+	
+	public int addPick(ProductVo productVo) {
+		return myProductDao.addpick(productVo);
 	}
 }

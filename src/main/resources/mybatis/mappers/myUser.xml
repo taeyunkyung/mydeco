@@ -19,6 +19,14 @@
 		]]>
 	</insert>
 	
+	<select id="searchId" parameterType="String" resultType="UserVo">
+		<![CDATA[
+			select id
+			from users
+			where id like #{keyword}
+		]]>
+	</select>
+	
 	<select id="login" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[
 			select  userNo,
@@ -30,4 +38,28 @@
 			and password = #{password}
 		]]>
 	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="UserVo">
+		<![CDATA[
+			select  id,
+        			password,
+        			name,
+        			personalNo,
+        			gender,
+        			hp,
+        			mbti
+			from users
+			where userNo = #{userNo}
+		]]>
+	</select>
+	
+	<update id="update" parameterType="UserVo">
+		<![CDATA[
+			update users
+			set password = #{password},
+    			hp = #{hp},
+    			mbti = #{mbti}
+			where userNo = #{userNo}
+		]]>
+	</update>
 </mapper>
