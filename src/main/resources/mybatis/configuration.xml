@@ -7,6 +7,8 @@
     	<typeAlias alias="ProductVo" type="com.mydeco.vo.ProductVo" />
     	<typeAlias alias="ProdImgVo" type="com.mydeco.vo.ProdImgVo" />
     	<typeAlias alias="ShoppingCmtVo" type="com.mydeco.vo.ShoppingCmtVo" />
+    	<typeAlias alias="LetterVo" type="com.mydeco.vo.LetterVo" />
+    	<typeAlias alias="LetterItemVo" type="com.mydeco.vo.LetterItemVo" />
     	
     </typeAliases>
 
