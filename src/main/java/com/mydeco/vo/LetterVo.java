@@ -13,6 +13,8 @@ public class LetterVo {
 	private String readYN = "NO";
 	private String saveYN;
 	private List<LetterItemVo> itemList;
+	
+	private String text;
 
 	// 생성자
 	public LetterVo() {
@@ -31,7 +33,7 @@ public class LetterVo {
 	}
 
 	public LetterVo(int letterNo, int userNo, String regDate, String openDay, String bgmSrc, String readYN,
-			String saveYN, List<LetterItemVo> itemList) {
+			String saveYN, List<LetterItemVo> itemList, String text) {
 		this.letterNo = letterNo;
 		this.userNo = userNo;
 		this.regDate = regDate;
@@ -40,7 +42,9 @@ public class LetterVo {
 		this.readYN = readYN;
 		this.saveYN = saveYN;
 		this.itemList = itemList;
+		this.text = text;
 	}
+	
 
 	// getter setter
 	public int getLetterNo() {
@@ -107,10 +111,21 @@ public class LetterVo {
 		this.itemList = itemList;
 	}
 
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	@Override
 	public String toString() {
 		return "LetterVo [letterNo=" + letterNo + ", userNo=" + userNo + ", regDate=" + regDate + ", openDay=" + openDay
-				+ ", bgmSrc=" + bgmSrc + ", readYN=" + readYN + ", saveYN=" + saveYN + ", itemList=" + itemList + "]";
+				+ ", bgmSrc=" + bgmSrc + ", readYN=" + readYN + ", saveYN=" + saveYN + ", itemList=" + itemList
+				+ ", text=" + text + "]";
 	}
+
+	
 
 }

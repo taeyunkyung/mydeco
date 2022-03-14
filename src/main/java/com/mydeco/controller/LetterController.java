@@ -24,9 +24,16 @@ public class LetterController {
 	LetterService letterService;
 	
 	@RequestMapping("")
-	public String letter() {
+	public String letter(Model model) {
 		System.out.println("letter");
 		
+		List<LetterVo> saveList = letterService.selectSaveList();
+		model.addAttribute("letterSaveList", saveList);
+		
+		List<LetterVo> keepList = letterService.selectKeepList();
+		model.addAttribute("letterKeepList", keepList);
+		
+		System.out.println(saveList);
 		
 		
 		return "letter/letterList";
@@ -53,6 +60,8 @@ public class LetterController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		int userNo = authUser.getUserNo();
 		letterVo.setUserNo(userNo);
+		
+		System.out.println(userNo);
 		
 		return letterService.itemSave(letterVo);
 	}
