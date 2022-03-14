@@ -19,5 +19,59 @@
 				from sticker
 			]]>
 	</select>
+	
+	<!-- 사용된 스티커 정보 저장 -->
+	<insert id="itemSave" parameterType="LetterItemVo">
+	
+		<![CDATA[
+				insert into letterItem(letterSticNo, letterNo, sticNo, top, left, letterPointX, letterPointY, angle, text)
+				values(	seq_letterItem_no.nextval, 
+						#{letterNo}, 
+						#{stickerNo} , 
+						#{top} , 
+						#{left},  
+						#{letterPointX} , 
+						#{letterPointY} , 
+						#{angle} , 
+						#{text})		
+			]]>
+	</insert>
 
+	
+	<!-- 편지 내용 저장 -->
+	<insert id="letterContent" parameterType="LetterVo">
+	
+		<!-- selectkey : insert 구문 실행 전(before)에 시퀀스 조회-->
+		<selectKey keyProperty="letterNo" resultType="int" order="BEFORE">
+			select seq_letter_no.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+				insert into letter
+				values (#{letterNo}, 
+						#{userNo}, 
+						sysdate , 
+						#{openDay}, 
+						#{bgmSrc}, 
+						#{readYN}, 
+						#{saveYN})	
+		]]>
+	</insert>
+	
+	
+	<!-- 편지 목록 불러오기 -->
+	<select id="selectList" resultType="LetterVo">
+    	<![CDATA[
+    		select  letterNo 
+        			userNo,
+        			regDate,
+			        opeanDay,
+			        readYN,
+			        saveYN 
+			from letter
+			order by regDate desc
+    	]]>
+	</select>
+	
+	
 </mapper>

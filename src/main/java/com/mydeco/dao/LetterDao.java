@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydeco.vo.LetterItemVo;
+import com.mydeco.vo.LetterVo;
 import com.mydeco.vo.StickerVo;
 
 @Repository
@@ -25,4 +27,33 @@ public class LetterDao {
 	public List<StickerVo> getStickerList(){
 		return sqlSession.selectList("myLetter.getStickerList");
 	}
+	
+	//편지에 사용한 스티커 정보 저장
+	public int  itemSave(LetterItemVo lItemVo) {
+		int count = sqlSession.insert("myLetter.itemSave", lItemVo);
+		System.out.println(lItemVo);  //여기에는 letterNo가 들어가 있음
+		System.out.println("스티커 정보가 저장되었습니다.");
+		
+		return count;
+	}
+	
+	
+	//편지 정보 저장
+	public int letterSave(LetterVo letterVo) {
+		//System.out.println(letterVo); //편지번호 없음
+		int count = sqlSession.insert("myLetter.letterContent", letterVo);
+		//System.out.println(letterVo); //편지번호 있음
+		return count;
+		
+	}
+	
+	//편지 목록 불러오기
+	public void selectList() {
+		sqlSession.selectList("myLetter.selectList");
+		
+		
+	
+	}
+	
+	
 }

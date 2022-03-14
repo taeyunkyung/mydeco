@@ -29,7 +29,7 @@ div.letterwriteForm-write-region{
     border: 1px solid  #ebebeb;
     margin-left: 10px;
     background-color: rgb(54, 54, 54);
-    padding: 5px 0px 0px 0px;
+    padding: 2px 0px 5px 0px;
 }
 
 .letter-openday{
@@ -46,6 +46,15 @@ div.letterwriteForm-write-region{
 	text-align: center;
 }
 
+#openDay {
+	float: left;
+	font-size: 15px;
+	width: 300px;
+	padding: 5px 0px 5px 10px;
+    margin: 5px 0px 0px 0px;
+    text-align: left;
+}
+
 .writeform-button{
 	text-align: center;
 
@@ -58,8 +67,9 @@ div.letterwriteForm-write-region{
 }
 
 .writeform-save{
-    display: inline-block;
-    margin: 0px 0px 0px 550px;
+	float: right;
+   	margin: 5px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 
@@ -83,6 +93,22 @@ a.writeform-modify{
 background-color: #ebebeb; }
 
 
+
+.writeform-deco-btn{
+    width: 109px;
+    height: 40px;
+    margin: 5px;
+    justify-content: center;
+}
+
+#chooseFile {
+    visibility: hidden;
+}
+
+label[for=chooseFile]{
+    font-weight: 50;
+}
+
 .writeform-btn-right{
     float: right;
 }
@@ -90,8 +116,13 @@ background-color: #ebebeb; }
 .writeform-btn-left{
     float: left;
 }
-
-
+.photowid{
+	width:110px;
+	height:30px;
+	padding:-10px;
+	margin-left:-10px;
+	
+}
 
  /*스크롤바 설정*/ 
 .content-box::-webkit-scrollbar{ 
@@ -115,8 +146,8 @@ background-color: #ebebeb; }
 
 /*꾸미기내용 들어가는 박스 배경색*/
 .menu-box{
-    width: 238px;
-    height: 639px;
+    width: 239px;
+    height: 645px;
     background-color: #2e2e2e;
 } 
 
