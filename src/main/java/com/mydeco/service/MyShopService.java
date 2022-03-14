@@ -88,7 +88,7 @@ public class MyShopService {
 		return myProductList;
 	}
 	
-	// 페이징-나의상품//
+	// 페이징-나의 상품//
 	public Map<String, Object> getMyProductpgList(int userNo, String keyword, int crtPage) {
 		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
