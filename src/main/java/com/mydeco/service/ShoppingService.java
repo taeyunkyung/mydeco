@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.mydeco.dao.ShoppingDao;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
+import com.mydeco.vo.ShoppingCmtVo;
 
 @Service
 public class ShoppingService {
@@ -30,4 +31,37 @@ public class ShoppingService {
 		return productVo;
 	}
 
+	
+	
+	/////////////////////상세정보 댓글////////////////
+	
+	public void cmtwrite(ShoppingCmtVo shoppingCmtVo) {
+		System.out.println("서비스도킹 쇼핑댓글");
+		
+		shoppingDao.addcmt(shoppingCmtVo);
+	}
+	
+	///////////////////댓글리스트가져오기/////////
+	
+	public List<ShoppingCmtVo> getCmtList(int no){
+		System.out.println("서비스의 댓글리스트가져오기");
+		
+		List<ShoppingCmtVo> CmtList = shoppingDao.getCmtList(no);
+		
+		return CmtList;
+	}
+	///////////////////////쇼핑메인리스트가져오기//////////////
+	public List<ProductVo> getmerchandiseList(){
+		
+		List<ProductVo> merchandiseList = shoppingDao.getmerchandiseList();
+		
+		return merchandiseList;
+	}
+	////////////////////////쇼핑 리스트의 다이어리합계///////////
+	
+	public int countdiary(int no) {
+		int diaryNo = shoppingDao.diarycount(no);
+		
+		return diaryNo +1;
+	}
 }

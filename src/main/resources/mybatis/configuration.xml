@@ -6,6 +6,8 @@
     	<typeAlias alias="UserVo" type="com.mydeco.vo.UserVo" />
     	<typeAlias alias="ProductVo" type="com.mydeco.vo.ProductVo" />
     	<typeAlias alias="ProdImgVo" type="com.mydeco.vo.ProdImgVo" />
+    	<typeAlias alias="ShoppingCmtVo" type="com.mydeco.vo.ShoppingCmtVo" />
+    	
     </typeAliases>
 
     <mappers>

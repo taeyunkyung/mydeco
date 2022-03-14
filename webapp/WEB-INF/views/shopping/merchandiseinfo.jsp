@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class=" mainImgbox imgcenter">
-                                            <img class="mainImgbox" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
+                                           <img class="mainImgbox" id="img0" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
                                            
                                         </div>
                                     </div>
@@ -53,9 +53,10 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="imgcenter">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}">
-                                            <img class="prodImg2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}">
+                                            <img class="prodImg2" id="img1" src="${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}">
+                                            <img class="prodImg2" id="img2" src="${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}">
+                                            <img class="prodImg2" id="img3" src="${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}">
+                                            <img class="prodImg2" id="img4" src="${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}">
                                         </div>
                                     </div>
                                 </div>
@@ -156,21 +157,24 @@
                                 <!--/ajax로 출력할부분  -->
 
                                  <!-- ajax로 출력할부분 -->
-                                 <div class="row backgroundgray">
-                                    <div class="col-xs-10">
-                                        <span class="recomandfontstyle">명수박님</span>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <span class="text-right">2022-02-22</span>
-                                    </div>
-                                </div>
-                                <div class="row backgroundgray">
-                                    <div class="col-xs-12">
-                                        <div class="height60">
-                                            <span>오랜 친구를 보내시는군요 섭섭하시겠어요</span>
-                                        </div>    
-                                    </div>
-                                </div>
+                                 <c:forEach items="${cmtList}" var="vo">    
+											<div class="row backgroundgray">
+		
+			                                    <div class="col-xs-10">
+			                                        <span class="recomandfontstyle">${vo.name }님</span>
+			                                    </div>
+			                                    <div class="col-xs-2">
+			                                        <span class="text-right">${vo.regDate}</span>
+			                                    </div>
+		                              		</div>	                            	
+		                                	<div class="row backgroundgray">	                             
+		                                  	  	<div class="col-xs-12">
+			                                        <div class="height60">
+			                                            <span>${vo.cmtContent}</span>
+			                                        </div>    
+		                                   		</div>	                              
+			                                </div>
+                                </c:forEach>
 
                                 <!--/ajax로 출력할부분  -->
                             </div>
@@ -197,8 +201,13 @@
 
     	var cmttext = $("#cmttext").val();
     	
-    	var ShoppingCmtVo = {cmtContent: cmttext};
+    	var prodNo = ${product.prodNo};
+    	
+    	var ShoppingCmtVo = {cmtContent: cmttext,
+    						 prodNo: prodNo};
     	console.log(cmttext);
+    	console.log(prodNo);
+    	
     	$.ajax({
     		
     		url : "${pageContext.request.contextPath }/shopping/cmtwrite",		
@@ -223,6 +232,64 @@
     		}
     	});
     });
+    
+    //////////////////////////////////////////이미지 순서바꾸기//////////////////
+    
+    $("#img1").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
+    
+    $("#img2").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
+    
+    $("#img3").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
+    
+    $("#img4").on("click",function(){
+		console.log("이미지클릭");
+		$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		$("#img1").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+		$("#img2").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+		$("#img3").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+		$("#img4").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+		
+	});
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </script>
     
     

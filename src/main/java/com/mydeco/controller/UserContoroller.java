@@ -53,4 +53,20 @@ public class UserContoroller {
 		}
 	}
 	
+	
+	
+	//로그아웃
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		System.out.println("로그아웃 집에가라 이제");
+		
+		session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:loginForm";
+	}
+	
+	
+	
+	
 }

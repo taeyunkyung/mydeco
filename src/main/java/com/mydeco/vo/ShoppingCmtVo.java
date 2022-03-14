@@ -10,13 +10,14 @@ public class ShoppingCmtVo {
 	private int groupNo;
 	private int cmtSeq;
 	private int depth;
+	private String name;
 
 	public ShoppingCmtVo() {
 
 	}
 
-	public ShoppingCmtVo(String cmtNo, int prodNo, int userNo, String cmtContent, String regDate, int groupNo, int cmtSeq,
-			int depth) {
+	public ShoppingCmtVo(String cmtNo, int prodNo, int userNo, String cmtContent, String regDate, int groupNo,
+			int cmtSeq, int depth, String name) {
 
 		this.cmtNo = cmtNo;
 		this.prodNo = prodNo;
@@ -26,6 +27,7 @@ public class ShoppingCmtVo {
 		this.groupNo = groupNo;
 		this.cmtSeq = cmtSeq;
 		this.depth = depth;
+		this.name = name;
 	}
 
 	public String getCmtNo() {
@@ -92,11 +94,19 @@ public class ShoppingCmtVo {
 		this.depth = depth;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		return "ShoppingCmt [cmtNo=" + cmtNo + ", prodNo=" + prodNo + ", userNo=" + userNo + ", cmtContent="
+		return "ShoppingCmtVo [cmtNo=" + cmtNo + ", prodNo=" + prodNo + ", userNo=" + userNo + ", cmtContent="
 				+ cmtContent + ", regDate=" + regDate + ", groupNo=" + groupNo + ", cmtSeq=" + cmtSeq + ", depth="
-				+ depth + "]";
+				+ depth + ", name=" + name + "]";
 	}
 
 }
