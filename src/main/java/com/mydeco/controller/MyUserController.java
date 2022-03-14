@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MyUserService;
@@ -52,26 +53,31 @@ public class MyUserController {
 			return result;
 		}
 	}
-
-	@RequestMapping("/pwcheck")
-	public String pwcheck() {
-		return "user/user-pwcheck";
-	}
 	
 	@ResponseBody
-	@RequestMapping("/pwchkResult")
-	public String pwchkResult(HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		String targetPw = authUser.getPassword();
-		return targetPw;
+	@RequestMapping("/idCheck")
+	public boolean idCheck(@RequestParam("keyword") String keyword) {
+		return myUserService.idCheck(keyword);
 	}
 
 	@RequestMapping("/modifyForm")
 	public String modifyForm(HttpSession session, Model model) {
+		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		authUser.getUserNo();
+		UserVo userVo = myUserService.modifyForm(authUser.getUserNo());
+		model.addAttribute("userVo", userVo);
 		
 		return "user/modifyForm";
+	}
+	
+	@RequestMapping("/modify")
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println(userVo);
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		userVo.setUserNo(authUser.getUserNo());
+		myUserService.modify(userVo);
+		
+		return "redirect:/my/modifyForm";
 	}
 
 	@RequestMapping("/leave")

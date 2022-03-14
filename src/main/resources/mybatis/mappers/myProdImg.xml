@@ -45,5 +45,21 @@
 			where prodNo = #{prodNo}
 		]]>
 	</select>
+	
+	<select id="commentCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) commentCnt
+			from comments
+			where prodNo = #{prodNo}
+		]]>
+	</select>
+	
+	<select id="imgList" parameterType="int" resultType="ProdImgVo">
+		<![CDATA[
+			select  prodImgSrc
+			from prodImg
+			where prodNo = #{prodNo}
+		]]>
+	</select>
 
 </mapper>

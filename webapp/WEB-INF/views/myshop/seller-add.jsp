@@ -16,7 +16,8 @@
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 
 <style>
-.diarySelect {width: 13px}
+#d-table {width: 100%;}
+svg {width: 40%; height: 40%;}
 </style>
 </head>
 <body>
@@ -33,7 +34,12 @@
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
 					<form action="${pageContext.request.contextPath}/myshop/add" method="post" enctype="multipart/form-data">
+					<!-- <form name="dataForm" id="dataForm" onsubmit="return register()"> -->
 						<table id="a-table">
+							<colgroup>
+								<col style="width: 80px">
+								<col style="width: 600px">
+							</colgroup>
 							<tr>
 								<td id="sub" colspan="2">
 									<h3>새 상품 등록</h3>
@@ -115,10 +121,16 @@
 												</div>
 												<div class="modal-body">
 													<table id="d-table">
+														<colgroup>
+															<col style="width: 100px">
+															<col style="width: 350px">
+															<col style="width: 244px">
+															<col style="align: center">
+														</colgroup>
 														<tr>
 															<td>번호</td>
-															<td style="width: 260px">제목</td>
-															<td style="width: 240px">날짜</td>
+															<td>제목</td>
+															<td>날짜</td>
 															<td>선택</td>
 														</tr>
 														<c:forEach items="${diaryList}" var="diaryVo">
@@ -195,14 +207,46 @@
 	/*var html = 
 		'<a href="javascript:void(0)" onclick="delImg('+ index +')" id="imgId+'+ index +'"><img src="'+ e.target.result +'" data-file="'+ f.name +'" class="img-img" title=""></a>';
 	*/
+	
 	function delImg(index) {
 		console.log("index:"+index);
 		submitFiles.splice(index, 1);
 		
-		$("#imgId" +index).remove();
+		$("#imgId"+index).remove();
 		
 		console.log(submitFiles);		
 	}
+	
+	/*function register() {
+		var form = $("form")[0];
+		var formData = new FormData(form);
+		for(var i=0; submitFiles.length; i++) {
+			formData.append("uploadFiles", submitFiles[i]);
+		}
+		
+		var prodInfo = {
+				formData: formData,
+				prodName: $("[name='prodName']").val(),
+				emotion: $("[name='emotion']").val(),
+				price: $("[name='price']").val(),
+				delivery: $("[name='delivery']").val(),
+				diaryNo: $("[name='diaryNo[]']").val()
+			}
+		
+		$.ajax({
+			contentType: false,
+			processData: false,
+			enctype: "multipart/form-data",
+			data: prodInfo,
+			url: "${pageContext.request.contextPath}/myshop/addFormData",
+			type: 'POST',			
+			
+			success: function(){
+				
+			}
+		});
+		return false;
+	}*/
 	
 	/* 선택한 이미지 미리보기
 	var inputMultipleImage = document.getElementById("prod-img");
@@ -245,11 +289,23 @@
 		console.log(diary);
 		
 		var input = document.createElement("input");
+		input.setAttribute("type", "hidden");
 		input.setAttribute("name", "diaryNo[]");
 		input.setAttribute("value", diary);
 		document.querySelector("div#diary-area").appendChild(input);
+		init();
 				
+		$("input[type=checkbox]").prop("checked", false);
 	});
+	
+	$("[aria-label='Close']").on("click", function() {
+		$("input[type=checkbox]").prop("checked", false);
+	});
+	
+	function init() {
+		var val = localStorage.Test4;
+		document.querySelector("div#diary-area").innerHTML = val;
+	}	
 	
 </script>
 </html>

@@ -40,7 +40,7 @@
 							<td><label for="userId">아이디</label></td>
 							<td><input id="userId" type="text" name="id" value=""
 								placeholder="영문 또는 영문 혹은 숫자를 조합"></td>
-							<td><input type="button" class="button" id="chkidBtn" value="중복확인"></td>
+							<td><input type="button" class="button" id="btnIdCheck" data-no="0" value="중복확인"></td>
 						</tr>
 
 						<tr>
@@ -132,18 +132,50 @@
 		console.log("시작");
 	});
 	
+	$("#btnIdCheck").on("click", function() {
+		$("#btnIdCheck").data("no", 1); console.log($("#btnIdCheck").data("no"));
+		var keyword = $("#userId").val();
+		
+		$.ajax({			
+			url : "${pageContext.request.contextPath}/my/idCheck",		
+			type : "post",
+			//contentType : "application/json",
+			data : {keyword: keyword},
+
+			dataType : "json",
+			success : function(result){
+				if(result == true) {
+					alert("사용가능한 아이디입니다.")
+				} else {
+					alert("다른 아이디로 가입해주세요.");
+				}														
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}				
+		});
+	});
+	
 	$("#submitBtn").on("click", function() {
 		console.log("가입버튼");
 		var id = $("[name='id']").val();
-		var password = $("[name='password']").val();
+		var password = $("[name='password']").val();		
 		var name = $("[name='name']").val();
 		var personalNo = $("[name='pn1']").val() +"-"+ $("[name='pn2']").val();
 		var hp = $("[name='hp']").val();
 		var gender = $("[name='gender']").val();
 		var mbti = $("[name='mbti']").val();
 		
+		var pwcheck = $("[name='pwcheck']").val();
+		
 		if(!id || !password || !name || !personalNo || !hp || !gender) {
 			alert("필수입력사항을 모두 입력해주세요.");
+			return false;
+		} else if(password != pwcheck || !pwcheck) {
+			alert("비밀번호를 다시 한 번 입력해주세요.");
+			return false;
+		} else if($("#btnIdCheck").data("no")==0) {
+			alert("아이디 중복확인을 완료해주세요.");
 			return false;
 		}
 		
@@ -175,10 +207,6 @@
 			}	
 		}); 
 	});
-	
-	$("#chkidBtn").on("click", function(){
-		console.log("중복확인");
-	});	
 	
 	// 임시 로그인 기능
 	$("#loginBtn").on("click", function() {
