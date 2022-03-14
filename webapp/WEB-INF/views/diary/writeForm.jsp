@@ -38,7 +38,7 @@
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
                                 <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
-                                <input type="text" id="datepicker" name="diaryDate" value="2022-03-24" style="width: 110px; height: 30px; padding: 15px;">
+                                <input type="text" id="datepicker" name="diaryDate" style="width: 110px; height: 30px; padding: 15px;">
                             </div>                          
  
                             <!--날씨/선택박스-->
@@ -49,8 +49,8 @@
                                 <!--선택박스-->
                                 <div class="selectbox-weather">
                                     <form>
-                                        <select name="weather" class="selectbox-we">
-                                            <option value="none">ㅡㅡ 선택 ㅡㅡ</option>
+                                        <select id="weatherselectbox" name="weather" class="selectbox-we">
+                                            <option value="">ㅡㅡ 선택 ㅡㅡ</option>
                                             <option value="sunny">맑음</option>
                                             <option value="rainy">비</option>
                                             <option value="snow">눈</option>
@@ -64,7 +64,7 @@
                                     <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" style="margin-left:-100px;" type="radio" name="protect" value="공개">공개</label>                                                                     
+                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -274,6 +274,8 @@
 		console.log(stickerSrc);
 		
 		fabric.Image.fromURL(stickerSrc, function(oImg) {
+			//oImg.set({'borderColor': '#686099'});
+			oImg.set({'cornerColor': '#686099'});
 
 			//객체에 스티커번호 추가
 			oImg.stickerNo = stickerNo;
@@ -282,6 +284,8 @@
 		});
 		
 	});
+
+	
 
 	//텍스트박스를 클릭했을때
 	$("[name=textbox]").on("click", function(){
@@ -293,7 +297,8 @@
 			left: 30,
 			width: 300,
 			height: 300,
-			fontSize: 18
+			fontSize: 18,
+			cornerColor: '#686099'
 		});
 		
 		canvas.add(text);
@@ -302,6 +307,19 @@
 		text.enterEditing();
 		text.hiddenTextarea.focus();
 	})
+	
+	//del키를 눌렀을때
+	$("body").on("keyup",function(){
+		if ( event.keyCode == 46 || event.which == 46 ) {
+			
+			//현재 선택된(활성화된)) 객체를 가져온다.
+			var activeObject = canvas.getActiveObject()
+			
+			//객체를 삭제한다.
+			canvas.remove(activeObject);
+		}
+	})
+	
 
 	
 	/*저장 버튼을 눌렀을때*/
@@ -309,8 +327,8 @@
 		
 		var userNo = $("[name=userNo]").val();
 		var diaryDate = $("[name=diaryDate]").val();
-		var weather = $("[name=weather]").val();
-		var protect = $("[name=protect]").val();
+		var weather = $("#weatherselectbox option:selected").val();
+		var protect = $(":input:radio[name=protect]:checked").val();
 		var title = $("[name=title]").val();
 		
 		/*글쓰기폼 입력경고창*/
@@ -318,7 +336,7 @@
 			alert('날짜를 선택해주세요');
 			return;
 		}
-		if(weather == null){
+		if(weather == ''){
 			alert('날씨를 선택해주세요');
 			return;
 		}
@@ -353,7 +371,7 @@
 			diaryItemVo.scaleX = canvasObjList[i].scaleX;
 			diaryItemVo.scaleY = canvasObjList[i].scaleY;
 			diaryItemVo.angle = canvasObjList[i].angle;
-			
+	
 			diaryItemVo.stickerNo = canvasObjList[i].stickerNo;
 			
 			diaryItemVo.text = canvasObjList[i].text;

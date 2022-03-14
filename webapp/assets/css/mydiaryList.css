@@ -116,6 +116,7 @@
     width: 100px;
     height: 30px;
     float: right;
+    margin-right:22px;
 }
 
 
@@ -133,6 +134,7 @@ a.btn-diarylist {
 .selectbox-small{
     padding: 6px;
     margin-left: 116px;
+    text-align:center;
 }
 
 
@@ -309,6 +311,7 @@ a.btn-diarylist {
  }
 
  .cal_nav5{
+ /*
     width:705px;
     height: 320px;
     display: flex;
@@ -318,7 +321,7 @@ a.btn-diarylist {
     font-weight: 700;
     font-size: 30px;
     background-color: #686099;
-    color: #ffffff;
+    color: #ffffff;*/
     margin-top: 7px;
   
  }
@@ -407,12 +410,11 @@ a.btn-diarylist5 {
 }
 
 .mydiaryText-list2{
-    width:550px; 
+    width:545px; 
     height:155px; 
     float:left; 
     padding-top: 20px; 
     padding-left: 10px;
-    border-bottom: 1px solid #686099; 
 }
 
 .mydiaryImg{
@@ -450,7 +452,9 @@ div.mydiary-Date{
 }
 
 .mydiary-list-box2{
-    width: 705px; height: 155px;
+    width: 700px; height: 155px;
+    border-bottom: 1px solid #686099; 
+    
 }
 
 
@@ -779,7 +783,7 @@ button.btn-search:hover{
 }
 
 .sectionLine{
-    width: 705px;
+    width: 700px;
     border-bottom: 1px solid #686099;
 }
 
@@ -792,6 +796,24 @@ button.btn-search:hover{
 h3.subtitle{
 	font-family: 'SCDream4';
     font-size: 20px;
+    margin-left:20px;
 }
 
 
+#main-content{
+	margin-left:-15px; 
+	margin-top:15px;
+}
+
+.ui-datepicker{
+	width: 700px !important;
+	height: 300px !important;
+}
+	
+.writedDay {
+	background-color: #7030A0;
+}
+
+.readCanvas{
+	margin-left:58px;
+}

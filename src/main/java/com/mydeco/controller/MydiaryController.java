@@ -1,5 +1,6 @@
 package com.mydeco.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,13 +29,50 @@ public class MydiaryController {
 		System.out.println("mydiarycontroller-list");
 		UserVo authUser = (UserVo)Session.getAttribute("authUser");
 		
-		List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+		/*로그인 사용자일때*/
+		if(authUser!= null) {
+			/*일기 리스트*/
+			List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+			model.addAttribute("diarycontentList", diarycontentList);
+			System.out.println("=============================");
+			System.out.println(diarycontentList);
+			
+			/*일기쓴 날짜리스트*/
+			List<DiaryContentVo> day = mydiaryService.getDiaryDateList(authUser);
+			model.addAttribute("dayList", day);
+			return "diary/list";
+		}else {
+			/*비로그인 사용자*/
+			return "diary/list-notLogin";
+		}
+		
+	}
+	
+	/*일기 쓴 날짜 리스트*/
+	
+	@ResponseBody
+	@RequestMapping("/datelist")
+	public List<DiaryContentVo> dateList(HttpSession Session) {
+		
+		UserVo authUser = (UserVo)Session.getAttribute("authUser");
+		System.out.println(authUser.getUserNo());
+		List<DiaryContentVo> day = mydiaryService.getDiaryDateList(authUser);
+		
+		/*
+		List<DiaryContentVo> diaryDayList = new ArrayList<DiaryContentVo>();
+		for(int i=0; i<day.size(); i++) {
+			String diaryDate = day.get(i).getDiaryDate();//diaryDate 하나의 값
+			DiaryContentVo wday = new DiaryContentVo(diaryDate);//diaryDate값으로 vo만들기
+			diaryDayList.add(wday);
+			//return wday;
+		}*/
+		
 		System.out.println("=============================");
-		System.out.println(diarycontentList);
+		//System.out.println(diaryDayList);
+		System.out.println("=============================");
 		
-		model.addAttribute("diarycontentList", diarycontentList);
+		return day;
 		
-		return "diary/list";
 	}
 	
 
@@ -70,8 +108,7 @@ public class MydiaryController {
 		} catch (Exception e) {
 			System.out.println(e);
 			return "fail";
-		}
-		// mydiaryService.addSticker(diarycontentvo);*/
+		}*/
 	}
 	
 	
