@@ -191,7 +191,7 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">"${diarycontent.title}"</h4>
+		        <h4 class="modal-title" id="modalDiaryTitle" ></h4>
 		      </div>
 		      <div class="modal-body">
 		      
@@ -292,6 +292,10 @@ $(".mydiary-list-box2").on("click",function(){
 	    	
 		    console.log(DiaryContent);
 		    console.log(DiaryContent.itemList); //DiaryContentVo의 필드값 이름으로 값 빼내기 가능
+		    
+		    //제목쓰기
+		    $("#modalDiaryTitle").text(DiaryContent.title);
+		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
 		    for(var i=0; i<DiaryItemList.length; i++){
