@@ -47,12 +47,19 @@ public class LetterDao {
 		
 	}
 	
-	//편지 목록 불러오기
-	public void selectList() {
-		sqlSession.selectList("myLetter.selectList");
-		
-		
+	//편지 목록 불러오기 : 보낸 편지 목록
+	public List<LetterVo> selectSaveList() {
+		List<LetterVo> saveList = sqlSession.selectList("myLetter.selectSaveList");
+
+		return saveList;
+	}
 	
+	//편지 목록 불러오기 : 작성중인 편지 목록
+	public List<LetterVo> selectKeepList() {
+		List<LetterVo> keepList = sqlSession.selectList("myLetter.selectKeepList");
+
+		
+		return keepList;
 	}
 	
 	

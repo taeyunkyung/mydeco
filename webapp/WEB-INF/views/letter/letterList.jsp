@@ -23,14 +23,8 @@
 	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>         
     
     
-                <div class="col-xs-3" id="aside">
-                    <ul>
-                        <li id="title">Pen & Paper</li>
-                        <li><a href="">나의 일기</a></li>
-                        <li><a href="">쪽지</a></li>
-                        <li><a href="">우체통</a></li>
-                    </ul>
-                </div>
+               	<!-- aside -->
+				<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
                 
     
                 <div class="col-xs-9" id="main-content">
@@ -52,26 +46,39 @@
                             
                             <section id="content1">
                             	<div class="tap_content">
-                                	<div class="envelope" id="popup_open_btn">
-                                    	<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/envelope.png"> </div>
-                                    	<div class="day">
-                                    		<h3 class="Dday">D-Day</h3>
-                                    		<p class="sendDay">보낸 날짜: 2022.02.14</p>
-                                    		<p class="openDay">공개 날짜: 2022.03.14</p>
-                                    	</div>
-                                   	</div>
-                                   	
-                                   	<div class="envelope">
-                                    	<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
-                                    	<div class="day">
-                                    		<p class="RsendDay">보낸 날짜: 2021.02.14</p>
-                                    		<p class="read">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란
-                                    		</p>
-                                    		<p class="RopenDay">공개 날짜: 2022.02.14</p>
-                                    	</div>
-                                   	</div>
-                                </div>
+
+									<c:forEach items="${requestScope.letterSaveList}" var="letterVo">
+										<c:if test="${letterVo.userNo == authUser.userNo}">
+											<c:choose>
+												<c:when test="${letterVo.readYN eq 'NO'}">
+													<div class="envelope" id="popup_open_btn">
+														<div class="envelope-img">
+															<img src="${pageContext.request.contextPath}/assets/img/envelope.png">
+														</div>
+														<div class="day">
+															<h3 class="Dday">    </h3>
+															<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
+															<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="envelope" id="popup_open_btn">
+														<div class="envelope-img">
+															<img src="${pageContext.request.contextPath}/assets/img/read.png">
+														</div>
+														<div class="day">
+															<p class="RsendDay">보낸 날짜: ${letterVo.regDate}</p>
+															<p class="RopenDay">공개 날짜: ${letterVo.openDay}</p>
+															<p class="read">${letterVo.text}</p>
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+									</c:forEach>
+
+								</div>
                                 
                                 <div class="page">
                                 	<p class="page-no">◀  1  2  3  4  5  6  7  8  9  10  ▶</p>
@@ -80,17 +87,25 @@
                             
                                 <section id="content2">
                                     <div class="tap_content">
-                                    	<div class="envelope">
-                                    		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
-                                    		<div class="day">
-	                                    		<p class="saveday">저장일: 2021-02-14</p>
-	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-	                                    		</p>
-                                   			</div>
-                                   		</div> <!-- //envelope -->
-                
-                                    </div>
+
+
+									<c:forEach items="${requestScope.letterKeepList}" var="letterVo">
+										<c:if test="${letterVo.userNo == authUser.userNo }">
+											<div class="envelope" >
+												<div class="envelope-img">
+													<img
+														src="${pageContext.request.contextPath}/assets/img/read.png">
+												</div>
+												<div class="day">
+													<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
+													<p class="letter-ing">${letterVo.text}</p>
+												</div>
+											</div>
+										</c:if>
+									</c:forEach>
+
+
+								</div>
                                     <!-- //tap_content -->
                                     
                                    	<div class="page">

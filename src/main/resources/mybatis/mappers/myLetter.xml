@@ -59,17 +59,41 @@
 	</insert>
 	
 	
-	<!-- 편지 목록 불러오기 -->
-	<select id="selectList" resultType="LetterVo">
+	<!-- 편지 목록 불러오기 : 보낸 편지 목록 -->
+	<select id="selectSaveList" resultType="LetterVo">
     	<![CDATA[
-    		select  letterNo 
-        			userNo,
-        			regDate,
-			        opeanDay,
+			select  li.letterNo letterNo, 
+			        userNo,
+			        to_char(regDate, 'yyyy-mm-dd') regDate,
+			        to_char(openDay, 'yyyy-mm-dd') openDay,
+			        bgmSrc,
 			        readYN,
-			        saveYN 
-			from letter
-			order by regDate desc
+			        saveYN,
+			        text
+			from letter le, letterItem li
+			where le.letterNo = li.letterNo
+            and saveYN = 'YES'
+			and  text is not null
+			order by regDate asc
+    	]]>
+	</select>
+	
+	<!-- 편지 목록 불러오기 : 작성중인 편지 목록 -->
+	<select id="selectKeepList" resultType="LetterVo">
+    	<![CDATA[
+			select  le.letterNo, 
+			        userNo,
+			        to_char(regDate, 'yyyy-mm-dd') regDate,
+			        to_char(openDay, 'yyyy-mm-dd') openDay,
+			        bgmSrc,
+			        readYN,
+			        saveYN,
+			        text
+			from letter le, letterItem li
+			where le.letterNo = li.letterNo
+            and saveYN = 'NO'
+			and  text is not null
+			order by regDate asc
     	]]>
 	</select>
 	
