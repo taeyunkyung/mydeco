@@ -32,7 +32,7 @@
 	   
 </head>
 <body>
-	 <div id="wrap" style="margin-left:17px;">
+	 <div id="wrap">
         <div class="container">
             <div class="row">
 

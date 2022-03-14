@@ -5,7 +5,7 @@
                         <ul>
                             <li id="title">Pen & Paper</li>
                             <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
-                            <li><a href="">소통카드</a></li>
-                            <li><a href="">우체통</a></li>
+                            <li><a href="${pageContext.request.contextPath}/card/main">소통카드</a></li>
+                            <li><a href="${pageContext.request.contextPath}/letter">우체통</a></li>
                         </ul>
                     </div>
