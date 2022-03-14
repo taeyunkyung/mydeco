@@ -23,14 +23,8 @@
 	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>         
     
     
-                <div class="col-xs-3" id="aside">
-                    <ul>
-                        <li id="title">Pen & Paper</li>
-                        <li><a href="">나의 일기</a></li>
-                        <li><a href="">쪽지</a></li>
-                        <li><a href="">우체통</a></li>
-                    </ul>
-                </div>
+               	<!-- aside -->
+				<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
                 
     
                 <div class="col-xs-9" id="main-content">
@@ -62,7 +56,7 @@
 															<img src="${pageContext.request.contextPath}/assets/img/envelope.png">
 														</div>
 														<div class="day">
-															<h3 class="Dday"></h3>
+															<h3 class="Dday">    </h3>
 															<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
 															<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
 														</div>
