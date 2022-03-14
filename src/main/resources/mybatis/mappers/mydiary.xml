@@ -18,10 +18,29 @@
 			]]>
 	</select>
 	
+	
+	<!-- 다이어리번호별 리스트 가져오기 -->
+	<!--  
+	<select id="getDiaryNoContentList" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				select diaryNo,
+				       userNo,
+				       to_char(diaryDate, 'YYYY-MM-DD')diaryDate,
+				       weather,
+				       protect,
+				       title,
+				       diaryBgmSrc
+				from diary
+				where diaryNo = #{diaryNo}
+			]]>
+	</select>-->
+	
+	
 	<!-- 다이어리에 사용된 스티커리스트 가져오기 -->
 	<select id="getDiaryStickerList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
 			<![CDATA[
 				select diaryItemNo,
+					   diaryNo,
 				       stickerNo,
 				       top,
 				       left,
@@ -31,6 +50,16 @@
 				       text
 				from item
 				where diaryNo = #{diaryNo}
+			]]>
+	</select>
+	
+	
+	<!-- 다이어리 쓴 날짜 리스트 가져오기 -->
+	<select id="getDiaryDateList" parameterType="com.mydeco.vo.UserVo" resultType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				select to_char(diaryDate, 'YYYY-MM-DD')diaryDate
+				from diary
+				where userNo = #{userNo}
 			]]>
 	</select>
 

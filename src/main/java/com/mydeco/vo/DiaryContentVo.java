@@ -18,6 +18,12 @@ public class DiaryContentVo {
 	}
 	
 	
+	public DiaryContentVo(String diaryDate) {
+		this.diaryDate = diaryDate;
+	}
+
+
+
 	public DiaryContentVo(int userNo, String diaryDate, String weather, String protect, String title) {
 		super();
 		this.userNo = userNo;

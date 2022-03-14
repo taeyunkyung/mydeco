@@ -118,3 +118,8 @@ button.mydiary-read-save-btn{
 .setContent{
 	margin-left: -15px;
 }
+
+.modal-lg{
+	max-width:800px;
+	height:800px;
+}
