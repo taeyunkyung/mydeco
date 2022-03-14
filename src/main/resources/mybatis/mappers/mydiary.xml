@@ -19,9 +19,8 @@
 	</select>
 	
 	
-	<!-- 다이어리번호별 리스트 가져오기 -->
-	<!--  
-	<select id="getDiaryNoContentList" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
+	<!--다이어리번호가 ?인 다이어리 정보 가져오기(스티커 아이템제외) -->
+	<select id="getDiary" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
 			<![CDATA[
 				select diaryNo,
 				       userNo,
@@ -33,15 +32,16 @@
 				from diary
 				where diaryNo = #{diaryNo}
 			]]>
-	</select>-->
+	</select>
 	
 	
-	<!-- 다이어리에 사용된 스티커리스트 가져오기 -->
-	<select id="getDiaryStickerList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
+	<!--다이어리번호가 ?인 다이어리에 사용된 스티커리스트 가져오기 -->
+	<select id="getDiaryItemList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
 			<![CDATA[
 				select diaryItemNo,
 					   diaryNo,
 				       stickerNo,
+				       stickerSrc,
 				       top,
 				       left,
 				       scaleX,
@@ -70,6 +70,7 @@
 				values(seq_sticker_no.nextval,#{stickerName},#{stickerSrc})		
 			]]>
 	</insert>
+	
 	
 	<insert id="diary-db-p" parameterType="com.mydeco.vo.PaperVo">
 			<![CDATA[
@@ -111,12 +112,12 @@
 	</select><!-- 요기 -->
 	
 	
-	<!-- 일기에 쓴 스티커 db에 저장 -->
+	<!-- 일기에 사용된 스티커 db에 저장 -->
 	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryItemVo">
 	
 			<![CDATA[
-				insert into item(diaryitemNo, diaryNo, stickerNo, top, left, scaleX, scaleY, angle, text)
-				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
+				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text)
+				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
 			]]>
 	</insert>
 </mapper>
