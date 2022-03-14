@@ -32,7 +32,11 @@ public class ShoppingController {
 		List<ProductVo> merchandiseList = shoppingService.getmerchandiseList();
 		model.addAttribute("merchandiseList",merchandiseList);
 		
-	
+		List<ProductVo> cntdiaryList = shoppingService.countDiary();
+		List<ShoppingCmtVo> cntcmtList = shoppingService.countCmt();
+		
+		System.out.println("카운트 다이어리다" +cntdiaryList);
+		System.out.println("카운트 코멘트다" +cntcmtList);
 		return "shopping/shoppingmain";
 	}
 	
@@ -83,7 +87,7 @@ public class ShoppingController {
 		shoppingService.cmtwrite(shoppingCmtVo);
 		
 		System.out.println("리다이렉트 바로전");
-		return "redirect:merchandise";
+		return "redirect:shopping/merchandise";
 	}
 	
 	

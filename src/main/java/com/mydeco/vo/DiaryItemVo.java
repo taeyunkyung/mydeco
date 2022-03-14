@@ -33,8 +33,6 @@ public class DiaryItemVo {
 		this.text = text;
 	}
 	
-	
-
 
 	public DiaryItemVo(int diaryItemNo, int stickerNo, String stickerSrc, double top, double left, double scaleX,
 			double scaleY, double angle, String text) {
@@ -51,8 +49,21 @@ public class DiaryItemVo {
 	}
 
 
-	
-	
+	/*스티커경로까지 갖고오기*/
+	public DiaryItemVo(int stickerNo, String stickerSrc, double top, double left, double scaleX, double scaleY,
+			double angle, String text) {
+		super();
+		this.stickerNo = stickerNo;
+		this.stickerSrc = stickerSrc;
+		this.top = top;
+		this.left = left;
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+		this.angle = angle;
+		this.text = text;
+	}
+
+
 	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, double top, double left, double scaleX,
 			double scaleY, double angle, String text) {
 		super();

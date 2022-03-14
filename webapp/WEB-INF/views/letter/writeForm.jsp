@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/letter2.css">
 
+
 <script src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 </head>
@@ -25,18 +26,21 @@
                 <div class="letterwriteForm-write-region clearfix">
                     <div class="letterwriteForm-left">
                         <div class="letterwriteForm-da-we clearfix">
-
-							<div class="letter-openday" style="margin-left: 22px;">공개일
-								:</div>
+							
+							<div class="letter-openday" style="margin-left: 22px;">공개일:</div>
 							<select name="Dday" id="openday-select">
-								<option value="">-- 공개일 선택 --</option>
+								<option value="none">-- 공개일 선택 --</option>
 								<option value="month">한 달 뒤</option>
-								<option value="half-year">반년 뒤</option>
+								<option value="halfYear">반년 뒤</option>
 								<option value="year">1년 뒤</option>
 							</select>
-
+							
+							<div id="openDay">
+								
+							</div>
+							
 							<div class="writeform-top-button"> 
-                            	<input type="submit" class="button writeform-save" value="편지 보내기">
+                            	<input type="submit" class="button writeform-save" id="btnSave" value="편지 보내기">
                             </div>
                            
                         </div>
@@ -49,8 +53,8 @@
                         
                         <div>
                             <div class="writeform-button">
-                                <a class="writeform-modify">임시 저장</a>
-                                <a class="writeform-modify">취소</a>
+                                <a class="writeform-modify" id="btnKeep">임시 저장</a>
+                                <a class="writeform-modify" href="${pageContext.request.contextPath}/letter">취소</a>
                             </div>
 
                          
@@ -59,6 +63,21 @@
                     </div>                                                    
 
                     <div class="letterwriteForm-right">
+                    	
+                        <div class="clearfix">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="button writeform-btn-left writeform-deco-btn">
+                                    <label for="chooseFile">
+                                    	<div class="photowid">사진</div>
+                                    </label>
+                            
+                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+                                </div>
+                            </form>
+                            <div class="writeform-btn-right">
+                                <input type="submit" name="textbox" data-stickerno="9999999" class="button writeform-deco-btn" value="텍스트">
+                            </div>
+                        </div>
 
                         <!--스티커/bgm-->
                         <div class="menu-box">
@@ -77,7 +96,7 @@
                             </ul>
                            
                             <div id="tab-1" class="tab-content current content-box">
-                             	<div id="sticker-text" data-stickerno="9999999" >텍스트 상자</div>
+                 
                              	
                              	<c:forEach items="${stickerList}" var="stickVo">
 									<div>
@@ -150,12 +169,12 @@ $(document).ready(function(){
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
 	 width: 695,
-	 height: 690,
+	 height: 700,
 	 backgroundColor: '#686099'
 }); 
 
 //텍스트 상자를 클릭했을때
-$("#sticker-text").on("dblclick", function(){
+$("[name=textbox]").on("click", function(){
 	var stickerNo= $(this).data("stickerno")
 	
 	var text = new fabric.Textbox("텍스트를 입력하세요", {
@@ -177,7 +196,7 @@ $("#sticker-text").on("dblclick", function(){
 
 
 //스티커를 클릭했을때
-$(".sticker").on("dblclick", function(){
+$(".sticker").on("click", function(){
 	var stickerNo= $(this).data("stickerno")
 	var stickerSrc = $(this).data("stickerpath")
 	
@@ -211,5 +230,169 @@ $("body").on("keyup",function(){
 })
 
 
+//편지 보내기 버튼을 눌렀을 때
+$("#btnSave").on("click", function(){
+	console.log("저장클릭");
+	
+	var element = document.getElementById("openDay");
+	var openDay = element.innerText;
+	var saveYN = "YES";
+	
+	console.log(openDay);
+	
+	/*글쓰기폼 입력 경고창*/
+	if(openDay == null || openDay == '' || openDay.trim() == ''){
+		alert('공개일을 선택해주세요');
+		return;
+	}
+	
+	var letterVo = {
+			openDay: openDay,
+			saveYN: saveYN
+	};
+	
+	//캔버스에 있는 전체 객체를 배열로 가져온다
+	var canvasObjList = canvas.getObjects();
+	
+
+	//서버로 전송할 객체들 배열
+	var letterItemList = [];
+	
+	
+	for(var i=0; i<canvasObjList.length; i++){
+		var letterItemVo = {};
+		letterItemVo.top = canvasObjList[i].top;
+		letterItemVo.left = canvasObjList[i].left;
+		letterItemVo.letterPointX = canvasObjList[i].scaleX;
+		letterItemVo.letterPointY = canvasObjList[i].scaleY;
+		letterItemVo.angle = canvasObjList[i].angle;
+		
+		letterItemVo.stickerNo = canvasObjList[i].stickerNo;
+		
+		letterItemVo.text = canvasObjList[i].text;
+		
+		letterItemList.push(letterItemVo);
+	}
+
+	letterVo.itemList = letterItemList
+	
+	writeLetter(letterVo);
+	
+})
+
+//임시 저장 버튼을 눌렀을 때
+$("#btnKeep").on("click", function(){
+	console.log("저장클릭");
+	
+	var element = document.getElementById("openDay");
+	var openDay = element.innerText;
+	var saveYN = "NO";
+	
+	/*글쓰기폼 입력 경고창*/
+	if(openDay == null || openDay == '' || openDay.trim() == ''){
+		alert('공개일을 선택해주세요');
+		return;
+	}
+	
+	var letterVo = {
+			openDay: openDay,
+			saveYN: saveYN
+	};
+	
+	//캔버스에 있는 전체 객체를 배열로 가져온다
+	var canvasObjList = canvas.getObjects();
+	
+
+	//서버로 전송할 객체들 배열
+	var letterItemList = [];
+	
+	
+	for(var i=0; i<canvasObjList.length; i++){
+		var letterItemVo = {};
+		letterItemVo.top = canvasObjList[i].top;
+		letterItemVo.left = canvasObjList[i].left;
+		letterItemVo.letterPointX = canvasObjList[i].scaleX;
+		letterItemVo.letterPointY = canvasObjList[i].scaleY;
+		letterItemVo.angle = canvasObjList[i].angle;
+		
+		letterItemVo.stickerNo = canvasObjList[i].stickerNo;
+		
+		letterItemVo.text = canvasObjList[i].text;
+		
+		letterItemList.push(letterItemVo);
+	}
+
+	letterVo.itemList = letterItemList
+	
+	writeLetter(letterVo);
+	
+})
+
+//저장 함수
+function writeLetter(letterVo){
+   console.log(letterVo);
+
+   
+   $.ajax({
+      url : "${pageContext.request.contextPath}/letter/write",
+      type : "post",
+      contentType : "application/json",
+      data : JSON.stringify(letterVo),
+      dataType : "json",
+      success : function() {
+         
+ 
+    	location.href="${pageContext.request.contextPath}/letter";
+    	
+    	  
+      },
+      error : function(XHR, status, error) {
+         console.error(status + " : " + error);
+      }
+   });
+   
+}
+
+
+
+
+//공개일 선택했을때 : change --> 값이 바뀔 때마다 갱신
+$("#openday-select").on("change", function(){
+	console.log("날짜선택");
+	
+	//오늘 날짜 구하기
+	var day = new Date();   
+	var year = day.getFullYear(); // 년도
+	var month = day.getMonth() + 1;  // 월 : 0부터 시작하기 때문에 +1
+	var date = day.getDate();  // 날짜
+	
+	var today = year + "-" + month + "-" + date;
+	console.log(today);
+	
+	var plusDay = $("select[name=Dday]").val();
+	
+	//var openDay = new Date(day);
+	//openDay.setMonth(day.getMonth() + 1);
+	
+	if(plusDay === "month"){
+		month = month + 1;
+		var openDay = year + "-" + month + "-" + date;
+		document.getElementById("openDay").innerHTML= openDay;
+	}else if(plusDay === "halfYear"){
+		month = month + 6;
+		var openDay = year + "-" + month + "-" + date;
+		document.getElementById("openDay").innerHTML= openDay;
+	}else if(plusDay === "year"){
+		year = year + 1;
+		var openDay = year + "-" + month + "-" + date;
+		document.getElementById("openDay").innerHTML= openDay;
+	}else {
+		//document.getElementById("openDay").innerHTML= "편지 공개일을 선택해주세요.";
+	}
+	
+	console.log(openDay);
+	//document.getElementById("openDay").innerHTML= openDay + " 에 편지가 도착할 예정입니다.";
+	
+});
 </script>
 </html>

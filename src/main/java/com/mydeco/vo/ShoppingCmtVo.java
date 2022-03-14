@@ -12,13 +12,21 @@ public class ShoppingCmtVo {
 	private int depth;
 	private String name;
 
-	public ShoppingCmtVo() {
+	// 코멘트 합계
+	private int cmtCnt;
 
+	public ShoppingCmtVo() {
 	}
 
-	public ShoppingCmtVo(String cmtNo, int prodNo, int userNo, String cmtContent, String regDate, int groupNo,
-			int cmtSeq, int depth, String name) {
+	
+	public ShoppingCmtVo(int cmtCnt, int prodNo) {
+		this.prodNo = prodNo;
+		this.cmtCnt = cmtCnt;
+	}
 
+
+	public ShoppingCmtVo(String cmtNo, int prodNo, int userNo, String cmtContent, String regDate, int groupNo,
+			int cmtSeq, int depth, String name, int cmtCnt) {
 		this.cmtNo = cmtNo;
 		this.prodNo = prodNo;
 		this.userNo = userNo;
@@ -28,6 +36,7 @@ public class ShoppingCmtVo {
 		this.cmtSeq = cmtSeq;
 		this.depth = depth;
 		this.name = name;
+		this.cmtCnt = cmtCnt;
 	}
 
 	public String getCmtNo() {
@@ -102,11 +111,19 @@ public class ShoppingCmtVo {
 		this.name = name;
 	}
 
+	public int getCmtCnt() {
+		return cmtCnt;
+	}
+
+	public void setCmtCnt(int cmtCnt) {
+		this.cmtCnt = cmtCnt;
+	}
+
 	@Override
 	public String toString() {
 		return "ShoppingCmtVo [cmtNo=" + cmtNo + ", prodNo=" + prodNo + ", userNo=" + userNo + ", cmtContent="
 				+ cmtContent + ", regDate=" + regDate + ", groupNo=" + groupNo + ", cmtSeq=" + cmtSeq + ", depth="
-				+ depth + ", name=" + name + "]";
+				+ depth + ", name=" + name + ", cmtCnt=" + cmtCnt + "]";
 	}
 
 }

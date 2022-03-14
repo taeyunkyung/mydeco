@@ -1,6 +1,7 @@
 
 
-.btn-letter-write {
+
+a.btn-letter-write {
 	color: white;
 	float: right;
 	background:#686099;
@@ -8,7 +9,7 @@
     text-align:center;
     width:150px;
     height:40px;
-    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 0px 0px;
     border:0;
     outline:0;  
 }

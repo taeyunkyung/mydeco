@@ -100,8 +100,8 @@
 	                                    </div>
 	                                    <div class="row">
 	                                        <div class="col-xs-12">
-	                                            <a href="#"><span class="">일기</span><span class="marginRight10">10개</span></a>
-	                                            <a href="#"><span class="margin5"> 댓글</span><span class="marginRight10">23개</span></a>
+	                                            <a href="#"><span class="">일기</span><span class="marginRight10">2</span></a>
+	                                            <a href="#"><span class="margin5"> 댓글</span><span class="marginRight10">12</span></a>
 	                                            <a href="#"><span class="margin5">찜</span><span class="marginRight10">54개</span></a>
 	                                        </div>
 	                                    </div>

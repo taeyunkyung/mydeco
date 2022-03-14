@@ -69,6 +69,24 @@ public class MydiaryService {
 	    }	
 	}
 	
+	
+	/*다이어리번호가 ? 인 다이어리의 정보*/
+	public DiaryContentVo getOneDiary(int diaryNo) {
+		
+		/*다이어리 정보*/
+		DiaryContentVo diarycontent = mydiaryDao.getDiary(diaryNo);
+		System.out.println(diarycontent);
+		
+		/*다이어리 스티커 정보*/
+		List<DiaryItemVo> diaryItem = mydiaryDao.getDiaryItemList(diaryNo);
+		System.out.println(diaryItem);
+		
+		diarycontent.setItemList(diaryItem);
+		
+		return diarycontent;
+	}
+	
+	
 	/*
 	public void dbpaper() {
 			

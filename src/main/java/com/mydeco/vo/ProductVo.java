@@ -21,6 +21,15 @@ public class ProductVo {
 	private int pickNo;
 	private String id;
 	private int pickCnt;
+	private int commentCnt;
+
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 
 	public String getProdImgSrc() {
 		return prodImgSrc;
@@ -64,6 +73,12 @@ public class ProductVo {
 	// 나의상품, 찜한상품 //
 
 	public ProductVo() {
+	}
+
+	
+	public ProductVo(int diaryCnt, int prodNo) {
+		this.prodNo = prodNo;
+		this.diaryCnt = diaryCnt;
 	}
 
 	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
@@ -177,7 +192,9 @@ public class ProductVo {
 	public String toString() {
 		return "ProductVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion=" + emotion
 				+ ", price=" + price + ", delivery=" + delivery + ", prodInfo=" + prodInfo + ", regDate=" + regDate
-				+ ", prodImgList=" + prodImgList + ", userName=" + userName + "]";
+				+ ", prodImgList=" + prodImgList + ", userName=" + userName + ", prodImgSrc=" + prodImgSrc
+				+ ", diaryCnt=" + diaryCnt + ", pickNo=" + pickNo + ", id=" + id + ", pickCnt=" + pickCnt + "]";
 	}
+
 
 }
