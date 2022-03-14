@@ -9,7 +9,7 @@ import com.mydeco.dao.CardDao;
 import com.mydeco.vo.CardImgVo;
 
 @Service
-public class CardService {
+public class CardService {//자료의 조작,계산
 
 	@Autowired
 	CardDao cardDao;

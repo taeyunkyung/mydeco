@@ -7,90 +7,97 @@
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mydeco</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
+        
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/card.css">
         <!--제이쿼리-->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
  
 </head>
     <body>
-        <div id="wrap">
+        <div class="wrap">
             <div class="container">
-                <!-- header -->
-                <div id="header" class="clearfix">
-                    <h1>
-                        <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
-                    </h1>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- header -->
+                        <div id="header" class="clearfix">
+                            <h1>
+                                <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
+                            </h1>
 
-                    <ul id="category" class="clearfix">
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">About</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">이용 안내</a></li>
-                                <li><a href="">1대1 문의</a></li>
+                            <ul id="category" class="clearfix">
+                                <div class="dropdown">
+                                    <li class="dropbtn"><a href="">About</a></li>
+                                    <ul class="dropdown-content">
+                                        <li><a href="">이용 안내</a></li>
+                                        <li><a href="">1대1 문의</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn"><a href="">Pen & Paper</a></li>
+                                    <ul class="dropdown-content">
+                                        <li><a href="">나의 일기</a></li>
+                                        <li><a href="">쪽지</a></li>
+                                        <li><a href="">우체통</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn"><a href="">Shopping</a></li>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn"><a href="">Mood</a></li>
+                                    <ul class="dropdown-content">
+                                        <li><a href="">마법의 소라고둥</a></li>
+                                        <li><a href="">심리 테스트</a></li>
+                                    </ul>
+                                </div>
+                            </ul>
+                            <ul id="user" class="clearfix">
+                                <li><a href="">회원가입</a></li>
+                                <li><a href="">로그인</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Pen & Paper</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">나의 일기</a></li>
-                                <li><a href="">쪽지</a></li>
-                                <li><a href="">우체통</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Shopping</a></li>
-                        </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Mood</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">마법의 소라고둥</a></li>
-                                <li><a href="">심리 테스트</a></li>
-                            </ul>
-                        </div>
-                    </ul>
-                    <ul id="user" class="clearfix">
-                        <li><a href="">회원가입</a></li>
-                        <li><a href="">로그인</a></li>
-                    </ul>
+                    </div>
                 </div>
-
-            <!-- header끝 -->
-            <!--content-->
-                <div class="cwTitle">
-                    <h3>소통 카드</h3>
+                    <!-- header끝 -->
+                <!--contents-->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="cTitle">
+                            <h3>소통 카드</h3>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="cardReply-left"><!--보더상자-->
-                            <div class="Reply-LB"><img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt=""></div>
+                        <div class="row">
+                            <div class="col-xs-12 border-replyread"><!--내가 작성한 카드-->
+                                <div class="replyRead-subcard">
+                                    <div class="imgdate">2022-02-03</div>
+                                    <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xs-6">
-                        <div class="cardReply-right"><!--보더상자-->
-                            <div class="Reply-RB"><img class="ReplyRightImg" src="${pageContext.request.contextPath}/assets/img/img (2).jpg" alt=""></div>
-                        </div>
-                    </div>
-                
-                    <div class="r-text">원본글</div>
-                    <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="btn-ReplyComment">
-                            <a href="cardReply.html">댓글카드 작성</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="height30">
 
+
+
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12 border-replyread">
+                                <div class="replyRead-subcard">
+                                    <div class="imgdate">2022-02-03</div>
+                                    <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="r-text">원본글</div>
+                <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
+
 
                 <div id="my_modal">
                     

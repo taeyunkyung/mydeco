@@ -23,31 +23,31 @@ public class CardController {
 		return "card/cardMain";
 	}
 	
-	@RequestMapping("/write")
+	@RequestMapping("/writecard")
 	public String cardWriteForm(Model model) {
-		System.out.println("card/cardWriteForm");
-		
-		List<CardImgVo> cardimgList = cardService.getCardImgList();
-		model.addAttribute("cardimgList",cardimgList);
+//		System.out.println("card/cardWriteForm");
+//		
+//		List<CardImgVo> cardimgList = cardService.getCardImgList();
+//		model.addAttribute("cardimgList",cardimgList);
 		
 		return "card/cardWriteForm";
 	}
 	
-	@RequestMapping("/reply")
+	@RequestMapping("/writereply")
 	public String replyWriteForm(Model model) {
 		System.out.println("card/replyWriteForm");
 		
 		return "card/replyWriteForm";
 	}
 	
-	@RequestMapping("/sendList")
+	@RequestMapping("/readcard")
 	public String cardReadForm(Model model) {
 		System.out.println("card/cardReadForm");
 		
 		return "card/cardReadForm";
 	}
 	
-	@RequestMapping("/receiveList")
+	@RequestMapping("/readreply")
 	public String replyReadForm(Model model) {
 		System.out.println("card/replyReadForm");
 		

@@ -34,9 +34,9 @@
     
                 <div class="col-xs-9" id="main-content">
                     <section id="main">
-                   		<audio autoplay controls loop>
+                   		<%-- <audio autoplay controls loop>
                    			<source src="${pageContext.request.contextPath}/assets/audio/임영웅-사랑은 늘 도망가.mp3" type="audio/mp3">
-                   		</audio>
+                   		</audio> --%>
                         <h2>오늘의 운세를 알려주는 마법의 소라고둥</h2>
                         <img id="daily-img" src="${pageContext.request.contextPath}/assets/img/whelk.png"> 
                         <p>

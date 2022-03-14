@@ -17,7 +17,7 @@ public class CardDao {
 	
 
 	public void cardimgDB(CardImgVo cardimgVo) {
-		System.out.println("µğºñ ÀÌ¹ÌÁö ºÒ·¯¿À±â");
+		System.out.println("voë¶ˆëŸ¬ì˜¤ê¸°");
 		
 		sqlSession.insert("Card.cardimgDB", cardimgVo);
 	}

@@ -18,42 +18,9 @@
     <div id="wrap">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12" id="header">
-                    <h1>
-                        <a href=""><img id="logo" src="${pageContext.request.contextPath}/assets/img/logo.png"></a>
-                    </h1>
-                    <ul id="category" class="clearfix">
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">About</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">이용 안내</a></li>
-                                <li><a href="">1대1 문의</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Pen & Paper</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">나의 일기</a></li>
-                                <li><a href="">쪽지</a></li>
-                                <li><a href="">우체통</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Shopping</a></li>
-                        </div>
-                        <div class="dropdown">
-                            <li class="dropbtn"><a href="">Mood</a></li>
-                            <ul class="dropdown-content">
-                                <li><a href="">마법의 소라고둥</a></li>
-                                <li><a href="">심리 테스트</a></li>
-                            </ul>
-                        </div>
-                    </ul>
-                    <ul id="user" class="clearfix">
-                        <li><a href="">로그인</a></li>
-                        <li><a href="">회원가입</a></li>
-                    </ul>
-                </div>
+                
+                <!-- header -->
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>         
     
     
                 <div class="col-xs-3" id="aside">
@@ -81,7 +48,7 @@
                             <input id="tab2" type="radio" name="tabs">
                             <label for="tab2">작성 중인 편지</label>
                                 
-                            <button class="btn-letter-write" type="button">편지 쓰기</button>
+                            <a class="btn-letter-write" href="${pageContext.request.contextPath}/letter/writeForm">편지 쓰기</a>
                             
                             <section id="content1">
                             	<div class="tap_content">
@@ -93,22 +60,7 @@
                                     		<p class="openDay">공개 날짜: 2022.03.14</p>
                                     	</div>
                                    	</div>
-                                   	<div class="envelope">
-                                    	<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/envelope.png"> </div>
-                                    	<div class="day">
-                                    		<h3 class="Dday">D-200</h3>
-                                    		<p class="sendDay">보낸 날짜: 2022.02.14</p>
-                                    		<p class="openDay">공개 날짜: 2022.03.14</p>
-                                    	</div>
-                                   	</div>
-                                   	<div class="envelope">
-                                    	<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/envelope.png"> </div>
-                                    	<div class="day">
-                                    		<h3 class="Dday">D-365</h3>
-                                    		<p class="sendDay">보낸 날짜: 2022.02.14</p>
-                                    		<p class="openDay">공개 날짜: 2022.03.14</p>
-                                    	</div>
-                                   	</div>
+                                   	
                                    	<div class="envelope">
                                     	<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
                                     	<div class="day">
@@ -137,37 +89,7 @@
 	                                    		</p>
                                    			</div>
                                    		</div> <!-- //envelope -->
-                                   		
-                                   		<div class="envelope">
-                                    		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
-                                    		<div class="day">
-	                                    		<p class="saveday">저장일: 2021-02-14</p>
-	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-	                                    		</p>
-	                                    	</div>
-                                   		</div> <!-- //envelope -->
-                                   		
-                                   		<div class="envelope">
-                                    		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
-                                    		<div class="day">
-	                                    		<p class="saveday">저장일: 2021-02-14</p>
-	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-	                                    		</p>
-											</div>
-                                   		</div> <!-- //envelope -->
-                                   		
-                                   		<div class="envelope">
-                                    		<div class="envelope-img"> <img src="${pageContext.request.contextPath}/assets/img/read.png"> </div>
-                                    		<div class="day">
-	                                    		<p class="saveday">저장일: 2021-02-14</p>
-	                                    		<p class="letter-ing">나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하 예쁜 디자인이란 뭘까
-	                                    			나에게 보내는 편지 잘 살고 있니? 나는 졸리다 가나다라마바사아자차카파타하....
-	                                    		</p>
-											</div>
-                                   		</div> <!-- //envelope -->
-                                   		
+                
                                     </div>
                                     <!-- //tap_content -->
                                     
@@ -182,6 +104,9 @@
             </div>
         </div>
     </div>
+    
+    
+    
     
     <div id="my_modal">
 	    
@@ -204,6 +129,7 @@
 	    </div>
 	</div>
 </body>
+
 
 <script type="text/javascript">
 function modal(id) {

@@ -10,13 +10,10 @@
 <meta charset="UTF-8">
 <!-- 브라우저가 문서를 해석할때 필요한 정보 -->
 <title>Mydeco</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/card.css">
-</head>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/card.css">
 
 <body>
 	<div class="wrap">

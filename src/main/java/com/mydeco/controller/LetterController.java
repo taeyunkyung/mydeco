@@ -2,13 +2,19 @@ package com.mydeco.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.LetterService;
+import com.mydeco.vo.LetterVo;
 import com.mydeco.vo.StickerVo;
+import com.mydeco.vo.UserVo;
 
 @Controller
 @RequestMapping("/letter")
@@ -17,9 +23,12 @@ public class LetterController {
 	@Autowired
 	LetterService letterService;
 	
-	@RequestMapping("/letter")
+	@RequestMapping("")
 	public String letter() {
 		System.out.println("letter");
+		
+		
+		
 		return "letter/letterList";
 	}
 	
@@ -32,6 +41,20 @@ public class LetterController {
 		model.addAttribute("stickerList",stickerList);
 		
 		return "letter/writeForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/write")
+	public int write(@RequestBody LetterVo letterVo, HttpSession session) {
+		System.out.println("letter/write");
+		System.out.println(letterVo);  
+		                              
+		//로그인한 사용자 번호 추가
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		int userNo = authUser.getUserNo();
+		letterVo.setUserNo(userNo);
+		
+		return letterService.itemSave(letterVo);
 	}
 	
 	
