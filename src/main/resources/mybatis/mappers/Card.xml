@@ -4,22 +4,16 @@
 <mapper namespace="card">
 
 	<!-- 디비 넣기 -->
-	<insert id="cardimgDB" parameterType="com.mydeco.vo.CardImgVo">
+
+	<insert id="sendcard" parameterType="CardVo">
 		<![CDATA[
-			insert into cardImg
-			values(seq_cardImg_no.nextval,#{cardImgName},#{cardImgSrc},#{cardImgInfo})
+			insert into card
+			values (seq_card_no.nextval,#{userNo},#{cardContent},sysdate,#{cardAge},#{cardGender},#{cardImgNo})
 		]]>
 	</insert>
-
+	
 	<!-- 사진 목록 가져오기 -->
-	<select id="getCardImgList" resultType="com.mydeco.vo.CardImgVo">
-		<![CDATA[
-			select  cardImgNo,
-       				cardImgSrc
-			from CardImg
-		]]>
-	</select>
-
+	
 	<!-- 내가 쓴 카드 목록 가져오기 -->
 
 	<!-- 답장 카드 목록 가져오기 -->
