@@ -33,6 +33,15 @@ public class ShoppingService {
 
 	
 	
+	///////////////////댓글리스트가져오기/////////
+	
+	public List<ShoppingCmtVo> getCmtList(int no){
+		System.out.println("서비스의 댓글리스트가져오기");
+		
+		List<ShoppingCmtVo> cntCmtList = shoppingDao.getCmtList(no);
+		
+		return cntCmtList;
+	}
 	/////////////////////상세정보 댓글////////////////
 	
 	public void cmtwrite(ShoppingCmtVo shoppingCmtVo) {
@@ -41,15 +50,6 @@ public class ShoppingService {
 		shoppingDao.addcmt(shoppingCmtVo);
 	}
 	
-	///////////////////댓글리스트가져오기/////////
-	
-	public List<ShoppingCmtVo> getCmtList(int no){
-		System.out.println("서비스의 댓글리스트가져오기");
-		
-		List<ShoppingCmtVo> CmtList = shoppingDao.getCmtList(no);
-		
-		return CmtList;
-	}
 	///////////////////////쇼핑메인리스트가져오기//////////////
 	public List<ProductVo> getmerchandiseList(){
 		
@@ -59,9 +59,16 @@ public class ShoppingService {
 	}
 	////////////////////////쇼핑 리스트의 다이어리합계///////////
 	
-	public int countdiary(int no) {
-		int diaryNo = shoppingDao.diarycount(no);
+	public List<ProductVo> countDiary() {
+		List<ProductVo> cntDiaryList = shoppingDao.diarycount();
 		
-		return diaryNo +1;
+		return cntDiaryList ;
 	}
+	
+	public List<ShoppingCmtVo> countCmt(){
+		List<ShoppingCmtVo> cntCmtList = shoppingDao.cmtCount();
+		
+		return cntCmtList;
+	}
+	
 }

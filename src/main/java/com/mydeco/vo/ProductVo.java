@@ -66,6 +66,12 @@ public class ProductVo {
 	public ProductVo() {
 	}
 
+	
+	public ProductVo(int diaryCnt, int prodNo) {
+		this.prodNo = prodNo;
+		this.diaryCnt = diaryCnt;
+	}
+
 	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
 			String prodInfo, String regDate) {
 		this.prodNo = prodNo;
@@ -177,7 +183,9 @@ public class ProductVo {
 	public String toString() {
 		return "ProductVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion=" + emotion
 				+ ", price=" + price + ", delivery=" + delivery + ", prodInfo=" + prodInfo + ", regDate=" + regDate
-				+ ", prodImgList=" + prodImgList + ", userName=" + userName + "]";
+				+ ", prodImgList=" + prodImgList + ", userName=" + userName + ", prodImgSrc=" + prodImgSrc
+				+ ", diaryCnt=" + diaryCnt + ", pickNo=" + pickNo + ", id=" + id + ", pickCnt=" + pickCnt + "]";
 	}
+
 
 }

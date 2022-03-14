@@ -74,13 +74,24 @@
 	
 	</select>
 	
-	<select id="countdiary" parameterType="Int" resultType="ProductVo">
+	<select id="countdiary" resultType="ProductVo">
 		<![CDATA[
-			select count(diaryNo) diaryCnt
+			select  count(diaryNo) diaryCnt,
+					p.prodNo prodNo
 			from proddiary pd, product p
 			where p.prodNo = pd.prodNo
-			and pd.prodNo = #{no}
+			group by p.prodNo
+
 		]]>
 	</select>
 
+	<select id="countCmt" resultType="ShoppingCmtVo">
+		<![CDATA[
+			select  count(cmtNo) cmtCnt,
+					p.prodNo prodNo
+			from comments c, product p
+			where c.prodNo = p.prodNo
+			group by p.prodNo
+		]]>
+	</select>
 </mapper>
