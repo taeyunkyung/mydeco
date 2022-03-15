@@ -1,5 +1,7 @@
 package com.mydeco.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mydeco.service.CardService;
+import com.mydeco.vo.CardImgVo;
 import com.mydeco.vo.CardVo;
 import com.mydeco.vo.UserVo;
 
@@ -17,48 +20,49 @@ import com.mydeco.vo.UserVo;
 public class CardController {
 
 	@Autowired 
-	CardService cardService;
+	private CardService cardService;
 	
 	@RequestMapping("/main")
 	public String card() {
-		System.out.println("card");
+		System.out.println("controller > main");
 		return "card/cardMain";
 	}
 	
-	@RequestMapping("/writecardForm")
-	public String cardWriteForm() {
-		System.out.println("writecard controller");
-		
+	@RequestMapping("/cardWriteForm")
+	public String cardWriteForm(Model model) {
+		System.out.println("controller > 카드쓰기폼");
+		List<CardImgVo> bgList = cardService.imgList();
+		model.addAttribute("bgList", bgList);
+		System.out.println(bgList);
 		return "card/cardWriteForm";
 	}
 	
-	@RequestMapping("writecard")
+	@RequestMapping("cardwrite")
 	public String cardWrite(HttpSession session, @ModelAttribute CardVo cardVo) {
-		System.out.println("writecard controller");
+		System.out.println("controller > writeForm> main으로 리다이렉트");
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		cardVo.setUserNo(authUser.getUserNo());
 		System.out.println(cardVo);
-		cardService.sendcard(cardVo);
-		
-		return "redirect:card/writecard";
+		cardService.cardImg(cardVo);
+		return "redirect:main";
 		
 	}
 	
-	@RequestMapping("/writereply")
+	@RequestMapping("/replywrite")
 	public String replyWriteForm(Model model) {
 		System.out.println("card/replyWriteForm");
 		
 		return "card/replyWriteForm";
 	}
 	
-	@RequestMapping("/readcard")
+	@RequestMapping("/cardread")
 	public String cardReadForm(Model model) {
 		System.out.println("card/cardReadForm");
 		
 		return "card/cardReadForm";
 	}
 	
-	@RequestMapping("/readreply")
+	@RequestMapping("/replyread")
 	public String replyReadForm(Model model) {
 		System.out.println("card/replyReadForm");
 		

@@ -24,19 +24,15 @@
                 <!-- header -->
 				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
     			<!-- header끝 -->
-               	<!-- aside -->
-               	<div class="row">
-				<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
-				<!-- aside끝-->
                 <!--contents-->
                 <div class="row">
                     <div class="col-xs-12">
-                        <div id="cTitle">
+                        <div id="fTitle">
                             <h3>소통 카드</h3>
                         </div>
                     </div>
                 </div>
-                <form action="${pageContext.request.contextPath}/card/writecard" method="get">
+                <form action="${pageContext.request.contextPath}/card/cardwrite" method="get">
                 <div class="row">
                     <div class="col-xs-8">
                         
@@ -45,11 +41,10 @@
                             
                                 <div class="col-xs-12">
                                     <div class="height600">
-                                    
-										
-                                        <div class="cardwrite-imgdate">2022-02-03</div>
+                                 
                                         <img class="cardwriteimg" src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
-                                        <textarea id="c-text" name="c-text" cols="30" rows="10"></textarea>
+                                        
+                                        <textarea id="c-text" name="cardContent" cols="30" rows="10"></textarea>
                                         <div id="text_cnt">(0 / 300)</div>
                                          
                                     </div>
@@ -65,37 +60,36 @@
                             <div class="cardwritebg">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[0].cardImgSrc}" alt=""></a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[1].cardImgSrc}" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[2].cardImgSrc}" alt=""></a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[3].cardImgSrc}" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[4].cardImgSrc}" alt=""></a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[5].cardImgSrc}" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[6].cardImgSrc}" alt=""></a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${pageContext.request.contextPath}/assets/img/card/img (8).jpg" alt=""></a>
+                                        <a href=""><img src="${bgList[7].cardImgSrc}" alt=""></a>
                                     </div>
                                 </div>
-
                             </div>
                             
 
@@ -104,7 +98,7 @@
                     </div>
                         
                 </div>
-				</form>
+				
                 <div class="row">
                     <div class="col-xs-8">
                          <div class="row">
@@ -142,9 +136,9 @@
             
 
                 
-
+</form>
             </div>
-        </div>
+        	</div>
        </div>
    </div>
                 

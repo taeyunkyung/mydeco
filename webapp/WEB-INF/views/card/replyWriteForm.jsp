@@ -26,7 +26,7 @@
                 <!--contents-->
                 <div class="row">
                     <div class="col-xs-12">
-                        <div id="cTitle">
+                        <div id="fTitle">
                             <h3>소통 카드</h3>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <div class="col-xs-12 border-replyread"><!--내가 작성한 카드-->
                                 <div class="replyRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="col-xs-12 border-replyread">
                                 <div class="replyRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -68,14 +68,14 @@
                         </div>
                         
                         <div id="card-read">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (1).jpg"><!--누르면 적용-->
-                            <img src="${pageContext.request.contextPath}/assets/img/img (2).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (3).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (4).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (5).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (6).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (7).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/img (8).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg"><!--누르면 적용-->
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg">
+                            <img src="${pageContext.request.contextPath}/assets/img/card/img (8).jpg">
                         </div>
                     </div>
                     <div class="btn-center">
