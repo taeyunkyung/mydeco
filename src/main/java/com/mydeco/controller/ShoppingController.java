@@ -50,7 +50,7 @@ public class ShoppingController {
 		System.out.println(session.getAttribute("authUser"));
 	
 		productVo.setUserNo(authUser.getUserNo());
-		/* shoppingService.addpick(productVo); */
+		shoppingService.addpick(productVo); 
 		
 	}
 	

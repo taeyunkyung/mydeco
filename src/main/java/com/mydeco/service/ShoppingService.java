@@ -62,7 +62,7 @@ public class ShoppingService {
 	public void addpick(ProductVo productVo) {
 		System.out.println("서비스의 픽미픽미픽미업");
 		
-		/* shoppingDao.addpick(productVo); */
+		shoppingDao.addpick(productVo);
 	}
 	
 
