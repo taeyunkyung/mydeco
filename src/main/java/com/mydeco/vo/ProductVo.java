@@ -76,18 +76,9 @@ public class ProductVo {
 	}
 
 	
-	
 	public ProductVo(int diaryCnt, int prodNo) {
 		this.prodNo = prodNo;
 		this.diaryCnt = diaryCnt;
-	}
-
-	
-	public ProductVo(int prodNo, int userNo, String regDate, int pickNo) {
-		this.prodNo = prodNo;
-		this.userNo = userNo;
-		this.regDate = regDate;
-		this.pickNo = pickNo;
 	}
 
 	public ProductVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,

@@ -49,7 +49,7 @@
                     <!-- /어사이드부분 -->
                     <!-- 메인컨텐츠 -->
                     <div class="col-xs-9">
-                        <div class="width700">
+                        <div class="">
                             <div class="div-sub">
                                 <h3>Shopping</h3>
                             </div>
@@ -67,7 +67,7 @@
                                 
                                     <input type="text" id="keyword" name="" value="" placeholder="검색어를 입력해주세요">
                                     <button id="searchBtn">
-                                       <img id="btnImg" src="${pageContext.request.contextPath}/assets/img/magnifying-glass.png">
+                                       <img id="btnImg" src="../assets/img/plusglass.png">
                                     </button>
                                 </div>
                             </div>
@@ -100,18 +100,18 @@
 	                                    </div>
 	                                    <div class="row">
 	                                        <div class="col-xs-12">
-	                                            <a href="#"><span class="">일기 :</span><span class="marginRight10">${vo.diaryCnt}개</span></a>
-	                                            <a href="#"><span class="margin5">댓글 :</span><span class="marginRight10">${vo.cmtCnt}개</span></a>
-	                                            <a href="#"><span class="margin5">찜 :</span><span class="marginRight10">${vo.pickCnt}개</span></a>
+	                                            <a href="#"><span class="">일기</span><span class="marginRight10">2</span></a>
+	                                            <a href="#"><span class="margin5"> 댓글</span><span class="marginRight10">12</span></a>
+	                                            <a href="#"><span class="margin5">찜</span><span class="marginRight10">54개</span></a>
 	                                        </div>
 	                                    </div>
 	                                    <!-- /여기 3줄나눔 -->
 	                                </div>
 	                                
 	                                <div class="col-xs-1">
-	                                    <button type="button" class="btn btn-default btn-sm pickButton" data-prodno="${vo.prodNo}" >
+	                                    <button type="button" class="btn btn-default btn-sm">
 	                                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-	                                    </button>
+	                                      </button>
 	                                </div>
 	
 	                            </div>
@@ -133,49 +133,4 @@
         
         </div>
     </body>
-    
-     <script type="text/javascript">
-     	
-     $(".pickButton").on("click",function(){
-    	 
-    	 var prodNo =  $(this).data("prodno");
-    	 console.log(prodNo);    	 
-     
-      	
-     	
-     	
-     	$.ajax({
-     		
-     		url : "${pageContext.request.contextPath }/shopping/addpick",		
-     		type : "post",
-     		contentType : "application/json",
-     		data : JSON.stringify({prodNo : prodNo}),
-
-     		dataType : "json",
-     		success : function(result){
-     			
-     			//입력화면 초기화
- 				$("#pickButton").val("");
-     			
-     			
-     			
-     			
-     			
-     			
-     		},
-     		error : function(XHR, status, error) {
-     			console.error(status + " : " + error);
-     		}
-     	});
-     });
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     </script>
 </html>

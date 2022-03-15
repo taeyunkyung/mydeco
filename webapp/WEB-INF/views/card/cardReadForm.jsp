@@ -24,7 +24,7 @@
                 <!--contents-->
                 <div class="row">
                     <div class="col-xs-12">
-                        <div id="cTitle">
+                        <div id="fTitle">
                             <h3>소통 카드</h3>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <div class="col-xs-12 border-cardread"><!--내가 작성한 카드-->
                                 <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="../assets/img/img (7).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -46,13 +46,13 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="cardReadImg">
-                                        <div><img src="../assets/img/slideLeft.png"></div>
-                                        <div><img src="../assets/img/img (1).jpg" alt=""></div>
-                                        <div><img src="../assets/img/img (2).jpg" alt=""></div>
-                                        <div><img src="../assets/img/img (3).jpg" alt=""></div>
-                                        <div><img src="../assets/img/img (4).jpg" alt=""></div>
-                                        <div><img src="../assets/img/img (5).jpg" alt=""></div>
-                                        <div><img src="../assets/img/slideRight.png"></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
                                         
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                             <div class="col-xs-12 border-cardread">
                                 <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="../assets/img/img (1).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -80,13 +80,13 @@
                             <div class="col-xs-12">
                                 <div class="cardReadImg">
 
-                                    <div><img src="../assets/img/slideLeft.png"></div>
-                                    <div><img src="../assets/img/img (3).jpg" alt=""></div>
-                                    <div><img src="../assets/img/img (4).jpg" alt=""></div>
-                                    <div><img src="../assets/img/img (5).jpg" alt=""></div>
-                                    <div><img src="../assets/img/img (6).jpg" alt=""></div>
-                                    <div><img src="../assets/img/img (7).jpg" alt=""></div>
-                                    <div><img src="../assets/img/slideRight.png"></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
                                     
                                 </div>
                             </div>

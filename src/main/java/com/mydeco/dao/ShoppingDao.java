@@ -57,11 +57,22 @@ public class ShoppingDao {
 		return productList;
 	}
 	
-
-	////////////////////////////찜하기//////////////////////////////
-	public void addpick(ProductVo productVo) {
-		System.out.println("다오의 픽미픽미픽미업");
-		System.out.println("다오의 픽미픽미픽미업 정보"+ productVo);
-		sqlSession.insert("shopping.addpick", productVo);
+	///////////////////////쇼핑 메인페이지의 다이어리 카운트////////////////
+	
+	public List<ProductVo> diarycount() {
+		System.out.println("다오의 다이어리카운트 도킹");
+		
+		List<ProductVo> diaryList = sqlSession.selectList("shopping.countdiary");
+		System.out.println("다오의 다이어리카운트" + diaryList);
+		return diaryList;
+	}
+	
+	///////////////////////쇼핑 메인페이지의 댓글 카운트/////////////////
+	
+	public List<ShoppingCmtVo> cmtCount() {
+		System.out.println("다오의 cmtCount 도킹");
+		List<ShoppingCmtVo> cmtList = sqlSession.selectList("shopping.countCmt");
+		System.out.println("다오의 코맨트" +cmtList);
+		return cmtList;
 	}
 }

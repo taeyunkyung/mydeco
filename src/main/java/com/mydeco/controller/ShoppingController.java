@@ -32,27 +32,15 @@ public class ShoppingController {
 		List<ProductVo> merchandiseList = shoppingService.getmerchandiseList();
 		model.addAttribute("merchandiseList",merchandiseList);
 		
+		List<ProductVo> cntdiaryList = shoppingService.countDiary();
+		List<ShoppingCmtVo> cntcmtList = shoppingService.countCmt();
 		
+		System.out.println("카운트 다이어리다" +cntdiaryList);
+		System.out.println("카운트 코멘트다" +cntcmtList);
 		return "shopping/shoppingmain";
 	}
 	
-	@ResponseBody
-	@RequestMapping("/addpick")
-	public void addpick(@RequestBody ProductVo productVo, HttpSession session) {
-		
-		System.out.println("컨트롤러의 픽미픽미픽미업");
-		
-		System.out.println(productVo);
-		
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
-		System.out.println(session.getAttribute("authUser"));
 	
-		productVo.setUserNo(authUser.getUserNo());
-		shoppingService.addpick(productVo);
-		
-	}
 	
 	
 	
@@ -99,7 +87,7 @@ public class ShoppingController {
 		shoppingService.cmtwrite(shoppingCmtVo);
 		
 		System.out.println("리다이렉트 바로전");
-		return "redirect:merchandise";
+		return "redirect:shopping/merchandise";
 	}
 	
 	
