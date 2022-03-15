@@ -57,18 +57,14 @@ public class ShoppingService {
 		
 		return merchandiseList;
 	}
-	////////////////////////쇼핑 리스트의 다이어리합계///////////
-	
-	public List<ProductVo> countDiary() {
-		List<ProductVo> cntDiaryList = shoppingDao.diarycount();
+
+	/////////////////////찜하기 /////////////////////////
+	public void addpick(ProductVo productVo) {
+		System.out.println("서비스의 픽미픽미픽미업");
 		
-		return cntDiaryList ;
+		shoppingDao.addpick(productVo);
 	}
 	
-	public List<ShoppingCmtVo> countCmt(){
-		List<ShoppingCmtVo> cntCmtList = shoppingDao.cmtCount();
-		
-		return cntCmtList;
-	}
+
 	
 }

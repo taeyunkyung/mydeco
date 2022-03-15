@@ -147,10 +147,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-xs-11">
                                         <div class="height60">
                                             <span>오랜 친구를 보내시는군요 섭섭하시겠어요</span>
                                         </div>    
+                                    </div>
+                                    <div class="col-xs-1">
+                                    	<button id="recmt">댓글</button>
                                     </div>
                                 </div>
 
@@ -216,6 +219,44 @@
     		data : JSON.stringify(ShoppingCmtVo),
 
     		dataType : "json",
+    		success : function(vo){
+    			
+    			//입력화면 초기화
+				$("#cmttext").val("");
+    			
+    		//q
+    			
+    			
+    			
+    			
+    		},
+    		error : function(XHR, status, error) {
+    			console.error(status + " : " + error);
+    		}
+    	});
+    });
+
+    /////////////////////////////////////////대댓글 달기////////////////////////
+    
+    $("#recmt").on("click",function(){
+
+    	var cmttext = $("#recmt").val();
+    	
+    	var prodNo = ${product.prodNo};
+    	
+    	var ShoppingCmtVo = {cmtContent: cmttext,
+    						 prodNo: prodNo};
+    	console.log(cmttext);
+    	console.log(prodNo);
+    	
+    	$.ajax({
+    		
+    		url : "${pageContext.request.contextPath }/shopping/cmtwrite",		
+    		type : "post",
+    		contentType : "application/json",
+    		data : JSON.stringify(ShoppingCmtVo),
+
+    		dataType : "json",
     		success : function(result){
     			
     			//입력화면 초기화
@@ -232,6 +273,8 @@
     		}
     	});
     });
+
+    
     
     //////////////////////////////////////////이미지 순서바꾸기//////////////////
     
