@@ -815,5 +815,19 @@ h3.subtitle{
 }
 
 .readCanvas{
-	margin-left:58px;
+	margin-left:43px;
+	
+}
+
+.modal-body{
+	padding-top:50px; padding-bottom:50px;
+}
+
+.modal-footer{
+	text-align:center;
+	height:80px;
+}
+
+.modal-header{
+	height:100px;
 }

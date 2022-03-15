@@ -72,7 +72,7 @@
 					   order by regDate desc) ot
 			) rt
 			where rt.rn >= #{startNum}
-			and rt.rn < #{endNum}
+			and rt.rn <= #{endNum}
 		]]>
 	</select>
 	
@@ -128,7 +128,7 @@
 						order by pi.regDate desc) ot
 			) rt
 			where rt.rn >= #{startNum}
-			and rt.rn < #{endNum}
+			and rt.rn <= #{endNum}
 		]]>
 	</select>
 	

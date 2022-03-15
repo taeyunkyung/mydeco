@@ -88,9 +88,9 @@ public class MyShopService {
 		return myProductList;
 	}
 	
-	// 페이징-나의상품//
+	// 페이징-나의 상품//
 	public Map<String, Object> getMyProductpgList(int userNo, String keyword, int crtPage) {
-		int listCnt = 5;
+		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 		
 		int startNum = (crtPage - 1) * listCnt + 1;
@@ -145,7 +145,7 @@ public class MyShopService {
 	
 	// 페이징-찜한상품//
 	public Map<String, Object> getMyPickpgList(int userNo, String keyword, int crtPage) {
-		int listCnt = 5;
+		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 		
 		int startNum = (crtPage - 1) * listCnt + 1;

@@ -53,6 +53,7 @@
                         나의 일기 목록
                         </h3>
                     </div>
+                    
     
                     <!-- <div class="mydiarydiv">
                         <div>d</div>
@@ -189,8 +190,8 @@
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">"${diarycontent.title}"</h4>
+		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="modalDiaryTitle" ></h4>
 		      </div>
 		      <div class="modal-body">
 		      
@@ -198,14 +199,15 @@
 		      	
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-		        <button id="modalBtnDel" type="button" class="btn btn-primary">삭제</button>
+		        <button type="button" class="modal-button-read">수정하기</button>
+		        <button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
      </c:forEach>
      
+     <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
      
      <!--  
 	     	<div class="modal-read2"> 
@@ -290,6 +292,10 @@ $(".mydiary-list-box2").on("click",function(){
 	    	
 		    console.log(DiaryContent);
 		    console.log(DiaryContent.itemList); //DiaryContentVo의 필드값 이름으로 값 빼내기 가능
+		    
+		    //제목쓰기
+		    $("#modalDiaryTitle").text(DiaryContent.title);
+		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
 		    for(var i=0; i<DiaryItemList.length; i++){
@@ -308,6 +314,15 @@ $(".mydiary-list-box2").on("click",function(){
 	$("#delModal").modal('show');
 	
 });
+
+/*닫기버튼을 눌렀을때--겹겹이 쌓이는 일기 해결*/
+$("#closebtn").on("click",function(){
+	var objects = canvas.getObjects();
+	console.log(objects);
+	for(var i=0; i<objects.length; i++){
+		canvas.remove(objects[i]);
+	}canvas.renderAll();
+})
 
 
 //아이템 그리기
