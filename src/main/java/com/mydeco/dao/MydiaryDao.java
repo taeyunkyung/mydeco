@@ -23,9 +23,15 @@ public class MydiaryDao {
 		return sqlSession.selectList("mydiary.getDiaryContentList", authUser);
 	}
 	
-	/*다이어리에 사용된 스티커리스트 가져오기 */
-	public List<DiaryItemVo> getDiaryStickerList(int diaryNo){
-		return sqlSession.selectList("mydiary.getDiaryStickerList", diaryNo);
+	/*다이어리번호가 ? 인 다이어리 정보 가져오기(스티커 아이템제외)*/
+	public DiaryContentVo getDiary(int diaryNo) {
+		
+		return sqlSession.selectOne("mydiary.getDiary", diaryNo);
+	}
+	
+	/*다이어리번호가 ? 인 다이어리에 사용된 스티커 아이템리스트 가져오기 */
+	public List<DiaryItemVo> getDiaryItemList(int diaryNo){
+		return sqlSession.selectList("mydiary.getDiaryItemList", diaryNo);
 	}
 	
 	/*다이어리 쓴 날짜 리스트*/
@@ -65,7 +71,6 @@ public class MydiaryDao {
 	}
 	
 	/*일기에 쓴 스티커 저장하기*/
-	
 	public void addSticker(DiaryItemVo diarySticker) {
 		sqlSession.insert("mydiary.diaryitem",diarySticker);
 	}

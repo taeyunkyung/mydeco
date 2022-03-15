@@ -101,7 +101,7 @@
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="9999999" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="9999999" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -279,6 +279,7 @@
 
 			//객체에 스티커번호 추가
 			oImg.stickerNo = stickerNo;
+			oImg.stickerSrc = stickerSrc;
 			canvas.add(oImg);
 			console.log(oImg);
 		});
@@ -290,9 +291,11 @@
 	//텍스트박스를 클릭했을때
 	$("[name=textbox]").on("click", function(){
 		var stickerNo= $(this).data("stickerno")
+		var stickerSrc= $(this).data("stickersrc")
 		
 		var text = new fabric.Textbox("텍스트를 입력하세요", {
 			stickerNo: stickerNo,
+			stickerSrc: stickerSrc,
 			top: 30,
 			left: 30,
 			width: 300,
@@ -373,6 +376,7 @@
 			diaryItemVo.angle = canvasObjList[i].angle;
 	
 			diaryItemVo.stickerNo = canvasObjList[i].stickerNo;
+			diaryItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 			
 			diaryItemVo.text = canvasObjList[i].text;
 			

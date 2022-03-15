@@ -1,31 +1,21 @@
 package com.mydeco.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mydeco.dao.CardDao;
-import com.mydeco.vo.CardImgVo;
+import com.mydeco.vo.CardVo;
 
 @Service
-public class CardService {//ÀÚ·áÀÇ Á¶ÀÛ,°è»ê
+public class CardService {//ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½
 
 	@Autowired
 	CardDao cardDao;
 
-	public void cardimgDB() {
-
-		for (int i = 1; i < 9; i++) {
-			String cardImgName = i + ".png";
-			String cardImgSrc = "/mydeco/assets/img/card/" + cardImgName;
-
-			CardImgVo vo = new CardImgVo(cardImgName,cardImgSrc);
-			cardDao.cardimgDB(vo);
-		}
+	
+	public void sendcard(CardVo cardVo) {
+		System.out.println("service sendcard");
+		cardDao.sendcard(cardVo);
 	}
-		
-		public List<CardImgVo> getCardImgList(){
-			return cardDao.getCardImgList();
-		}
-	}
+	
+}

@@ -39,7 +39,7 @@
 
 									<div class="btn-card-write">
 										<c:if test="${!empty authUser}">  
-										<a href="${pageContext.request.contextPath}/card/write">카드 쓰기</a>
+										<a href="${pageContext.request.contextPath}/card/writecard">카드 쓰기</a>
 										</c:if>
 									</div>
 									<input id="tab1" type="radio" name="tabs" checked>

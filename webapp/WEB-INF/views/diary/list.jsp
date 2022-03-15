@@ -53,6 +53,7 @@
                         나의 일기 목록
                         </h3>
                     </div>
+                    
     
                     <!-- <div class="mydiarydiv">
                         <div>d</div>
@@ -189,8 +190,8 @@
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">"${diarycontent.title}"</h4>
+		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="modalDiaryTitle" ></h4>
 		      </div>
 		      <div class="modal-body">
 		      
@@ -198,14 +199,15 @@
 		      	
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-		        <button id="modalBtnDel" type="button" class="btn btn-primary">삭제</button>
+		        <button type="button" class="modal-button-read">수정하기</button>
+		        <button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
      </c:forEach>
      
+     <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
      
      <!--  
 	     	<div class="modal-read2"> 
@@ -259,58 +261,134 @@ function downloadURI(uri, name){
     link.click();
 }
 
-/*실험*/
+//캔버스 초기화 설정
+var canvas = new fabric.Canvas("paper", {
+	 width: 680,
+	 height: 510,
+	 //backgroundColor: 'rgb(100,150,134)'
+	 backgroundColor: '#dbd3c7'
+});
+console.log(canvas);
+
+
+/*하나의 일기 div 클릭했을 때*/
 $(".mydiary-list-box2").on("click",function(){
+	
+	/*클릭한 일기의 일기번호*/
 	var diaryNo = $(this).data("diaryno")
 	console.log(diaryNo);
 	
-	var itemList = $(this).data("itemlist")
-	console.log(itemList);
-	
-	$("#delModal").modal('show');
-})
-
-/*클릭한 일기의 정보*/
- function diaryContent(){
-	 
-	var diaryNo = $(this).data("diaryno")
+	/*키:값*/
+	var diarycontentvo = {diaryNo: diaryNo};
+	console.log(diarycontentvo);
 	
 	$.ajax({
-	    url : "${pageContext.request.contextPath}/diary/write",
+	    url : "${pageContext.request.contextPath}/diary/read",
 	    type : "post",
 	    contentType : "application/json",
-	    data : JSON.stringify(diarycontentvo),//바꿔줬음
+	    data : JSON.stringify(diarycontentvo),//데이터 보내기
 	    dataType : "json",
-	    success : function(result) {
-	    	if(result == 1){
-	    		location.href="${pageContext.request.contextPath}/diary/list";
-	    	}else {
-	    		alert('Fail to saving');
-	    	}
-	    	  
+	    success : function(DiaryContent) {
+	    	
+		    console.log(DiaryContent);
+		    console.log(DiaryContent.itemList); //DiaryContentVo의 필드값 이름으로 값 빼내기 가능
+		    
+		    //제목쓰기
+		    $("#modalDiaryTitle").text(DiaryContent.title);
+		    
+		    var DiaryItemList = DiaryContent.itemList;
+		    
+		    for(var i=0; i<DiaryItemList.length; i++){
+				itemRender(DiaryItemList[i])
+				console.log(DiaryItemList[i]);
+			}
+	    
 	    },
 	    error : function(XHR, status, error) {
 	       console.error(status + " : " + error);
 	    }
-	 });	
+	 });
+	
+	
+	/*모달창 보이기*/
+	$("#delModal").modal('show');
+	
+});
+
+/*닫기버튼을 눌렀을때--겹겹이 쌓이는 일기 해결*/
+$("#closebtn").on("click",function(){
+	var objects = canvas.getObjects();
+	console.log(objects);
+	for(var i=0; i<objects.length; i++){
+		canvas.remove(objects[i]);
+	}canvas.renderAll();
+})
+
+
+//아이템 그리기
+function itemRender(diaryitemVo){
+	
+	if(diaryitemVo.stickerNo == 9999999 || diaryitemVo.stickerSrc == 'n'){ //텍스트 이면
+		var text = new fabric.Textbox(diaryitemVo.text);
+	
+		//좌표
+		text.top = diaryitemVo.top;
+		text.left = diaryitemVo.left;
+		
+		//스케일
+		text.scaleX = diaryitemVo.scaleX;
+		text.scaleY = diaryitemVo.scaleY;
+		
+		//각도
+		text.angle = diaryitemVo.angle;
+		
+		//변경안되게
+		text.selectable = false;
+		
+		//커서모양기본
+		text.hoverCursor ="default";
+		
+		//캔버스에 추가
+		canvas.add(text);
+	
+	}else { //스티커일때 --stickerPath 확인하기
+		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
+			//좌표
+			oImg.top = diaryitemVo.top;
+			oImg.left = diaryitemVo.left;
+			
+			//스케일
+			oImg.scaleX = diaryitemVo.scaleX;
+			oImg.scaleY = diaryitemVo.scaleY;
+			
+			//각도
+			oImg.angle = diaryitemVo.angle;
+			
+			//변경안되게
+			oImg.selectable = false;
+			
+			//커서모양기본
+			oImg.hoverCursor ="default";
+			
+			//캔버스에 추가
+			canvas.add(oImg);
+		});
+	}
+	
+	
+}
+
+
+	
 	
 
-	//캔버스 초기화 설정
-	var canvas = new fabric.Canvas("paper", {
-		 width: 680,
-		 height: 510,
-		 //backgroundColor: 'rgb(100,150,134)'
-		 backgroundColor: '#dbd3c7'
-	});
-
-	
-	
-} 
  
  
 
 
 /*모달창*/
+ /*
+ 
 $(function(){ 
 
     $(".mydiary-list-box2").click(function(){
@@ -322,7 +400,7 @@ $(function(){
          $(".modal-read2").fadeOut();
     });
 
-});
+});*/
 
 
 //////////////////////////////////////////////////////////

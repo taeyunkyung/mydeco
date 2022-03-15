@@ -70,7 +70,7 @@
 							<ol id="chatview" style="padding-left: 5px">
 							</ol>
 							<div id="type">
-								<textarea id="typearea" name="chatContent" value=""></textarea>
+								<textarea id="typearea" data-rl="" name="chatContent" value=""></textarea>
 								<input type="hidden" name="prodNo" value=""> <input
 									type="hidden" name="buyerNo" value=""> <input
 									type="hidden" name="sellerNo" value="">
@@ -91,14 +91,17 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#mySell").hide();
+		$("#typearea").data("rl", "r");
 	});	
 	$("#sellOpt").on("click", function() {
 		$("#myBuy").hide();
 		$("#mySell").show();
+		$("#typearea").data("rl", "l");		
 	});
 	$("#buyOpt").on("click", function() {
 		$("#mySell").hide();
 		$("#myBuy").show();
+		$("#typearea").data("rl", "r");
 	});
 	
 	$(".chat-list").on("click", ".details-btn", function() {
@@ -145,12 +148,9 @@
 				console.log(userChatList)			
 				
 				for(var i=0; i<userChatList.length; i++) {
+					
 					renderLeft(userChatList[i])
 				}
-				
-				/*for(var i=1; chatDetails.length; i+=2) {
-					renderRight(chatDetails[i])
-				}*/
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -160,11 +160,25 @@
 	
 	function renderLeft(userChatVo) {		
 		var str = '';
-		str += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
-		str += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';
+		if((userChatVo.chatNo%2)==1) {
+			str += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
+			str += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
+		} else {
+
+			str += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
+			str += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';	
+		}
+		
 		$("#chatview").append(str);
 	}
 	
+	function renderRight(userChatVo) {		
+		var str = '';
+		str += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
+		str += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
+		
+		$("#chatview").append(str);
+	}	
 	
 	$("#sendChat").on("click", function() {
 		var prodNo = $("input[name='prodNo']").val();
@@ -189,9 +203,16 @@
 			success : function(userChatVo){
 				console.log(userChatVo);
 				var add = '';
-				add += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
-				add += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
+				var rl = $("#typearea").data("rl");
 				
+				if(rl=='r') {
+					add += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
+					add += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';	
+				} else if(rl=='l') {
+					add += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
+					add += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';	
+				}
+								
 				$("#chatview").append(add);
 				$("[name='chatContent']").val("");
 			},
@@ -199,19 +220,7 @@
 				console.error(status + " : " + error);
 			}	
 		}); 
-	});
-	
-	
-	/*function renderRight(userChatVo) {
-		var str = '';
-		str += '<ol class="chatview" id="">';
-		str += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
-		str += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
-		str += '</ol>';
-		
-		document.getElementById("chat").appendChild = str;
-	}*/
-	
+	});	
 	
 </script>
 

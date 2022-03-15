@@ -61,4 +61,21 @@ public class LetterService {
 		
 		return stickerCnt;
 	}
+	
+	
+	//편지 목록 불러오기 : 보낸 편지 목록
+	public List<LetterVo> selectSaveList() {
+		List<LetterVo> saveList = letterDao.selectSaveList();
+
+		return saveList;
+	}
+	
+	//편지 목록 불러오기 : 작성중인 편지 목록
+	public List<LetterVo> selectKeepList() {
+		List<LetterVo> keepList = letterDao.selectKeepList();
+
+		return keepList;
+	}
+	
+
 }

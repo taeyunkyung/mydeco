@@ -88,9 +88,9 @@ public class MyShopService {
 		return myProductList;
 	}
 	
-	// 페이징-나의상품//
+	// 페이징-나의 상품//
 	public Map<String, Object> getMyProductpgList(int userNo, String keyword, int crtPage) {
-		int listCnt = 5;
+		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 		
 		int startNum = (crtPage - 1) * listCnt + 1;
@@ -102,10 +102,12 @@ public class MyShopService {
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
+			int commentCnt = myProdImgDao.commentCnt(prodNo);
 			
 			myProductList.get(i).setProdImgSrc(prodImgSrc);
 			myProductList.get(i).setDiaryCnt(diaryCnt);
 			myProductList.get(i).setPickCnt(pickCnt);
+			myProductList.get(i).setCommentCnt(commentCnt);
 		}
 		
 		int totalCnt = myProductDao.selectTotal(userNo);
@@ -143,7 +145,7 @@ public class MyShopService {
 	
 	// 페이징-찜한상품//
 	public Map<String, Object> getMyPickpgList(int userNo, String keyword, int crtPage) {
-		int listCnt = 5;
+		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 		
 		int startNum = (crtPage - 1) * listCnt + 1;
@@ -155,10 +157,12 @@ public class MyShopService {
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
+			int commentCnt = myProdImgDao.commentCnt(prodNo);
 			
 			myPickList.get(i).setProdImgSrc(prodImgSrc);
 			myPickList.get(i).setDiaryCnt(diaryCnt);
 			myPickList.get(i).setPickCnt(pickCnt);
+			myPickList.get(i).setCommentCnt(commentCnt);
 		}
 		
 		int totalCnt = myProductDao.selectTotalPick(userNo);
@@ -234,5 +238,15 @@ public class MyShopService {
 		}
 		
 		return addReturn;
+	}
+	
+	public ProductVo selectOneProd(int prodNo) {
+		ProductVo productVo = myProductDao.selectOne(prodNo);
+		productVo.setProdImgList(myProdImgDao.prodImgList(prodNo));
+		return productVo;
+	}
+	
+	public int addPick(ProductVo productVo) {
+		return myProductDao.addpick(productVo);
 	}
 }

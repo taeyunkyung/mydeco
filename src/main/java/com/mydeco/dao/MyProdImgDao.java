@@ -1,5 +1,7 @@
 package com.mydeco.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +35,13 @@ public class MyProdImgDao {
 	
 	public int pickCnt(int prodNo) {
 		return sqlSession.selectOne("myProdImg.pickCnt", prodNo);
+	}
+	
+	public int commentCnt(int prodNo) {
+		return sqlSession.selectOne("myProdImg.commentCnt", prodNo);
+	}
+	
+	public List<ProdImgVo> prodImgList(int prodNo) {
+		return sqlSession.selectList("myProdImg.imgList", prodNo);
 	}
 }

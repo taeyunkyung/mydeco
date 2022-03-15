@@ -21,6 +21,15 @@ public class ProductVo {
 	private int pickNo;
 	private String id;
 	private int pickCnt;
+	private int commentCnt;
+
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 
 	public String getProdImgSrc() {
 		return prodImgSrc;

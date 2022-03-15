@@ -111,6 +111,20 @@ public class MydiaryController {
 		}*/
 	}
 	
+
+	@ResponseBody
+	@RequestMapping("/read")
+	public DiaryContentVo read(@RequestBody DiaryContentVo diarycontentvo) {
+		
+		System.out.println(diarycontentvo);
+		/*ajax - 목록에서 클릭한 일기의 번호*/
+		int diaryNo = diarycontentvo.getDiaryNo();
+		
+		return mydiaryService.getOneDiary(diaryNo);
+		
+	}
+
+	
 	
 	/*db에 스티커 이미지 경로,이름 저장하기*/
 	@RequestMapping("/dbsticker")

@@ -72,7 +72,7 @@
 					   order by regDate desc) ot
 			) rt
 			where rt.rn >= #{startNum}
-			and rt.rn < #{endNum}
+			and rt.rn <= #{endNum}
 		]]>
 	</select>
 	
@@ -128,7 +128,7 @@
 						order by pi.regDate desc) ot
 			) rt
 			where rt.rn >= #{startNum}
-			and rt.rn < #{endNum}
+			and rt.rn <= #{endNum}
 		]]>
 	</select>
 	
@@ -180,25 +180,29 @@
 	
 	<select id="buychatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  chatContent,
+			select  rownum chatNo,
+        			chatContent,
         			to_char(regDate,'mm/dd - hh:mi') regDate
-			from chat
-			where prodNo = #{prodNo}
-			and sellerNo = #{sellerNo}
-			and buyerNo = #{userNo}
-			order by chatNo asc
+			from (select  chatContent,
+        				  regDate
+				  from chat 
+				  where prodNo = #{prodNo}
+				  and sellerNo = #{sellerNo}
+				  and buyerNo = #{userNo})
 		]]>	
 	</select>
 	
 	<select id="sellchatDetails" parameterType="com.mydeco.vo.UserChatVo" resultType="com.mydeco.vo.UserChatVo">
 		<![CDATA[
-			select  chatContent,
+			select  rownum chatNo,
+        			chatContent,
         			to_char(regDate,'mm/dd - hh:mi') regDate
-			from chat
-			where prodNo = #{prodNo}
-			and buyerNo = #{buyerNo}
-			and sellerNo = #{userNo}
-			order by chatNo asc
+			from (select  chatContent,
+        				  regDate
+				  from chat 
+				  where prodNo = #{prodNo}
+				  and buyerNo = #{buyerNo}
+				  and sellerNo = #{userNo})
 		]]>	
 	</select>
 	
@@ -231,4 +235,25 @@
 		]]>
 	</select>
 	
+	<select id="selectOneProd" parameterType="int" resultType="ProductVo">
+		<![CDATA[
+			select  prodNo,
+        			userNo,
+        			prodName,
+       	 			emotion,
+        			price,
+        			delivery,
+        			prodInfo,
+        			regDate
+			from product
+			where prodNo = #{prodNo}
+		]]>
+	</select>
+	
+	<insert id="addpick" parameterType="ProductVo">
+		<![CDATA[
+			insert into pick
+			values(seq_pick_no.nextval, #{userNo}, #{prodNo}, sysdate)
+		]]>
+	</insert>
 </mapper>

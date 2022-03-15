@@ -1,0 +1,63 @@
+h3 {
+    font-family: 'SCDream4';
+    font-weight: bolder;
+    margin-left: 15px;
+}
+.img {
+    height: 250px;
+    border: 1px solid #ebebeb;
+}
+#text {
+    display: inline-flex;
+    margin: 6px 0px 6px 15px;
+} 
+.deco-area {
+    padding-top: 11px; margin-right: 10px;
+}
+.deco {
+    width: 12px; height: 12px;
+}
+
+#text label {
+    padding-top: 13px;
+}
+input[id="price"], input[id="emotion"] {
+    width: 160px; 
+    margin: 2px 2px;
+    border: none; }
+
+#story {
+    height: 150px;
+} 
+#diary {
+    height: 521.23px;
+    border: 1px solid #ebebeb;
+    margin-bottom: 3px;
+    overflow-y: scroll; }
+    #diary::-webkit-scrollbar-track {    
+        background-color: #fff;
+    }    
+    #diary::-webkit-scrollbar {
+        width: 8px;
+    }    
+    #diary::-webkit-scrollbar-thumb {
+        background-color: #fff;
+        border: 1px solid #686099;
+        border-radius: 10px;
+    }
+#force-overflow {
+    min-height: 600px;
+    font-family: 'SCDream4';
+}
+
+#buy {
+    display: inline-flex;
+    padding-left: 25.3%;
+    margin-top: 20px;
+} #buy #submitBtn {
+    width: 140px;
+    margin-left: 2px;
+}
+#main-content {
+    padding-right: 0px;
+}

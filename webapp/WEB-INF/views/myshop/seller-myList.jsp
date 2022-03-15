@@ -71,9 +71,10 @@
 										<p class="${productVo.delivery}"></p>
 
 										<div class="etc">
-											<label for="diaryCnt">일기: </label>${productVo.diaryCnt} 개 <label for="cmtCnt">댓글:
-											</label> 개 <label for="likedCnt">찜: </label>${productVo.pickCnt} 개 <input
-												class="delChk" data-no="${productVo.prodNo}" type="checkbox">
+											<label for="diaryCnt">일기: </label>${productVo.diaryCnt} 개 
+											<label for="cmtCnt">댓글: </label>${productVo.commentCnt} 개 
+											<label for="likedCnt">찜: </label>${productVo.pickCnt} 개 
+											<input class="delChk" data-no="${productVo.prodNo}" type="checkbox">
 										</div>
 									</div>
 								</li>
