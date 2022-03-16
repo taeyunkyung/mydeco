@@ -120,11 +120,9 @@
                            
                             <div id="tab-1" class="tab-content current sticker-bgm-box2">
                             
-                            	<c:forEach items="${stickerList}" var="stList">
+                            	<c:forEach items="${stickerMap.stickerList}" var="stickerVo">
                             		<div style="float:left; margin-left:12px;">
-                            			<c:if test="${stList.stickerNo != 0}" >
-                            				<img class="writeform-sticker-size" name="sticker" data-stickerno="${stList.stickerNo}" data-stickersrc="${stList.stickerSrc}" src="${stList.stickerSrc}">
-                            			</c:if>
+                           				<img class="writeform-sticker-size sticker" data-stickerno="${stickerVo.stickerNo}" data-stickersrc="${stickerVo.stickerSrc}" src="${stickerVo.stickerSrc}">
                                 	</div>
                             	</c:forEach>
                                
@@ -135,9 +133,9 @@
                                 <!--용지가로2개-->
                                 
                                 	<div class="clearfix">
-                                		<c:forEach items="${paperList}" var="pList">
+                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
 	                                		<div class="mydiaryImg-box8">
-		                                    	<img name="paper" data-paperno="${pList.paperNo}" data-papersrc="${pList.paperSrc}" src="${pList.paperSrc}">
+		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
 	                                		</div>
                                 		</c:forEach>
                                 	</div>
@@ -230,13 +228,39 @@
 
 
 	//로딩된 후 요청
-	
+
 	//종이를 클릭했을때
+	var paperNo ;//전역변수
+	var paperSrc ;
+	$(".paper").on("click", function(){
+		paperNo = $(this).data("paperno");
+		paperSrc = $(this).data("papersrc");
+		
+		console.log(paperNo);
+		console.log(paperSrc);
+		
+		fabric.Image.fromURL(paperSrc, function(backImg) {
+			//oImg.set({'borderColor': '#686099'});
+
+			//객체에 종이번호 추가
+			backImg.stickerNo = paperNo;
+			backImg.stickerSrc = paperSrc;
+			
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				scaleX: canvas.width / backImg.width,
+				scaleY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+	});
 	
 	
 	
 	//스티커를 클릭했을때
-	$("[name=sticker]").on("click", function(){
+	$(".sticker").on("click", function(){
 		var stickerNo = $(this).data("stickerno")
 		var stickerSrc = $(this).data("stickersrc")
 		
@@ -287,11 +311,7 @@
 			
 			//현재 선택된(활성화된)) 객체를 가져온다.
 			var activeObject = canvas.getActiveObject()
-			console.log(activeObject);
-			/*
-			console.log(activeObject.lineCoords);//text xy좌표들
-			console.log(activeObject.lineCoords.bl);
-			console.log(activeObject.lineCoords.bl.x);*/
+			//console.log(activeObject);
 			
 			//객체를 삭제한다.
 			canvas.remove(activeObject);
@@ -334,7 +354,6 @@
 				protect: protect,
 				title: title
 		};
-		//console.log(diaryvo2);
 		
 		//캔버스에 있는 전체 객체를 배열로 가져온다
 		var canvasObjList = canvas.getObjects();
@@ -354,35 +373,17 @@
 			diaryItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 			
 			diaryItemVo.text = canvasObjList[i].text;
-			
-			/*text관련 새로 추가해볼것*/
-			//diaryItemVo.textPosition = canvasObjList[i].lineCoords;
-			
-			/*text관련 새로 이거*/
-			diaryItemVo.lineblX = canvasObjList[i].lineCoords.bl.x;
-			diaryItemVo.lineblY = canvasObjList[i].lineCoords.bl.y;
-			diaryItemVo.linebrX = canvasObjList[i].lineCoords.br.x;
-			diaryItemVo.linebrY = canvasObjList[i].lineCoords.br.y;
-			diaryItemVo.linetlX = canvasObjList[i].lineCoords.tl.x;
-			diaryItemVo.linetlY = canvasObjList[i].lineCoords.tl.y;
-			diaryItemVo.linetrX = canvasObjList[i].lineCoords.tr.x;
-			diaryItemVo.linetrY = canvasObjList[i].lineCoords.tr.y;
-			
-			/*text관련 추가*/
-			diaryItemVo.cacheHeight = canvasObjList[i].cacheHeight;
-			diaryItemVo.cacheTranslationX = canvasObjList[i].cacheTranslationX;
-			diaryItemVo.cacheTranslationY = canvasObjList[i].cacheTranslationY;
-			diaryItemVo.cacheWidth = canvasObjList[i].cacheWidth;
-			
-			diaryItemVo.width = canvasObjList[i].width;
-			diaryItemVo.height = canvasObjList[i].height;
-			
+	
 			diaryItemList.push(diaryItemVo);//배열에 추가
 			console.log("==========================");			
 			console.log(canvasObjList[i]); 
 		}
 
-		
+		//페이퍼 추가
+		var diaryItemVo = {};
+		diaryItemVo.stickerNo = paperNo;
+		diaryItemVo.stickerSrc = paperSrc;
+		diaryItemList.push(diaryItemVo);//배열에 추가
 		
 		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
 		
@@ -390,7 +391,6 @@
 		/* console.log(diarycontentvo);
 		console.log(canvasObjList[0]);    */
 		writeDiary(diarycontentvo);
-		
 		
 	});
 	

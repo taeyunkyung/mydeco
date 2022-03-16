@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.PaperVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
 
@@ -46,21 +45,11 @@ public class MydiaryDao {
 	}
 	
 	
-	public void dbpaper(PaperVo vo) {
-		
-		sqlSession.insert("mydiary.diary-db-p",vo);
-	}
-	
 	/*스티커목록 가져오기*/
-	public List<StickerVo> getStickerList(){
-		return sqlSession.selectList("mydiary.getStickerList");
+	public List<StickerVo> getStickerList(int cateNo){
+		return sqlSession.selectList("mydiary.getStickerList", cateNo);
 	}
 	
-	/*종이목록 가져오기*/
-	
-	public List<PaperVo> getPaperList(){
-		return sqlSession.selectList("mydiary.getPaperList");
-	}
 	
 	/*일기에 쓴 컨텐츠 추가하기*/
 	public int addContent(DiaryContentVo diarycontentvo) {
@@ -75,17 +64,5 @@ public class MydiaryDao {
 	public void addSticker(DiaryItemVo diarySticker) {
 		sqlSession.insert("mydiary.diaryitem",diarySticker);
 	}
-	
-	/*일기에 쓴 스티커 저장하기2*/
-	/*public void addSticker(DiaryContentVo diarycontentvo) {
-		
-		List<DiaryItemVo> diarystickerList = diarycontentvo.getItemList();
-
-		for(int i=0; i<diarystickerList.size(); i++) {
-			//DiaryItemVo diarysticker = diarystickerList.get(i);
-			//System.out.println(diarysticker);
-			sqlSession.insert("mydiary.diaryitem",diarystickerList.get(i));
-		}
-	}*/
 	
 }

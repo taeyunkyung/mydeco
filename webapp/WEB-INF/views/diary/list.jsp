@@ -265,7 +265,7 @@ function modalCanvasInit(){
 //아이템 그리기
 function itemRender(diaryitemVo){
 	
-	if(diaryitemVo.stickerNo == 0 || diaryitemVo.stickerSrc == 'n'){ //텍스트 이면
+	if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
 		var text = new fabric.Textbox(diaryitemVo.text);
 
 		//기본 폰트 크기
@@ -291,7 +291,20 @@ function itemRender(diaryitemVo){
 		//캔버스에 추가
 		canvas.add(text);
 	
-	}else { //스티커일때 --stickerPath 확인하기
+	}else if(diaryitemVo.stickerCateNo == 1) { // 배경
+		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
+
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				scaleX: canvas.width / backImg.width,
+				scaleY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+		
+	}else {  //스티커
 		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
 			//좌표
 			oImg.top = diaryitemVo.top;
@@ -314,7 +327,6 @@ function itemRender(diaryitemVo){
 			canvas.add(oImg);
 		});
 	}
-	
 	
 }
 

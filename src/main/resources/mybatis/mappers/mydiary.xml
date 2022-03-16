@@ -8,13 +8,14 @@
 			<![CDATA[
 				select diaryNo,
 				       userNo,
-				       to_char(diaryDate, 'YYYY-MM-DD')diaryDate,
+				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
 				       weather,
 				       protect,
 				       title,
 				       diaryBgmSrc
 				from diary
 				where userNo = #{userNo}
+				order by diaryDate desc
 			]]>
 	</select>
 	
@@ -38,32 +39,20 @@
 	<!--다이어리번호가 ?인 다이어리에 사용된 스티커리스트 가져오기 -->
 	<select id="getDiaryItemList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
 			<![CDATA[
-				select diaryItemNo,
-					   diaryNo,
-				       stickerNo,
-				       stickerSrc,
-				       top,
-				       left,
-				       scaleX,
-				       scaleY,
-				       angle,
-				       text,
-				       lineblX, 
-				       lineblY, 
-				       linebrX, 
-				       linebrY, 
-				       linetlX, 
-				       linetlY, 
-				       linetrX, 
-				       linetrY,
-				       cacheHeight,
-				       cacheTranslationX,
-				       cacheTranslationY,
-				       cacheWidth,
-				       width,
-				       height
-				from item
-				where diaryNo = #{diaryNo}
+				select 	 i.diaryItemNo,
+					   	 i.diaryNo,
+					     i.stickerNo,
+					     i.stickerSrc,
+					     i.top,
+					     i.left,
+					     i.scaleX,
+					     i.scaleY,
+					     i.angle,
+					     i.text,
+                     	 s.stickerCateNo
+				from item i, sticker s
+                where i.stickerNo = s.stickerNo
+				and diaryNo = #{diaryNo}
 			]]>
 	</select>
 	
@@ -86,29 +75,15 @@
 	</insert>
 	
 	
-	<insert id="diary-db-p" parameterType="com.mydeco.vo.PaperVo">
-			<![CDATA[
-				insert into paper(paperNo, paperName, paperSrc)
-				values(seq_paper_no.nextval,#{paperName},#{paperSrc})		
-			]]>
-	</insert>
-	
-	
 	<!-- 스티커 목록 가져오기 -->
-	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo">
+	<select id="getStickerList" parameterType="int" resultType="com.mydeco.vo.StickerVo">
 			<![CDATA[
-				select stickerNo,
-       				   stickerSrc
+				select 	stickerNo,
+						stickerCateNo,
+       				   	stickerSrc,
+       				   	stickerName
 				from sticker
-			]]>
-	</select>
-	
-	<!-- 종이 목록 가져오기 -->
-	<select id="getPaperList" resultType="com.mydeco.vo.PaperVo">
-			<![CDATA[
-				select paperNo,
-       				   paperSrc
-				from paper
+				where stickerCateNo = #{stickerCateNo}
 			]]>
 	</select>
 	
@@ -130,8 +105,8 @@
 	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryItemVo">
 	
 			<![CDATA[
-				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text, lineblX, lineblY, linebrX, linebrY, linetlX, linetlY, linetrX, linetrY, cacheHeight, cacheTranslationX, cacheTranslationY, cacheWidth, width, height)
-				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text}, #{lineblX}, #{lineblY}, #{linebrX}, #{linebrY}, #{linetlX}, #{linetlY}, #{linetrX}, #{linetrY}, #{cacheHeight}, #{cacheTranslationX}, #{cacheTranslationY}, #{cacheWidth}, #{width}, #{height})		
+				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text)
+				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
 			]]>
 	</insert>
 </mapper>

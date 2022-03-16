@@ -1,6 +1,8 @@
 package com.mydeco.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.mydeco.dao.MydiaryDao;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
-import com.mydeco.vo.PaperVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
 
@@ -26,31 +27,6 @@ public class MydiaryService {
 		return dcList;
 	}
 	
-	/*다이어리 번호별 리스트*/
-	/*
-	public List<DiaryContentVo> getDiaryNoContentList(UserVo authUser){
-		
-		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(authUser);
-		List<DiaryContentVo> diarycontentList = new ArrayList<DiaryContentVo>();
-		
-		for(int i=0; i<dcList.size(); i++) {
-		
-			/*다이어리 개별 다이어리번호 가져오기*/
-			
-			//int diaryNo = dcList.get(i).getDiaryNo();
-			
-			/*다이어리 내용 번호별로 가져오기--##*/
-			//List<DiaryContentVo> diaryContent = mydiaryDao.getDiaryNoContentList(diaryNo);
-			
-			/*각 다이어리마다 사용된 스티커 가져오기--$$*/
-			//List<DiaryItemVo> diaryitemList = mydiaryDao.getDiaryStickerList(diaryNo);
-		
-			/* ##의 itemList에 $$ 추가하기*/
-			//diaryContent.setItemList(diaryitemList);
-	/*	}
-		
-		return "";
-	}*/
 	
 	/*다이어리 쓴 날짜 리스트*/
 	public List<DiaryContentVo> getDiaryDateList(UserVo authUser){
@@ -88,30 +64,19 @@ public class MydiaryService {
 	
 	
 	
-	public void dbpaper() {
-			
-		    for(int i=1; i<9; i++) {
-		    	String paperName = i + ".jpg";
-		    	String paperSrc = "/mydeco/assets/img/diarypaper/"+paperName;
-		    
-		    	PaperVo vo = new PaperVo(paperName,paperSrc);
-		    	mydiaryDao.dbpaper(vo);
-	    }	
-	}
-	
-
-	/*스티커목록 가져오기*/
-	public List<StickerVo> getStickerList(){
+	/*스티커목록(꾸기미패널) 가져오기*/
+	public Map<String, List<StickerVo>> getStickerList(){
 		
-		return mydiaryDao.getStickerList();
-	}
-	
-	/*종이목록 가져오기*/
-	
-	public List<PaperVo> getPaperList(){
+		List<StickerVo> stickerList = mydiaryDao.getStickerList(2);
+		List<StickerVo> paperList = mydiaryDao.getStickerList(1);
 		
-		return mydiaryDao.getPaperList();
+		Map<String, List<StickerVo>> stickerMap = new HashMap<String, List<StickerVo>>();
+		stickerMap.put("stickerList", stickerList);
+		stickerMap.put("paperList", paperList);
+		
+		return stickerMap;
 	}
+	
 	
 	/*일기에 쓴 컨텐츠 저장하기*/
 	// db error rollback
@@ -138,36 +103,5 @@ public class MydiaryService {
 	
 		return 1;
 	}
-	
-	/*일기에 쓴 스티커 저장하기*/
-	/*
-	public void addSticker(DiaryContentVo diarycontentvo) {
-		/*
-		List<DiaryItemVo> diarysticker = diarycontentvo.getItemList();
-		System.out.println(diarysticker);
-		System.out.println("-=====================");
-		System.out.println(diarysticker.get(2));
-		
-		for(int i=0; i<diarysticker.size(); i++) {
-			/*
-			diarysticker.get(i).getDiaryItemNo();
-			diarysticker.get(i).getDiaryNo();
-			diarysticker.get(i).getStickerNo();
-			diarysticker.get(i).getTop();
-			diarysticker.get(i).getLeft();
-			diarysticker.get(i).getScaleX();
-			diarysticker.get(i).getScaleY();
-			diarysticker.get(i).getAngle();
-			diarysticker.get(i).getText();*/
-			/*
-			DiaryItemVo diarySticker = diarysticker.get(i);
-			System.out.println(diarySticker);
-			System.out.println(diarysticker.size());
-			mydiaryDao.addSticker(diarySticker);*/
-		/*}*/
-		
-		// mydiaryDao.addSticker(diarycontentvo);
-		
-	//}
 	
 }
