@@ -288,12 +288,6 @@ $("#btnKeep").on("click", function(){
 	var openDay = element.innerText;
 	var saveYN = "NO";
 	
-	/*글쓰기폼 입력 경고창*/
-	if(openDay == null || openDay == '' || openDay.trim() == ''){
-		alert('공개일을 선택해주세요');
-		return;
-	}
-	
 	var letterVo = {
 			openDay: openDay,
 			saveYN: saveYN

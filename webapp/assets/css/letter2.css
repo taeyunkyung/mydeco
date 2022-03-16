@@ -16,7 +16,7 @@ div.letterwriteForm-write-region{
 .letterwriteForm-left{
     float: left;
     width: 706px;
-    height: 760px;
+    height: 770px;
     border: 1px solid  #000000;
     padding: 10px 0px 0px 0px;
     
@@ -239,17 +239,12 @@ img {
 }
 
 #letter-content {
-	height: 720px;
+	height: 730px;
 }
 
 
 
 /*스티커*/
-
-#paper {
-	padding: 10px 10px 4px 0px;
-	margin: 0px 10px 0px 10px;
-}
 
 #sticker-text {
 	border: 2px solid white;

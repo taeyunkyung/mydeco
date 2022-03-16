@@ -40,14 +40,21 @@ public class LetterController {
 	}
 	
 	@RequestMapping("/writeForm")
-	public String writeForm(Model model) {
+	public String writeForm(Model model, HttpSession Session) {
 		System.out.println("letter/writeForm");
 		
-		//DB의 스티커 목록 불러와 어트리뷰트에 저장
-		List<StickerVo> stickerList = letterService.getStickerList();
-		model.addAttribute("stickerList",stickerList);
+		UserVo authUser = (UserVo)Session.getAttribute("authUser");
 		
-		return "letter/writeForm";
+		//로그인 하지 않은 유저의 접근 제한
+		if(authUser!= null) {
+			//DB의 스티커 목록 불러와 어트리뷰트에 저장
+			List<StickerVo> stickerList = letterService.getStickerList();
+			model.addAttribute("stickerList",stickerList);
+			
+			return "letter/writeForm";
+		}else {
+			return "letter/letterList";
+		}
 	}
 	
 	@ResponseBody

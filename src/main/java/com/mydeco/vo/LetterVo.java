@@ -13,8 +13,9 @@ public class LetterVo {
 	private String readYN = "NO";
 	private String saveYN;
 	private List<LetterItemVo> itemList;
-	
+
 	private String text;
+	private int dDay;
 
 	// 생성자
 	public LetterVo() {
@@ -22,18 +23,8 @@ public class LetterVo {
 	}
 
 	public LetterVo(int letterNo, int userNo, String regDate, String openDay, String bgmSrc, String readYN,
-			String saveYN) {
-		this.letterNo = letterNo;
-		this.userNo = userNo;
-		this.regDate = regDate;
-		this.openDay = openDay;
-		this.bgmSrc = bgmSrc;
-		this.readYN = readYN;
-		this.saveYN = saveYN;
-	}
-
-	public LetterVo(int letterNo, int userNo, String regDate, String openDay, String bgmSrc, String readYN,
-			String saveYN, List<LetterItemVo> itemList, String text) {
+			String saveYN, List<LetterItemVo> itemList, String text, int dDay) {
+		super();
 		this.letterNo = letterNo;
 		this.userNo = userNo;
 		this.regDate = regDate;
@@ -43,10 +34,9 @@ public class LetterVo {
 		this.saveYN = saveYN;
 		this.itemList = itemList;
 		this.text = text;
+		this.dDay = dDay;
 	}
-	
 
-	// getter setter
 	public int getLetterNo() {
 		return letterNo;
 	}
@@ -119,13 +109,19 @@ public class LetterVo {
 		this.text = text;
 	}
 
+	public int getdDay() {
+		return dDay;
+	}
+
+	public void setdDay(int dDay) {
+		this.dDay = dDay;
+	}
+
 	@Override
 	public String toString() {
 		return "LetterVo [letterNo=" + letterNo + ", userNo=" + userNo + ", regDate=" + regDate + ", openDay=" + openDay
 				+ ", bgmSrc=" + bgmSrc + ", readYN=" + readYN + ", saveYN=" + saveYN + ", itemList=" + itemList
-				+ ", text=" + text + "]";
+				+ ", text=" + text + ", dDay=" + dDay + "]";
 	}
-
-	
 
 }
