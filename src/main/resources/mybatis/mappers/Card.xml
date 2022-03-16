@@ -6,15 +6,14 @@
 	<!-- 디비 넣기 -->
 	<insert id="sendcard" parameterType="CardVo">
 		<![CDATA[
-			
 			insert into card 
-			values(seq_card_no.nextval,#{userNo},#{},2,'작성카드내용',sysdate,'age','gender');
+			values(seq_card_no.nextval,#{userNo},#{replyNo},#{cardImgNo},#{receiveContent},sysdate,#{cardAge},#{cardGender});
 		]]>
 	
 	</insert> 
 
 	<!-- 사진 목록 가져오기 -->
-	<select id="cardbg" resultType="cardImgVo">
+	<select id="cardbg" resultType="CardVo">
 		<![CDATA[
 			select  cardImgNo,
 			        cardImgName,

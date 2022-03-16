@@ -7,24 +7,23 @@ public class CardVo {
 	private int replyNo;
 	private int cardImgNo;
 	private String cardContent;
-	private int cardRegdate;
+	private String cardRegdate;
 	private String cardGender;
 	private String cardAge;
 	private int receivecardNo;
 	private String receiveContent;
-	private int receiveRegdate;
+	private String receiveRegdate;
 	private String replyContent;
-	private int cardImgName;
+	private String cardImgName;
 	private String cardImgSrc; 
 	
 	
 	public CardVo() {}
 
 
-
-	public CardVo(int cardNo, int userNo, int replyNo, int cardImgNo, String cardContent, int cardRegdate,
-			String cardGender, String cardAge, int receivecardNo, String receiveContent, int receiveRegdate,
-			String replyContent, int cardImgName, String cardImgSrc) {
+	public CardVo(int cardNo, int userNo, int replyNo, int cardImgNo, String cardContent, String cardRegdate,
+			String cardGender, String cardAge, int receivecardNo, String receiveContent, String receiveRegdate,
+			String replyContent, String cardImgName, String cardImgSrc) {
 		this.cardNo = cardNo;
 		this.userNo = userNo;
 		this.replyNo = replyNo;
@@ -40,7 +39,6 @@ public class CardVo {
 		this.cardImgName = cardImgName;
 		this.cardImgSrc = cardImgSrc;
 	}
-
 
 
 	public int getCardNo() {
@@ -48,11 +46,9 @@ public class CardVo {
 	}
 
 
-
 	public void setCardNo(int cardNo) {
 		this.cardNo = cardNo;
 	}
-
 
 
 	public int getUserNo() {
@@ -60,11 +56,9 @@ public class CardVo {
 	}
 
 
-
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-
 
 
 	public int getReplyNo() {
@@ -72,11 +66,9 @@ public class CardVo {
 	}
 
 
-
 	public void setReplyNo(int replyNo) {
 		this.replyNo = replyNo;
 	}
-
 
 
 	public int getCardImgNo() {
@@ -84,11 +76,9 @@ public class CardVo {
 	}
 
 
-
 	public void setCardImgNo(int cardImgNo) {
 		this.cardImgNo = cardImgNo;
 	}
-
 
 
 	public String getCardContent() {
@@ -96,23 +86,19 @@ public class CardVo {
 	}
 
 
-
 	public void setCardContent(String cardContent) {
 		this.cardContent = cardContent;
 	}
 
 
-
-	public int getCardRegdate() {
+	public String getCardRegdate() {
 		return cardRegdate;
 	}
 
 
-
-	public void setCardRegdate(int cardRegdate) {
+	public void setCardRegdate(String cardRegdate) {
 		this.cardRegdate = cardRegdate;
 	}
-
 
 
 	public String getCardGender() {
@@ -120,11 +106,9 @@ public class CardVo {
 	}
 
 
-
 	public void setCardGender(String cardGender) {
 		this.cardGender = cardGender;
 	}
-
 
 
 	public String getCardAge() {
@@ -132,11 +116,9 @@ public class CardVo {
 	}
 
 
-
 	public void setCardAge(String cardAge) {
 		this.cardAge = cardAge;
 	}
-
 
 
 	public int getReceivecardNo() {
@@ -144,11 +126,9 @@ public class CardVo {
 	}
 
 
-
 	public void setReceivecardNo(int receivecardNo) {
 		this.receivecardNo = receivecardNo;
 	}
-
 
 
 	public String getReceiveContent() {
@@ -156,23 +136,19 @@ public class CardVo {
 	}
 
 
-
 	public void setReceiveContent(String receiveContent) {
 		this.receiveContent = receiveContent;
 	}
 
 
-
-	public int getReceiveRegdate() {
+	public String getReceiveRegdate() {
 		return receiveRegdate;
 	}
 
 
-
-	public void setReceiveRegdate(int receiveRegdate) {
+	public void setReceiveRegdate(String receiveRegdate) {
 		this.receiveRegdate = receiveRegdate;
 	}
-
 
 
 	public String getReplyContent() {
@@ -180,23 +156,19 @@ public class CardVo {
 	}
 
 
-
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
 
 
-
-	public int getCardImgName() {
+	public String getCardImgName() {
 		return cardImgName;
 	}
 
 
-
-	public void setCardImgName(int cardImgName) {
+	public void setCardImgName(String cardImgName) {
 		this.cardImgName = cardImgName;
 	}
-
 
 
 	public String getCardImgSrc() {
@@ -204,11 +176,9 @@ public class CardVo {
 	}
 
 
-
 	public void setCardImgSrc(String cardImgSrc) {
 		this.cardImgSrc = cardImgSrc;
 	}
-
 
 
 	@Override
@@ -219,9 +189,8 @@ public class CardVo {
 				+ ", receiveRegdate=" + receiveRegdate + ", replyContent=" + replyContent + ", cardImgName="
 				+ cardImgName + ", cardImgSrc=" + cardImgSrc + "]";
 	}
-	
-	
-	
 
+
+	
 }	
 	

@@ -24,6 +24,8 @@ public class CardService {//�ڷ��� ����,���
 	public List<CardVo> imgList(){
 		System.out.println("서비스의 imgList");
 		List<CardVo> imgList = cardDao.imgList();
+		System.out.println("서비스의 imgList확인용"+imgList);
+
 		return imgList;
 	}
 }

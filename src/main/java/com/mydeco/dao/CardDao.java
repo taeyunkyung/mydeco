@@ -24,6 +24,7 @@ public class CardDao {
 	public List<CardVo> imgList(){
 		System.out.println("다오의 imgList");
 		List<CardVo> bgList = sqlSession.selectList("card.cardbg");
+		System.out.println("다오의 bgList확인용"+bgList);
 		return bgList;
 	}
 	

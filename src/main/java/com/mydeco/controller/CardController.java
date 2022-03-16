@@ -24,11 +24,17 @@ public class CardController {
 	@RequestMapping("/main")
 	public String card() {
 		System.out.println("controller > main");
-		
-		return "/card/cardMain";
+		return "card/cardMain";
 	}
 	
-	
+	@RequestMapping("/cardWriteForm")
+	public String cardWriteForm(Model model) {
+		System.out.println("controller > 카드쓰기폼");
+		List<CardVo> bgList = cardService.imgList();
+		model.addAttribute("bgList", bgList);
+		System.out.println(bgList);
+		return "card/cardWriteForm";
+	}
 	
 	@RequestMapping("cardwrite")
 	public String cardWrite(HttpSession session, @ModelAttribute CardVo cardVo) {
@@ -41,12 +47,7 @@ public class CardController {
 		
 	}
 	
-	@RequestMapping("/replywrite")
-	public String replyWriteForm(Model model) {
-		System.out.println("card/replyWriteForm");
-		
-		return "card/replyWriteForm";
-	}
+	
 	
 	@RequestMapping("/cardread")
 	public String cardReadForm(Model model) {
