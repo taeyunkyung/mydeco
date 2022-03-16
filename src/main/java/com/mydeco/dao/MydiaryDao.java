@@ -62,7 +62,9 @@ public class MydiaryDao {
 	
 	/*일기에 쓴 스티커 저장하기*/
 	public void addSticker(DiaryItemVo diarySticker) {
+		System.out.println(diarySticker);
 		sqlSession.insert("mydiary.diaryitem",diarySticker);
+		
 	}
 	
 }
