@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mydeco.service.CardService;
-import com.mydeco.vo.CardImgVo;
 import com.mydeco.vo.CardVo;
 import com.mydeco.vo.UserVo;
 
@@ -31,7 +30,7 @@ public class CardController {
 	@RequestMapping("/cardWriteForm")
 	public String cardWriteForm(Model model) {
 		System.out.println("controller > 카드쓰기폼");
-		List<CardImgVo> bgList = cardService.imgList();
+		List<CardVo> bgList = cardService.imgList();
 		model.addAttribute("bgList", bgList);
 		System.out.println(bgList);
 		return "card/cardWriteForm";

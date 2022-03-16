@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mydeco.vo.CardImgVo;
 import com.mydeco.vo.CardVo;
 
 @Repository
@@ -22,9 +21,9 @@ public class CardDao {
 		sqlSession.insert("card.sendcard", cardVo);
 	}
 	
-	public List<CardImgVo> imgList(){
+	public List<CardVo> imgList(){
 		System.out.println("다오의 imgList");
-		List<CardImgVo> bgList = sqlSession.selectList("card.cardbg");
+		List<CardVo> bgList = sqlSession.selectList("card.cardbg");
 		return bgList;
 	}
 	
