@@ -255,20 +255,6 @@
 
 
 <script type="text/javascript">
-function downImg(){
-    html2canvas($("#modalData")[0]).then(function(canvas){
-        var myImage = canvas.toDataURL();
-        downloadURI(myImage, "test.png") 
-    });
-}
-
-function downloadURI(uri, name){
-    var link = document.createElement("a")
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-}
 
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
@@ -280,8 +266,12 @@ var canvas = new fabric.Canvas("paper", {
 console.log(canvas);
 
 
-/*하나의 일기 div 클릭했을 때*/
+/*하나의 일기 div 클릭했을 때 모달창 보이기*/
 $(".mydiary-list-box2").on("click",function(){
+	
+	//캔버스 초기화(이전에 보였졌던 일기 지우기);
+	modalCanvasInit();
+	
 	
 	/*클릭한 일기의 일기번호*/
 	var diaryNo = $(this).data("diaryno")
@@ -327,22 +317,26 @@ $(".mydiary-list-box2").on("click",function(){
 	
 });
 
-/*닫기버튼을 눌렀을때--겹겹이 쌓이는 일기 해결*/
-$("#closebtn").on("click",function(){
+
+/*일기보기 모달창 초기화*/
+function modalCanvasInit(){
 	var objects = canvas.getObjects();
 	console.log(objects);
 	for(var i=0; i<objects.length; i++){
 		canvas.remove(objects[i]);
 	}canvas.renderAll();
-})
+}	
 
 
 //아이템 그리기
 function itemRender(diaryitemVo){
 	
-	if(diaryitemVo.stickerNo == 9999999 || diaryitemVo.stickerSrc == 'n'){ //텍스트 이면
+	if(diaryitemVo.stickerNo == 0 || diaryitemVo.stickerSrc == 'n'){ //텍스트 이면
 		var text = new fabric.Textbox(diaryitemVo.text);
-	
+
+		//기본 폰트 크기
+		text.fontSize = 18;
+		
 		//좌표
 		text.top = diaryitemVo.top;
 		text.left = diaryitemVo.left;
@@ -353,30 +347,10 @@ function itemRender(diaryitemVo){
 		
 		//각도
 		text.angle = diaryitemVo.angle;
-		
-		//linecord
-		
-		text.lineblX = diaryitemVo.lineblX;
-		text.lineblY = diaryitemVo.lineblY;
-		text.linebrX = diaryitemVo.linebrX;
-		text.linebrY = diaryitemVo.linebrY;
-		text.linetlX = diaryitemVo.linetlX;
-		text.linetlY = diaryitemVo.linetlY;
-		text.linetrX = diaryitemVo.linetrX;
-		text.linetrY = diaryitemVo.linetrY;
 
-		//cache
-		text.cacheHeight = diaryitemVo.cacheHeight;
-		text.cacheTranslationX = diaryitemVo.cacheTranslationX;
-		text.cacheTranslationY = diaryitemVo.cacheTranslationY;
-		text.cacheWidth = diaryitemVo.cacheWidth;
-		
-		//width height
-		text.width = diaryitemVo.width;
-		text.height = diaryitemVo.height;
-		
 		//변경안되게
-		text.selectable = false;
+		//text.selectable = false;
+		text.selectable = true;
 		
 		//커서모양기본
 		text.hoverCursor ="default";
@@ -411,8 +385,23 @@ function itemRender(diaryitemVo){
 	
 }
 
-
-	
+/*실험용*/
+//del키를 눌렀을때
+$("body").on("keyup",function(){
+	if ( event.keyCode == 46 || event.which == 46 ) {
+		
+		//현재 선택된(활성화된)) 객체를 가져온다.
+		var activeObject = canvas.getActiveObject()
+		console.log(activeObject);
+		console.log(activeObject.lineCoords);//text xy좌표들
+		console.log(activeObject.lineCoords.bl);
+		console.log(activeObject.lineCoords.bl.x);
+		
+		//객체를 삭제한다.
+		
+		//canvas.remove(activeObject);
+	}
+})
 	
 
  
@@ -520,5 +509,29 @@ function renderWriteDay(date) {
 	   });
 	
 } */
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+function downImg(){
+    html2canvas($("#modalData")[0]).then(function(canvas){
+        var myImage = canvas.toDataURL();
+        downloadURI(myImage, "test.png") 
+    });
+}
+
+function downloadURI(uri, name){
+    var link = document.createElement("a")
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+}
+///////////////////////////////////////////////////////////////////
+
+
+
 </script>
 </html>
