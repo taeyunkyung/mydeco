@@ -99,7 +99,7 @@
 	               <div class="row">
 	                   <div class="col-xs-11">
 	                       <div class="button-center">
-	                           <button type="button" class="btn-ReadList"><a href="${pageContext.request.contextPath}/card/main">받은카드 리스트</a></button><!--list페이지로 이동-->
+	                           <button type="button" class="btn-ReadList"><a href="${pageContext.request.contextPath}/card/main">리스트로 돌아가기</a></button><!--list페이지로 이동-->
 	                       </div>
 	                   </div>
 	                    <div class="col-xs-1">   

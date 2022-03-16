@@ -16,14 +16,14 @@ public class CardService {//�ڷ��� ����,���
 	CardDao cardDao;
 
 	
-	public void cardImg(CardVo cardVo) {
+	public void sendcard(CardVo cardVo) {
 		System.out.println("service > dao 로 카드이미지 전달");
 		System.out.println(cardVo);
-		cardDao.cardImg(cardVo);
+		cardDao.sendcard(cardVo);
 	}
 	
 	public List<CardImgVo> imgList(){
-		System.out.println("서비스의 igList");
+		System.out.println("서비스의 imgList");
 		List<CardImgVo> imgList = cardDao.imgList();
 		return imgList;
 	}

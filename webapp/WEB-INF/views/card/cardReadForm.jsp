@@ -96,7 +96,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="reset" class="btn-ReadList"><a class="cardMainForm" href="${pageContext.request.contextPath}/card/main">작성카드 리스트</a><!--list페이지로 이동-->
+                        <button type="reset" class="btn-ReadList"><a class="cardMainForm" href="${pageContext.request.contextPath}/card/main">리스트로 돌아가기</a><!--list페이지로 이동-->
                         </div>
                     </div>
                 </div>

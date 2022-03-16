@@ -16,10 +16,10 @@ public class CardDao {
 	SqlSession sqlSession;
 	
 
-	public void cardImg(CardVo cardVo) {
+	public void sendcard(CardVo cardVo) {
 		System.out.println("dao.cardImg 접속완");
 		System.out.println(cardVo);
-		sqlSession.insert("card.cardImg", cardVo);
+		sqlSession.insert("card.sendcard", cardVo);
 	}
 	
 	public List<CardImgVo> imgList(){

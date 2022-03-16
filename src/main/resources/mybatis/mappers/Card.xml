@@ -4,10 +4,11 @@
 <mapper namespace="card">
 
 	<!-- 디비 넣기 -->
-	<insert id="cardImg" parameterType="CardVo">
+	<insert id="sendcard" parameterType="CardVo">
 		<![CDATA[
-			insert into card
-			values(seq_card_no.nextval,#{userNo},#{cardContent},sysdate,#{cardAge},#{cardGender},#{cardImgNo})
+			
+			insert into card 
+			values(seq_card_no.nextval,#{userNo},#{},2,'작성카드내용',sysdate,'age','gender');
 		]]>
 	
 	</insert> 
@@ -17,8 +18,7 @@
 		<![CDATA[
 			select  cardImgNo,
 			        cardImgName,
-			        cardImgSrc,
-			        cardImgInfo
+			        cardImgSrc
 			from cardImg
 		]]>
 	</select>

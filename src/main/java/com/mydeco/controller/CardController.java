@@ -43,7 +43,7 @@ public class CardController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		cardVo.setUserNo(authUser.getUserNo());
 		System.out.println(cardVo);
-		cardService.cardImg(cardVo);
+		cardService.sendcard(cardVo);
 		return "redirect:main";
 		
 	}

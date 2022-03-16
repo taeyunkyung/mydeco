@@ -13,7 +13,9 @@
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/card.css">
         <!--제이쿼리-->
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!--         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>-->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script> 
+		<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
  
 </head>
     <body>
@@ -56,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="r-text">원본글</div>
+                <div class="r-text">받은카드</div>
                 <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
 
 
@@ -85,61 +87,42 @@
             </div>
         </div>
     </div>
+    
+    <div id="모달창 이름" class="modal fade">
+   		<div class="modal-dialog modal-lg">
+      		<div class="modal-content">
+         		<div class="modal-header">
+             
+             	</div>
+         	
+         
+           		<div class="modal-body">
+        	
+           	<!-- 모달창 주요 컨텐츠 -->
+           
+           		</div>
+           
+           
+           <div class="modal-footer">
+              <button type="button" class="modal-button-read">수정하기</button>
+              <button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
+          	</div>
+          
+      	</div><!-- /.modal-content -->
+   	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
     </body>
     <script type="text/javascript">
-        function modal(id) {
-            var zIndex = 9999;
-            var modal = document.getElementById(id);
-        
-            // 모달 div 뒤에 희끄무레한 레이어
-            var bg = document.createElement('div');
-            bg.setStyle({
-                position: 'fixed',
-                zIndex: zIndex,
-                left: '0px',
-                top: '0px',
-                width: '100%',
-                height: '100%',
-                overflow: 'auto',
-                // 레이어 색갈은 여기서 바꾸면 됨
-                backgroundColor: 'rgba(0,0,0,0.4)'
-            });
-            document.body.append(bg);
-        
-            // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-            modal.querySelector('.btn-card-close').addEventListener('click', function() {
-                bg.remove();
-                modal.style.display = 'none';
-            });
-        
-            modal.setStyle({
-                position: 'fixed',
-                display: 'block',
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-        
-                // 시꺼먼 레이어 보다 한칸 위에 보이기
-                zIndex: zIndex + 1,
-        
-                // div center 정렬
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                msTransform: 'translate(-50%, -50%)',
-                webkitTransform: 'translate(-50%, -50%)'
-            });
-        }
-        
-        // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-        Element.prototype.setStyle = function(styles) {
-            for (var k in styles) this.style[k] = styles[k];
-            return this;
-        };
-        
-        document.getElementById('popup_open_btn').addEventListener('click', function() {
-            // 모달창 띄우기
-            modal('my_modal');
-        });
-        </script>
+    $("버튼 이름").on("click",function(){
+    	   
+    	   /*모달창 보이기*/
+   	$("모달창 이름").modal('show');
+    	   
+
+    });
+    </script>
 
 </body>
 </html>
