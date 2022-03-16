@@ -97,33 +97,6 @@
                         <!--일기리스트-->
                         <div class="mydiarydiv4">                       
 
-                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
-                             <!--  
-                            <div class="clearfix mydiary-list-box2">
-                                
-                                <!--왼쪽 날짜 일기 비공개-->
-                                <!--  
-                                <div class="mydiaryText-list2">
-                                    <div class="mydiaryText7 clearfix">
-                                        <div class="mydiary-Date">Date:</div>
-                                        <div class="mydiary-Date">2022-03.24</div>
-                                        <div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png"></div>
-                                    </div>
-
-                                    <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>
-                                    
-                                    <div class="opensetting">
-                                        비공개
-                                    </div>
-                                </div>
-
-                                <!--오른쪽 사진-->
-                                <!--  
-                                <div class="mydiaryImg-box7 mydiary-box7-support">
-                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-                                </div>
-                            </div>-->
-                            
                             
                         </div>
 

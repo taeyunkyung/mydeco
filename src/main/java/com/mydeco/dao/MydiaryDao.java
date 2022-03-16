@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
+import com.mydeco.vo.PaperVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
 
@@ -44,11 +45,11 @@ public class MydiaryDao {
 		sqlSession.insert("mydiary.diary-db",vo);
 	}
 	
-	/*
+	
 	public void dbpaper(PaperVo vo) {
 		
 		sqlSession.insert("mydiary.diary-db-p",vo);
-	}*/
+	}
 	
 	/*스티커목록 가져오기*/
 	public List<StickerVo> getStickerList(){
@@ -56,10 +57,10 @@ public class MydiaryDao {
 	}
 	
 	/*종이목록 가져오기*/
-	/*
+	
 	public List<PaperVo> getPaperList(){
 		return sqlSession.selectList("mydiary.getPaperList");
-	}*/
+	}
 	
 	/*일기에 쓴 컨텐츠 추가하기*/
 	public int addContent(DiaryContentVo diarycontentvo) {

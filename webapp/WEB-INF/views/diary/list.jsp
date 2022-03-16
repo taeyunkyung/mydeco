@@ -129,7 +129,6 @@
 	                                    </div>
 	                                </div>
 	                                
-	                                
 	                               
 	                                <div class="mydiaryImg-box7 mydiary-box7-support">
 	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
@@ -147,35 +146,6 @@
 	                                <input type="hidden" data-angle="${dcvo.angle}">
 	                                <input type="hidden" data-text="${dcvo.text}">-->
                             
-                            
-                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
-                             <!--  
-                            <div class="clearfix mydiary-list-box2">
-                                
-                                <!--왼쪽 날짜 일기 비공개-->
-                                <!--  
-                                <div class="mydiaryText-list2">
-                                    <div class="mydiaryText7 clearfix">
-                                        <div class="mydiary-Date">Date:</div>
-                                        <div class="mydiary-Date">2022-03.24</div>
-                                        <div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png"></div>
-                                    </div>
-
-                                    <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>
-                                    
-                                    <div class="opensetting">
-                                        비공개
-                                    </div>
-                                </div>
-
-                                <!--오른쪽 사진-->
-                                <!--  
-                                <div class="mydiaryImg-box7 mydiary-box7-support">
-                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-                                </div>
-                            </div>-->
-                            
-                            
                         </div>
 
                     </div>
@@ -185,8 +155,7 @@
     </div>
 
      <!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
-     <c:forEach items="${diarycontentList}" var="diarycontent">
-	     <div id="delModal" class="modal fade">
+	     <div id="diaryModal" class="modal fade">
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -214,43 +183,8 @@
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-     </c:forEach>
      
      <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
-     
-     <!--  
-	     	<div class="modal-read2"> 
-		        <div class="modal_body" style="display: flex;align-items: center;justify-content: center;">                  
-		            <div class="modal_content_read" title="클릭하면 창이 닫힙니다.">   
-		                <!--상단-->
-		    <!--  
-		                <div class="clearfix" style="padding-top: 10px; margin-bottom: 30px; ">
-		                    <div class="read-bgm-play">
-		                        || 자동재생되는중 노래제목 
-		                    </div>
-		                    <div class="read-save-icon">
-		                        <img class="read-save-btn" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
-		                    </div>
-		                    <div>
-		                        <button class="mydiary-read-close-btn"><img class="read-close-btn" src="${pageContext.request.contextPath}/assets/img/icon/close.png"></button>
-		                    </div>
-		                </div>     
-		                   
-		                <div>
-		                    <h2 class="mydiary-read-title">${diarycontent.title}</h2>
-		                </div>
-		                
-		                <canvas class="readCanvas" id="paper"></canvas>
-		                
-		                <div class="mydiary-read-btnset">
-		                    <button class="modal-button-read">수정하기</button>
-		                    <button class="modal-button-read">삭제하기</button>
-		                </div> 
-		            </div>
-		            
-		        </div> 
-	    	</div> -->
-    
 </body>
 
 
@@ -313,7 +247,7 @@ $(".mydiary-list-box2").on("click",function(){
 	
 	
 	/*모달창 보이기*/
-	$("#delModal").modal('show');
+	$("#diaryModal").modal('show');
 	
 });
 
@@ -349,8 +283,7 @@ function itemRender(diaryitemVo){
 		text.angle = diaryitemVo.angle;
 
 		//변경안되게
-		//text.selectable = false;
-		text.selectable = true;
+		text.selectable = false;
 		
 		//커서모양기본
 		text.hoverCursor ="default";
@@ -385,27 +318,6 @@ function itemRender(diaryitemVo){
 	
 }
 
-/*실험용*/
-//del키를 눌렀을때
-$("body").on("keyup",function(){
-	if ( event.keyCode == 46 || event.which == 46 ) {
-		
-		//현재 선택된(활성화된)) 객체를 가져온다.
-		var activeObject = canvas.getActiveObject()
-		console.log(activeObject);
-		console.log(activeObject.lineCoords);//text xy좌표들
-		console.log(activeObject.lineCoords.bl);
-		console.log(activeObject.lineCoords.bl.x);
-		
-		//객체를 삭제한다.
-		
-		//canvas.remove(activeObject);
-	}
-})
-	
-
- 
- 
 
 
 /*모달창*/
