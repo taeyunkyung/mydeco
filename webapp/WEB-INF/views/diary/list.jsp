@@ -191,7 +191,16 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="modalDiaryTitle" ></h4>
+		        <div style="float:right; margin-right:30px;">노래를넣는다면 여기가 노래재생되는곳</div>
+		        
+		        <div class="clearfix" style="margin-top:43px;">
+			        <div style="float:left; margin-left:41px;"><h4 class="modal-title" id="modalDiaryTitle" style="font-size:19px; font-weight:900"></h4></div>
+			        <div class="readcontent clearfix" style="float:right; width:176px; margin-right:40px; margin-top:7px;" >
+			        	<div style="float:left; font-family:'SCDream4'; width:84px;"id="modalDiaryDate"></div>
+			        	<div style="float:left; font-family:'SCDream4'; width:50px; text-align:center;"id="modalDiaryWeather"></div>
+			        	<div style="float:left; font-family:'SCDream4'; width:42px; text-align:center;"id="modalDiaryProtect"></div>
+			        </div>
+		        </div>
 		      </div>
 		      <div class="modal-body">
 		      
@@ -295,6 +304,9 @@ $(".mydiary-list-box2").on("click",function(){
 		    
 		    //제목쓰기
 		    $("#modalDiaryTitle").text(DiaryContent.title);
+		    $("#modalDiaryDate").text(DiaryContent.diaryDate);
+		    $("#modalDiaryWeather").text(DiaryContent.weather);
+		    $("#modalDiaryProtect").text(DiaryContent.protect);
 		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
@@ -341,6 +353,27 @@ function itemRender(diaryitemVo){
 		
 		//각도
 		text.angle = diaryitemVo.angle;
+		
+		//linecord
+		
+		text.lineblX = diaryitemVo.lineblX;
+		text.lineblY = diaryitemVo.lineblY;
+		text.linebrX = diaryitemVo.linebrX;
+		text.linebrY = diaryitemVo.linebrY;
+		text.linetlX = diaryitemVo.linetlX;
+		text.linetlY = diaryitemVo.linetlY;
+		text.linetrX = diaryitemVo.linetrX;
+		text.linetrY = diaryitemVo.linetrY;
+
+		//cache
+		text.cacheHeight = diaryitemVo.cacheHeight;
+		text.cacheTranslationX = diaryitemVo.cacheTranslationX;
+		text.cacheTranslationY = diaryitemVo.cacheTranslationY;
+		text.cacheWidth = diaryitemVo.cacheWidth;
+		
+		//width height
+		text.width = diaryitemVo.width;
+		text.height = diaryitemVo.height;
 		
 		//변경안되게
 		text.selectable = false;

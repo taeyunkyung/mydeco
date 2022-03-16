@@ -317,9 +317,14 @@
 			
 			//현재 선택된(활성화된)) 객체를 가져온다.
 			var activeObject = canvas.getActiveObject()
+			console.log(activeObject);
+			console.log(activeObject.lineCoords);//text xy좌표들
+			console.log(activeObject.lineCoords.bl);
+			console.log(activeObject.lineCoords.bl.x);
 			
 			//객체를 삭제한다.
-			canvas.remove(activeObject);
+			
+			//canvas.remove(activeObject);
 		}
 	})
 	
@@ -380,13 +385,35 @@
 			
 			diaryItemVo.text = canvasObjList[i].text;
 			
+			/*text관련 새로 추가해볼것*/
+			//diaryItemVo.textPosition = canvasObjList[i].lineCoords;
+			
+			/*text관련 새로 이거*/
+			diaryItemVo.lineblX = canvasObjList[i].lineCoords.bl.x;
+			diaryItemVo.lineblY = canvasObjList[i].lineCoords.bl.y;
+			diaryItemVo.linebrX = canvasObjList[i].lineCoords.br.x;
+			diaryItemVo.linebrY = canvasObjList[i].lineCoords.br.y;
+			diaryItemVo.linetlX = canvasObjList[i].lineCoords.tl.x;
+			diaryItemVo.linetlY = canvasObjList[i].lineCoords.tl.y;
+			diaryItemVo.linetrX = canvasObjList[i].lineCoords.tr.x;
+			diaryItemVo.linetrY = canvasObjList[i].lineCoords.tr.y;
+			
+			/*text관련 추가*/
+			diaryItemVo.cacheHeight = canvasObjList[i].cacheHeight;
+			diaryItemVo.cacheTranslationX = canvasObjList[i].cacheTranslationX;
+			diaryItemVo.cacheTranslationY = canvasObjList[i].cacheTranslationY;
+			diaryItemVo.cacheWidth = canvasObjList[i].cacheWidth;
+			
+			diaryItemVo.width = canvasObjList[i].width;
+			diaryItemVo.height = canvasObjList[i].height;
+			
 			diaryItemList.push(diaryItemVo);//배열에 추가
 		}
 
 		console.log(diarycontentvo);
 		console.log(diaryItemList);   
 		
-		diarycontentvo.itemList = diaryItemList//
+		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
 		
 		console.log("==========================");
 		console.log(diarycontentvo);

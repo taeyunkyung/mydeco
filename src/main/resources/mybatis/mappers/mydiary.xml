@@ -47,7 +47,21 @@
 				       scaleX,
 				       scaleY,
 				       angle,
-				       text
+				       text,
+				       lineblX, 
+				       lineblY, 
+				       linebrX, 
+				       linebrY, 
+				       linetlX, 
+				       linetlY, 
+				       linetrX, 
+				       linetrY,
+				       cacheHeight,
+				       cacheTranslationX,
+				       cacheTranslationY,
+				       cacheWidth,
+				       width,
+				       height
 				from item
 				where diaryNo = #{diaryNo}
 			]]>
@@ -116,8 +130,8 @@
 	<insert id="diaryitem" parameterType="com.mydeco.vo.DiaryItemVo">
 	
 			<![CDATA[
-				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text)
-				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
+				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text, lineblX, lineblY, linebrX, linebrY, linetlX, linetlY, linetrX, linetrY, cacheHeight, cacheTranslationX, cacheTranslationY, cacheWidth, width, height)
+				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text}, #{lineblX}, #{lineblY}, #{linebrX}, #{linebrY}, #{linetlX}, #{linetlY}, #{linetrX}, #{linetrY}, #{cacheHeight}, #{cacheTranslationX}, #{cacheTranslationY}, #{cacheWidth}, #{width}, #{height})		
 			]]>
 	</insert>
 </mapper>
