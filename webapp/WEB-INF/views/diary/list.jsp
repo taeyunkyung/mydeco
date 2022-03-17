@@ -203,9 +203,8 @@ console.log(canvas);
 /*하나의 일기 div 클릭했을 때 모달창 보이기*/
 $(".mydiary-list-box2").on("click",function(){
 	
-	//캔버스 초기화(이전에 보였졌던 일기 지우기);
+	//캔버스 초기화(이전에 보여졌던 일기 지우기--일기겹치는 현상 없애기);
 	modalCanvasInit();
-	
 	
 	/*클릭한 일기의 일기번호*/
 	var diaryNo = $(this).data("diaryno")
@@ -261,7 +260,7 @@ function modalCanvasInit(){
 	}canvas.renderAll();
 }	
 
-
+/*220316추가*/
 //아이템 그리기
 function itemRender(diaryitemVo){
 	
@@ -291,7 +290,7 @@ function itemRender(diaryitemVo){
 		//캔버스에 추가
 		canvas.add(text);
 	
-	}else if(diaryitemVo.stickerCateNo == 1) { // 배경
+	}else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
 		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
 
 			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
@@ -304,7 +303,7 @@ function itemRender(diaryitemVo){
 		});
 		
 		
-	}else {  //스티커
+	}else {  //스티커- stickerCateNo == 2
 		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
 			//좌표
 			oImg.top = diaryitemVo.top;

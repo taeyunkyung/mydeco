@@ -36,6 +36,7 @@
 	</select>
 	
 	
+	<!-- 220316수정 조인-->
 	<!--다이어리번호가 ?인 다이어리에 사용된 스티커리스트 가져오기 -->
 	<select id="getDiaryItemList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
 			<![CDATA[
@@ -75,7 +76,8 @@
 	</insert>
 	
 	
-	<!-- 스티커 목록 가져오기 -->
+	<!-- 220316수정 -->
+	<!-- 스티커 목록(꾸미기패널) 가져오기 -->
 	<select id="getStickerList" parameterType="int" resultType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				select 	stickerNo,

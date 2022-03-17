@@ -49,7 +49,6 @@ public class MydiaryController {
 	}
 	
 	/*일기 쓴 날짜 리스트*/
-	
 	@ResponseBody
 	@RequestMapping("/datelist")
 	public List<DiaryContentVo> dateList(HttpSession Session) {
@@ -66,15 +65,16 @@ public class MydiaryController {
 		
 	}
 	
-
+	/*220316수정*/
 	@RequestMapping("/writeForm")
 	public String writeForm(Model model) {
 		System.out.println("mydiarycontroller-writeForm");
 		
 		//db에 있는 이미지경로 이용해서 스티커들 갖고와야함.
-		//꾸미기 창 내용 가져오기
+		//꾸미기 창 내용 가져오기-/*스티커목록(꾸기미패널) 가져오기 일은 서비스에 시키기*/
 		Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
 		model.addAttribute("stickerMap",stickerMap);
+		System.out.println(stickerMap);
 		
 		return "diary/writeForm";
 	}
@@ -97,6 +97,8 @@ public class MydiaryController {
 		/*ajax - 목록에서 클릭한 일기의 번호*/
 		int diaryNo = diarycontentvo.getDiaryNo();
 		
+		/*220316쿼리문 수정*/
+		/*다이어리번호가 ? 인 다이어리의 정보*/
 		return mydiaryService.getOneDiary(diaryNo);
 		
 	}

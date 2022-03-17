@@ -29,6 +29,7 @@ public class MydiaryDao {
 		return sqlSession.selectOne("mydiary.getDiary", diaryNo);
 	}
 	
+	/*220316쿼리문 수정*/
 	/*다이어리번호가 ? 인 다이어리에 사용된 스티커 아이템리스트 가져오기 */
 	public List<DiaryItemVo> getDiaryItemList(int diaryNo){
 		return sqlSession.selectList("mydiary.getDiaryItemList", diaryNo);
@@ -44,8 +45,8 @@ public class MydiaryDao {
 		sqlSession.insert("mydiary.diary-db",vo);
 	}
 	
-	
-	/*스티커목록 가져오기*/
+	/* 220316수정 */
+	/*스티커목록(꾸미기패널) 가져오기*/
 	public List<StickerVo> getStickerList(int cateNo){
 		return sqlSession.selectList("mydiary.getStickerList", cateNo);
 	}

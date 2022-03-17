@@ -229,6 +229,7 @@
 
 	//로딩된 후 요청
 
+	/*220316 수정*/
 	//종이를 클릭했을때
 	var paperNo ;//전역변수
 	var paperSrc ;
@@ -379,6 +380,7 @@
 			console.log(canvasObjList[i]); 
 		}
 
+		/*220316수정*/
 		//페이퍼 추가
 		var diaryItemVo = {};
 		diaryItemVo.stickerNo = paperNo;

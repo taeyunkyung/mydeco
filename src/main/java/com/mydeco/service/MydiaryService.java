@@ -53,6 +53,7 @@ public class MydiaryService {
 		DiaryContentVo diarycontent = mydiaryDao.getDiary(diaryNo);
 		System.out.println(diarycontent);
 		
+		/*220316쿼리문 수정*/
 		/*다이어리 스티커 정보*/
 		List<DiaryItemVo> diaryItem = mydiaryDao.getDiaryItemList(diaryNo);
 		System.out.println(diaryItem);
@@ -63,12 +64,12 @@ public class MydiaryService {
 	}
 	
 	
-	
+	/* 220316수정 */
 	/*스티커목록(꾸기미패널) 가져오기*/
 	public Map<String, List<StickerVo>> getStickerList(){
 		
-		List<StickerVo> stickerList = mydiaryDao.getStickerList(2);
-		List<StickerVo> paperList = mydiaryDao.getStickerList(1);
+		List<StickerVo> stickerList = mydiaryDao.getStickerList(2);//카테고리 번호로 스티커(베이직)가져오기
+		List<StickerVo> paperList = mydiaryDao.getStickerList(1);//카테고리 번호로 스티커(종이)가져오기
 		
 		Map<String, List<StickerVo>> stickerMap = new HashMap<String, List<StickerVo>>();
 		stickerMap.put("stickerList", stickerList);

@@ -34,7 +34,9 @@ public class DiaryItemVo {
 		this.text = text;
 	}
 
-
+	
+	//220316수정 조인
+	//다이어리번호가 ?인 다이어리에 사용된 스티커리스트 가져오기 
 	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, String stickerSrc, double top, double left,
 			double scaleX, double scaleY, double angle, String text, int stickerCateNo) {
 		this.diaryItemNo = diaryItemNo;
