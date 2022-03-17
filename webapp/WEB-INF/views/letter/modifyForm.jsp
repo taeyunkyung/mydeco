@@ -75,7 +75,7 @@
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="9999999" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -95,20 +95,22 @@
                             <div id="tab-1" class="tab-content current content-box">
                  
                              	
-                             	<c:forEach items="${stickerList}" var="stickVo">
+                             	<c:forEach items="${stickerMap.stickerList}" var="stickVo">
 									<div>
-										<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickerpath="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
+										<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickersrc="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
 									</div>
 								</c:forEach>
+								
                             </div>
 
                             <div id="tab-2" class="tab-content content-box">
-                                <div>
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter1.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter2.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter3.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter4.jpg">
-                                </div>
+                               <div class="clearfix">
+                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
+	                                		<div class="">
+		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+	                                		</div>
+                                		</c:forEach>
+                                	</div>
                             </div>
 
                             
@@ -195,7 +197,7 @@ $("[name=textbox]").on("click", function(){
 //스티커를 클릭했을때
 $(".sticker").on("click", function(){
 	var stickerNo= $(this).data("stickerno")
-	var stickerSrc = $(this).data("stickerpath")
+	var stickerSrc = $(this).data("stickersrc")
 	
 	console.log(stickerNo);
 	console.log(stickerSrc);
@@ -206,13 +208,38 @@ $(".sticker").on("click", function(){
 
 		//객체에 스티커번호 추가
 		oImg.stickerNo = stickerNo;
+		oImg.stickerSrc = stickerSrc;
 		canvas.add(oImg);
-		
 		console.log(oImg);
 	});
 })
 
+//종이를 클릭했을때
+var paperNo ;//전역변수
+var paperSrc ;
+$(".paper").on("click", function(){
+	paperNo = $(this).data("paperno");
+	paperSrc = $(this).data("papersrc");
+	
+	console.log(paperNo);
+	console.log(paperSrc);
+	
+	fabric.Image.fromURL(paperSrc, function(backImg) {
 
+		//객체에 종이번호 추가
+		backImg.stickerNo = paperNo;
+		backImg.stickerSrc = paperSrc;
+		
+		canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+			letterPointX: canvas.width / backImg.width,
+			letterPointY: canvas.height / backImg.height
+		});
+		
+		console.log("=====================================");
+		console.log(backImg);
+	});
+	
+});
 
 //delete(삭제)
 $("body").on("keyup",function(){
@@ -265,13 +292,20 @@ $("#btnSave").on("click", function(){
 		letterItemVo.angle = canvasObjList[i].angle;
 		
 		letterItemVo.stickerNo = canvasObjList[i].stickerNo;
+		letterItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 		
 		letterItemVo.text = canvasObjList[i].text;
 		
 		letterItemList.push(letterItemVo);
 	}
 
-	letterVo.itemList = letterItemList
+	//페이퍼 추가
+	var diaryItemVo = {};
+	letterItemVo.stickerNo = paperNo;
+	letterItemVo.stickerSrc = paperSrc;
+	letterItemList.push(letterItemVo);//배열에 추가
+	
+	letterVo.itemList = letterItemList;
 	
 	writeLetter(letterVo);
 	
@@ -307,17 +341,25 @@ $("#btnKeep").on("click", function(){
 		letterItemVo.angle = canvasObjList[i].angle;
 		
 		letterItemVo.stickerNo = canvasObjList[i].stickerNo;
+		letterItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 		
 		letterItemVo.text = canvasObjList[i].text;
 		
 		letterItemList.push(letterItemVo);
 	}
 
-	letterVo.itemList = letterItemList
+	//페이퍼 추가
+	var diaryItemVo = {};
+	letterItemVo.stickerNo = paperNo;
+	letterItemVo.stickerSrc = paperSrc;
+	letterItemList.push(letterItemVo);
+	
+	letterVo.itemList = letterItemList;
 	
 	writeLetter(letterVo);
-	
-})
+});
+
+
 
 //저장 함수
 function writeLetter(letterVo){

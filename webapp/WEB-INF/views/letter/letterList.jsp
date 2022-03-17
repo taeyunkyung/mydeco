@@ -175,9 +175,7 @@
 			</div>
 			
 		  	<div class="modal-body">
-		  
 		  		<canvas class="letter-read" id="paper"></canvas>
-		  	
 		  	</div>
 		  	
 		  	
@@ -223,12 +221,13 @@ $(".popup_open_btn").on("click",function(){
 	
 	var letterNo = $(this).data("letterno");
 	
-	if(openyn == 'y'){
+	if(openyn == 'y'){ //열람가능한 편지
 		
 		//모달창으로 편지 보기
 		showLetter(letterNo);
+		//console.log('팝업 버튼 클릭' + letterNo);
 		
-	}else if(openyn == 'n'){
+	}else if(openyn == 'n'){ //열람 안되는 편지
 		alert("아직 열람이 불가능한 편지입니다.");
 	}else {
 		console.log("입력오류");
@@ -242,13 +241,15 @@ $(".popup_open_btn").on("click",function(){
 //모달창 편지 보기 함수
 function showLetter(letterNo){
 	
-	console.log(letterNo);
-	
 	//캔버스 초기화(이전에 보였졌던 일기 지우기);
 	//modalCanvasInit();
 	
+	//클릭한 편지의 편지 번호
+	var letterNo = letterNo;
+	
 	/*키:값*/
 	var lettervo = {letterNo : letterNo};
+	console.log(lettervo);
 	
 	$.ajax({
 	    url : "${pageContext.request.contextPath}/letter/read",
@@ -256,28 +257,27 @@ function showLetter(letterNo){
 	    contentType : "application/json",
 	    data : JSON.stringify(lettervo),//데이터 보내기
 	    dataType : "json",
-	    success : function(LetterVo) {
+	    success : function(letterVo) {
 	    	
+		    $("#modal-regDate").text(letterVo.regDate);
+		    $("#modal-openDay").text(letterVo.openDay);
 		    
-		    $("#modal-regDate").text(LetterVo.regDate);
-		    $("#modal-openDay").text(LetterVo.openDay);
+		    var letterItemList = letterVo.itemList;
 		    
-		    var LetterItemList = LetterVo.itemList;
-		    
-		    for(var i=0; i<LetterItemList.length; i++){
-				itemRender(LetterItemList[i]);
-				console.log(LetterItemList[i]);
+		    for(var i=0; i<letterItemList.length; i++){
+				itemRender(letterItemList[i]);
 			}
 	    
+			/*모달창 보이기*/
+			$("#ModalLetterView").modal('show');
+		    
 	    },
 	    error : function(XHR, status, error) {
 	       console.error(status + " : " + error);
 	    }
 	 });
 
-	
-	/*모달창 보이기*/
-	$("#ModalLetterView").modal('show');
+
 }
 
 /*모달창 초기화*/
@@ -291,24 +291,27 @@ function modalCanvasInit(){
 
 
 //아이템 그리기
-function itemRender(LetterItemVo){
-	
-	if(LetterItemVo.stickerCateNo == 0 || LetterItemVo.stickerSrc == 'n'){ //텍스트 이면
-		var text = new fabric.Textbox(LetterItemVo.text);
+function itemRender(letterItemVo){
+	console.log(letterItemVo);
+	console.log("===============================");
+	if(letterItemVo.stickerCateNo == 0){ //텍스트 이면
+		
+		
+		var text = new fabric.Textbox(letterItemVo.text);
 
 		//기본 폰트 크기
 		text.fontSize = 16;
 		
 		//좌표
-		text.top = LetterItemVo.top;
-		text.left = LetterItemVo.left;
+		text.top = letterItemVo.top;
+		text.left = letterItemVo.left;
 		
 		//스케일
-		text.scaleX = LetterItemVo.letterPointX;
-		text.scaleY = LetterItemVo.letterPointY;
+		text.scaleX = letterItemVo.letterPointX;
+		text.scaleY = letterItemVo.letterPointY;
 		
 		//각도
-		text.angle = LetterItemVo.angle;
+		text.angle = letterItemVo.angle;
 
 		//변경안되게
 		text.selectable = false;
@@ -318,19 +321,35 @@ function itemRender(LetterItemVo){
 		
 		//캔버스에 추가
 		canvas.add(text);
+		
+		console.log(text);
+		console.log("===============================");
 	
-	}else { //스티커일때 --stickerPath 확인하기
-		fabric.Image.fromURL(LetterItemVo.stickerSrc, function(oImg) {
+	}else if(letterItemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+		fabric.Image.fromURL(letterItemVo.stickerSrc, function(backImg) {
+
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				letterPointX: canvas.width / backImg.width,
+				letterPointY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+		
+	}else {  //스티커- stickerCateNo == 2
+		fabric.Image.fromURL(letterItemVo.stickerSrc, function(oImg) {
 			//좌표
-			oImg.top = LetterItemVo.top;
-			oImg.left = LetterItemVo.left;
+			oImg.top = letterItemVo.top;
+			oImg.left = letterItemVo.left;
 			
 			//스케일
-			oImg.scaleX = LetterItemVo.letterPointX;
-			oImg.scaleY = LetterItemVo.letterPointY;
+			oImg.scaleX = letterItemVo.letterPointX;
+			oImg.scaleY = letterItemVo.letterPointY;
 			
 			//각도
-			oImg.angle = LetterItemVo.angle;
+			oImg.angle = letterItemVo.angle;
 			
 			//변경안되게
 			oImg.selectable = false;

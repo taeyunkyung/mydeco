@@ -87,8 +87,11 @@ public class LetterDao {
 	
 	//편지 아이템 가져오기
 	public List<LetterItemVo> selectLetterItem(int letterNo) {
+		System.out.println("selectLetterItem");
+		
 		
 		List<LetterItemVo> itemList = sqlSession.selectList("myLetter.selectLetterItemList", letterNo);
+		System.out.println(itemList);
 		
 		return itemList;
 	}

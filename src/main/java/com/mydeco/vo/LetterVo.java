@@ -22,6 +22,10 @@ public class LetterVo {
 
 	}
 
+	public LetterVo(int letterNo) {
+		this.letterNo = letterNo;
+	}
+
 	public LetterVo(int letterNo, int userNo, String regDate, String openDay, String bgmSrc, String readYN,
 			String saveYN, List<LetterItemVo> itemList, String text, int dDay) {
 		super();

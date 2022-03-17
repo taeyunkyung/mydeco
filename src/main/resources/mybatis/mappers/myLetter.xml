@@ -40,10 +40,11 @@
 	<insert id="itemSave" parameterType="LetterItemVo">
 	
 		<![CDATA[
-				insert into letterItem(letterSticNo, letterNo, sticNo, top, left, letterPointX, letterPointY, angle, text)
+				insert into letterItem(letterSticNo, letterNo, sticNo, stickerSrc, top, left, letterPointX, letterPointY, angle, text)
 				values(	seq_letterItem_no.nextval, 
 						#{letterNo}, 
 						#{stickerNo} , 
+						#{stickerSrc},
 						#{top} , 
 						#{left},  
 						#{letterPointX} , 
@@ -82,6 +83,7 @@
 				UPDATE letter 
 				SET readYN = 'YES' 
 				where letterNo = #{letterNo}
+				and readYN = 'NO'
 			]]>
 	</update>
 	
