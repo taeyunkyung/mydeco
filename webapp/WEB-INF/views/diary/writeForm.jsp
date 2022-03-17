@@ -97,11 +97,11 @@
                                     	<div id="btnPhoto" class="photowid">사진</div>
                                     </label>
                             
-                                    <!-- <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> -->
+                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> 
                                 </div>
                             </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="9999999" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -120,9 +120,9 @@
                            
                             <div id="tab-1" class="tab-content current sticker-bgm-box2">
                             
-                            	<c:forEach items="${stickerList}" var="stList">
+                            	<c:forEach items="${stickerMap.stickerList}" var="stickerVo">
                             		<div style="float:left; margin-left:12px;">
-	                                    <img class="writeform-sticker-size" name="sticker" data-stickerno="${stList.stickerNo}" data-stickersrc="${stList.stickerSrc}" src="${stList.stickerSrc}">
+                           				<img class="writeform-sticker-size sticker" data-stickerno="${stickerVo.stickerNo}" data-stickersrc="${stickerVo.stickerSrc}" src="${stickerVo.stickerSrc}">
                                 	</div>
                             	</c:forEach>
                                
@@ -132,49 +132,15 @@
                                 <!--div안에 꽉차게 보이게 만들기 원본 이미지사이즈 줄이기x-->
                                 <!--용지가로2개-->
                                 
-                                <c:forEach items="${paperList}" var="pList">
                                 	<div class="clearfix">
-                                		<div class="mydiaryImg-box8">
-	                                    	<img name="paper" data-paperno="${pList.paperNo}" data-papersrc="${pList.paperSrc}" src="${pList.paperSrc}">
-                                		</div>
+                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
+	                                		<div class="mydiaryImg-box8">
+		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+	                                		</div>
+                                		</c:forEach>
                                 	</div>
-                            	</c:forEach>
                                 
                                 
-                                <div class="clearfix">
-                                    <div class="mydiaryImg-box8">
-                                        <img src="./assets/img/diarypaper/monoon1.JPG">                                        
-                                    </div>
-                                    <div class="mydiaryImg-box8">
-                                        <img src="./assets/img/diarypaper/monoon1.JPG">                                        
-                                    </div>
-                                </div>
-
-                                <div class="clearfix">
-                                    <div class="mydiaryImg-box8">
-                                        <img src="./assets/img/diarypaper/monoon1.JPG">                                        
-                                    </div>
-                                    <div class="mydiaryImg-box8">
-                                        <img src="./assets/img/diarypaper/monoon1.JPG">                                        
-                                    </div>
-                                </div>
-
-                                <div>
-                                
-                                    <img class="writeform-sticker-size" src="./assets/img/mainbook.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/KakaoTalk_20220228_225353529.png">                             
-                                </div>
-
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
-
                                 <div>
                                     <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
                                     <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
@@ -262,11 +228,40 @@
 
 
 	//로딩된 후 요청
-	
+
+	/*220316 수정*/
 	//종이를 클릭했을때
+	var paperNo ;//전역변수
+	var paperSrc ;
+	$(".paper").on("click", function(){
+		paperNo = $(this).data("paperno");
+		paperSrc = $(this).data("papersrc");
+		
+		console.log(paperNo);
+		console.log(paperSrc);
+		
+		fabric.Image.fromURL(paperSrc, function(backImg) {
+			//oImg.set({'borderColor': '#686099'});
+
+			//객체에 종이번호 추가
+			backImg.stickerNo = paperNo;
+			backImg.stickerSrc = paperSrc;
+			
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				scaleX: canvas.width / backImg.width,
+				scaleY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+	});
+	
+	
 	
 	//스티커를 클릭했을때
-	$("[name=sticker]").on("click", function(){
+	$(".sticker").on("click", function(){
 		var stickerNo = $(this).data("stickerno")
 		var stickerSrc = $(this).data("stickersrc")
 		
@@ -317,6 +312,7 @@
 			
 			//현재 선택된(활성화된)) 객체를 가져온다.
 			var activeObject = canvas.getActiveObject()
+			//console.log(activeObject);
 			
 			//객체를 삭제한다.
 			canvas.remove(activeObject);
@@ -359,7 +355,6 @@
 				protect: protect,
 				title: title
 		};
-		//console.log(diaryvo2);
 		
 		//캔버스에 있는 전체 객체를 배열로 가져온다
 		var canvasObjList = canvas.getObjects();
@@ -379,20 +374,25 @@
 			diaryItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 			
 			diaryItemVo.text = canvasObjList[i].text;
-			
+	
 			diaryItemList.push(diaryItemVo);//배열에 추가
+			console.log("==========================");			
+			console.log(canvasObjList[i]); 
 		}
 
-		console.log(diarycontentvo);
-		console.log(diaryItemList);   
+		/*220316수정*/
+		//페이퍼 추가
+		var diaryItemVo = {};
+		diaryItemVo.stickerNo = paperNo;
+		diaryItemVo.stickerSrc = paperSrc;
+		diaryItemList.push(diaryItemVo);//배열에 추가
 		
-		diarycontentvo.itemList = diaryItemList//
+		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
 		
 		console.log("==========================");
-		console.log(diarycontentvo);
-		
+		/* console.log(diarycontentvo);
+		console.log(canvasObjList[0]);    */
 		writeDiary(diarycontentvo);
-		
 		
 	});
 	

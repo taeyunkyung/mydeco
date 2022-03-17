@@ -42,8 +42,8 @@
                                 <div class="col-xs-12">
                                     <div class="height600">
                                  
-                                        <img class="cardwriteimg" src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
-                                        
+                                        <img class="cardwriteimg" src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+                                        <input type="hidden" name="cardImgNo" value="${bgList[0].cardImgNo}">
                                         <textarea id="c-text" name="cardContent" cols="30" rows="10"></textarea>
                                         <div id="text_cnt">(0 / 300)</div>
                                          
@@ -60,34 +60,34 @@
                             <div class="cardwritebg">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[0].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[0].cardImgSrc}">
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[1].cardImgSrc}" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[2].cardImgSrc}" alt=""></a>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[3].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[1].cardImgSrc}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[4].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[2].cardImgSrc}">
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[5].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[3].cardImgSrc}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[6].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[4].cardImgSrc}">
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href=""><img src="${bgList[7].cardImgSrc}" alt=""></a>
+                                        <img src="${bgList[5].cardImgSrc}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <img src="${bgList[6].cardImgSrc}">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="${bgList[7].cardImgSrc}">
                                     </div>
                                 </div>
                             </div>
@@ -104,17 +104,17 @@
                          <div class="row">
                              <div class="col-xs-12 cardwriteradio">       
                                  <h4 class="r-age">성별</h4>
-                                 <label><input type="radio" name="gender" value="male">남성</label>
-                                 <label><input type="radio" name="gender" value="female">여성</label>                                      
+                                 <label><input type="radio" name="cardGender" value="male">남성</label>
+                                 <label><input type="radio" name="cardGender" value="female">여성</label>                                      
                              </div>
                          </div> 
                          <div class="row">
                              <div class="col-xs-12 cardwriteradio">
                                  <h4 class="r-gender">연령</h4>
-                                 <label><input type="radio" name="age" value="teen">10대</label>
-                                 <label><input type="radio" name="age" value="twn">20대</label>
-                                 <label><input type="radio" name="age" value="trn">30대</label>
-                                 <label><input type="radio" name="age" value="ftn" >40대 이상</label>
+                                 <label><input type="radio" name="cardAge" value="teen">10대</label>
+                                 <label><input type="radio" name="cardAge" value="twn">20대</label>
+                                 <label><input type="radio" name="cardAge" value="trn">30대</label>
+                                 <label><input type="radio" name="cardAge" value="ftn" >40대 이상</label>
                              </div>
                          </div>
                         

@@ -129,7 +129,6 @@
 	                                    </div>
 	                                </div>
 	                                
-	                                
 	                               
 	                                <div class="mydiaryImg-box7 mydiary-box7-support">
 	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
@@ -147,35 +146,6 @@
 	                                <input type="hidden" data-angle="${dcvo.angle}">
 	                                <input type="hidden" data-text="${dcvo.text}">-->
                             
-                            
-                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
-                             <!--  
-                            <div class="clearfix mydiary-list-box2">
-                                
-                                <!--왼쪽 날짜 일기 비공개-->
-                                <!--  
-                                <div class="mydiaryText-list2">
-                                    <div class="mydiaryText7 clearfix">
-                                        <div class="mydiary-Date">Date:</div>
-                                        <div class="mydiary-Date">2022-03.24</div>
-                                        <div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png"></div>
-                                    </div>
-
-                                    <div class="mydiaryText7 mydiary-content">일기제목보이기보이는글자수미정</div>
-                                    
-                                    <div class="opensetting">
-                                        비공개
-                                    </div>
-                                </div>
-
-                                <!--오른쪽 사진-->
-                                <!--  
-                                <div class="mydiaryImg-box7 mydiary-box7-support">
-                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-                                </div>
-                            </div>-->
-                            
-                            
                         </div>
 
                     </div>
@@ -185,13 +155,21 @@
     </div>
 
      <!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
-     <c:forEach items="${diarycontentList}" var="diarycontent">
-	     <div id="delModal" class="modal fade">
+	     <div id="diaryModal" class="modal fade">
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="modalDiaryTitle" ></h4>
+		        <div style="float:right; margin-right:30px;">노래를넣는다면 여기가 노래재생되는곳</div>
+		        
+		        <div class="clearfix" style="margin-top:43px;">
+			        <div style="float:left; margin-left:41px;"><h4 class="modal-title" id="modalDiaryTitle" style="font-size:19px; font-weight:900"></h4></div>
+			        <div class="readcontent clearfix" style="float:right; width:176px; margin-right:40px; margin-top:7px;" >
+			        	<div style="float:left; font-family:'SCDream4'; width:84px;"id="modalDiaryDate"></div>
+			        	<div style="float:left; font-family:'SCDream4'; width:50px; text-align:center;"id="modalDiaryWeather"></div>
+			        	<div style="float:left; font-family:'SCDream4'; width:42px; text-align:center;"id="modalDiaryProtect"></div>
+			        </div>
+		        </div>
 		      </div>
 		      <div class="modal-body">
 		      
@@ -205,61 +183,12 @@
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-     </c:forEach>
      
      <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
-     
-     <!--  
-	     	<div class="modal-read2"> 
-		        <div class="modal_body" style="display: flex;align-items: center;justify-content: center;">                  
-		            <div class="modal_content_read" title="클릭하면 창이 닫힙니다.">   
-		                <!--상단-->
-		    <!--  
-		                <div class="clearfix" style="padding-top: 10px; margin-bottom: 30px; ">
-		                    <div class="read-bgm-play">
-		                        || 자동재생되는중 노래제목 
-		                    </div>
-		                    <div class="read-save-icon">
-		                        <img class="read-save-btn" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
-		                    </div>
-		                    <div>
-		                        <button class="mydiary-read-close-btn"><img class="read-close-btn" src="${pageContext.request.contextPath}/assets/img/icon/close.png"></button>
-		                    </div>
-		                </div>     
-		                   
-		                <div>
-		                    <h2 class="mydiary-read-title">${diarycontent.title}</h2>
-		                </div>
-		                
-		                <canvas class="readCanvas" id="paper"></canvas>
-		                
-		                <div class="mydiary-read-btnset">
-		                    <button class="modal-button-read">수정하기</button>
-		                    <button class="modal-button-read">삭제하기</button>
-		                </div> 
-		            </div>
-		            
-		        </div> 
-	    	</div> -->
-    
 </body>
 
 
 <script type="text/javascript">
-function downImg(){
-    html2canvas($("#modalData")[0]).then(function(canvas){
-        var myImage = canvas.toDataURL();
-        downloadURI(myImage, "test.png") 
-    });
-}
-
-function downloadURI(uri, name){
-    var link = document.createElement("a")
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-}
 
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
@@ -271,8 +200,11 @@ var canvas = new fabric.Canvas("paper", {
 console.log(canvas);
 
 
-/*하나의 일기 div 클릭했을 때*/
+/*하나의 일기 div 클릭했을 때 모달창 보이기*/
 $(".mydiary-list-box2").on("click",function(){
+	
+	//캔버스 초기화(이전에 보여졌던 일기 지우기--일기겹치는 현상 없애기);
+	modalCanvasInit();
 	
 	/*클릭한 일기의 일기번호*/
 	var diaryNo = $(this).data("diaryno")
@@ -295,6 +227,9 @@ $(".mydiary-list-box2").on("click",function(){
 		    
 		    //제목쓰기
 		    $("#modalDiaryTitle").text(DiaryContent.title);
+		    $("#modalDiaryDate").text(DiaryContent.diaryDate);
+		    $("#modalDiaryWeather").text(DiaryContent.weather);
+		    $("#modalDiaryProtect").text(DiaryContent.protect);
 		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
@@ -311,26 +246,30 @@ $(".mydiary-list-box2").on("click",function(){
 	
 	
 	/*모달창 보이기*/
-	$("#delModal").modal('show');
+	$("#diaryModal").modal('show');
 	
 });
 
-/*닫기버튼을 눌렀을때--겹겹이 쌓이는 일기 해결*/
-$("#closebtn").on("click",function(){
+
+/*일기보기 모달창 초기화*/
+function modalCanvasInit(){
 	var objects = canvas.getObjects();
 	console.log(objects);
 	for(var i=0; i<objects.length; i++){
 		canvas.remove(objects[i]);
 	}canvas.renderAll();
-})
+}	
 
-
+/*220316추가*/
 //아이템 그리기
 function itemRender(diaryitemVo){
 	
-	if(diaryitemVo.stickerNo == 9999999 || diaryitemVo.stickerSrc == 'n'){ //텍스트 이면
+	if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
 		var text = new fabric.Textbox(diaryitemVo.text);
-	
+
+		//기본 폰트 크기
+		text.fontSize = 18;
+		
 		//좌표
 		text.top = diaryitemVo.top;
 		text.left = diaryitemVo.left;
@@ -341,7 +280,7 @@ function itemRender(diaryitemVo){
 		
 		//각도
 		text.angle = diaryitemVo.angle;
-		
+
 		//변경안되게
 		text.selectable = false;
 		
@@ -351,7 +290,20 @@ function itemRender(diaryitemVo){
 		//캔버스에 추가
 		canvas.add(text);
 	
-	}else { //스티커일때 --stickerPath 확인하기
+	}else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
+
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				scaleX: canvas.width / backImg.width,
+				scaleY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+		
+	}else {  //스티커- stickerCateNo == 2
 		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
 			//좌표
 			oImg.top = diaryitemVo.top;
@@ -375,15 +327,8 @@ function itemRender(diaryitemVo){
 		});
 	}
 	
-	
 }
 
-
-	
-	
-
- 
- 
 
 
 /*모달창*/
@@ -487,5 +432,29 @@ function renderWriteDay(date) {
 	   });
 	
 } */
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+function downImg(){
+    html2canvas($("#modalData")[0]).then(function(canvas){
+        var myImage = canvas.toDataURL();
+        downloadURI(myImage, "test.png") 
+    });
+}
+
+function downloadURI(uri, name){
+    var link = document.createElement("a")
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+}
+///////////////////////////////////////////////////////////////////
+
+
+
 </script>
 </html>

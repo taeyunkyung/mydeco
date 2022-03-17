@@ -4,29 +4,45 @@
 <mapper namespace="card">
 
 	<!-- 디비 넣기 -->
-	<insert id="cardImg" parameterType="CardVo">
+	<insert id="sendcard" parameterType="CardVo">
 		<![CDATA[
-			insert into card
-			values(seq_card_no.nextval,#{userNo},#{cardContent},sysdate,#{cardAge},#{cardGender},#{cardImgNo})
+			insert into card 
+			values(seq_card_no.nextval,#{userNo},#{replyNo},#{cardImgNo},#{cardContent},sysdate,#{cardAge},#{cardGender})
 		]]>
 	
 	</insert> 
 
 	<!-- 사진 목록 가져오기 -->
-	<select id="cardbg" resultType="cardImgVo">
+	<select id="cardbg" resultType="CardVo">
 		<![CDATA[
 			select  cardImgNo,
 			        cardImgName,
-			        cardImgSrc,
-			        cardImgInfo
+			        cardImgSrc
 			from cardImg
 		]]>
 	</select>
 	
 	<!-- 내가 쓴 카드 목록 가져오기 -->
 
-	<!-- 답장 카드 목록 가져오기 -->
-
+	<!-- 답장 갯수 가져오기 -->
+	<select id="reply" resultType="CardVo">
+		<![CDATA[
+			select  cd.cardNo cardNo,
+		        	cd.userNo userNo,
+		        	cd.replyNo replyNo,
+		        	cd.cardImgNo cardImgNo,
+		        	cd.cardContent cardContent,
+		        	cd.cardRegdate cardRegdate,
+		       		cd.cardAge cardAge,
+		        	cd.cardGender cardGender,
+		        	rc.replyContent replyContent
+			from card cd, replyCard rc, (select count(replyNo) replyNo
+		                             	from replyCard
+		                             	group by cardNo) cntrn
+			where cd.cardNo = rc.replyNo
+			and cntrn.replyNo = cd.replyNo
+		]]>
+	</select>
 
 
 

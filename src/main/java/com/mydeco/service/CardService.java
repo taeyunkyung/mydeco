@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mydeco.dao.CardDao;
-import com.mydeco.vo.CardImgVo;
 import com.mydeco.vo.CardVo;
 
 @Service
@@ -16,15 +15,17 @@ public class CardService {//�ڷ��� ����,���
 	CardDao cardDao;
 
 	
-	public void cardImg(CardVo cardVo) {
+	public void sendcard(CardVo cardVo) {
 		System.out.println("service > dao 로 카드이미지 전달");
 		System.out.println(cardVo);
-		cardDao.cardImg(cardVo);
+		cardDao.sendcard(cardVo);
 	}
 	
-	public List<CardImgVo> imgList(){
-		System.out.println("서비스의 igList");
-		List<CardImgVo> imgList = cardDao.imgList();
+	public List<CardVo> imgList(){
+		System.out.println("서비스의 imgList");
+		List<CardVo> imgList = cardDao.imgList();
+		System.out.println("서비스의 imgList확인용"+imgList);
+
 		return imgList;
 	}
 }

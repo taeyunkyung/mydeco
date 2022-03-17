@@ -1,8 +1,8 @@
 package com.mydeco.vo;
 
 public class DiaryItemVo {
-	
-	//필드
+
+	// 필드
 	private int diaryItemNo;
 	private int diaryNo;
 	private int stickerNo;
@@ -13,74 +13,15 @@ public class DiaryItemVo {
 	private double scaleY;
 	private double angle;
 	private String text;
-	
-	
-	//생성자
+	private int stickerCateNo;
+
 	public DiaryItemVo() {
-		
 	}
+
 	
-	
-	public DiaryItemVo(int stickerNo, double top, double left, double scaleX, double scaleY, double angle,
-			String text) {
-		super();
-		this.stickerNo = stickerNo;
-		this.top = top;
-		this.left = left;
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.angle = angle;
-		this.text = text;
-	}
-	
-
-	public DiaryItemVo(int diaryItemNo, int stickerNo, String stickerSrc, double top, double left, double scaleX,
-			double scaleY, double angle, String text) {
-		super();
-		this.diaryItemNo = diaryItemNo;
-		this.stickerNo = stickerNo;
-		this.stickerSrc = stickerSrc;
-		this.top = top;
-		this.left = left;
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.angle = angle;
-		this.text = text;
-	}
-
-
-	/*스티커경로까지 갖고오기*/
-	public DiaryItemVo(int stickerNo, String stickerSrc, double top, double left, double scaleX, double scaleY,
-			double angle, String text) {
-		super();
-		this.stickerNo = stickerNo;
-		this.stickerSrc = stickerSrc;
-		this.top = top;
-		this.left = left;
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.angle = angle;
-		this.text = text;
-	}
-
-
-	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, double top, double left, double scaleX,
-			double scaleY, double angle, String text) {
-		super();
-		this.diaryItemNo = diaryItemNo;
-		this.diaryNo = diaryNo;
-		this.stickerNo = stickerNo;
-		this.top = top;
-		this.left = left;
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.angle = angle;
-		this.text = text;
-	}
-
-
 	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, String stickerSrc, double top, double left,
 			double scaleX, double scaleY, double angle, String text) {
+		super();
 		this.diaryItemNo = diaryItemNo;
 		this.diaryNo = diaryNo;
 		this.stickerNo = stickerNo;
@@ -94,7 +35,23 @@ public class DiaryItemVo {
 	}
 
 	
-	//메소드 g/s
+	//220316수정 조인
+	//다이어리번호가 ?인 다이어리에 사용된 스티커리스트 가져오기 
+	public DiaryItemVo(int diaryItemNo, int diaryNo, int stickerNo, String stickerSrc, double top, double left,
+			double scaleX, double scaleY, double angle, String text, int stickerCateNo) {
+		this.diaryItemNo = diaryItemNo;
+		this.diaryNo = diaryNo;
+		this.stickerNo = stickerNo;
+		this.stickerSrc = stickerSrc;
+		this.top = top;
+		this.left = left;
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+		this.angle = angle;
+		this.text = text;
+		this.stickerCateNo = stickerCateNo;
+	}
+
 	public int getDiaryItemNo() {
 		return diaryItemNo;
 	}
@@ -175,14 +132,20 @@ public class DiaryItemVo {
 		this.text = text;
 	}
 
-	
-	//메소드 일반
+	public int getStickerCateNo() {
+		return stickerCateNo;
+	}
+
+	public void setStickerCateNo(int stickerCateNo) {
+		this.stickerCateNo = stickerCateNo;
+	}
+
 	@Override
 	public String toString() {
 		return "DiaryItemVo [diaryItemNo=" + diaryItemNo + ", diaryNo=" + diaryNo + ", stickerNo=" + stickerNo
 				+ ", stickerSrc=" + stickerSrc + ", top=" + top + ", left=" + left + ", scaleX=" + scaleX + ", scaleY="
-				+ scaleY + ", angle=" + angle + ", text=" + text + "]";
+				+ scaleY + ", angle=" + angle + ", text=" + text + ", stickerCateNo=" + stickerCateNo + "]";
 	}
-	
+
 
 }

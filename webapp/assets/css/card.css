@@ -32,20 +32,26 @@ div#cTitle {
     margin: 0px 0px 0px 0px;
   }
 
-.tap_content {
+/* .tap_content {
  margin: 0 0 20px;
  line-height: 1.5;}
+
+ 
+
+.tap_content img{                                                          
+  height: 200px;
+} */
 
 .card_list{
 font-family: 'SCDream4';
  height: 700px;
 }
-
+/* 
 #card_tap {
   font-family: 'SCDream4';
   padding: 10px 0px 0px 0px;
   height: 700px;
-  background: #ffffff;}
+  background: #ffffff;} */
 
 .text-center {
     text-align:start;
@@ -61,7 +67,7 @@ section {
    width:720px;
    height:550px;
    box-sizing:border-box;
-   padding-right: 30px;
+   /* padding-right: 30px; */
 }
 
 /*라디오버튼 숨김*/
@@ -97,16 +103,7 @@ input {
    margin: 10px 0px 0px 0px;
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2{
- display: block;}
-
-
-.tap_content img{                                                          
-  height: 200px;
-}
-
-
+/* 
 .subcard .imgdate{
   position: absolute;
   top:20px;
@@ -117,13 +114,8 @@ input {
   width: 200px;
   height: 20px;
   background-color: #ebebe450;
-}
+} */
 
-.chk-subcard{
-  position: absolute;
-  top:20px;
-  left:200px;
-}
 
 .btn-card-write a{
   margin-right: 130px;
@@ -155,8 +147,9 @@ input {
   width: 150px;
   height: 40px;
   background: rgb(104, 96, 153);
-  margin-top: 10px;
-  margin-left: 30px;
+  position: relative;
+    top: 90px;
+    left: 585px;
   border: 0px;
   outline: 0px;
 }
@@ -175,25 +168,82 @@ input {
   background-color: #ebebe450;
 }
 
-.subcard{
-  padding : 20px;
-  width: 200px;
-  height: 250px;
+
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2{
+ display: block;}
+
+/* 
+#tab1:checked ~ #flex-container,
+#tab2:checked ~ #flex-container2{
+ display: block;} */
+
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 700px;
+  height: 400px;
 }
+
+
+
+.fitems{
+  flex: auto; 
+  border-radius: 2px;
+  height: 200px;
+  margin-left:13px;
+  margin-top: 30px;
+  }
+
+.fitems img{
+  width: 220px;
+  height: 200px;
+}
+
+
+#flex-container2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 720px;
+  height: 700px;
+}
+
+#flex-container2 img{
+  margin-top: 25px;
+  padding: 15px;
+  padding-left: 35px;
+  width: 230px;
+  height: 200px;
+}
+
 
 .divPaging{
-  text-align:center;
-}
-
-.divPaging2{
-  text-align:right;
-  margin-right: 135px;
-}
-
-
-.subcard .imgtext{
   position: relative;
-  bottom: 170px;
+  top:120px;
+  left: 350px;
+}
+
+
+
+.fitems .imgdate{
+  position: relative;
+  bottom:200px;
+  z-index: 1;
+  color: black;
+  font-size: 13px;
+  font-weight: bold;
+  width: 200px;
+  height: 20px;
+  background-color: #ebebe450;
+}
+
+.fitems .imgtext{
+  position: relative;
+  bottom: 190px;
   left: 27px;
   width: 150px;
   height: 170px;
@@ -204,9 +254,9 @@ input {
   margin-top: 0px;
 }
 
-.subcard .imgnum{
+.fitems .imgnum{
   position: relative;
-  bottom: 195px;
+  bottom: 210px;
   left: 70px;
   z-index: 1;
   color: black;
@@ -216,6 +266,12 @@ input {
   width: 70px;
   height: 20px;
   background-color: #ebebe450;
+}
+
+.chk-subcard{
+position: relative;
+    bottom: 410px;
+    left: 200px;
 }
 
 .height500{

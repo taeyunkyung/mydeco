@@ -29,6 +29,7 @@ public class MydiaryDao {
 		return sqlSession.selectOne("mydiary.getDiary", diaryNo);
 	}
 	
+	/*220316쿼리문 수정*/
 	/*다이어리번호가 ? 인 다이어리에 사용된 스티커 아이템리스트 가져오기 */
 	public List<DiaryItemVo> getDiaryItemList(int diaryNo){
 		return sqlSession.selectList("mydiary.getDiaryItemList", diaryNo);
@@ -44,22 +45,12 @@ public class MydiaryDao {
 		sqlSession.insert("mydiary.diary-db",vo);
 	}
 	
-	/*
-	public void dbpaper(PaperVo vo) {
-		
-		sqlSession.insert("mydiary.diary-db-p",vo);
-	}*/
-	
-	/*스티커목록 가져오기*/
-	public List<StickerVo> getStickerList(){
-		return sqlSession.selectList("mydiary.getStickerList");
+	/* 220316수정 */
+	/*스티커목록(꾸미기패널) 가져오기*/
+	public List<StickerVo> getStickerList(int cateNo){
+		return sqlSession.selectList("mydiary.getStickerList", cateNo);
 	}
 	
-	/*종이목록 가져오기*/
-	/*
-	public List<PaperVo> getPaperList(){
-		return sqlSession.selectList("mydiary.getPaperList");
-	}*/
 	
 	/*일기에 쓴 컨텐츠 추가하기*/
 	public int addContent(DiaryContentVo diarycontentvo) {
@@ -72,19 +63,9 @@ public class MydiaryDao {
 	
 	/*일기에 쓴 스티커 저장하기*/
 	public void addSticker(DiaryItemVo diarySticker) {
+		System.out.println(diarySticker);
 		sqlSession.insert("mydiary.diaryitem",diarySticker);
-	}
-	
-	/*일기에 쓴 스티커 저장하기2*/
-	/*public void addSticker(DiaryContentVo diarycontentvo) {
 		
-		List<DiaryItemVo> diarystickerList = diarycontentvo.getItemList();
-
-		for(int i=0; i<diarystickerList.size(); i++) {
-			//DiaryItemVo diarysticker = diarystickerList.get(i);
-			//System.out.println(diarysticker);
-			sqlSession.insert("mydiary.diaryitem",diarystickerList.get(i));
-		}
-	}*/
+	}
 	
 }

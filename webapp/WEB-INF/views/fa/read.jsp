@@ -81,7 +81,7 @@ var canvas = new fabric.Canvas('paper', {
 $(document).ready(function(){ 
 	
 	getItemList();
-	
+	console.log(getItemList());
 });
 
 //아이템 가져오기
@@ -113,8 +113,8 @@ function getItemList(){
 
 //아이템 그리기
 function itemRender(itemVo){
-	
-	if(itemVo.stickerNo == 9999999){ //텍스트 이면
+	console.log("itemRender -->" + itemVo")
+	if(itemVo.stickerCateNo == 0){ //텍스트 이면
 		var text = new fabric.Textbox(itemVo.text);
 	
 		//좌표
@@ -137,7 +137,7 @@ function itemRender(itemVo){
 		//캔버스에 추가
 		canvas.add(text);
 	
-	}else { //스티커일때
+	}else if(itemVo.stickerCateNo == 2) { //스티커일때
 		fabric.Image.fromURL(itemVo.stickerPath, function(oImg) {
 			//좌표
 			oImg.top = itemVo.top;
@@ -159,6 +159,22 @@ function itemRender(itemVo){
 			//캔버스에 추가
 			canvas.add(oImg);
 		});
+	}else if(itemVo.stickerCateNo == 1) { // 배경
+		console.log("aaaa-->" + itemVo.stickerCateNo);
+		
+		fabric.Image.fromURL(itemVo.stickerSrc, function(backImg) {
+
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				scaleX: canvas.width / backImg.width,
+				scaleY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+		
+		
 	}
 	
 	

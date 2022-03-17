@@ -11,7 +11,20 @@
 			]]>
 	</insert>
 	
+	<!-- 스티커 목록 가져오기 -->
+	<select id="getStickerList" parameterType="int" resultType="com.mydeco.vo.StickerVo">
+			<![CDATA[
+				select 	stickerNo,
+						stickerCateNo,
+       				   	stickerSrc,
+       				   	stickerName
+				from sticker
+				where stickerCateNo = #{stickerCateNo}
+			]]>
+	</select>
+	
 	<!-- 스티커 목록 -->
+	<!--
 	<select id="getStickerList" resultType="com.mydeco.vo.StickerVo">
 			<![CDATA[
 				select stickerNo,
@@ -19,6 +32,9 @@
 				from sticker
 			]]>
 	</select>
+	-->
+	
+	
 	
 	<!-- 사용된 스티커 정보 저장 -->
 	<insert id="itemSave" parameterType="LetterItemVo">
@@ -59,41 +75,150 @@
 	</insert>
 	
 	
+	
+	<!-- 편지 읽기 여부 업데이트 -->
+	<update id="updateLetter" parameterType="int">
+			<![CDATA[
+				UPDATE letter 
+				SET readYN = 'YES' 
+				where letterNo = #{letterNo}
+			]]>
+	</update>
+	
+	<!-- 스티커를 제외한 편지 정보 가져오기 -->
+	<select id="selectLetter" parameterType="int" resultType="LetterVo">
+			<![CDATA[
+				select  letterNo,
+						userNo,
+				        to_char(regDate, 'yyyy-mm-dd') regDate,
+						to_char(openDay, 'yyyy-mm-dd') openDay,
+				        bgmSrc, 
+				        readYN,
+				        saveYN 
+				from letter
+				where letterNo = #{letterNo}
+			]]>
+	</select>
+	
+	<!--편지 번호(letterNo)로 해당 편지에 쓰인 아이템 가져오기 -->
+	<select id="selectLetterItemList" parameterType="int" resultType="LetterItemVo">
+			<![CDATA[
+				select li.letterSticNo,
+					   li.letterNo,
+					   li.sticNo,
+					   li.stickerSrc,
+					   li.top,
+					   li.left,
+				       li.letterPointX,
+                       li.letterPointY,
+					   li.angle,
+					   li.text,
+                       s.stickerCateNo
+				from letterItem li, sticker s
+				where li.sticNo = s.stickerNo 
+				and letterNo = #{letterNo}
+			]]>
+	</select>
+	
+
+	
+	
 	<!-- 편지 목록 불러오기 : 보낸 편지 목록 -->
 	<select id="selectSaveList" resultType="LetterVo">
     	<![CDATA[
-			select  li.letterNo letterNo, 
-			        userNo,
-			        to_char(regDate, 'yyyy-mm-dd') regDate,
-			        to_char(openDay, 'yyyy-mm-dd') openDay,
-			        bgmSrc,
-			        readYN,
-			        saveYN,
-			        text
-			from letter le, letterItem li
-			where le.letterNo = li.letterNo
-            and saveYN = 'YES'
-			and  text is not null
-			order by regDate asc
+			select   lt.letterNo,
+			         lt.userNo,
+			         to_char(lt.regDate, 'yyyy-mm-dd') regDate,
+			         to_char(lt.openDay, 'yyyy-mm-dd') openDay,
+			         TO_DATE(TO_CHAR(openDay, 'YYYYMMDD')) - TO_DATE(sysdate) dDay,
+			         lt.bgmSrc,
+			         lt.readYN,
+			         lt.saveYN,
+			         st.letterSticNo,
+			         st.letterNo,
+			         st.sticNo,
+			         st.text,
+			         st.top,
+			         st.left,
+			         st.letterPointX,
+			         st.letterPointY,
+			         st.angle
+			from
+			    (select  letterNo,
+			             userNo,
+			             regDate,
+			             openDay,
+			             bgmSrc,
+			             readYN,
+			             saveYN
+			    from letter
+			    where saveYN = 'YES') lt,
+			    (select  lit.letterSticNo,
+			             lit.letterNo,
+			             lit.sticNo,
+			             lit.text,
+			             lit.top,
+			             lit.left,
+			             lit.letterPointX,
+			             lit.letterPointY,
+			             lit.angle
+			    from letterItem lit,
+			         (select letterNo, min(letterSticNo) letterSticNo
+			          from letterItem 
+			          where sticno = 9999999
+			          group by letterNo) mnt
+			    where lit.letterSticNo = mnt.letterSticNo) st
+			where lt.letterNo=st.letterNo(+)
+			order by readyn asc, openday asc
     	]]>
 	</select>
 	
 	<!-- 편지 목록 불러오기 : 작성중인 편지 목록 -->
 	<select id="selectKeepList" resultType="LetterVo">
     	<![CDATA[
-			select  le.letterNo, 
-			        userNo,
-			        to_char(regDate, 'yyyy-mm-dd') regDate,
-			        to_char(openDay, 'yyyy-mm-dd') openDay,
-			        bgmSrc,
-			        readYN,
-			        saveYN,
-			        text
-			from letter le, letterItem li
-			where le.letterNo = li.letterNo
-            and saveYN = 'NO'
-			and  text is not null
-			order by regDate asc
+			select   lt.letterNo,
+			         lt.userNo,
+			         to_char(lt.regDate, 'yyyy-mm-dd') regDate,
+			         to_char(lt.openDay, 'yyyy-mm-dd') openDay,
+			         lt.bgmSrc,
+			         lt.readYN,
+			         lt.saveYN,
+			         st.letterSticNo,
+			         st.letterNo,
+			         st.sticNo,
+			         st.text,
+			         st.top,
+			         st.left,
+			         st.letterPointX,
+			         st.letterPointY,
+			         st.angle
+			from
+			    (select  letterNo,
+			             userNo,
+			             regDate,
+			             openDay,
+			             bgmSrc,
+			             readYN,
+			             saveYN
+			    from letter
+			    where saveYN = 'NO') lt,
+			    (select  lit.letterSticNo,
+			             lit.letterNo,
+			             lit.sticNo,
+			             lit.text,
+			             lit.top,
+			             lit.left,
+			             lit.letterPointX,
+			             lit.letterPointY,
+			             lit.angle
+			    from letterItem lit,
+			         (select letterNo, min(letterSticNo) letterSticNo
+			          from letterItem 
+			          where sticno = 9999999
+			          group by letterNo) mnt
+			    where lit.letterSticNo = mnt.letterSticNo) st
+			where lt.letterNo=st.letterNo(+)
+			order by regdate desc
     	]]>
 	</select>
 	

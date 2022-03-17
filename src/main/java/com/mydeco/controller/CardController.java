@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mydeco.service.CardService;
-import com.mydeco.vo.CardImgVo;
 import com.mydeco.vo.CardVo;
 import com.mydeco.vo.UserVo;
 
@@ -29,30 +29,23 @@ public class CardController {
 	}
 	
 	@RequestMapping("/cardWriteForm")
-	public String cardWriteForm(Model model) {
+	public String cardWriteForm(Model model) {//컨트롤러에서 jsp
 		System.out.println("controller > 카드쓰기폼");
-		List<CardImgVo> bgList = cardService.imgList();
+		List<CardVo> bgList = cardService.imgList();
 		model.addAttribute("bgList", bgList);
 		System.out.println(bgList);
 		return "card/cardWriteForm";
 	}
 	
-	@RequestMapping("cardwrite")
-	public String cardWrite(HttpSession session, @ModelAttribute CardVo cardVo) {
+	@RequestMapping("cardwrite")//로그인한 값을 가져와야할때 httpsession
+	public String cardWrite(HttpSession session, @ModelAttribute CardVo cardVo) {//jsp에서 컨트롤러로 보낼때
 		System.out.println("controller > writeForm> main으로 리다이렉트");
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		cardVo.setUserNo(authUser.getUserNo());
 		System.out.println(cardVo);
-		cardService.cardImg(cardVo);
+		cardService.sendcard(cardVo);
 		return "redirect:main";
 		
-	}
-	
-	@RequestMapping("/replywrite")
-	public String replyWriteForm(Model model) {
-		System.out.println("card/replyWriteForm");
-		
-		return "card/replyWriteForm";
 	}
 	
 	@RequestMapping("/cardread")

@@ -48,7 +48,7 @@
                         <!--내용-->
           
                         <div id="letter-content">
-                            <canvas id="paper"></canvas>                                                          
+                            <canvas style="margin-left:12px; margin-top:14px;" id="paper"></canvas>                                                          
                         </div>
                         
                         <div>
@@ -83,35 +83,34 @@
                         <div class="menu-box">
  
                             <ul class="tabs">
-								<div>
+								
 									<li class="tab-link current" data-tab="tab-1">스티커</li>
-								</div>
-								<div>
+										
                                 	<li class="tab-link" data-tab="tab-2">편지지</li>
-                              	</div>
-                              
-                              	<div>
+                                 
                                 	<li class="tab-link" data-tab="tab-3">bgm</li>
-                              	</div>
+                              
                             </ul>
                            
                             <div id="tab-1" class="tab-content current content-box">
                  
                              	
-                             	<c:forEach items="${stickerList}" var="stickVo">
+                             	<c:forEach items="${stickerMap.stickerList}" var="stickVo">
 									<div>
 										<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickerpath="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
 									</div>
 								</c:forEach>
+								
                             </div>
 
                             <div id="tab-2" class="tab-content content-box">
-                                <div>
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter1.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter2.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter3.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter4.jpg">
-                                </div>
+                               <div class="clearfix">
+                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
+	                                		<div class="">
+		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+	                                		</div>
+                                		</c:forEach>
+                                	</div>
                             </div>
 
                             
@@ -168,26 +167,26 @@ $(document).ready(function(){
  
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
-	 width: 695,
-	 height: 700,
+	 width: 680,
+	 height: 690,
 	 backgroundColor: '#686099'
 }); 
 
 //텍스트 상자를 클릭했을때
 $("[name=textbox]").on("click", function(){
-	var stickerNo= $(this).data("stickerno")
+	var stickerNo= $(this).data("stickerno");
 	
 	var text = new fabric.Textbox("텍스트를 입력하세요", {
 		stickerNo: stickerNo,
-		top: 30,
-		left: 30,
+		top: 20,
+		left: 20,
 		width: 300,
 		height: 300,
 		fontSize: 16
 	});
 	
 	canvas.add(text);
-	
+
 	canvas.setActiveObject(text);
 	text.selectAll();
 	text.enterEditing();
@@ -198,7 +197,7 @@ $("[name=textbox]").on("click", function(){
 //스티커를 클릭했을때
 $(".sticker").on("click", function(){
 	var stickerNo= $(this).data("stickerno")
-	var stickerSrc = $(this).data("stickerpath")
+	var stickerSrc = $(this).data("stickersrc")
 	
 	console.log(stickerNo);
 	console.log(stickerSrc);
@@ -209,8 +208,8 @@ $(".sticker").on("click", function(){
 
 		//객체에 스티커번호 추가
 		oImg.stickerNo = stickerNo;
+		oImg.stickerSrc = stickerSrc;
 		canvas.add(oImg);
-		
 		console.log(oImg);
 	});
 })
@@ -287,12 +286,6 @@ $("#btnKeep").on("click", function(){
 	var element = document.getElementById("openDay");
 	var openDay = element.innerText;
 	var saveYN = "NO";
-	
-	/*글쓰기폼 입력 경고창*/
-	if(openDay == null || openDay == '' || openDay.trim() == ''){
-		alert('공개일을 선택해주세요');
-		return;
-	}
 	
 	var letterVo = {
 			openDay: openDay,
