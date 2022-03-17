@@ -1,6 +1,8 @@
 package com.mydeco.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +66,19 @@ public class ShoppingDao {
 		System.out.println("다오의 픽미픽미픽미업 정보"+ productVo);
 		sqlSession.insert("shopping.addpick", productVo);
 	}
+	//////////////////////////페이징////////////////////////////
+	public List<ProductVo> myProductpgList(String keyword, int startNum, int endNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		return sqlSession.selectList("myProduct.myProductpgList", map);
+	}
+	
+	public int selectTotal() {
+		System.out.println();
+		return sqlSession.selectOne("myProduct.totalCnt");
+	}
+	
 }

@@ -54,7 +54,7 @@
 		from comments c, users u
 		where u.userNo = c.userNo
 		and prodNo = #{no}
-		order by groupNo asc
+		order by regDate asc, groupNo asc
 		]]>	
 	</select>
 
@@ -157,4 +157,12 @@
 			values(seq_pick_no.nextval, ${userNo}, ${prodNo}, sysdate)
 		]]>
 	</insert>
+	
+	
+		<select id="totalCnt" resultType="int">
+		<![CDATA[
+			select count(*)
+			from product
+		]]>
+	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.mydeco.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -83,7 +84,7 @@ public class ShoppingController {
 ///////////////////////상품상세의 댓글 ajax//////////////////////////////
 	@ResponseBody
 	@RequestMapping("/cmtwrite")
-	public String cmtwrite(@RequestBody ShoppingCmtVo shoppingCmtVo, HttpSession session) {
+	public void cmtwrite(@RequestBody ShoppingCmtVo shoppingCmtVo, HttpSession session) {
 		System.out.println("ajax 코멘트전송 컨트롤러 진입");
 		
 		System.out.println(shoppingCmtVo);
@@ -98,11 +99,37 @@ public class ShoppingController {
 		System.out.println(shoppingCmtVo);
 		shoppingService.cmtwrite(shoppingCmtVo);
 		
-		System.out.println("리다이렉트 바로전");
-		return "redirect:merchandise";
+		
 	}
 	
 	
+	
+///////////////////////////댓글 패치리스트///////////////////////
+	
+
+	@ResponseBody
+	@RequestMapping("/fetch")
+	public List<ShoppingCmtVo> fetch(@RequestParam("no") int no){
+		System.out.println("컨트롤러의 패치리스트 도킹");
+		
+		List<ShoppingCmtVo> cmtList = shoppingService.getCmtList(no);
+		
+		System.out.println(cmtList);
+		return cmtList;
+	}
+	////////////////////////페이징//////////////////////
+	@RequestMapping("/myProduct")
+	public String myProductList(Model model,
+			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) {
+
+		System.out.println("페이징 시작");
+		
+		Map<String, Object> map = shoppingService.getMyProductpgList(keyword, crtPage);
+		model.addAttribute("map", map);
+
+		return "shopping/main";
+	}
 
 
 }

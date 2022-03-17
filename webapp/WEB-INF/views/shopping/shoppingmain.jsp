@@ -117,9 +117,28 @@
 	                            </div>
                             </c:forEach>
                             <!-- /포문으로돌림 -->
-
-
-
+						<!-- 페이징 -->
+						<ul class="pagination pagination-sm">
+							<c:if test="${map.prev == true}">
+								<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${map.startPageBtnNo-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+							</c:if>
+							
+							<c:forEach begin="${map.startPageBtnNo}" end="${map.endPageBtnNo}" step="1" var="page">
+								<c:choose>
+									<c:when test="${param.crtPage == page}">
+										<li class="active"><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${page}">${page}</a></li>
+									</c:when>
+									<c:otherwise>									
+										<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${page}">${page}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							
+							<c:if test="${map.next == true}">
+								<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${map.endPageBtnNo+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+							</c:if>
+                        </ul>
+						<!-- /페이징 -->
                 	</div>
                 </div>
 				<!-- 푸터부분 -->
@@ -135,6 +154,19 @@
     </body>
     
      <script type="text/javascript">
+     
+ 	$(function () {
+		$(".happy").text('기쁨');
+		$(".sad").text('슬픔');
+		$(".angry").text('화남');
+		$(".annoyed").text('짜증');
+		$(".relieved").text('홀가분');
+		$(".post").text('택배');
+		$(".meet").text('직거래');
+	});
+
+     
+     
      	
      $(".pickButton").on("click",function(){
     	 
