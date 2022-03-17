@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
@@ -24,6 +25,7 @@ public class MydiaryController {
 	@Autowired 
 	MydiaryService mydiaryService;
 	
+	/*리스트*/
 	@RequestMapping("/list")
 	public String list(Model model, HttpSession Session) {
 		System.out.println("mydiarycontroller-list");
@@ -66,6 +68,7 @@ public class MydiaryController {
 	}
 	
 	/*220316수정*/
+	/*쓰기폼*/
 	@RequestMapping("/writeForm")
 	public String writeForm(Model model) {
 		System.out.println("mydiarycontroller-writeForm");
@@ -79,6 +82,7 @@ public class MydiaryController {
 		return "diary/writeForm";
 	}
 	
+	/*쓰기*/
 	@ResponseBody
 	@RequestMapping("/write")
 	public int write(@RequestBody DiaryContentVo diarycontentvo) {
@@ -88,7 +92,7 @@ public class MydiaryController {
 		return mydiaryService.addContent(diarycontentvo);
 	}
 	
-
+	/*읽기*/
 	@ResponseBody
 	@RequestMapping("/read")
 	public DiaryContentVo read(@RequestBody DiaryContentVo diarycontentvo) {
@@ -103,6 +107,25 @@ public class MydiaryController {
 		
 	}
 
+	
+	/*수정하기*/
+	@RequestMapping("/modifyForm")
+	public String modifyForm(@RequestParam("modaldiaryNo") int diaryNo, Model model) {
+		System.out.println("modifyForm");
+		System.out.println(diaryNo);
+		
+		/*꾸미기창 스티커 가져오기*/
+		Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
+		model.addAttribute("stickerMap",stickerMap);
+		
+		/*list페이지에서 선택한 다이어리(번호)의 정보 가져오기*/
+		DiaryContentVo diaryContent = mydiaryService.getOneDiary(diaryNo);
+		model.addAttribute("dcVo",diaryContent);
+		
+		return "diary/modifyForm";
+	}
+	
+	
 	
 	/*db에 스티커 이미지 경로,이름 저장하기*/
 	@RequestMapping("/dbsticker")

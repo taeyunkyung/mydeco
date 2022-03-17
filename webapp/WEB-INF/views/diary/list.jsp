@@ -85,7 +85,7 @@
                                 <form>
                                     <select name="option" class="selectbox-small" style="text-align:center;">
                                         <option value="none">ㅡㅡ 선택 ㅡㅡ</option>
-                                        <option value="recently">최신순</option>
+                                        <option value="recently" selected>최신순</option>
                                         <option value="old">오래된순</option>
                                     </select>
                                 </form>    
@@ -105,7 +105,7 @@
 
                             <!--목록/사진 하나분량의 박스-일기 하나의  div-->
                             <c:forEach items="${diarycontentList}" var="dcvo">
-	                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" style=" border-bottom: 1px solid #686099;">
+	                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}" style=" border-bottom: 1px solid #686099;">
 	                                <div class="mydiaryText-list2">
 	                                    <div class="mydiaryText7 clearfix">
 	                                    	<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
@@ -159,10 +159,16 @@
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <div style="float:right; margin-right:30px;">노래를넣는다면 여기가 노래재생되는곳</div>
+		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close" style="font-size:30px;"><span aria-hidden="true">&times;</span></button>
+		        <div class="clearfix">
+			        <div style="float: right;">
+	                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
+	                </div>
+			        <div style="float:left; margin-right:15px; margin-top:3px;">노래를넣는다면 여기가 노래재생되는곳</div>	
+		        </div>
+		       
 		        
-		        <div class="clearfix" style="margin-top:43px;">
+		        <div class="clearfix" style="margin-top:28px;">
 			        <div style="float:left; margin-left:41px;"><h4 class="modal-title" id="modalDiaryTitle" style="font-size:19px; font-weight:900"></h4></div>
 			        <div class="readcontent clearfix" style="float:right; width:176px; margin-right:40px; margin-top:7px;" >
 			        	<div style="float:left; font-family:'SCDream4'; width:84px;"id="modalDiaryDate"></div>
@@ -177,8 +183,11 @@
 		      	
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="modal-button-read">수정하기</button>
-		        <button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
+		      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get">
+		      		<button type="button" id="modalModifyBtn" class="modal-button-read">수정하기</button>
+		      		<input type="hidden" name="modaldiaryNo" value="">
+		      	</form>
+			      	<button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
@@ -199,6 +208,11 @@ var canvas = new fabric.Canvas("paper", {
 });
 console.log(canvas);
 
+//제목으로 이미지 저장하기 위해 선언
+var title;
+
+//수정하기 일기번호 보내기 위해 선언
+var diaryNo;
 
 /*하나의 일기 div 클릭했을 때 모달창 보이기*/
 $(".mydiary-list-box2").on("click",function(){
@@ -207,8 +221,10 @@ $(".mydiary-list-box2").on("click",function(){
 	modalCanvasInit();
 	
 	/*클릭한 일기의 일기번호*/
-	var diaryNo = $(this).data("diaryno")
+	diaryNo = $(this).data("diaryno")
 	console.log(diaryNo);
+
+	title = $(this).data("title")
 	
 	/*키:값*/
 	var diarycontentvo = {diaryNo: diaryNo};
@@ -251,6 +267,8 @@ $(".mydiary-list-box2").on("click",function(){
 });
 
 
+
+
 /*일기보기 모달창 초기화*/
 function modalCanvasInit(){
 	var objects = canvas.getObjects();
@@ -269,6 +287,9 @@ function itemRender(diaryitemVo){
 
 		//기본 폰트 크기
 		text.fontSize = 18;
+		
+		//폰트
+		text.fontFamily = 'SCDream4';
 		
 		//좌표
 		text.top = diaryitemVo.top;
@@ -329,23 +350,15 @@ function itemRender(diaryitemVo){
 	
 }
 
+/*수정하기 버튼을 클릭했을 때*/
+$("#modalModifyBtn").on("click",function(){
+	$("[name='modaldiaryNo']").val(diaryNo);
+	console.log(diaryNo);
+	
+	document.getElementById("modifyForm").submit();
+});
 
 
-/*모달창*/
- /*
- 
-$(function(){ 
-
-    $(".mydiary-list-box2").click(function(){
-    	
-        $(".modal-read2").fadeIn();
-    });
-
-    $(".mydiary-read-close-btn").click(function(){
-         $(".modal-read2").fadeOut();
-    });
-
-});*/
 
 
 //////////////////////////////////////////////////////////
@@ -434,14 +447,14 @@ function renderWriteDay(date) {
 } */
 
 
-
-
-
-///////////////////////////////////////////////////////////////
+/*저장아이콘 클릭시 이미지로 저장(제목으로 저장하기 해결안됨)*/
 function downImg(){
-    html2canvas($("#modalData")[0]).then(function(canvas){
+    html2canvas($("#paper")[0]).then(function(canvas){
         var myImage = canvas.toDataURL();
-        downloadURI(myImage, "test.png") 
+        var savename = title;
+    	console.log(savename);
+        //downloadURI(myImage, `${savename}`); 
+        downloadURI(myImage, "diaryImg"); 
     });
 }
 
@@ -452,7 +465,6 @@ function downloadURI(uri, name){
     document.body.appendChild(link);
     link.click();
 }
-///////////////////////////////////////////////////////////////////
 
 
 

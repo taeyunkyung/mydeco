@@ -89,6 +89,7 @@ public class MydiaryService {
 		/*다이어리 번호(seq_diary_no.nextval) 가져오기*/
 		int diaryno = mydiaryDao.selectDiaryNo();
 		System.out.println(diaryno);
+		System.out.println("******43인지 확인");
 		
 		List<DiaryItemVo> diarysticker = diarycontentvo.getItemList();
 		for(int i = 0; i<diarysticker.size(); i++) {

@@ -95,17 +95,18 @@ button.mydiary-read-save-btn{
     float: right;
 }
 
+/*
 .read-save-btn{
     width: 23px;
     height: 23px;
     margin-right: 100px;
-}
+}*/
 
+/*
 .read-save-icon{
     float: right; 
-    margin-top: -63px;
     margin-right: -40px;
-}
+}*/
 
 .read-bgm-play{
     float: left; 

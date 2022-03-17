@@ -37,13 +37,11 @@
                           
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
-                                <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
-                                <input type="text" id="datepicker" name="diaryDate" style="width: 110px; height: 30px; padding: 15px;">
+                                <input type="text" id="datepicker" name="diaryDate" value="${dcVo.diaryDate}" style="width: 110px; height: 30px; padding: 15px;">
                             </div>                          
  
                             <!--날씨/선택박스-->
                             <div class="clearfix mydiary-we_sel">
-                                <!-- <div><img class="mydiary-weather-img" src="./assets/img/weather/sunny-day.png"></div> -->
                                 <div class="mydiary-weather2">날씨 :</div>
                                 
                                 <!--선택박스-->
@@ -54,6 +52,7 @@
                                             <option value="sunny">맑음</option>
                                             <option value="rainy">비</option>
                                             <option value="snow">눈</option>
+                                            <option value="${dcVo.weather}" selected>
                                         </select>
                                     </form>    
                                 </div>
@@ -61,10 +60,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
+                                    <label><input class="diaryset_private" type="radio" name="protect" value="${dcVo.protect}">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
+                                    <label><input class="diaryset" type="radio" name="protect" value="${dcVo.protect}">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -73,7 +72,7 @@
                         
                         <!--제목/내용-->
                         <div>
-                            <input type="text" maxlength='35' style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
+                            <input type="text" value="${dcVo.title}" maxlength='35' name="title" id="title" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" placeholder="제목을 입력해 주세요">
                         </div>
                         <div>
                             <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
@@ -139,12 +138,6 @@
 	                                		</div>
                                 		</c:forEach>
                                 	</div>
-                                
-                                
-                                <div>
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/cat.png">
-                                    <img class="writeform-sticker-size" src="./assets/img/sticker/rabbit.png">                             
-                                </div>
                             </div>
 
                             
@@ -206,8 +199,20 @@
 		
 		//달력
 		$("#datepicker").datepicker();
+		
+		//로딩되기전에 리스트 페이지에서 선택한 일기 그리기
+		drawDiary();
+		
 	});
 	 
+	
+	//일기 그리기
+	function drawDiary(){
+		
+		
+		
+		
+	}
 	
 	
 	
