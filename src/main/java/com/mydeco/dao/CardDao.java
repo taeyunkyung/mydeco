@@ -19,6 +19,7 @@ public class CardDao {
 		System.out.println("dao.cardImg 접속완");
 		System.out.println(cardVo);
 		sqlSession.insert("card.sendcard", cardVo);
+		System.out.println("insert완료");
 	}
 	
 	public List<CardVo> imgList(){
@@ -27,6 +28,8 @@ public class CardDao {
 		System.out.println("다오의 bgList확인용"+bgList);
 		return bgList;
 	}
+	
+	
 	
 	
 	

@@ -63,53 +63,14 @@
 
 
 												<div class="flex-container">
+												
 													<div class="fitems">
 														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2022-03-03</div>
-														<div class="imgtext">
-															여러분<br>저 오늘 생일인데<br>축하해주세요♡
-														</div>
+														<div class="imgdate">${vo.sysdate}</div>
+														<div class="imgtext">${vo.content}</div>
 														<div class="imgnum">답장10개</div>
 													</div>
-
-													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2022-01-14</div>
-														<div class="imgtext">살쪄서 바지가 안맞아요 수선맛집 찾아요 관악구 위주!!</div>
-														<div class="imgnum">답장10개</div>
-													</div>
-
-													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2022-01-01</div>
-														<div class="imgtext">취업이 하고싶어요ㅠㅠ제 고민 좀 들어주실분</div>
-														<div class="imgnum">답장10개</div>
-													</div>
-
-
-													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2021-12-01</div>
-														<div class="imgtext">
-															오늘밤 달이 차다<br>넌 내 생각을 할까?
-														</div>
-														<div class="imgnum">답장10개</div>
-													</div>
-
-
-													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2021-12-25</div>
-														<div class="imgtext">짝사랑 그만하고 싶어요...하지만 포기가 되지 않네요</div>
-														<div class="imgnum">답장10개</div>
-													</div>
-
-													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">2021-12-24</div>
-														<div class="imgtext">내일 크리스마스인데 다들 솔크 맞죠??</div>
-														<div class="imgnum">답장10개</div>
-													</div>
+													
 												</div>
 												<div class="row">
 													<div class="col-xs-12">
@@ -132,12 +93,13 @@
 														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
 														<div class="imgdate">${vo.sysdate}</div>
 														<div class="imgtext">${vo.content}</div>
-														<div class="imgnum"></div>
+														<div class="imgnum">${vo.cardImgNo}</div>
 														<div class="chk-subcard">
 															<input type="checkbox" class="chk-del" name="del" />
 														</div>
 													</div>
 												</c:forEach>
+												
 												</div>
 
 												<div class="row">
