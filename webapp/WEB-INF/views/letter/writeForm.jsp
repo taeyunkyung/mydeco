@@ -95,20 +95,22 @@
                             <div id="tab-1" class="tab-content current content-box">
                  
                              	
-                             	<c:forEach items="${stickerList}" var="stickVo">
+                             	<c:forEach items="${stickerMap.stickerList}" var="stickVo">
 									<div>
 										<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickerpath="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
 									</div>
 								</c:forEach>
+								
                             </div>
 
                             <div id="tab-2" class="tab-content content-box">
-                                <div>
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter1.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter2.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter3.jpg">
-                                	 <img src="${pageContext.request.contextPath}/assets/img/letter4.jpg">
-                                </div>
+                               <div class="clearfix">
+                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
+	                                		<div class="">
+		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+	                                		</div>
+                                		</c:forEach>
+                                	</div>
                             </div>
 
                             
@@ -195,7 +197,7 @@ $("[name=textbox]").on("click", function(){
 //스티커를 클릭했을때
 $(".sticker").on("click", function(){
 	var stickerNo= $(this).data("stickerno")
-	var stickerSrc = $(this).data("stickerpath")
+	var stickerSrc = $(this).data("stickersrc")
 	
 	console.log(stickerNo);
 	console.log(stickerSrc);
@@ -206,8 +208,8 @@ $(".sticker").on("click", function(){
 
 		//객체에 스티커번호 추가
 		oImg.stickerNo = stickerNo;
+		oImg.stickerSrc = stickerSrc;
 		canvas.add(oImg);
-		
 		console.log(oImg);
 	});
 })

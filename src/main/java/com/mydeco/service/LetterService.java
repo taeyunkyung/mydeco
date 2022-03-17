@@ -1,7 +1,9 @@
 package com.mydeco.service;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class LetterService {
 	@Autowired
 	LetterDao letterDao;
 	
+	
+	
 	//스티커 이름과 경로 vo에 담은 뒤 dao에 전송(스티커 목록 삽입)
 	public void stickerDB() {
 	
@@ -30,11 +34,24 @@ public class LetterService {
 	    }	
 	}
 	
-	//스티커목록 가져오기
-	public List<StickerVo> getStickerList(){
+	
+	/*스티커목록(꾸기미패널) 가져오기*/
+	public Map<String, List<StickerVo>> getStickerList(){
 		
-		return letterDao.getStickerList();
+		List<StickerVo> stickerList = letterDao.getStickerList(2);
+		List<StickerVo> paperList = letterDao.getStickerList(1);
+		
+		
+		Map<String, List<StickerVo>> stickerMap = new HashMap<String, List<StickerVo>>();
+		stickerMap.put("stickerList", stickerList);
+		stickerMap.put("paperList", paperList);
+		
+		return stickerMap;
 	}
+	
+	
+	
+	
 	
 	
 	//일기에 쓰인 스티커 정보 저장하기
@@ -76,6 +93,25 @@ public class LetterService {
 
 		return keepList;
 	}
+	
+	
+	//편지 읽어오기(아이템 추가)
+	public LetterVo readLetter(int letterNo) {
+		System.out.println("---------------------------------");
+		
+		//편지 정보
+		LetterVo letterVo = letterDao.selectLetter(letterNo);
+		System.out.println("편지 정보" + letterVo);
+		//아이템 정보
+		List<LetterItemVo> itemList = letterDao.selectLetterItem(letterNo);
+		System.out.println("아이템 정보" + itemList);
+		//편지에 아이템 정보 추가
+		letterVo.setItemList(itemList);
+		
+		return letterVo;
+		
+	}
+	
 	
 
 }

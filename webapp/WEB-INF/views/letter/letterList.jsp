@@ -128,7 +128,7 @@
 													<img
 														src="${pageContext.request.contextPath}/assets/img/read.png">
 												</div>
-												<div class="day">
+												<div class="day modify">
 													<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
 													<p class="letter-ing">${letterVo.text}</p>
 												</div>
@@ -166,10 +166,10 @@
 				
 				<div class="days">
 		    		<div class="modal-day-left">
-		    			보낸 날짜: 2022.02.14
+		    			<p id="mr">보낸 날짜: </p> <p id="modal-regDate"> </p>
 		    		</div>
 		    		<div class="modal-day-right">
-		    			받은 날짜: 2022.03.14
+		    			<p id="modal-openDay"> </p> <p id="mo">  받은 날짜: </p> 
 		    		</div>
 	    		</div>
 			</div>
@@ -206,13 +206,20 @@
 var canvas = new fabric.Canvas("paper", {
 	 width: 680,
 	 height: 690,
-	 backgroundColor: '#686099'
+	 backgroundColor: '#CEC9EF'
 });
 
+//수정폼으로 이동
+$(".modify").on("click",function(){
+	
+	location.href="${pageContext.request.contextPath}/letter/modifyForm";
+});
+	
 
 $(".popup_open_btn").on("click",function(){
 	
 	var openyn = $(this).data("openyn");
+	console.log(openyn);
 	
 	var letterNo = $(this).data("letterno");
 	
@@ -222,7 +229,7 @@ $(".popup_open_btn").on("click",function(){
 		showLetter(letterNo);
 		
 	}else if(openyn == 'n'){
-		alert("공개일이 되지 않았습니다.");
+		alert("아직 열람이 불가능한 편지입니다.");
 	}else {
 		console.log("입력오류");
 	}
@@ -237,11 +244,107 @@ function showLetter(letterNo){
 	
 	console.log(letterNo);
 	
+	//캔버스 초기화(이전에 보였졌던 일기 지우기);
+	//modalCanvasInit();
+	
+	/*키:값*/
+	var lettervo = {letterNo : letterNo};
+	
+	$.ajax({
+	    url : "${pageContext.request.contextPath}/letter/read",
+	    type : "post",
+	    contentType : "application/json",
+	    data : JSON.stringify(lettervo),//데이터 보내기
+	    dataType : "json",
+	    success : function(LetterVo) {
+	    	
+		    
+		    $("#modal-regDate").text(LetterVo.regDate);
+		    $("#modal-openDay").text(LetterVo.openDay);
+		    
+		    var LetterItemList = LetterVo.itemList;
+		    
+		    for(var i=0; i<LetterItemList.length; i++){
+				itemRender(LetterItemList[i]);
+				console.log(LetterItemList[i]);
+			}
+	    
+	    },
+	    error : function(XHR, status, error) {
+	       console.error(status + " : " + error);
+	    }
+	 });
+
 	
 	/*모달창 보이기*/
 	$("#ModalLetterView").modal('show');
 }
 
+/*모달창 초기화*/
+function modalCanvasInit(){
+	var objects = canvas.getObjects();
+	console.log(objects);
+	for(var i=0; i<objects.length; i++){
+		canvas.remove(objects[i]);
+	}canvas.renderAll();
+}	
+
+
+//아이템 그리기
+function itemRender(LetterItemVo){
+	
+	if(LetterItemVo.stickerCateNo == 0 || LetterItemVo.stickerSrc == 'n'){ //텍스트 이면
+		var text = new fabric.Textbox(LetterItemVo.text);
+
+		//기본 폰트 크기
+		text.fontSize = 16;
+		
+		//좌표
+		text.top = LetterItemVo.top;
+		text.left = LetterItemVo.left;
+		
+		//스케일
+		text.scaleX = LetterItemVo.letterPointX;
+		text.scaleY = LetterItemVo.letterPointY;
+		
+		//각도
+		text.angle = LetterItemVo.angle;
+
+		//변경안되게
+		text.selectable = false;
+		
+		//커서모양기본
+		text.hoverCursor ="default";
+		
+		//캔버스에 추가
+		canvas.add(text);
+	
+	}else { //스티커일때 --stickerPath 확인하기
+		fabric.Image.fromURL(LetterItemVo.stickerSrc, function(oImg) {
+			//좌표
+			oImg.top = LetterItemVo.top;
+			oImg.left = LetterItemVo.left;
+			
+			//스케일
+			oImg.scaleX = LetterItemVo.letterPointX;
+			oImg.scaleY = LetterItemVo.letterPointY;
+			
+			//각도
+			oImg.angle = LetterItemVo.angle;
+			
+			//변경안되게
+			oImg.selectable = false;
+			
+			//커서모양기본
+			oImg.hoverCursor ="default";
+			
+			//캔버스에 추가
+			canvas.add(oImg);
+		});
+	}
+	
+	
+}
 
 </script>
 </html>

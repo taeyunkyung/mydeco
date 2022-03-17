@@ -1,6 +1,7 @@
 package com.mydeco.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,8 @@ public class LetterController {
 	@Autowired
 	LetterService letterService;
 	
+	
+	
 	@RequestMapping("")
 	public String letter(Model model) {
 		System.out.println("letter");
@@ -39,6 +42,7 @@ public class LetterController {
 		return "letter/letterList";
 	}
 	
+	
 	@RequestMapping("/writeForm")
 	public String writeForm(Model model, HttpSession Session) {
 		System.out.println("letter/writeForm");
@@ -48,8 +52,9 @@ public class LetterController {
 		//로그인 하지 않은 유저의 접근 제한
 		if(authUser!= null) {
 			//DB의 스티커 목록 불러와 어트리뷰트에 저장
-			List<StickerVo> stickerList = letterService.getStickerList();
-			model.addAttribute("stickerList",stickerList);
+			Map<String, List<StickerVo>> stickerMap = letterService.getStickerList();
+			model.addAttribute("stickerMap",stickerMap);
+			System.out.println(stickerMap);
 			
 			return "letter/writeForm";
 		}else {
@@ -73,7 +78,34 @@ public class LetterController {
 		return letterService.itemSave(letterVo);
 	}
 	
+	@ResponseBody
+	@RequestMapping("/read")
+	public LetterVo read(@RequestBody LetterVo letterVo) {
+		System.out.println("letter/read");
+		
+		int letterNo = letterVo.getLetterNo();
+		
+		return letterService.readLetter(letterNo);
+	}
 	
+	
+	@RequestMapping("/modifyForm")
+	public String modifyForm(Model model, HttpSession Session) {
+		System.out.println("letter/modifyForm");
+		
+		UserVo authUser = (UserVo)Session.getAttribute("authUser");
+		
+		//로그인 하지 않은 유저의 접근 제한
+		if(authUser!= null) {
+			//DB의 스티커 목록 불러와 어트리뷰트에 저장
+			Map<String, List<StickerVo>> stickerMap = letterService.getStickerList();
+			model.addAttribute("stickerList",stickerMap);
+			
+			return "letter/modifyForm";
+		}else {
+			return "letter/letterList";
+		}
+	}
 	
 	
 	

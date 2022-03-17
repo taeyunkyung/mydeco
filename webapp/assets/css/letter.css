@@ -124,11 +124,11 @@ img .day {
 
 .day {
 	float: left;
-	padding: 30px 30px 30px 30px;
+	margin: 30px 20px 20px 20px;
 	position: absolute;
 	text-align:center;
-	height: 233px;
-	width: 340px;
+	height: 190px;
+	width: 300px;
 	font-weight: bold;
 	color:#686099;
 	font-family: 'SCDream4';
@@ -140,7 +140,7 @@ img .day {
 	float: left;
 	font-size: 12px;
 	height: 30px;
-	margin: 20px 5px 0px 5px;
+	margin: 20px 5px 0px 10px;
 	padding: 0px 5px 0px 0px;
 }
 
@@ -148,7 +148,7 @@ img .day {
 	float: right;
 	font-size: 12px;
 	height: 30px;
-	margin: 20px 5px 0px 0px;
+	margin: 20px 10px 0px 0px;
 	padding: 0px 0px 0px 5px;
 }
 
@@ -185,8 +185,8 @@ img .day {
 	font-weight: normal;
 	font-size: 15px;
 	height: 120px;
-	padding: 5px 5px 5px 5px;
-	margin: 0px 0px 0px 0px;
+	padding: 9px;
+	margin: 5px 10px;
 	color: black;
 	background-color: white;
 	background-color: rgba( 255, 255, 255, 0.5 );
@@ -194,7 +194,7 @@ img .day {
 	overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical; 
 }
 
@@ -210,8 +210,8 @@ img .day {
 	font-weight: normal;
 	font-size: 15px;
 	height: 140px;
-	padding: 5px 5px 5px 5px;
-	margin: 0px 0px 0px 0px;
+	padding: 7px;
+	margin: 5px 10px;
 	color: black;
 	background-color: white;
 	background-color: rgba( 255, 255, 255, 0.5 );
@@ -219,7 +219,7 @@ img .day {
 	overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical; 
 }
 
@@ -249,6 +249,24 @@ img .day {
 	width: 680px;
 	height: 690px;
 	margin: 0px 0px 5px 45px;
+}
+
+#modal-regDate {
+	float: left;
+}
+
+#modal-openDay {
+	float: right;
+}
+
+#mr {
+	float: left;
+	margin: 0px 8px 0px 0px;
+}
+
+#mo {
+	float: right;
+	margin: 0px 8px 0px 0px;
 }
 
 .modal-day-left {

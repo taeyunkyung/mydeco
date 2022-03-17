@@ -48,7 +48,7 @@
                         <!--내용-->
           
                         <div id="letter-content">
-                            <canvas id="paper"></canvas>                                                          
+                            <canvas style="margin-left:12px; margin-top:14px;" id="paper"></canvas>                                                          
                         </div>
                         
                         <div>
@@ -83,16 +83,13 @@
                         <div class="menu-box">
  
                             <ul class="tabs">
-								<div>
+								
 									<li class="tab-link current" data-tab="tab-1">스티커</li>
-								</div>
-								<div>
+										
                                 	<li class="tab-link" data-tab="tab-2">편지지</li>
-                              	</div>
-                              
-                              	<div>
+                                 
                                 	<li class="tab-link" data-tab="tab-3">bgm</li>
-                              	</div>
+                              
                             </ul>
                            
                             <div id="tab-1" class="tab-content current content-box">
@@ -168,26 +165,26 @@ $(document).ready(function(){
  
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
-	 width: 695,
-	 height: 700,
+	 width: 680,
+	 height: 690,
 	 backgroundColor: '#686099'
 }); 
 
 //텍스트 상자를 클릭했을때
 $("[name=textbox]").on("click", function(){
-	var stickerNo= $(this).data("stickerno")
+	var stickerNo= $(this).data("stickerno");
 	
 	var text = new fabric.Textbox("텍스트를 입력하세요", {
 		stickerNo: stickerNo,
-		top: 30,
-		left: 30,
+		top: 20,
+		left: 20,
 		width: 300,
 		height: 300,
 		fontSize: 16
 	});
 	
 	canvas.add(text);
-	
+
 	canvas.setActiveObject(text);
 	text.selectAll();
 	text.enterEditing();
