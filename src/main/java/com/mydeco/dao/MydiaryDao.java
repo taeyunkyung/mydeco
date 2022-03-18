@@ -73,4 +73,15 @@ public class MydiaryDao {
 		return sqlSession.delete("mydiary.deleteDiaryItem",diarycontentvo);
 	}
 	
+	/*수정하기-컨텐츠 업데이트*/
+	public void updateContent(DiaryContentVo diarycontentvo) {
+		
+	}
+	
+	
+	/*수정하기-아이템 넣기*/
+	public void insertContent(List<DiaryItemVo> ItemList) {
+		
+	}
+	
 }

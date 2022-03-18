@@ -139,12 +139,12 @@ public class MydiaryController {
 	
 	
 	/*수정하기*/
-	/*
+	@ResponseBody
 	@RequestMapping("/modify")
 	public String modify(@RequestBody DiaryContentVo diarycontentvo) {
 		
 		return mydiaryService.modify(diarycontentvo);
-	}*/
+	}
 	
 	
 	

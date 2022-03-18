@@ -116,4 +116,13 @@ public class MydiaryService {
 		}
 	}
 	
+	/*수정하기*/
+	public String modify(DiaryContentVo diarycontentvo) {
+		
+		List<DiaryItemVo>ItemList = diarycontentvo.getItemList();
+		mydiaryDao.updateContent(diarycontentvo);
+		mydiaryDao.insertContent(ItemList);
+	
+		return "";
+	}
 }
