@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mydeco.service.CardService;
 import com.mydeco.vo.CardVo;
@@ -25,6 +24,11 @@ public class CardController {
 	@RequestMapping("/main")
 	public String card() {
 		System.out.println("controller > main");
+		//데이터를 리스트 형태로 모아서 model model 써서 model.addAttribute --넣어줘야 cardMain.jsp에서 넣어준 정보를 쓸수가있음
+		//List<CardVo> cardList = cardService.getCardList();
+		//xml select 작성카드번호/카드이미지경로/날짜/컨텐츠/댓글갯수(카운트) , from card --dao sqlSession.selectList()
+		//댓글갯수카운트 어떻게 할지..
+
 		return "card/cardMain";
 	}
 	
@@ -44,7 +48,9 @@ public class CardController {
 		cardVo.setUserNo(authUser.getUserNo());
 		System.out.println(cardVo);
 		cardService.sendcard(cardVo);
-		return "redirect:main";
+		/* return "redirect:/card/main"; */
+		
+		return "";
 		
 	}
 	
@@ -62,5 +68,11 @@ public class CardController {
 		return "card/replyReadForm";
 	}
 	
+	@RequestMapping("/replywrite")
+	public String replyWriteForm(Model model) {
+		System.out.println("card/replyWriteForm");
+		
+		return "card/replyWriteForm";
+	}
 	
 }

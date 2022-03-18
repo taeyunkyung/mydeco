@@ -62,7 +62,7 @@
                 <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
 
 
-                <div id="my_modal">
+                <%-- <div id="my_modal">
                     
                     <div>
                         <div class="bgs">
@@ -83,12 +83,12 @@
                     <div class="btn-center">
                         <button class="btn-card-application" type="button">적용</button>
                     </div>
-                </div>
+                </div> --%>
             </div>
         </div>
     </div>
     
-    <div id="모달창 이름" class="modal fade">
+    <div id="modal_write" class="modal fade">
    		<div class="modal-dialog modal-lg">
       		<div class="modal-content">
          		<div class="modal-header">
@@ -115,10 +115,10 @@
 
     </body>
     <script type="text/javascript">
-    $("버튼 이름").on("click",function(){
+    $("#popup_open_btn").on("click",function(){
     	   
     	   /*모달창 보이기*/
-   	$("모달창 이름").modal('show');
+   	$("modal_write").modal('show');
     	   
 
     });

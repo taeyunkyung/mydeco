@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="card">
-
+<!-- <select>, <insert>, <update>, <delete> -->
 	<!-- 디비 넣기 -->
 	<insert id="sendcard" parameterType="CardVo">
 		<![CDATA[
@@ -12,8 +12,24 @@
 	
 	</insert> 
 
+	<insert id="receivecard" parameterType="CardVo">
+		<![CDATA[
+			insert into receiveCard 
+			values(seq_receivecard_no.nextval,#{userNo},#{replyNo},#{cardImgNo},#{receiveContent},sysdate,#{cardAge},#{cardGender})
+		]]>
+	
+	</insert> 
+	
+	<insert id="cardImg" parameterType="CardVo">
+		<![CDATA[
+			insert into cardImg
+			values(seq_cardImg_no.nextval,#{cardImgName},#{cardImgSrc})
+		]]>
+	</insert>
+	
+	
 	<!-- 사진 목록 가져오기 -->
-	<select id="cardbg" resultType="CardVo">
+	<select id="cardbg" resultType="CardVo"><!-- vo객체로 쿼리실행결과값 받을때 resultType -->
 		<![CDATA[
 			select  cardImgNo,
 			        cardImgName,
@@ -23,7 +39,9 @@
 	</select>
 	
 	<!-- 내가 쓴 카드 목록 가져오기 -->
-
+	
+	
+	
 	<!-- 답장 갯수 가져오기 -->
 	<select id="reply" resultType="CardVo">
 		<![CDATA[

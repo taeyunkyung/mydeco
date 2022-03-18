@@ -88,17 +88,12 @@
 
 												<div class="flex-container">
 												
-												<c:forEach items="${bgList}" var="vo">
-													<div class="fitems">
+												<div class="fitems">
 														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
 														<div class="imgdate">${vo.sysdate}</div>
 														<div class="imgtext">${vo.content}</div>
-														<div class="imgnum">${vo.cardImgNo}</div>
-														<div class="chk-subcard">
-															<input type="checkbox" class="chk-del" name="del" />
-														</div>
+														<div class="imgnum">답장10개</div>
 													</div>
-												</c:forEach>
 												
 												</div>
 

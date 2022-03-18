@@ -5,25 +5,28 @@ public class CardVo {
 	private int cardNo;
 	private int userNo;
 	private int replyNo;
-	private int cardImgNo;
+	private int cardImgNo; //
 	private String cardContent;
 	private String cardRegdate;
-	private String cardGender;
-	private String cardAge;
+	private String cardGender; //
+	private String cardAge;   //
 	private int receivecardNo;
 	private String receiveContent;
 	private String receiveRegdate;
 	private String replyContent;
 	private String cardImgName;
-	private String cardImgSrc; 
+	private String cardImgSrc;
+	private int replyCnt;
+
 	
 	
 	public CardVo() {}
 
 
+
 	public CardVo(int cardNo, int userNo, int replyNo, int cardImgNo, String cardContent, String cardRegdate,
 			String cardGender, String cardAge, int receivecardNo, String receiveContent, String receiveRegdate,
-			String replyContent, String cardImgName, String cardImgSrc) {
+			String replyContent, String cardImgName, String cardImgSrc, int replyCnt) {
 		this.cardNo = cardNo;
 		this.userNo = userNo;
 		this.replyNo = replyNo;
@@ -38,7 +41,9 @@ public class CardVo {
 		this.replyContent = replyContent;
 		this.cardImgName = cardImgName;
 		this.cardImgSrc = cardImgSrc;
+		this.replyCnt = replyCnt;
 	}
+
 
 
 	public int getCardNo() {
@@ -46,9 +51,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardNo(int cardNo) {
 		this.cardNo = cardNo;
 	}
+
 
 
 	public int getUserNo() {
@@ -56,9 +63,11 @@ public class CardVo {
 	}
 
 
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
 
 
 	public int getReplyNo() {
@@ -66,9 +75,11 @@ public class CardVo {
 	}
 
 
+
 	public void setReplyNo(int replyNo) {
 		this.replyNo = replyNo;
 	}
+
 
 
 	public int getCardImgNo() {
@@ -76,9 +87,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardImgNo(int cardImgNo) {
 		this.cardImgNo = cardImgNo;
 	}
+
 
 
 	public String getCardContent() {
@@ -86,9 +99,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardContent(String cardContent) {
 		this.cardContent = cardContent;
 	}
+
 
 
 	public String getCardRegdate() {
@@ -96,9 +111,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardRegdate(String cardRegdate) {
 		this.cardRegdate = cardRegdate;
 	}
+
 
 
 	public String getCardGender() {
@@ -106,9 +123,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardGender(String cardGender) {
 		this.cardGender = cardGender;
 	}
+
 
 
 	public String getCardAge() {
@@ -116,9 +135,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardAge(String cardAge) {
 		this.cardAge = cardAge;
 	}
+
 
 
 	public int getReceivecardNo() {
@@ -126,9 +147,11 @@ public class CardVo {
 	}
 
 
+
 	public void setReceivecardNo(int receivecardNo) {
 		this.receivecardNo = receivecardNo;
 	}
+
 
 
 	public String getReceiveContent() {
@@ -136,9 +159,11 @@ public class CardVo {
 	}
 
 
+
 	public void setReceiveContent(String receiveContent) {
 		this.receiveContent = receiveContent;
 	}
+
 
 
 	public String getReceiveRegdate() {
@@ -146,9 +171,11 @@ public class CardVo {
 	}
 
 
+
 	public void setReceiveRegdate(String receiveRegdate) {
 		this.receiveRegdate = receiveRegdate;
 	}
+
 
 
 	public String getReplyContent() {
@@ -156,9 +183,11 @@ public class CardVo {
 	}
 
 
+
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
+
 
 
 	public String getCardImgName() {
@@ -166,9 +195,11 @@ public class CardVo {
 	}
 
 
+
 	public void setCardImgName(String cardImgName) {
 		this.cardImgName = cardImgName;
 	}
+
 
 
 	public String getCardImgSrc() {
@@ -176,9 +207,23 @@ public class CardVo {
 	}
 
 
+
 	public void setCardImgSrc(String cardImgSrc) {
 		this.cardImgSrc = cardImgSrc;
 	}
+
+
+
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+
 
 
 	@Override
@@ -187,10 +232,11 @@ public class CardVo {
 				+ ", cardContent=" + cardContent + ", cardRegdate=" + cardRegdate + ", cardGender=" + cardGender
 				+ ", cardAge=" + cardAge + ", receivecardNo=" + receivecardNo + ", receiveContent=" + receiveContent
 				+ ", receiveRegdate=" + receiveRegdate + ", replyContent=" + replyContent + ", cardImgName="
-				+ cardImgName + ", cardImgSrc=" + cardImgSrc + "]";
+				+ cardImgName + ", cardImgSrc=" + cardImgSrc + ", replyCnt=" + replyCnt + "]";
 	}
 
 
+	
 	
 }	
 	

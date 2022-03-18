@@ -118,6 +118,7 @@ input {
 
 
 .btn-card-write a{
+	margin-top: 5px;
   margin-right: 130px;
   float: right;
   padding-top: 10px;
@@ -128,7 +129,7 @@ input {
   font-family: 'SCDream4';
   font-weight:bold;
   text-align:center;
-  width:160px;
+  width:140px;
   height:40px;
   outline:0;
 }
@@ -144,7 +145,7 @@ input {
   color: white;
   font-weight: bold;
   text-align: center;
-  width: 150px;
+  width: 140px;
   height: 40px;
   background: rgb(104, 96, 153);
   position: relative;
@@ -314,14 +315,32 @@ input, select, textarea {
 .cardwriteimg{
   width: 640px;
   height: 600px;
-  margin: 0px 40px 40px 50px;
+  margin: 70px 40px 40px 50px;
+}
+
+
+a.btnwhite{
+  float: left;
+  padding-top: 10px;
+  margin-left: 40px;
+  text-align: center;
+  border: 1px solid #6667AB;
+  background: #fff;
+  color: #6667AB;
+  font-family: 'SCDream4';
+  font-weight:bold;
+  text-align:center;
+  width:140px;
+  height:40px;
+  outline:0;
 }
 
 .btn-writeform-save {
+	margin-left: 30px;
+	float: left;
   font-family: 'SCDream4';
   width: 140px;
   height: 40px;
-  margin: 15px 0px 15px 25px;
   font-weight: 400;
   font-size: 13px;
   border: none;
@@ -405,6 +424,7 @@ input, select, textarea {
   visibility:visible;
   position: static;
   width: 20px;
+  padding-left: 60px;
 }
 
 .r-age{
@@ -634,7 +654,6 @@ display: inline-block;
     text-align:center;
     width:160px;
     height:50px;
-    margin: 0px 0px 0px 0px;
     border:0;
     outline:0;  
 }
