@@ -277,9 +277,6 @@
 		
 	}
 	
-	console.log("788888");
-	console.log(DiaryContent);
-	
 	
 	//아이템 그리기
 	function itemRender(diaryitemVo){
@@ -466,9 +463,40 @@
 	})
 	
 
+	/*수정 클릭시 다이어리번호가 ?인 아이템 싹다 지우기 함수*/
+	function deleteDiaryItem(){
+		var diaryNo = $("[name=diaryNo]").val();
+
+		var diarycontentvo = {
+				diaryNo: diaryNo
+		};
+		
+		 $.ajax({
+		      url : "${pageContext.request.contextPath}/diary/deleteDiaryItem",
+		      type : "post",
+		      contentType : "application/json",
+		      data : JSON.stringify(diarycontentvo),//바꿔줬음
+		      dataType : "json",
+		      success : function(result) {
+		    	  if(result == 1){
+		    		  console.log("success");
+		    	  }else {
+		    		  alert('Fail to delete');
+		    	  }
+		    	  
+		      },
+		      error : function(XHR, status, error) {
+		         console.error(status + " : " + error);
+		      }
+		   });
+	}		
+	
+/////////////////////////////////////////////////////////////////////////	
 	
 	/*저장 버튼을 눌렀을때*/
 	$("#saveBtn").on("click",function(){
+		
+		deleteDiaryItem();
 		
 		var userNo = $("[name=userNo]").val();
 		var diaryDate = $("[name=diaryDate]").val();
@@ -533,7 +561,7 @@
 		diaryItemVo.stickerSrc = paperSrc;
 		diaryItemList.push(diaryItemVo);//배열에 추가
 		
-		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 페이퍼itemList추가
 		
 		console.log("==========================");
 		/* console.log(diarycontentvo);
@@ -548,7 +576,7 @@
 	function writeDiary(diarycontentvo){
 	   
 	   $.ajax({
-	      url : "${pageContext.request.contextPath}/diary/write",
+	      url : "${pageContext.request.contextPath}/diary/modify",
 	      type : "post",
 	      contentType : "application/json",
 	      data : JSON.stringify(diarycontentvo),//바꿔줬음

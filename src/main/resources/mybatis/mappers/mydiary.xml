@@ -111,4 +111,13 @@
 				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})		
 			]]>
 	</insert>
+	
+	<!-- 수정하기 클릭시 일기 아이템 삭제하기 -->
+	<delete id="deleteDiaryItem" parameterType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				delete from item
+				where diaryNo = #{diaryNo}
+			]]>
+	</delete>
+	
 </mapper>

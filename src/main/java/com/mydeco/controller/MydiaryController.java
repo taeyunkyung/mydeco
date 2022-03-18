@@ -129,6 +129,24 @@ public class MydiaryController {
 	}
 	
 	
+	/*수정하기 클릭시 아이템 삭제하기*/
+	@ResponseBody
+	@RequestMapping("/deleteDiaryItem")
+	public String deleteDiaryItem(@RequestBody DiaryContentVo diarycontentvo) {
+		
+		return mydiaryService.deleteDiaryItem(diarycontentvo);
+	}
+	
+	
+	/*수정하기*/
+	/*
+	@RequestMapping("/modify")
+	public String modify(@RequestBody DiaryContentVo diarycontentvo) {
+		
+		return mydiaryService.modify(diarycontentvo);
+	}*/
+	
+	
 	
 	/*db에 스티커 이미지 경로,이름 저장하기*/
 	@RequestMapping("/dbsticker")

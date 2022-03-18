@@ -106,4 +106,14 @@ public class MydiaryService {
 		return 1;
 	}
 	
+	/*수정하기 클릭시 아이템 삭제하기*/
+	public String deleteDiaryItem(DiaryContentVo diarycontentvo) {
+		int result = mydiaryDao.deleteDiaryItem(diarycontentvo);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 }
