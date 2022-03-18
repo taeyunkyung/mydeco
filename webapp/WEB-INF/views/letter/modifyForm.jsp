@@ -47,9 +47,15 @@
                         
                         <!--내용-->
           
+          
+          
                         <div id="letter-content">
                             <canvas style="margin-left:12px; margin-top:14px;" id="paper"></canvas>                                                          
                         </div>
+                        
+                        
+                        
+                        
                         
                         <div>
                             <div class="writeform-button">
@@ -150,18 +156,29 @@
 
 <script type="text/javascript">
 
+
+
+//로딩 되기 전 요청
+
 //탭 메뉴
 $(document).ready(function(){
    
-   $('ul.tabs li').click(function(){
-     var tab_id = $(this).attr('data-tab');
-  
-     $('ul.tabs li').removeClass('current');
-     $('.tab-content').removeClass('current');
-  
-     $(this).addClass('current');
-     $("#"+tab_id).addClass('current');
-   })
+	//탭메뉴 관련
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+		
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+	
+	
+	//편지 불러오기
+	showLetter();
+	console.log("편지 가져오기");
+	
   
  })
  
@@ -171,6 +188,116 @@ var canvas = new fabric.Canvas("paper", {
 	 height: 690,
 	 backgroundColor: '#686099'
 }); 
+
+
+//편지 보기 함수
+function showLetter(){
+
+	//클릭한 편지의 편지 번호
+	var letterNo = ${param.letterNo};
+	
+	/*키:값*/
+	var lettervo = {letterNo : letterNo};
+	console.log(lettervo);
+	
+	$.ajax({
+	    url : "${pageContext.request.contextPath}/letter/read",
+	    type : "post",
+	    contentType : "application/json",
+	    data : JSON.stringify(lettervo),//데이터 보내기
+	    dataType : "json",
+	    success : function(letterVo) {
+		    
+		    var letterItemList = letterVo.itemList;
+		    
+		    for(var i=0; i<letterItemList.length; i++){
+				itemRender(letterItemList[i]);
+			}
+		    
+	    },
+	    error : function(XHR, status, error) {
+	       console.error(status + " : " + error);
+	    }
+	 });
+
+
+}
+
+//아이템 그리기
+function itemRender(letterItemVo){
+	console.log(letterItemVo);
+	console.log("===============================");
+	if(letterItemVo.stickerCateNo == 0){ //텍스트 이면
+		
+		
+		var text = new fabric.Textbox(letterItemVo.text);
+
+		//기본 폰트 크기
+		text.fontSize = 16;
+		
+		//좌표
+		text.top = letterItemVo.top;
+		text.left = letterItemVo.left;
+		
+		//스케일
+		text.scaleX = letterItemVo.letterPointX;
+		text.scaleY = letterItemVo.letterPointY;
+		
+		//각도
+		text.angle = letterItemVo.angle;
+		
+		//변경
+		text.selectable = true;
+		
+		//커서모양기본
+		text.hoverCursor ="default";
+		
+		//캔버스에 추가
+		canvas.add(text);
+		
+		console.log(text);
+		console.log("===============================");
+	
+	}else if(letterItemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+		fabric.Image.fromURL(letterItemVo.stickerSrc, function(backImg) {
+
+			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+				letterPointX: canvas.width / backImg.width,
+				letterPointY: canvas.height / backImg.height
+			});
+			
+			console.log("=====================================");
+			console.log(backImg);
+		});
+		
+		
+	}else {  //스티커- stickerCateNo == 2
+		fabric.Image.fromURL(letterItemVo.stickerSrc, function(oImg) {
+			//좌표
+			oImg.top = letterItemVo.top;
+			oImg.left = letterItemVo.left;
+			
+			//스케일
+			oImg.scaleX = letterItemVo.letterPointX;
+			oImg.scaleY = letterItemVo.letterPointY;
+			
+			//각도
+			oImg.angle = letterItemVo.angle;
+			
+			//변경안되게
+			oImg.selectable = true;
+			
+			//커서모양기본
+			oImg.hoverCursor ="default";
+			
+			//캔버스에 추가
+			canvas.add(oImg);
+		});
+	}
+	
+	
+}//아이템 그리기
+
 
 //텍스트 상자를 클릭했을때
 $("[name=textbox]").on("click", function(){
@@ -251,13 +378,16 @@ $("body").on("keyup",function(){
 		//객체를 삭제한다.
 		canvas.remove(activeObject);
 	}
-})
+});
+
 
 
 //편지 보내기 버튼을 눌렀을 때
 $("#btnSave").on("click", function(){
 	console.log("저장클릭");
 	
+	//클릭한 편지의 편지 번호
+	var letterNo = ${param.letterNo};
 	var element = document.getElementById("openDay");
 	var openDay = element.innerText;
 	var saveYN = "YES";
@@ -271,6 +401,7 @@ $("#btnSave").on("click", function(){
 	}
 	
 	var letterVo = {
+			letterNo: letterNo,
 			openDay: openDay,
 			saveYN: saveYN
 	};
@@ -300,7 +431,7 @@ $("#btnSave").on("click", function(){
 	}
 
 	//페이퍼 추가
-	var diaryItemVo = {};
+	var letterItemVo = {};
 	letterItemVo.stickerNo = paperNo;
 	letterItemVo.stickerSrc = paperSrc;
 	letterItemList.push(letterItemVo);//배열에 추가
@@ -315,11 +446,14 @@ $("#btnSave").on("click", function(){
 $("#btnKeep").on("click", function(){
 	console.log("저장클릭");
 	
+	//클릭한 편지의 편지 번호
+	var letterNo = ${param.letterNo};
 	var element = document.getElementById("openDay");
 	var openDay = element.innerText;
 	var saveYN = "NO";
 	
 	var letterVo = {
+			letterNo: letterNo,
 			openDay: openDay,
 			saveYN: saveYN
 	};
@@ -349,7 +483,7 @@ $("#btnKeep").on("click", function(){
 	}
 
 	//페이퍼 추가
-	var diaryItemVo = {};
+	var letterItemVo = {};
 	letterItemVo.stickerNo = paperNo;
 	letterItemVo.stickerSrc = paperSrc;
 	letterItemList.push(letterItemVo);
@@ -361,13 +495,14 @@ $("#btnKeep").on("click", function(){
 
 
 
+
 //저장 함수
 function writeLetter(letterVo){
-   console.log(letterVo);
 
+	console.log(letterVo);
    
    $.ajax({
-      url : "${pageContext.request.contextPath}/letter/write",
+      url : "${pageContext.request.contextPath}/letter/modify",
       type : "post",
       contentType : "application/json",
       data : JSON.stringify(letterVo),
@@ -375,7 +510,7 @@ function writeLetter(letterVo){
       success : function() {
          
  
-    	location.href="${pageContext.request.contextPath}/letter";
+    	//location.href="${pageContext.request.contextPath}/letter";
     	
     	  
       },
@@ -385,6 +520,9 @@ function writeLetter(letterVo){
    });
    
 }
+
+
+
 
 
 
@@ -427,5 +565,7 @@ $("#openday-select").on("change", function(){
 	//document.getElementById("openDay").innerHTML= openDay + " 에 편지가 도착할 예정입니다.";
 	
 });
+
+
 </script>
 </html>

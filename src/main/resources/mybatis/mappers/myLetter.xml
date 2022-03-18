@@ -167,7 +167,7 @@
 			    from letterItem lit,
 			         (select letterNo, min(letterSticNo) letterSticNo
 			          from letterItem 
-			          where sticno = 9999999
+			          where sticno = 0
 			          group by letterNo) mnt
 			    where lit.letterSticNo = mnt.letterSticNo) st
 			where lt.letterNo=st.letterNo(+)
@@ -216,7 +216,7 @@
 			    from letterItem lit,
 			         (select letterNo, min(letterSticNo) letterSticNo
 			          from letterItem 
-			          where sticno = 9999999
+			          where sticno = 0
 			          group by letterNo) mnt
 			    where lit.letterSticNo = mnt.letterSticNo) st
 			where lt.letterNo=st.letterNo(+)
@@ -224,5 +224,53 @@
     	]]>
 	</select>
 	
+	
+	
+	<!-- 편지 삭제 -->
+	<delete id="deleteLetter" parameterType="int">
+    	<![CDATA[
+			delete from letter
+			where letterNo = #{letterNo}
+    	]]>
+	</delete>
+	
+	<!-- 편지 아이템 삭제 -->
+	<delete id="deleteLetterItem" parameterType="int">
+    	<![CDATA[
+			delete from letterItem
+			where letterNo = #{letterNo}
+    	]]>
+	</delete>
+	
+	
+	
+	<!-- 작성 중인 편지 정보 업데이트 -->
+	<update id="updateLetterContents" parameterType="LetterVo">
+			<![CDATA[
+				update letter
+				set	regDate = sysdate,
+					openDay = #{openDay},
+					bgmSrc = #{bgmSrc},
+					saveYN = #{saveYN}
+				where	letterNo = #{letterNo}
+			]]>
+	</update>
+	
+	<!-- 사용된 편지 아이템 정보 업데이트 -->
+	<insert id="updateLetterItem" parameterType="LetterItemVo">
+		<![CDATA[
+			insert into letterItem(letterSticNo, sticNo, stickerSrc, top, left, letterPointX, letterPointY, angle, text)
+							values(	seq_letterItem_no.nextval, 
+								#{stickerNo} , 
+								#{stickerSrc},
+								#{top} , 
+								#{left},  
+								#{letterPointX} , 
+								#{letterPointY} , 
+								#{angle} , 
+								#{text}  )	
+			where letterNo = #{letterNo}	
+			]]>
+	</insert>
 	
 </mapper>

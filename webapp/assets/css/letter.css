@@ -286,9 +286,9 @@ img .day {
 	background:#686099;
     font-weight:bold;
     text-align:center;
-    width:150px;
+    width:140px;
     height:40px;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 25px 0px 0px;
     border:0;
     outline:0;  
 }
