@@ -162,7 +162,7 @@
 		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close" style="font-size:30px;"><span aria-hidden="true">&times;</span></button>
 		        <div class="clearfix">
 			        <div style="float: right;">
-	                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
+	                   <img class="saveImgbtn" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
 	                </div>
 			        <div style="float:left; margin-right:15px; margin-top:3px;">노래를넣는다면 여기가 노래재생되는곳</div>	
 		        </div>
@@ -454,7 +454,7 @@ function downImg(){
         var savename = title;
     	console.log(savename);
         //downloadURI(myImage, `${savename}`); 
-        downloadURI(myImage, "diaryImg"); 
+        downloadURI(myImage, savename); 
     });
 }
 

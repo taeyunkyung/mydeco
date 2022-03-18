@@ -100,6 +100,7 @@ public class MydiaryController {
 		System.out.println(diarycontentvo);
 		/*ajax - 목록에서 클릭한 일기의 번호*/
 		int diaryNo = diarycontentvo.getDiaryNo();
+		System.out.println("modifydiaryno"+ diaryNo);
 		
 		/*220316쿼리문 수정*/
 		/*다이어리번호가 ? 인 다이어리의 정보*/

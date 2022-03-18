@@ -34,6 +34,7 @@
                         <div class="mydiarywriteForm-da-we clearfix">
                           
                           	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
+                          	<input type="hidden" name="diaryNo" value="${dcVo.diaryNo}">
                           
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
@@ -60,10 +61,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="${dcVo.protect}">비공개</label>
+                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="${dcVo.protect}">공개</label>                                                                     
+                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -185,7 +186,7 @@
 	
 	
 	$(document).ready(function() {
-	
+
 		//탭메뉴관련
 		$('ul.tabs li').on("click", function(){
 			var tab_id = $(this).attr('data-tab');
@@ -204,16 +205,121 @@
 		drawDiary();
 		
 	});
-	 
+	
 	
 	//일기 그리기
 	function drawDiary(){
 		
+		var diaryNo = $("[name=diaryNo]").val();
+		console.log(diaryNo);
 		
+		var diarycontentvo = {diaryNo: diaryNo};
+		//console.log(diarycontentvo);
 		
+		$.ajax({
+		    url : "${pageContext.request.contextPath}/diary/read",
+		    type : "post",
+		    contentType : "application/json",
+		    data : JSON.stringify(diarycontentvo),//데이터 보내기
+		    dataType : "json",
+		    success : function(DiaryContent) {
+		    	
+			    //console.log(DiaryContent);
+			    //console.log(DiaryContent.itemList); //DiaryContentVo의 필드값 이름으로 값 빼내기 가능
+			    
+			    
+			    DiaryItemList = DiaryContent.itemList;
+			    console.log("---");
+			    console.log(DiaryItemList);
+			    
+			    
+			    for(var i=0; i<DiaryItemList.length; i++){
+					itemRender(DiaryItemList[i])
+					//console.log(DiaryItemList[i]);
+				}
+		    
+		    },
+		    error : function(XHR, status, error) {
+		       console.error(status + " : " + error);
+		    }
+		 });
 		
 	}
 	
+	
+	//아이템 그리기
+	function itemRender(diaryitemVo){
+		
+		if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
+			var text = new fabric.Textbox(diaryitemVo.text);
+
+			//기본 폰트 크기
+			text.fontSize = 18;
+			
+			//폰트
+			text.fontFamily = 'SCDream4';
+			
+			//좌표
+			text.top = diaryitemVo.top;
+			text.left = diaryitemVo.left;
+			
+			//스케일
+			text.scaleX = diaryitemVo.scaleX;
+			text.scaleY = diaryitemVo.scaleY;
+			
+			//각도
+			text.angle = diaryitemVo.angle;
+
+			//변경안되게
+			text.selectable = true;
+			
+			//커서모양기본
+			text.hoverCursor ="default";
+			
+			//캔버스에 추가
+			canvas.add(text);
+		
+		}else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
+
+				canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+					scaleX: canvas.width / backImg.width,
+					scaleY: canvas.height / backImg.height
+				});
+				
+				console.log("=====================================");
+				console.log(backImg);
+			});
+			
+			
+		}else {  //스티커- stickerCateNo == 2
+			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
+				//좌표
+				oImg.top = diaryitemVo.top;
+				oImg.left = diaryitemVo.left;
+				
+				//스케일
+				oImg.scaleX = diaryitemVo.scaleX;
+				oImg.scaleY = diaryitemVo.scaleY;
+				
+				//각도
+				oImg.angle = diaryitemVo.angle;
+				
+				//변경안되게
+				oImg.selectable = true;
+				
+				//커서모양기본
+				oImg.hoverCursor ="default";
+				
+				//캔버스에 추가
+				canvas.add(oImg);
+			});
+		}
+		
+	}
+	
+	console.log("========");
+	console.log(DiaryItemList);
 	
 	
 	$("#datepicker").datepicker({
