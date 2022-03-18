@@ -34,11 +34,15 @@
                         <div class="mydiarywriteForm-da-we clearfix">
                           
                           	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
+                          	<input type="hidden" name="diaryNo" value="${diaryNo}">
+                          	<!--  
                           	<input type="hidden" name="diaryNo" value="${dcVo.diaryNo}">
-                          
+                          	<input type="hidden" name="dweather" value="${dcVo.weather}">
+                          	<input type="hidden" name="dprotect" value="${dcVo.protect}">-->
+                          	                          
                             <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
                             <div class="mydiarywriteForm-inform">
-                                <input type="text" id="datepicker" name="diaryDate" value="${dcVo.diaryDate}" style="width: 110px; height: 30px; padding: 15px;">
+                                <input type="text" id="datepicker" name="diaryDate" value="" style="width: 110px; height: 30px; padding: 15px;">
                             </div>                          
  
                             <!--날씨/선택박스-->
@@ -53,7 +57,6 @@
                                             <option value="sunny">맑음</option>
                                             <option value="rainy">비</option>
                                             <option value="snow">눈</option>
-                                            <option value="${dcVo.weather}" selected>
                                         </select>
                                     </form>    
                                 </div>
@@ -61,10 +64,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
+                                    <label><input class="diaryset_private" id ="diary-private" type="radio" name="protect" value="비공개" checked>비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
+                                    <label><input class="diaryset" id="diary-all" type="radio" name="protect" value="공개">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -73,7 +76,7 @@
                         
                         <!--제목/내용-->
                         <div>
-                            <input type="text" value="${dcVo.title}" maxlength='35' name="title" id="title" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" placeholder="제목을 입력해 주세요">
+                            <input type="text" value="" maxlength='35' name="title" id="title" style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" placeholder="제목을 입력해 주세요">
                         </div>
                         <div>
                             <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
@@ -184,7 +187,6 @@
 		 backgroundColor: '#dbd3c7'
 	});
 	
-	
 	$(document).ready(function() {
 
 		//탭메뉴관련
@@ -201,10 +203,27 @@
 		//달력
 		$("#datepicker").datepicker();
 		
+		
 		//로딩되기전에 리스트 페이지에서 선택한 일기 그리기
 		drawDiary();
-		
+		//selectedWeather();
 	});
+	
+	//리스트페이지에서 선택한 일기의 날씨
+	function selectedWeather(){
+		var weather = $("[name=dweather]").val();
+		console.log(weather);
+		$("#weatherselectbox").val(weather);
+		
+		var protect = $("[name=dprotect]").val();
+		if(protect == "비공개"){
+			$("[name=protect]").val(protect);
+		}else{
+			$("[name=protect]").val(protect);
+		}
+		
+	}
+	
 	
 	
 	//일기 그리기
@@ -223,10 +242,22 @@
 		    data : JSON.stringify(diarycontentvo),//데이터 보내기
 		    dataType : "json",
 		    success : function(DiaryContent) {
+
+		    	/*번호가 ? 인 일기의 정보*/
+		    	$("#title").val(DiaryContent.title);
+		    	$("[name=diaryDate]").val(DiaryContent.diaryDate);
+		    	$("#weatherselectbox").val(DiaryContent.weather);
+		    	
+		    	
+		    	if(DiaryContent.protect == "비공개") {
+		    		$("#diary-private").prop('checked', true);  
+		    	}else{
+		    		$("#diary-all").prop('checked', true);
+		    	}
+		    	
 		    	
 			    //console.log(DiaryContent);
 			    //console.log(DiaryContent.itemList); //DiaryContentVo의 필드값 이름으로 값 빼내기 가능
-			    
 			    
 			    DiaryItemList = DiaryContent.itemList;
 			    console.log("---");
@@ -245,6 +276,9 @@
 		 });
 		
 	}
+	
+	console.log("788888");
+	console.log(DiaryContent);
 	
 	
 	//아이템 그리기

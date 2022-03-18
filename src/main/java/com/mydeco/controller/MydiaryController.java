@@ -120,8 +120,10 @@ public class MydiaryController {
 		model.addAttribute("stickerMap",stickerMap);
 		
 		/*list페이지에서 선택한 다이어리(번호)의 정보 가져오기*/
+		/*
 		DiaryContentVo diaryContent = mydiaryService.getOneDiary(diaryNo);
-		model.addAttribute("dcVo",diaryContent);
+		model.addAttribute("dcVo",diaryContent);*/
+		model.addAttribute("diaryNo",diaryNo);
 		
 		return "diary/modifyForm";
 	}
