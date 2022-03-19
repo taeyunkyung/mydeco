@@ -300,7 +300,7 @@ $("#btnSave").on("click", function(){
 	}
 
 	//페이퍼 추가
-	var diaryItemVo = {};
+	var letterItemVo = {};
 	letterItemVo.stickerNo = paperNo;
 	letterItemVo.stickerSrc = paperSrc;
 	letterItemList.push(letterItemVo);//배열에 추가
@@ -349,7 +349,7 @@ $("#btnKeep").on("click", function(){
 	}
 
 	//페이퍼 추가
-	var diaryItemVo = {};
+	var letterItemVo = {};
 	letterItemVo.stickerNo = paperNo;
 	letterItemVo.stickerSrc = paperSrc;
 	letterItemList.push(letterItemVo);

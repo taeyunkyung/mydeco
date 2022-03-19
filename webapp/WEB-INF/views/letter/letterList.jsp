@@ -128,10 +128,14 @@
 													<img
 														src="${pageContext.request.contextPath}/assets/img/read.png">
 												</div>
-												<div class="day modify">
-													<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
-													<p class="letter-ing">${letterVo.text}</p>
-												</div>
+												
+												<!-- 파라미터 값(letterNo) 수정폼으로 보내기 -->
+												<a href="${pageContext.request.contextPath}/letter/modifyForm?letterNo=${letterVo.letterNo}">
+													<div class="day modify">
+														<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
+														<p class="letter-ing">${letterVo.text}</p>
+													</div>
+												</a>
 											</div>
 										</c:if>
 									</c:forEach>
@@ -181,6 +185,7 @@
 		  	
 		  	<div class="modal-footer btn-center">
 		    	
+	    		<button class="btn-letter-close" type="button" data-dismiss="modal">삭제하기</button>
 	    		<button class="btn-letter-close" type="button" data-dismiss="modal">닫기</button>
 	    		
 		 	</div>
@@ -200,6 +205,8 @@
 
 <script type="text/javascript">
 
+
+
 //캔버스 초기화 설정
 var canvas = new fabric.Canvas("paper", {
 	 width: 680,
@@ -207,12 +214,7 @@ var canvas = new fabric.Canvas("paper", {
 	 backgroundColor: '#CEC9EF'
 });
 
-//수정폼으로 이동
-$(".modify").on("click",function(){
-	
-	location.href="${pageContext.request.contextPath}/letter/modifyForm";
-});
-	
+
 
 $(".popup_open_btn").on("click",function(){
 	
@@ -242,7 +244,7 @@ $(".popup_open_btn").on("click",function(){
 function showLetter(letterNo){
 	
 	//캔버스 초기화(이전에 보였졌던 일기 지우기);
-	//modalCanvasInit();
+	modalCanvasInit();
 	
 	//클릭한 편지의 편지 번호
 	var letterNo = letterNo;

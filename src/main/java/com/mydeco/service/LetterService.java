@@ -54,7 +54,7 @@ public class LetterService {
 	
 	
 	
-	//일기에 쓰인 스티커 정보 저장하기
+	//편지 아이템 정보 저장
 	public int itemSave(LetterVo letterVo) {
 		int stickerCnt = 0;
 		
@@ -78,6 +78,32 @@ public class LetterService {
 		
 		return stickerCnt;
 	}
+	
+	
+	
+	//편지 아이템 정보 업데이트
+	public void itemUpdate(LetterVo letterVo) {
+		
+		int letterNo = letterVo.getLetterNo();
+		
+		//편지 아이템 삭제
+		letterDao.letterItemDelete(letterNo);
+		
+		//편지 정보 업데이트
+		letterDao.letterUpdate(letterVo);
+		
+		//letterVo 안에 있는 리스트 필드에 담은 값 letterItem에 넣기(편지 아이템 업데이트)
+		List<LetterItemVo> letterItem = letterVo.getItemList();
+		
+		for(int i=0; i<letterItem.size(); i++) {
+			LetterItemVo lItemVo = letterItem.get(i);//해당 배열 안 값 vo에 담기
+			lItemVo.setLetterNo(letterNo);
+			letterDao.letterItemUpdate(lItemVo); //스티커 정보 저장
+		}
+		
+	}
+	
+	
 	
 	
 	//편지 목록 불러오기 : 보낸 편지 목록

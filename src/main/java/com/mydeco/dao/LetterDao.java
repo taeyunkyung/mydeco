@@ -35,6 +35,35 @@ public class LetterDao {
 	
 	
 	
+	//편지 아이템 삭제하기
+	public void letterItemDelete(int letterNo) {
+		
+		sqlSession.delete("myLetter.deleteLetterItem", letterNo);
+		
+	}
+	
+	//편지 삭제하기
+	public void letterDelete(int letterNo) {
+		
+		sqlSession.delete("myLetter.deleteLetter", letterNo);
+		
+	}
+	
+	
+	//편지 정보 업데이트
+	public void letterUpdate(LetterVo letterVo) {
+		
+		sqlSession.update("myLetter.updateLetterContents", letterVo);
+		
+	}
+	
+	//편지 아이템 업데이트
+	public void letterItemUpdate(LetterItemVo lItemVo) {
+		
+		sqlSession.insert("myLetter.updateLetterItem", sqlSession);
+		
+	}
+	
 	
 	
 	

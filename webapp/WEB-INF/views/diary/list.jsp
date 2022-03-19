@@ -183,7 +183,7 @@
 		      	
 		      </div>
 		      <div class="modal-footer">
-		      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get">
+		      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get" style="float:left; margin-left:240px; margin-right:-200px;">
 		      		<button type="button" id="modalModifyBtn" class="modal-button-read">수정하기</button>
 		      		<input type="hidden" name="modaldiaryNo" value="">
 		      	</form>
@@ -355,7 +355,7 @@ $("#modalModifyBtn").on("click",function(){
 	$("[name='modaldiaryNo']").val(diaryNo);
 	console.log(diaryNo);
 	
-	document.getElementById("modifyForm").submit();
+	$("#modifyForm").submit();
 });
 
 

@@ -99,7 +99,8 @@ public class LetterController {
 		if(authUser!= null) {
 			//DB의 스티커 목록 불러와 어트리뷰트에 저장
 			Map<String, List<StickerVo>> stickerMap = letterService.getStickerList();
-			model.addAttribute("stickerList",stickerMap);
+			model.addAttribute("stickerMap",stickerMap);
+			//System.out.println(stickerMap);
 			
 			return "letter/modifyForm";
 		}else {
@@ -107,7 +108,16 @@ public class LetterController {
 		}
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("/modify")
+	public String modify(@RequestBody LetterVo letterVo) {
+		System.out.println("letter/modify");
+		System.out.println(letterVo);  
+		                         
+		letterService.itemUpdate(letterVo);
+		
+		return "redirect:/letter/letterList";
+	}
 	
 	
 	
