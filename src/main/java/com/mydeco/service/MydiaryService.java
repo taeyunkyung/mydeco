@@ -97,6 +97,7 @@ public class MydiaryService {
 			DiaryItemVo diarySticker = diarysticker.get(i);
 			diarySticker.setDiaryNo(diaryno);
 			
+			/*text가 없을때의 처리를 해줘야함!*/
 			if(diarySticker.getText() == null) {
 				diarySticker.setText("");
 			}
@@ -108,29 +109,44 @@ public class MydiaryService {
 	}
 	
 	/*일기 아이템 정보 업데이트*/
-	public void itemUpdate(DiaryContentVo diarycontentvo) {
+	public String itemUpdate(DiaryContentVo diarycontentvo) {
 		
+		int count1;
+		int count2;
 		int diaryNo = diarycontentvo.getDiaryNo();
 		
-		//일기 아이템 삭제
-		mydiaryDao.deleteDiaryItem(diaryNo);
-		
 		//일기 정보 업데이트
-		mydiaryDao.updateDiary(diarycontentvo);
+		count1 = mydiaryDao.updateDiary(diarycontentvo);
+		
+		//일기 아이템 삭제
+		count2 = mydiaryDao.deleteDiaryItem(diaryNo);
 		
 		//일기 아이템리스트 업데이트
 		List<DiaryItemVo> diaryItem = diarycontentvo.getItemList();
-		System.out.println(diaryItem);
+		System.out.println("modifyservice-item"+diaryItem); //여기까지 잘 왔음.
 		
 		for(int i=0; i<diaryItem.size(); i++) {
 			DiaryItemVo diaryItemvo = diaryItem.get(i);
 			diaryItemvo.setDiaryNo(diaryNo);
+			
+			/*text가 없을때의 처리를 해줘야함!*/
+			if(diaryItemvo.getText() == null) {
+				diaryItemvo.setText("");
+			}
+			
 			mydiaryDao.updateDiaryItem(diaryItemvo);
 		}
 		
 		System.out.println("bbb");
+		
+		int sum = count1 + count2;
+		if(sum>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+		
 	}
-	
 	
 	
 }

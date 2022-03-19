@@ -60,10 +60,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="${dcVo.protect}">비공개</label>
+                                    <label><input id="diary-private" class="diaryset_private" type="radio" name="protect" value="${dcVo.protect}">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="${dcVo.protect}">공개</label>                                                                     
+                                    <label><input id="diary-all" class="diaryset" type="radio" name="protect" value="${dcVo.protect}">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -275,6 +275,10 @@
 			
 			//각도
 			text.angle = diaryitemVo.angle;
+			
+			//수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
+			text.stickerNo = diaryitemVo.stickerNo;
+			text.stickerSrc = diaryitemVo.stickerSrc;
 
 			//변경안되게
 			text.selectable = true;
@@ -287,6 +291,13 @@
 		
 		}else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
 			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
+				
+				//수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
+				paperNo = diaryitemVo.stickerNo;
+				paperSrc = diaryitemVo.stickerSrc;
+				
+				backImg.stickerNo = paperNo;
+				backImg.stickerSrc = paperSrc;
 
 				canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
 					scaleX: canvas.width / backImg.width,
@@ -316,6 +327,10 @@
 				
 				//커서모양기본
 				oImg.hoverCursor ="default";
+				
+				//수정하기 눌렀을땐 이미 있던 이미지가 갖고있던 stickerNo를 추가해주기
+				oImg.stickerNo = diaryitemVo.stickerNo;
+				oImg.stickerSrc = diaryitemVo.stickerSrc;
 				
 				//캔버스에 추가
 				canvas.add(oImg);
@@ -500,6 +515,36 @@
 
 		/*220316수정*/
 		//페이퍼 추가
+
+		if( (paperNo == null) || (paperNo == undefined) || (paperNo == "") ){
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			//writeDiary(diarycontentvo);
+		
+		}else {
+			var diaryItemVo = {};
+			diaryItemVo.stickerNo = paperNo;
+			diaryItemVo.stickerSrc = paperSrc;
+			diaryItemList.push(diaryItemVo);//배열에 추가
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			
+			console.log("=페이퍼========================");
+			console.log(paperNo);
+			console.log(paperSrc);
+			console.log("===========modifyitem===============");
+			console.log(diarycontentvo);
+			console.log("===========modifyitem===============");
+			/* console.log(diarycontentvo);
+			console.log(canvasObjList[0]);    */
+		
+			writeDiary(diarycontentvo);	
+		};
+		
+		
+		/*220316수정*/
+		//페이퍼 추가
+		/*
 		var diaryItemVo = {};
 		diaryItemVo.stickerNo = paperNo;
 		diaryItemVo.stickerSrc = paperSrc;
@@ -509,9 +554,10 @@
 		
 		/* console.log(diarycontentvo);
 		console.log(canvasObjList[0]);    */
+		/*
 		console.log("===========modifyitem===============");
 		console.log(diarycontentvo);
-		console.log("===========modifyitem===============");
+		console.log("===========modifyitem===============");*/
 		//writeDiary(diarycontentvo);
 		
 	});
@@ -528,6 +574,7 @@
 	      data : JSON.stringify(diarycontentvo),//바꿔줬음
 	      dataType : "json",
 	      success : function(result) {
+	    	  
 	    	  if(result == 1){
 	    		  location.href="${pageContext.request.contextPath}/diary/list";
 	    	  }else {

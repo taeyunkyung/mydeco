@@ -440,7 +440,7 @@
 	      data : JSON.stringify(diarycontentvo),//바꿔줬음
 	      dataType : "json",
 	      success : function(result) {
-	    	  if(result == 1){
+	    	  if(result == 1){//스트링
 	    		  location.href="${pageContext.request.contextPath}/diary/list";
 	    	  }else {
 	    		  alert('Fail to saving');

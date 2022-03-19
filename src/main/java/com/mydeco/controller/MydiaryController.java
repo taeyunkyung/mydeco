@@ -127,10 +127,9 @@ public class MydiaryController {
 	@RequestMapping("/modify")
 	public String modify(@RequestBody DiaryContentVo diarycontentvo) {
 		System.out.println("modify");
-		System.out.println(diarycontentvo);
-		mydiaryService.itemUpdate(diarycontentvo);
+		System.out.println("modifycontroller" + diarycontentvo);
 		
-		return "redirect:diary/list";
+		return mydiaryService.itemUpdate(diarycontentvo);
 	}
 	
 	
