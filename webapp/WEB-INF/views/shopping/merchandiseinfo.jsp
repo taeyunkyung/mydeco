@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 </head>
@@ -91,7 +92,7 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12 text-right">
-										<p class="infotext">${product.price} 원</p>
+										<p class="infotext">${product.price}원</p>
 									</div>
 								</div>
 								<div class="row text-center">
@@ -133,7 +134,7 @@
 								<textarea id="cmttext"></textarea>
 							</div>
 							<div class="col-xs-2 padding0">
-								<button class="button button2 marginauto r-button" id="cmtsend" value="${product.prodNo}" >댓글 달기</button>
+								<button class="button button2 marginauto r-button" id="cmtsend" value="${product.prodNo}">댓글 달기</button>
 							</div>
 						</div>
 						<!-- 댓글 -->
@@ -162,7 +163,7 @@
 								<!--/ajax로 출력할부분  -->
 
 								<!-- ajax로 출력할부분 -->
-<%-- 								<c:forEach items="${cmtList}" var="vo">
+								<%-- 								<c:forEach items="${cmtList}" var="vo">
 									<div class="row backgroundgray">
 
 										<div class="col-xs-10">
@@ -213,61 +214,53 @@
 </body>
 
 <script type="text/javascript">
-
-
-//시작시 바로 그려주기
-
-
-
-
+	//시작시 바로 그려주기
 
 	$(document).ready(function() {
-	      
-	      console.log("리스트요청");
-	      
-	      //리스트그리기
-	      fetchList();
-	   
-	   });
-	   
-	function fetchList(){   
-	$.ajax({
 
-		url : "${pageContext.request.contextPath }/shopping/fetch?no=${product.prodNo}",
-		type : "post",
+		console.log("리스트요청");
 
-		dataType : "json",
-		success : function(cmtList) {
+		//리스트그리기
+		fetchList();
 
-			//입력화면 초기화
-				console.log(cmtList);
-			for (var i = 0; i < cmtList.length; i++) {
-				render(cmtList[i], "down"); //방명록리스트 그리기
-			}
-
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
 	});
-	};  
-	   
-	   
-   
+
+	function fetchList() {
+		$
+				.ajax({
+
+					url : "${pageContext.request.contextPath }/shopping/fetch?no=${product.prodNo}",
+					type : "post",
+
+					dataType : "json",
+					success : function(cmtList) {
+
+						//입력화면 초기화
+						console.log(cmtList);
+						for (var i = 0; i < cmtList.length; i++) {
+							render(cmtList[i], "down"); //방명록리스트 그리기
+						}
+
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+	};
 
 	$("#cmtsend").on("click", function() {
 
 		var cmttext = $("#cmttext").val();
 
 		var prodno = $("#cmtsend").val();
-		
+
 		var ShoppingCmtVo = {
 			cmtContent : cmttext,
 			prodNo : prodno
 		};
 		console.log(cmttext);
 		console.log(prodno);
-		
+
 		$.ajax({
 
 			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
@@ -277,16 +270,16 @@
 			success : function() {
 
 				//입력화면 초기화
-				 $("#listArea").empty();
-                 fetchList();
-				
-                 document.getElementById("cmttext").value='';
+				$("#listArea").empty();
+				fetchList();
+
+				document.getElementById("cmttext").value = '';
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-		
+
 	});
 
 	/////////////////////////////////////////대댓글 달기////////////////////////
@@ -444,10 +437,12 @@
 		var str = '';
 		str += '	<div class="row backgroundgray">';
 		str += '		<div class="col-xs-10">';
-		str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name + '님</span>';
+		str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name
+				+ '님</span>';
 		str += '		</div>';
 		str += '		<div class="col-xs-2">';
-		str += '			<span class="text-right">' + ShoppingCmtVo.regDate + '</span>';
+		str += '			<span class="text-right">' + ShoppingCmtVo.regDate
+				+ '</span>';
 		str += '		</div>';
 		str += '	</div>';
 		str += '	<div class="row backgroundgray">';
@@ -467,6 +462,24 @@
 		}
 
 	};
+
+	/////////////////////////////채린씨가준 뻥션///////////
+	function downImg() {
+		html2canvas($("#paper")[0]).then(function(canvas) {
+			var myImage = canvas.toDataURL();
+			var savename = title;
+			console.log(savename);
+			downloadURI(myImage, savename);
+		});
+	}
+
+	function downloadURI(uri, name) {
+		var link = document.createElement("a")
+		link.download = name;
+		link.href = uri;
+		document.body.appendChild(link);
+		link.click();
+	}
 </script>
 
 

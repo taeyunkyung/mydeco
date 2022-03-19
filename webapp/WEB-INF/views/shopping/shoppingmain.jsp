@@ -24,28 +24,7 @@
                 <!-- 메인 -->
                 <div class="row">
                     <!-- 어사이드부분 -->
-                    <div class="col-xs-3" id="aside"> 
-                        <div>
-                            <ul>
-                                <li id="title">Shopping</li>
-                                <li><a href="">전체</a></li>
-                                <li><a href="">기쁨</a></li>
-                                <li><a href="">슬픔</a></li>
-                                <li><a href="">화남</a></li>
-                                <li><a href="">홀가분</a></li>
-                                <li><a href="">짜증</a></li>
-                                <li><a href="">얼탱이없음</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul>
-                                <li id="title">나의 쇼핑관리</li>
-                                <li><a href="">내상품관리</a></li>
-                                <li><a href="">찜하기</a></li>
-                                <li><a href="">1:1채팅</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
                     <!-- /어사이드부분 -->
                     <!-- 메인컨텐츠 -->
                     <div class="col-xs-9">
@@ -58,17 +37,19 @@
         
                             <div class="row div-sub">
                                 <div class="col-xs-12" id="search2">
-                                    <select id="keyword-cate" name="">
-                                        <option value="title" selected="selected">제목</option>
-                                        <option value="price">가격</option>
-                                        <option value="feel">감정</option>
-                                        <option value="userId">작성자</option>
-                                    </select>
-                                
-                                    <input type="text" id="keyword" name="" value="" placeholder="검색어를 입력해주세요">
-                                    <button id="searchBtn">
-                                       <img id="btnImg" src="${pageContext.request.contextPath}/assets/img/magnifying-glass.png">
-                                    </button>
+	                                <form action="${pageContext.request.contextPath}/shopping/search" >
+	                                    <select id="keyword-cate" name="search">
+	                                        <option value="prodName" selected="selected">제목</option>
+	                                        <option value="price">가격</option>
+	                                        <option value="emotion">감정</option>
+	                                        <option value="userNo">작성자</option>
+	                                    </select>
+	                                
+	                                    <input type="text" id="keyword" name="searchText" value="" placeholder="검색어를 입력해주세요">
+	                                    <button id="searchBtn" type="submit">
+	                                       <img id="btnImg" src="${pageContext.request.contextPath}/assets/img/magnifying-glass.png">
+	                                    </button>
+                                	 </form>
                                 </div>
                             </div>
                             <!-- /옵션 검색창 -->

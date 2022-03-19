@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo;
+import com.mydeco.vo.ShoppingMainListVo;
 
 @Repository
 public class ShoppingDao {
@@ -51,9 +52,9 @@ public class ShoppingDao {
 		return shoppingCmtVo;
 	}
 	/////////////////////////쇼핑메인페이지 리스트 가져오기////////////////////
-	public List<ProductVo> getmerchandiseList(){
+	public List<ShoppingMainListVo> getmerchandiseList(){
 		System.out.println("다오의 메인페이지 리스트 가져오기 도킹");
-		List<ProductVo> productList = sqlSession.selectList("shopping.merchandiseList");
+		List<ShoppingMainListVo> productList = sqlSession.selectList("shopping.merchandiseList");
 		
 		System.out.println(productList);
 		return productList;
@@ -79,6 +80,24 @@ public class ShoppingDao {
 	public int selectTotal() {
 		System.out.println();
 		return sqlSession.selectOne("myProduct.totalCnt");
+	}
+	//////////////////////////감정별 리스트출력///////////////////////
+	public List<ShoppingMainListVo> getmerchandiseEmotionList(ProductVo productVo){
+		System.out.println("다오의 메인페이지 이모션리스트 가져오기 도킹");
+		List<ShoppingMainListVo> productList = sqlSession.selectList("shopping.merchandiseEmotionList", productVo);
+		
+		System.out.println(productList);
+		return productList;
+	}
+
+	
+	/////////////////////////검색별 리스트 출력///////////////////
+	public List<ShoppingMainListVo> getmerchandiseSearchList(Map<String, Object> map){
+		System.out.println("다오의 맵 서치리스트 도킹");
+		System.out.println(map);
+		List<ShoppingMainListVo> productList = sqlSession.selectList("shopping.searchList", map);
+		
+		return productList;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.mydeco.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mydeco.service.ShoppingService;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo;
+import com.mydeco.vo.ShoppingMainListVo;
 import com.mydeco.vo.UserVo;
 
 @Controller
@@ -30,13 +32,27 @@ public class ShoppingController {
 	public String main(Model model) {
 		System.out.println("쇼핑몰도킹");
 		
-		List<ProductVo> merchandiseList = shoppingService.getmerchandiseList();
+		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseList();
 		model.addAttribute("merchandiseList",merchandiseList);
 		
 		
 		return "shopping/shoppingmain";
 	}
-	
+
+//////////////////////////////쇼핑몰 메인 감정///////////////////////////////////////////
+	@RequestMapping("/emotionMain")
+	public String emotionmain(@RequestParam("emotion") String emotion, Model model, ProductVo productVo) {
+		System.out.println("이모션 쇼핑몰도킹");
+		
+		productVo.setEmotion(emotion);
+
+		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseEmotionList(productVo);
+		model.addAttribute("merchandiseList", merchandiseList);
+
+		System.out.println("최종 이모션 리스트 :" + merchandiseList);
+		return "shopping/shoppingmain";
+	}
+
 	@ResponseBody
 	@RequestMapping("/addpick")
 	public void addpick(@RequestBody ProductVo productVo, HttpSession session) {
@@ -55,10 +71,24 @@ public class ShoppingController {
 		
 	}
 	
-	
-	
-	
-	
+	///////////////////////////쇼핑몰 메인 제목 검색////////////////////////////////////
+
+	@RequestMapping("/search")
+	public String emotionmain(@RequestParam("search") String search,
+							  @RequestParam("searchText") String stext, Model model, ProductVo productVo) {
+		System.out.println("서치 쇼핑몰도킹");
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("search", search);
+        map.put("text", stext);;
+
+		System.out.println(map);
+		List<ShoppingMainListVo> merchandiseList = shoppingService.getSearchList(map);
+		model.addAttribute("merchandiseList", merchandiseList);
+
+		System.out.println("최종 서치 리스트 :" + merchandiseList);
+		return "shopping/shoppingmain";	
+	}
 	
 ///////////////////////////상품상세정보와 ajax리스트 정보까지 동시에/////////////////////////////////////////////////////////////
 	@RequestMapping("/merchandise")

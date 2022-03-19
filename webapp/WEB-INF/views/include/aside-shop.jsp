@@ -4,11 +4,11 @@
 					<div class="col-xs-3 " id="aside">
                         <ol>
                             <li class="title">Shop</li>
-                            <li><a id="yellow" href="">기쁨</a></li>
-                            <li><a id="blue" href="">슬픔</a></li>
-                            <li><a id="orange" href="">화남</a></li>
-                            <li><a id="green" href="">짜증</a></li>
-                            <li><a id="pink" href="">홀가분</a></li>
+                            <li><a id="yellow" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=happy">기쁨</a></li>
+                            <li><a id="blue" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=sad">슬픔</a></li>
+                            <li><a id="orange" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=angry">화남</a></li>
+                            <li><a id="green" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=annoyed">짜증</a></li>
+                            <li><a id="pink" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=relieved">홀가분</a></li>
                         </ol>
                         <ol>
                             <li class="title">My</li>                            

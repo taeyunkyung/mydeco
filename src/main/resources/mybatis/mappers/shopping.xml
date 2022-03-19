@@ -165,4 +165,130 @@
 			from product
 		]]>
 	</select>
+	
+	
+	<select id="merchandiseEmotionList" parameterType="ProductVo" resultType="ShoppingMainListVo">
+	
+	<![CDATA[
+			select pd.prodNo prodNo,
+		            pd.userNo userNo,
+		            pd.prodName prodName,
+		            pd.emotion emotion,
+		            pd.price price,
+		            pd.delivery delivery,
+		            pd.prodinfo prodinfo,
+		            pd.regDate regDate,
+		            pi.prodImgNo prodImgNo,
+		            pi.prodImgSrc prodImgSrc,
+		            pi.prodImgName prodImgName,
+		            pcc.cmtCnt cmtCnt,
+		            pdc.diaryCnt diaryCnt,
+		            ppc.pickCnt pickCnt
+		     from product pd, 
+		     
+		          (select prodImgNo,
+		                  prodImgSrc,
+		                  prodImgName,
+		                  prodNo
+		           from prodImg
+		           where prodimgNo in (select min(prodimgNo)
+		                               from prodImg
+		                               group by prodNo)
+		           )pi,
+		           
+		           (select  count(cmtNo) cmtCnt,
+		                    p.prodNo prodNo
+		            from comments c, product p
+		            where c.prodNo = p.prodNo
+		            group by p.prodNo) pcc,    
+		            
+		           (select  count(diaryNo) diaryCnt,
+							p.prodNo prodNo
+					from proddiary pd, product p
+					where p.prodNo = pd.prodNo
+					group by p.prodNo) pdc,
+		            
+		            (select count(pickNo) pickCnt,
+		                    pdct.prodNo
+		             from pick pk, product pdct
+		             where pk.prodNo = pdct.prodno
+		             group by pdct.prodNo) ppc
+		            
+		     where pd.prodNo = pi.prodNo
+		     and pd.prodNo = pcc.prodNo(+)
+		     and pd.prodNo = pdc.prodNo(+)
+		     and pd.prodNo = ppc.prodNo(+)
+		     and pd.emotion = #{emotion}
+	]]>
+	
+	
+	
+	</select>
+	
+	
+	<select id="searchList" parameterType="Map" resultType="ShoppingMainListVo">
+		<![CDATA[
+			select  pd.prodNo prodNo,
+		            pd.userNo userNo,
+		            pd.prodName prodName,
+		            pd.emotion emotion,
+		            pd.price price,
+		            pd.delivery delivery,
+		            pd.prodinfo prodinfo,
+		            pd.regDate regDate,
+		            pi.prodImgNo prodImgNo,
+		            pi.prodImgSrc prodImgSrc,
+		            pi.prodImgName prodImgName,
+		            pcc.cmtCnt cmtCnt,
+		            pdc.diaryCnt diaryCnt,
+		            ppc.pickCnt pickCnt
+	     from product pd, (select prodImgNo,
+				                  prodImgSrc,
+				                  prodImgName,
+				                  prodNo
+				           from prodImg
+				           where prodimgNo in (select min(prodimgNo)
+				                               from prodImg
+				                               group by prodNo)
+				           )pi,
+				           
+				           (select  count(cmtNo) cmtCnt,
+				                    p.prodNo prodNo
+				            from comments c, product p
+				            where c.prodNo = p.prodNo
+				            group by p.prodNo) pcc,    
+				            
+				           (select  count(diaryNo) diaryCnt,
+									p.prodNo prodNo
+							from proddiary pd, product p
+							where p.prodNo = pd.prodNo
+							group by p.prodNo) pdc,
+				            
+				            (select count(pickNo) pickCnt,
+				                    pdct.prodNo
+				             from pick pk, product pdct
+				             where pk.prodNo = pdct.prodno
+				             group by pdct.prodNo) ppc
+				            
+	     where pd.prodNo = pi.prodNo
+	     and pd.prodNo = pcc.prodNo(+)
+	     and pd.prodNo = pdc.prodNo(+)
+	     and pd.prodNo = ppc.prodNo(+)
+		]]>
+		
+		<if test=" search  == 'prodName' ">
+         and pd.prodName like '%'|| #{text} ||'%'
+     	</if>
+     	<if test=" search  == 'price' ">
+         and pd.price = #{text}
+      	</if>
+      	<if test=" search  == 'emotion' ">
+         and pd.emotion = #{text}
+      	</if>
+      	<if test=" search  == 'userNo' ">
+         and pd.userNo = #{text}
+      	</if>
+	
+	
+	</select>	
 </mapper>

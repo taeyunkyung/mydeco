@@ -11,6 +11,7 @@ import com.mydeco.dao.ShoppingDao;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo;
+import com.mydeco.vo.ShoppingMainListVo;
 
 @Service
 public class ShoppingService {
@@ -53,9 +54,9 @@ public class ShoppingService {
 	}
 	
 	///////////////////////쇼핑메인리스트가져오기//////////////
-	public List<ProductVo> getmerchandiseList(){
+	public List<ShoppingMainListVo> getmerchandiseList(){
 		
-		List<ProductVo> merchandiseList = shoppingDao.getmerchandiseList();
+		List<ShoppingMainListVo> merchandiseList = shoppingDao.getmerchandiseList();
 		
 		return merchandiseList;
 	}
@@ -103,7 +104,22 @@ public class ShoppingService {
 		return map;
 	}
 
-	
+	///////////////////////쇼핑메인이모션리스트가져오기//////////////
+	public List<ShoppingMainListVo> getmerchandiseEmotionList(ProductVo productVo){
+		
+		List<ShoppingMainListVo> merchandiseList = shoppingDao.getmerchandiseEmotionList(productVo);
+		
+		return merchandiseList;
+	}
+	//////////////////////쇼핑서치리스트 가져오기///////////////
+	public List<ShoppingMainListVo> getSearchList(Map<String, Object> map){
+		System.out.println("서비스의 겟서치리스트 도킹");
+		
+		List<ShoppingMainListVo> merchandiseList = shoppingDao.getmerchandiseSearchList(map);
+		
+		return merchandiseList;
+
+	}
 
 	
 }
