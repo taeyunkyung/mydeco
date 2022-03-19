@@ -188,6 +188,24 @@
 		 height: 510,
 		 //backgroundColor: 'rgb(100,150,134)'
 		 backgroundColor: '#dbd3c7'
+		 
+		 /*
+		 fabric.Image.fromURL(paperSrc, function(backImg) {
+				//oImg.set({'borderColor': '#686099'});
+
+				//객체에 종이번호 추가
+				backImg.stickerNo = paperNo;
+				backImg.stickerSrc = paperSrc;
+				
+				canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+					scaleX: canvas.width / backImg.width,
+					scaleY: canvas.height / backImg.height
+				});
+				
+				console.log("=====================================");
+				console.log(backImg);
+		});*/
+		 
 	});
 	
 	
@@ -230,7 +248,7 @@
 	//로딩된 후 요청
 
 	/*220316 수정*/
-	//종이를 클릭했을때
+	//종이를 클릭했을때--배경은 canvas.getObject안먹어서 이렇게만들었음
 	var paperNo ;//전역변수
 	var paperSrc ;
 	$(".paper").on("click", function(){
@@ -383,17 +401,30 @@
 
 		/*220316수정*/
 		//페이퍼 추가
-		var diaryItemVo = {};
-		diaryItemVo.stickerNo = paperNo;
-		diaryItemVo.stickerSrc = paperSrc;
-		diaryItemList.push(diaryItemVo);//배열에 추가
+
+		if( (paperNo == null) || (paperNo == undefined) || (paperNo == "") ){
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			writeDiary(diarycontentvo);
 		
-		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+		}else {
+			var diaryItemVo = {};
+			diaryItemVo.stickerNo = paperNo;
+			diaryItemVo.stickerSrc = paperSrc;
+			diaryItemList.push(diaryItemVo);//배열에 추가
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			
+			console.log("=페이퍼========================");
+			console.log(paperNo);
+			console.log(paperSrc);
+			/* console.log(diarycontentvo);
+			console.log(canvasObjList[0]);    */
 		
-		console.log("==========================");
-		/* console.log(diarycontentvo);
-		console.log(canvasObjList[0]);    */
-		writeDiary(diarycontentvo);
+			writeDiary(diarycontentvo);	
+		};
+		
+		
 		
 	});
 	

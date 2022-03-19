@@ -271,11 +271,16 @@ $(".mydiary-list-box2").on("click",function(){
 
 /*일기보기 모달창 초기화*/
 function modalCanvasInit(){
-	var objects = canvas.getObjects();
+	/* var objects = canvas.getObjects();
 	console.log(objects);
 	for(var i=0; i<objects.length; i++){
 		canvas.remove(objects[i]);
 	}canvas.renderAll();
+	 */
+	canvas.clear();
+	canvas.width = 680;
+	canvas.height = 510;
+	canvas.backgroundColor = '#dbd3c7';
 }	
 
 /*220316추가*/

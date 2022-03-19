@@ -221,7 +221,9 @@
 		    data : JSON.stringify(diarycontentvo),//데이터 보내기
 		    dataType : "json",
 		    success : function(DiaryContent) {
-		    	
+		    	console.log("========DiaryContent========================");
+		    	console.log(DiaryContent);
+		    	console.log("========DiaryContent========================");
 		    	/*번호가 ? 인 일기의 정보*/
 		    	$("#title").val(DiaryContent.title);
 		    	$("[name=diaryDate]").val(DiaryContent.diaryDate);
@@ -505,10 +507,12 @@
 		
 		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
 		
-		console.log("==========================");
 		/* console.log(diarycontentvo);
 		console.log(canvasObjList[0]);    */
-		writeDiary(diarycontentvo);
+		console.log("===========modifyitem===============");
+		console.log(diarycontentvo);
+		console.log("===========modifyitem===============");
+		//writeDiary(diarycontentvo);
 		
 	});
 	
