@@ -70,6 +70,13 @@ public class LetterService {
 		for(int i=0; i<letterItem.size(); i++) {
 			LetterItemVo lItemVo = letterItem.get(i);//해당 배열 안 값 vo에 담기
 			lItemVo.setLetterNo(letterNo);//위에서 받은 letterNo 넣어주기
+			
+			
+			/*text가 없을때의 처리를 해줘야함!*/
+			if(lItemVo.getText() == null) {
+				lItemVo.setText("");
+			}
+			
 			int count = letterDao.itemSave(lItemVo); //스티커 정보 저장
 			
 			stickerCnt += count;
@@ -82,7 +89,9 @@ public class LetterService {
 	
 	
 	//편지 아이템 정보 업데이트
-	public void itemUpdate(LetterVo letterVo) {
+	public int itemUpdate(LetterVo letterVo) {
+		
+		int stickerCnt = 0;
 		
 		int letterNo = letterVo.getLetterNo();
 		
@@ -92,15 +101,27 @@ public class LetterService {
 		//편지 정보 업데이트
 		letterDao.letterUpdate(letterVo);
 		
+		System.out.println("서비스: 아이템 업데이트");
+		System.out.println(letterVo);
+		
 		//letterVo 안에 있는 리스트 필드에 담은 값 letterItem에 넣기(편지 아이템 업데이트)
 		List<LetterItemVo> letterItem = letterVo.getItemList();
 		
 		for(int i=0; i<letterItem.size(); i++) {
 			LetterItemVo lItemVo = letterItem.get(i);//해당 배열 안 값 vo에 담기
 			lItemVo.setLetterNo(letterNo);
-			letterDao.letterItemUpdate(lItemVo); //스티커 정보 저장
+			
+			/*text가 없을때의 처리를 해줘야함!*/
+			if(lItemVo.getText() == null) {
+				lItemVo.setText("");
+			}
+			
+			int count = letterDao.letterItemUpdate(lItemVo); //스티커 정보 저장
+			
+			stickerCnt += count;
 		}
 		
+		return stickerCnt;
 	}
 	
 	

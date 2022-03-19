@@ -259,17 +259,17 @@
 	<!-- 사용된 편지 아이템 정보 업데이트 -->
 	<insert id="updateLetterItem" parameterType="LetterItemVo">
 		<![CDATA[
-			insert into letterItem(letterSticNo, sticNo, stickerSrc, top, left, letterPointX, letterPointY, angle, text)
-							values(	seq_letterItem_no.nextval, 
+			insert into letterItem(letterSticNo, sticNo, stickerSrc, top, left, letterPointX, letterPointY, angle, text, letterNo)
+						values (seq_letterItem_no.nextval, 
 								#{stickerNo} , 
 								#{stickerSrc},
-								#{top} , 
+								#{top}, 
 								#{left},  
-								#{letterPointX} , 
-								#{letterPointY} , 
-								#{angle} , 
-								#{text}  )	
-			where letterNo = #{letterNo}	
+								#{letterPointX}, 
+								#{letterPointY}, 
+								#{angle}, 
+								#{text},
+								#{letterNo})
 			]]>
 	</insert>
 	

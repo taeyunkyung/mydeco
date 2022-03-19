@@ -246,6 +246,10 @@ function itemRender(letterItemVo){
 		//각도
 		text.angle = letterItemVo.angle;
 		
+		//이미 갖고 있던 스티커 이미지 번호, 경로 추가
+		text.stickerNo = letterItemVo.stickerNo;
+		text.stickerSrc = letterItemVo.stickerSrc;
+		
 		//변경
 		text.selectable = true;
 		
@@ -261,6 +265,13 @@ function itemRender(letterItemVo){
 	}else if(letterItemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
 		fabric.Image.fromURL(letterItemVo.stickerSrc, function(backImg) {
 
+			//기존 스티커 경로, 번호 추가
+			paperNo = letterItemVo.stickerNo;
+			paperSrc = letterItemVo.stickerSrc;
+			
+			backImg.stickerNo = paperNo;
+			backImg.stickerSrc = paperSrc;
+			
 			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
 				letterPointX: canvas.width / backImg.width,
 				letterPointY: canvas.height / backImg.height
@@ -289,6 +300,9 @@ function itemRender(letterItemVo){
 			
 			//커서모양기본
 			oImg.hoverCursor ="default";
+			
+			oImg.stickerNo = letterItemVo.stickerNo;
+			oImg.stickerSrc = letterItemVo.stickerSrc;
 			
 			//캔버스에 추가
 			canvas.add(oImg);
@@ -388,11 +402,11 @@ $("#btnSave").on("click", function(){
 	
 	//클릭한 편지의 편지 번호
 	var letterNo = ${param.letterNo};
-	var element = document.getElementById("openDay");
-	var openDay = element.innerText;
+	var openDay = $("#openDay").text();
 	var saveYN = "YES";
 	
 	console.log(openDay);
+	console.log(letterNo);
 	
 	/*글쓰기폼 입력 경고창*/
 	if(openDay == null || openDay == '' || openDay.trim() == ''){
@@ -430,15 +444,23 @@ $("#btnSave").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	//페이퍼 추가
-	var letterItemVo = {};
-	letterItemVo.stickerNo = paperNo;
-	letterItemVo.stickerSrc = paperSrc;
-	letterItemList.push(letterItemVo);//배열에 추가
-	
-	letterVo.itemList = letterItemList;
-	
-	writeLetter(letterVo);
+	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+		
+		letterVo.itemList = letterItemList;
+		writeLetter(letterVo);	
+		
+	}else {
+		
+		//페이퍼 추가
+		var letterItemVo = {};
+		letterItemVo.stickerNo = paperNo;
+		letterItemVo.stickerSrc = paperSrc;
+		letterItemList.push(letterItemVo);//배열에 추가
+		
+		letterVo.itemList = letterItemList;
+		
+		writeLetter(letterVo);	
+	};
 	
 })
 
@@ -451,6 +473,9 @@ $("#btnKeep").on("click", function(){
 	var element = document.getElementById("openDay");
 	var openDay = element.innerText;
 	var saveYN = "NO";
+	
+	console.log(letterNo);
+	console.log(openDay);
 	
 	var letterVo = {
 			letterNo: letterNo,
@@ -482,15 +507,23 @@ $("#btnKeep").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	//페이퍼 추가
-	var letterItemVo = {};
-	letterItemVo.stickerNo = paperNo;
-	letterItemVo.stickerSrc = paperSrc;
-	letterItemList.push(letterItemVo);
-	
-	letterVo.itemList = letterItemList;
-	
-	writeLetter(letterVo);
+	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+		
+		letterVo.itemList = letterItemList;
+		writeLetter(letterVo);	
+		
+	}else {
+		
+		//페이퍼 추가
+		var letterItemVo = {};
+		letterItemVo.stickerNo = paperNo;
+		letterItemVo.stickerSrc = paperSrc;
+		letterItemList.push(letterItemVo);//배열에 추가
+		
+		letterVo.itemList = letterItemList;
+		
+		writeLetter(letterVo);	
+	};
 });
 
 
@@ -510,7 +543,7 @@ function writeLetter(letterVo){
       success : function() {
          
  
-    	//location.href="${pageContext.request.contextPath}/letter";
+    	location.href="${pageContext.request.contextPath}/letter";
     	
     	  
       },

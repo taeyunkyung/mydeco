@@ -284,12 +284,13 @@ function showLetter(letterNo){
 
 /*모달창 초기화*/
 function modalCanvasInit(){
-	var objects = canvas.getObjects();
-	console.log(objects);
-	for(var i=0; i<objects.length; i++){
-		canvas.remove(objects[i]);
-	}canvas.renderAll();
-}	
+	
+	canvas.clear();
+	canvas.width = 680;
+	canvas.height = 690,
+	canvas.backgroundColor = '#CEC9EF'
+
+};	
 
 
 //아이템 그리기

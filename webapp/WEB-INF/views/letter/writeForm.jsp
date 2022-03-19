@@ -299,15 +299,24 @@ $("#btnSave").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	//페이퍼 추가
-	var letterItemVo = {};
-	letterItemVo.stickerNo = paperNo;
-	letterItemVo.stickerSrc = paperSrc;
-	letterItemList.push(letterItemVo);//배열에 추가
+	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+		
+		letterVo.itemList = letterItemList;
+		writeLetter(letterVo);	
+		
+	}else {
+		
+		//페이퍼 추가
+		var letterItemVo = {};
+		letterItemVo.stickerNo = paperNo;
+		letterItemVo.stickerSrc = paperSrc;
+		letterItemList.push(letterItemVo);//배열에 추가
+		
+		letterVo.itemList = letterItemList;
+		
+		writeLetter(letterVo);	
+	};
 	
-	letterVo.itemList = letterItemList;
-	
-	writeLetter(letterVo);
 	
 })
 
@@ -348,15 +357,23 @@ $("#btnKeep").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	//페이퍼 추가
-	var letterItemVo = {};
-	letterItemVo.stickerNo = paperNo;
-	letterItemVo.stickerSrc = paperSrc;
-	letterItemList.push(letterItemVo);
-	
-	letterVo.itemList = letterItemList;
-	
-	writeLetter(letterVo);
+	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+		
+		letterVo.itemList = letterItemList;
+		writeLetter(letterVo);	
+		
+	}else {
+		
+		//페이퍼 추가
+		var letterItemVo = {};
+		letterItemVo.stickerNo = paperNo;
+		letterItemVo.stickerSrc = paperSrc;
+		letterItemList.push(letterItemVo);//배열에 추가
+		
+		letterVo.itemList = letterItemList;
+		
+		writeLetter(letterVo);	
+	};
 });
 
 
