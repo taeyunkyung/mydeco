@@ -148,8 +148,11 @@
 				console.log(userChatList)			
 				
 				for(var i=0; i<userChatList.length; i++) {
-					
-					renderLeft(userChatList[i])
+					if(userChatList[i].align == 'right') {
+						renderRight(userChatList[i])
+					} else if(userChatList[i].align == 'left') {
+						renderLeft(userChatList[i])
+					}
 				}
 			},
 			error : function(XHR, status, error) {
@@ -160,14 +163,8 @@
 	
 	function renderLeft(userChatVo) {		
 		var str = '';
-		if((userChatVo.chatNo%2)==1) {
-			str += '	<li class="r-align"><p>'+ userChatVo.chatContent +'</p></li>';
-			str += '	<li class="r-align"><p>'+ userChatVo.regDate +'</p></li>';
-		} else {
-
-			str += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
-			str += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';	
-		}
+		str += '	<li class="l-align"><p>'+ userChatVo.chatContent +'</p></li>';
+		str += '	<li class="l-align"><p>'+ userChatVo.regDate +'</p></li>';	
 		
 		$("#chatview").append(str);
 	}

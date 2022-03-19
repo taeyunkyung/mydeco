@@ -17,6 +17,14 @@
 		]]>
 	</insert>
 	
+	<update id="update" parameterType="com.mydeco.vo.ProdDiaryVo">
+		<![CDATA[
+			update prodDiary
+			set diaryNo = #{diaryNo}
+			where prodNo = #{prodNo}
+		]]>
+	</update>
+	
 	<select id="previewImg" parameterType="int" resultType="String">
 		<![CDATA[
 			select  prodImgSrc
@@ -29,7 +37,7 @@
 			where rownum = 1
 		]]>
 	</select>
-	
+		
 	<select id="diaryCnt" parameterType="int" resultType="int">
 		<![CDATA[
 			select  count(*) diaryCnt
@@ -56,9 +64,20 @@
 	
 	<select id="imgList" parameterType="int" resultType="ProdImgVo">
 		<![CDATA[
-			select  prodImgSrc
+			select  prodImgSrc, 
+					prodImgNo
 			from prodImg
 			where prodNo = #{prodNo}
+		]]>
+	</select>
+	
+	<select id="diaryList" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
+		<![CDATA[
+			select  pd.diaryNo,
+        			di.title
+			from prodDiary pd, diary di
+			where pd.diaryNo = di.diaryNo
+			and prodNo = #{prodNo}
 		]]>
 	</select>
 

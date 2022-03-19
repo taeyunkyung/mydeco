@@ -3,7 +3,7 @@
 
 <mapper namespace="myProduct">
 
-	<select id="diaryList" parameterType="int" resultType="com.mydeco.vo.DiaryVo2">
+	<select id="diaryList" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
 		<![CDATA[
 			select  diaryNo,
         			title,
@@ -91,6 +91,19 @@
 			and userNo = #{userNo}
 		]]>
 	</delete>
+	
+	<update id="update" parameterType="ProductVo">
+		<![CDATA[
+			update product
+			set prodName = #{prodName},
+    			emotion = #{emotion},
+    			price= #{price},
+    			delivery = #{delivery},
+    			prodInfo = #{prodInfo}
+			where prodNo = #{prodNo}
+			and userNo = #{userNo}
+		]]>
+	</update>	
 	
 	<select id="myPickpgList" parameterType="map" resultType="ProductVo">
 		<![CDATA[
@@ -182,9 +195,11 @@
 		<![CDATA[
 			select  rownum chatNo,
         			chatContent,
-        			to_char(regDate,'mm/dd - hh:mi') regDate
+        			to_char(regDate,'mm/dd - hh:mi') regDate,
+        		    align
 			from (select  chatContent,
-        				  regDate
+        				  regDate,
+        				  align
 				  from chat 
 				  where prodNo = #{prodNo}
 				  and sellerNo = #{sellerNo}
@@ -196,9 +211,11 @@
 		<![CDATA[
 			select  rownum chatNo,
         			chatContent,
-        			to_char(regDate,'mm/dd - hh:mi') regDate
+        			to_char(regDate,'mm/dd - hh:mi') regDate,
+        			align
 			from (select  chatContent,
-        				  regDate
+        				  regDate,
+        				  align
 				  from chat 
 				  where prodNo = #{prodNo}
 				  and buyerNo = #{buyerNo}
@@ -212,7 +229,7 @@
 		</selectKey>
 		<![CDATA[
 			insert into chat
-			values(#{chatNo}, #{prodNo}, #{sellerNo}, #{userNo}, #{chatContent}, sysdate)
+			values(#{chatNo}, #{prodNo}, #{sellerNo}, #{userNo}, #{chatContent}, sysdate, 'right')
 		]]>
 	</insert>
 	
@@ -222,7 +239,7 @@
 		</selectKey>
 		<![CDATA[
 			insert into chat
-			values(#{chatNo}, #{prodNo}, #{userNo}, #{buyerNo}, #{chatContent}, sysdate)
+			values(#{chatNo}, #{prodNo}, #{userNo}, #{buyerNo}, #{chatContent}, sysdate, 'left')
 		]]>
 	</insert>
 	
@@ -250,10 +267,83 @@
 		]]>
 	</select>
 	
+	<select id="checkpick" parameterType="ProductVo" resultType="ProductVo">
+		<![CDATA[
+			select  userNo,
+        			prodNo
+			from pick
+			where userNo = #{userNo}
+			and prodNo = #{prodNo}
+		]]>
+	</select>
+	
 	<insert id="addpick" parameterType="ProductVo">
 		<![CDATA[
 			insert into pick
 			values(seq_pick_no.nextval, #{userNo}, #{prodNo}, sysdate)
+		]]>
+	</insert>
+	
+	<select id="commentList" parameterType="int" resultType="com.mydeco.vo.ShoppingCmtVo2">
+		<![CDATA[
+			select  cmtNo,
+        			prodNo,
+        			cm.userNo,
+        			id,
+        			cmtContent,
+        			to_char(regDate, 'YY/MM/DD') regDate,
+        			groupNo,
+        			cmtSeq,
+        			depth
+			from comments cm, users us
+			where cm.userNo = us.userNo
+			and prodNo = #{prodNo}
+			order by groupNo asc, cmtSeq asc		
+		]]>
+	</select>
+	
+	<insert id="insertFirst" parameterType="com.mydeco.vo.ShoppingCmtVo2">
+		<selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">
+			select seq_comments_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into comments
+			values(#{cmtNo}, #{prodNo}, #{userNo}, #{cmtContent}, 
+				sysdate, seq_cmtgroup_no.nextval, 1, 0)
+		]]>
+	</insert>
+	
+	<select id="selectByCmtNo" parameterType="int" resultType="com.mydeco.vo.ShoppingCmtVo2">
+		<![CDATA[
+			select  us.id,
+        			cmtContent,
+        			to_char(regDate, 'YY/MM/DD') regDate,
+        			groupNo,
+					cmtSeq,
+        			depth
+			from comments cm, users us
+			where cm.userNo = us.userNo
+			and cmtNo = #{cmtNo}
+		]]>	
+	</select>
+	
+	<update id="sequpdate" parameterType="com.mydeco.vo.ShoppingCmtVo2">
+		<![CDATA[
+			update comments
+			set cmtSeq = cmtSeq+1
+			where cmtSeq >= #{cmtSeq}+1
+			and groupNo = #{groupNo}
+		]]>
+	</update>
+	
+	<insert id="insertReply" parameterType="com.mydeco.vo.ShoppingCmtVo2">
+		<selectKey keyProperty="cmtNo" resultType="int" order="BEFORE">
+			select seq_comments_no.nextval from dual
+		</selectKey>	
+		<![CDATA[
+			insert into comments
+			values(#{cmtNo}, #{prodNo}, #{userNo}, #{cmtContent}, 
+				sysdate, #{groupNo}, #{cmtSeq}+1, #{depth}+1)
 		]]>
 	</insert>
 </mapper>

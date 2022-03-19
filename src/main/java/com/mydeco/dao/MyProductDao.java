@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.ProductVo;
+import com.mydeco.vo.ShoppingCmtVo2;
 import com.mydeco.vo.UserChatVo;
 
 @Repository
@@ -46,6 +47,10 @@ public class MyProductDao {
 		return sqlSession.selectOne("myProduct.totalCnt", userNo);
 	}
 	//나의 상품//
+	
+	public int update(ProductVo productVo) {
+		return sqlSession.update("myProduct.update", productVo);
+	}
 	
 	public int remove(ProductVo productVo) {
 		System.out.println("remove.dao");
@@ -105,11 +110,38 @@ public class MyProductDao {
 	}
 	// addReturn chat//
 	
+	// 임시 기능 // 
 	public ProductVo selectOne(int prodNo) {
 		return sqlSession.selectOne("myProduct.selectOneProd", prodNo);
 	}
 	
+	public ProductVo checkpick(ProductVo productVo) {
+		return sqlSession.selectOne("myProduct.checkpick", productVo);
+	}
+	
 	public int addpick(ProductVo productVo) {
 		return sqlSession.insert("myProduct.addpick", productVo);
+	}
+	
+	public List<ShoppingCmtVo2> getList(int prodNo) {
+		return sqlSession.selectList("myProduct.commentList", prodNo);
+	}
+	
+	// addReturn comment //
+	public int insertFirst(ShoppingCmtVo2 shoppingCmtVo) {
+		return sqlSession.insert("myProduct.insertFirst", shoppingCmtVo);
+	}
+	
+	public ShoppingCmtVo2 addRComment(int cmtNo) {
+		return sqlSession.selectOne("myProduct.selectByCmtNo", cmtNo);
+	}
+	// addReturn comment //
+	
+	public int orderUpdate(ShoppingCmtVo2 shoppingCmtVo) {
+		return sqlSession.update("myProduct.sequpdate", shoppingCmtVo);
+	}
+	
+	public int insertReply(ShoppingCmtVo2 shoppingCmtVo) {
+		return sqlSession.insert("myProduct.insertReply", shoppingCmtVo);
 	}
 }

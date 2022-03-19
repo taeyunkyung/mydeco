@@ -11,13 +11,13 @@ public class UserChatVo {
 	private String id;
 	private String chatContent;
 	private String regDate;
+	private String align;
 
 	public UserChatVo() {
 	}
-	
+
 	public UserChatVo(int chatNo, int prodNo, String prodName, int buyerNo, int sellerNo, int userNo, String id,
-			String chatContent, String regDate) {
-		super();
+			String chatContent, String regDate, String align) {
 		this.chatNo = chatNo;
 		this.prodNo = prodNo;
 		this.prodName = prodName;
@@ -27,6 +27,15 @@ public class UserChatVo {
 		this.id = id;
 		this.chatContent = chatContent;
 		this.regDate = regDate;
+		this.align = align;
+	}
+
+	public String getAlign() {
+		return align;
+	}
+
+	public void setAlign(String align) {
+		this.align = align;
 	}
 
 	public int getBuyerNo() {
@@ -44,7 +53,7 @@ public class UserChatVo {
 	public void setSellerNo(int sellerNo) {
 		this.sellerNo = sellerNo;
 	}
-	
+
 	public int getChatNo() {
 		return chatNo;
 	}

@@ -19,6 +19,7 @@ import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
+import com.mydeco.vo.ShoppingCmtVo2;
 import com.mydeco.vo.UserChatVo;
 
 @Service
@@ -138,6 +139,16 @@ public class MyShopService {
 	}
 	// 페이징-나의상품//
 	
+	public int updateInfo(ProductVo productVo, String[] diaryNoArr) {
+				
+		for (int i = 0; i < diaryNoArr.length; i++) {
+			ProdDiaryVo prodDiaryVo = new ProdDiaryVo(productVo.getProdNo(), Integer.parseInt(diaryNoArr[i]));
+			myProdImgDao.updateDiary(prodDiaryVo);
+		}
+		
+		return myProductDao.update(productVo);
+	}
+	
 	public int myProductRemove(ProductVo productVo) {
 		System.out.println("remove.service");
 		return myProductDao.remove(productVo);
@@ -240,13 +251,36 @@ public class MyShopService {
 		return addReturn;
 	}
 	
+	// 임시 기능 //
 	public ProductVo selectOneProd(int prodNo) {
 		ProductVo productVo = myProductDao.selectOne(prodNo);
 		productVo.setProdImgList(myProdImgDao.prodImgList(prodNo));
+		productVo.setProdDiaryList(myProdImgDao.prodDiaryList(prodNo));
 		return productVo;
+	}
+	
+	public ProductVo checkpick(ProductVo productVo) {
+		return myProductDao.checkpick(productVo);
 	}
 	
 	public int addPick(ProductVo productVo) {
 		return myProductDao.addpick(productVo);
+	}
+	
+	public List<ShoppingCmtVo2> commentList(int prodNo) {
+		return myProductDao.getList(prodNo);
+	}
+	
+	public ShoppingCmtVo2 insertFirst(ShoppingCmtVo2 shoppingCmtVo) {
+		myProductDao.insertFirst(shoppingCmtVo);
+		int cmtNo = shoppingCmtVo.getCmtNo();
+		return myProductDao.addRComment(cmtNo);
+	}
+		
+	public ShoppingCmtVo2 insertReply(ShoppingCmtVo2 shoppingCmtVo) {
+		myProductDao.orderUpdate(shoppingCmtVo);
+		myProductDao.insertReply(shoppingCmtVo);
+		int cmtNo = shoppingCmtVo.getCmtNo();
+		return myProductDao.addRComment(cmtNo);
 	}
 }

@@ -66,7 +66,7 @@
 								<li id="l${productVo.prodNo}"><img class="prod-img" src="${pageContext.request.contextPath}/upload/${productVo.prodImgSrc}">
 									<div class="info">
 										<p class="emo-tag ${productVo.emotion}"></p>
-										<h4>${productVo.prodName}</h4>
+										<h4><a href="${pageContext.request.contextPath}/myshop/updateForm?prodNo=${productVo.prodNo}">${productVo.prodName}</a></h4>
 										<p>${productVo.price}원</p>
 										<p class="${productVo.delivery}"></p>
 

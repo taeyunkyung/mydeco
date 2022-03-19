@@ -1,16 +1,7 @@
-h3 {
-    font-family: 'SCDream4';
-    font-weight: bolder;
-    margin-left: 15px;
+#main-content {
+    padding-right: 0px;
 }
-.img {
-    height: 250px;
-    border: 1px solid #ebebeb;
-}
-#text {
-    display: inline-flex;
-    margin: 6px 0px 6px 15px;
-} 
+
 .deco-area {
     padding-top: 11px; margin-right: 10px;
 }
@@ -21,10 +12,6 @@ h3 {
 #text label {
     padding-top: 13px;
 }
-input[id="price"], input[id="emotion"] {
-    width: 160px; 
-    margin: 2px 2px;
-    border: none; }
 
 #story {
     height: 150px;
@@ -48,16 +35,4 @@ input[id="price"], input[id="emotion"] {
 #force-overflow {
     min-height: 600px;
     font-family: 'SCDream4';
-}
-
-#buy {
-    display: inline-flex;
-    padding-left: 25.3%;
-    margin-top: 20px;
-} #buy #submitBtn {
-    width: 140px;
-    margin-left: 2px;
-}
-#main-content {
-    padding-right: 0px;
 }

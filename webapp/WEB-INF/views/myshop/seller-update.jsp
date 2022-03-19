@@ -33,7 +33,8 @@ svg {width: 40%; height: 40%;}
 				
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
-					<form action="${pageContext.request.contextPath}/myshop/add" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/myshop/update" method="post" enctype="multipart/form-data">
+					
 					<!-- <form name="dataForm" id="dataForm" onsubmit="return register()"> -->
 						<table id="a-table">
 							<colgroup>
@@ -42,17 +43,17 @@ svg {width: 40%; height: 40%;}
 							</colgroup>
 							<tr>
 								<td id="sub" colspan="2">
-									<h3>새 상품 등록</h3>
+									<h3>상품 등록정보 수정</h3>
 								</td>
 							</tr>
 
 							<tr>
 								<td><label for="prod-title">상품 이름</label></td>
-								<td><input id="prod-title" type="text" name="prodName" value=""></td>
+								<td><input id="prod-title" type="text" name="prodName" value="${productVo.prodName}"></td>
 							</tr>
 							<tr>
 								<td><label for="prod-emo">감정</label></td>
-								<td class="a-chk">
+								<td class="a-chk" id="prod-emo" data-emotion="${productVo.emotion}">
 									<div class="form-radio-item">
 										<input type="radio" name="emotion" id="happy" value="happy"> <label
 											for="happy">기쁨</label> <span class="check"></span>
@@ -78,11 +79,11 @@ svg {width: 40%; height: 40%;}
 							<tr>
 								<td><label for="prod-price">가격</label></td>
 								<td><input id="prod-price" type="text" name="price"
-									value=""> 원</td>
+									value="${productVo.price}"> 원</td>
 							</tr>
 							<tr>
 								<td><label for="prod-deliv">배송방법</label></td>
-								<td class="a-chk">
+								<td class="a-chk" id="prod-deliv" data-delivery="${productVo.delivery}">
 									<div class="form-radio-item">
 										<input type="radio" name="delivery" id="post" value="post"> <label
 											for="post">택배</label> <span class="check"></span>
@@ -96,14 +97,18 @@ svg {width: 40%; height: 40%;}
 							<tr>
 								<td><label for="img-td">이미지</label></td>
 								<td id="img-td"><label for="prod-img">이미지 추가</label> 
-								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">								
+								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">
 									<div id="img-area">
+										<c:forEach items="${productVo.prodImgList}" var="list">
+											<img class="prod-img"
+												src="${pageContext.request.contextPath}/upload/${list.prodImgSrc}">
+										</c:forEach>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td><label for="prod-story">상품설명</label></td>
-								<td><textarea id="prod-story" name="prodInfo"></textarea></td>
+								<td><textarea id="prod-story" name="prodInfo">${productVo.prodInfo}</textarea></td>
 							</tr>
 							<tr>
 								<td><label for="diary-td">일기</label></td>
@@ -148,12 +153,16 @@ svg {width: 40%; height: 40%;}
 										</div>
 									</div>
 									<div id="diary-area">
+										<c:forEach items="${productVo.prodDiaryList}" var="prodDiaryVo">
+											<p data-no="${prodDiaryVo.diaryNo}">${prodDiaryVo.title}</p>
+										</c:forEach>
 									</div>
 								</td> 
 							</tr>
 						</table>
 						<div id="add">
-							<input type="submit" id="submitBtn" value="등록하기">
+							<input type="hidden" name="prodNo" value="${productVo.prodNo}">
+							<input type="submit" id="submitBtn" value="수정하기">
 						</div>
 					</form>
 				</div> <!-- content -->
@@ -167,6 +176,15 @@ svg {width: 40%; height: 40%;}
 </body>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		var emotion = $("#prod-emo").data("emotion");
+		var delivery = $("#prod-deliv").data("delivery");
+		console.log(emotion)
+		
+		$("#"+emotion).attr("checked", "checked");
+		$("#"+delivery).attr("checked", "checked");
+		
+	});
 
 	// input multiple 초기화, 새로운 배열 만들기
 	var submitFiles = []; 
@@ -204,77 +222,6 @@ svg {width: 40%; height: 40%;}
 	}
 	
 	var index = 0;
-	/*var html = 
-		'<a href="javascript:void(0)" onclick="delImg('+ index +')" id="imgId+'+ index +'"><img src="'+ e.target.result +'" data-file="'+ f.name +'" class="img-img" title=""></a>';
-	*/
-	
-	function delImg(index) {
-		console.log("index:"+index);
-		submitFiles.splice(index, 1);
-		
-		$("#imgId"+index).remove();
-		
-		console.log(submitFiles);		
-	}
-	
-	/*function register() {
-		var form = $("form")[0];
-		var formData = new FormData(form);
-		for(var i=0; submitFiles.length; i++) {
-			formData.append("uploadFiles", submitFiles[i]);
-		}
-		
-		var prodInfo = {
-				formData: formData,
-				prodName: $("[name='prodName']").val(),
-				emotion: $("[name='emotion']").val(),
-				price: $("[name='price']").val(),
-				delivery: $("[name='delivery']").val(),
-				diaryNo: $("[name='diaryNo[]']").val()
-			}
-		
-		$.ajax({
-			contentType: false,
-			processData: false,
-			enctype: "multipart/form-data",
-			data: prodInfo,
-			url: "${pageContext.request.contextPath}/myshop/addFormData",
-			type: 'POST',			
-			
-			success: function(){
-				
-			}
-		});
-		return false;
-	}*/
-	
-	/* 선택한 이미지 미리보기
-	var inputMultipleImage = document.getElementById("prod-img");
-	inputMultipleImage.addEventListener("change", e => {
-		readMultipleImage(e.target)
-	});
-	
-	function readMultipleImage(input) {
-		var imgarea = document.getElementById("img-area");
-		
-		if(input.files) {
-			var fileArr = Array.from(input.files);
-			console.log(fileArr);
-						
-			fileArr.forEach((file, index)=> {
-				var reader = new FileReader();
-				
-				reader.onload = e => {
-					var img = document.createElement("img");
-					img.setAttribute("src", e.target.result);
-					img.setAttribute("class", "img-img");
-					document.querySelector("div#img-area").appendChild(img);					
-				}				
-				console.log(file.name);
-				reader.readAsDataURL(file);
-			});					
-		}
-	}*/
 	
 	// 일기 추가
 	var diary = [];
@@ -298,7 +245,6 @@ svg {width: 40%; height: 40%;}
 		input.setAttribute("value", diary);
 		
 		document.querySelector("div#diary-area").appendChild(input);
-		//init();
 		for(var i=0; i<diaryTitle.length; i++) {
 			var str = '	<p style="display:block">'+ diaryTitle[i] +'</p>';
 			$("#diary-area").append(str);
@@ -310,11 +256,6 @@ svg {width: 40%; height: 40%;}
 	$("[aria-label='Close']").on("click", function() {
 		$("input[type=checkbox]").prop("checked", false);
 	});
-	
-	function init() {
-		var val = localStorage.Test4;
-		document.querySelector("div#diary-area").innerHTML = val;
-	}	
 	
 </script>
 </html>

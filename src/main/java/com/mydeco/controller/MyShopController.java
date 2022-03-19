@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mydeco.service.MyShopService;
 import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.ProductVo;
+import com.mydeco.vo.ShoppingCmtVo2;
 import com.mydeco.vo.UserChatVo;
 import com.mydeco.vo.UserVo;
 
@@ -41,7 +42,7 @@ public class MyShopController {
 
 		return "myshop/seller-add";
 	}
-
+	
 	@RequestMapping("/add")
 	public String add(@ModelAttribute ProductVo productVo, @RequestParam("prodImgFile") MultipartFile[] file,
 			@RequestParam("diaryNo[]") String[] diaryNoArr, HttpSession session) {
@@ -74,6 +75,30 @@ public class MyShopController {
 		model.addAttribute("map", map);
 
 		return "myshop/seller-myList";
+	}
+	
+	@RequestMapping("/updateForm")
+	public String myProductsupdate(@RequestParam int prodNo, Model model, HttpSession session) {
+		
+		ProductVo productVo = myShopService.selectOneProd(prodNo);
+		model.addAttribute("productVo", productVo);
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		List<DiaryVo2> diaryList = myShopService.getDiaryList(authUser.getUserNo());
+		model.addAttribute("diaryList", diaryList);
+		
+		return "myshop/seller-update";
+	}
+	
+	@RequestMapping("/update")
+	public String update(@ModelAttribute ProductVo productVo, 
+			@RequestParam("diaryNo[]") String[] diaryNoArr, HttpSession session) {
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		productVo.setUserNo(authUser.getUserNo());
+		myShopService.updateInfo(productVo, diaryNoArr);
+		
+		return "redirect:/myshop/myProducts";
 	}
 
 	@ResponseBody
@@ -166,7 +191,35 @@ public class MyShopController {
 
 		ProductVo productVo = myShopService.selectOneProd(prodNo);
 		model.addAttribute("productVo", productVo);
+		
+		List<ShoppingCmtVo2> commentList = myShopService.commentList(prodNo);
+		model.addAttribute("commentList", commentList);
 		return "myshop/shop-prodDetails";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/commentfirst")
+	public ShoppingCmtVo2 commentfirst(@ModelAttribute ShoppingCmtVo2 shoppingCmtVo) {
+		ShoppingCmtVo2 vo = myShopService.insertFirst(shoppingCmtVo);
+		return vo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reply")
+	public ShoppingCmtVo2 reply(@ModelAttribute ShoppingCmtVo2 shoppingCmtVo) {
+		ShoppingCmtVo2 vo = myShopService.insertReply(shoppingCmtVo);
+		return vo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/checkpick")
+	public String checkpick(@ModelAttribute ProductVo productVo) {
+		ProductVo checkVo = myShopService.checkpick(productVo);
+		String result = "empty";
+		if(checkVo != null) {
+			result = "exists";
+		}
+		return result;
 	}
 
 	@ResponseBody

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.ProdImgVo;
 
@@ -25,10 +26,18 @@ public class MyProdImgDao {
 		return sqlSession.insert("myProdImg.addDiary", prodDiaryVo);
 	}
 	
+	public List<DiaryContentVo> prodDiaryList(int prodNo) {
+		return sqlSession.selectList("myProdImg.diaryList", prodNo);
+	}
+	
+	public int updateDiary(ProdDiaryVo prodDiaryVo) {
+		return sqlSession.update("myProdImg.update", prodDiaryVo);
+	}
+	
 	public String previewImg(int prodNo) {
 		return sqlSession.selectOne("myProdImg.previewImg", prodNo);
 	}
-	
+		
 	public int diaryCnt(int prodNo) {
 		return sqlSession.selectOne("myProdImg.diaryCnt", prodNo);
 	}
