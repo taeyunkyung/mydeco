@@ -39,7 +39,7 @@ public class MyShopService {
 
 		myProductDao.add(productVo);
 
-		// 이미지추가
+		// 이미지추가 //
 		int prodNo = productVo.getProdNo();
 		System.out.println(prodNo);
 
