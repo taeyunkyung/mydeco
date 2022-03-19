@@ -189,22 +189,6 @@
 		 //backgroundColor: 'rgb(100,150,134)'
 		 backgroundColor: '#dbd3c7'
 		 
-		 /*
-		 fabric.Image.fromURL(paperSrc, function(backImg) {
-				//oImg.set({'borderColor': '#686099'});
-
-				//객체에 종이번호 추가
-				backImg.stickerNo = paperNo;
-				backImg.stickerSrc = paperSrc;
-				
-				canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
-					scaleX: canvas.width / backImg.width,
-					scaleY: canvas.height / backImg.height
-				});
-				
-				console.log("=====================================");
-				console.log(backImg);
-		});*/
 		 
 	});
 	

@@ -136,16 +136,6 @@
 	                            </div>
                             </c:forEach>
                             
-                            
-                             <!--  
-	                                <input type="hidden" data-stickerno="${dcvo.stickerNo}">
-	                                <input type="hidden" data-top="${dcvo.top}">
-	                                <input type="hidden" data-left="${dcvo.left}">
-	                                <input type="hidden" data-scalex="${dcvo.scaleX}">
-	                                <input type="hidden" data-scaley="${dcvo.scaleY}">
-	                                <input type="hidden" data-angle="${dcvo.angle}">
-	                                <input type="hidden" data-text="${dcvo.text}">-->
-                            
                         </div>
 
                     </div>
