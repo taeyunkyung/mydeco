@@ -191,7 +191,7 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 						</div>
 					</div>
 						
-					<div id="share"></div>
+					<div id="share-area"></div>
 					<div id="comment-area" style="margin-top: 25px">
 						<table style="width: 663.9px; border: 1px solid #ebebeb;">
 							<tr>
