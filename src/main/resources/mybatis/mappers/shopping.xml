@@ -291,4 +291,16 @@
 	
 	
 	</select>	
+	
+	<select id="shoppingGetDiaryContentList" parameterType="Int" resultType="productVo">
+		<![CDATA[
+			
+		
+		
+		
+		
+		]]>
+	
+	
+	</select>
 </mapper>

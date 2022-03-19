@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mydeco.service.MydiaryService;
 import com.mydeco.service.ShoppingService;
+import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo;
 import com.mydeco.vo.ShoppingMainListVo;
@@ -26,6 +28,8 @@ public class ShoppingController {
 	
 	@Autowired
 	private ShoppingService shoppingService;
+	@Autowired
+	private MydiaryService mydiaryService;
 	
 //////////////////////////////쇼핑몰 메인///////////////////////////////////////////
 	@RequestMapping("/main")
@@ -92,8 +96,11 @@ public class ShoppingController {
 	
 ///////////////////////////상품상세정보와 ajax리스트 정보까지 동시에/////////////////////////////////////////////////////////////
 	@RequestMapping("/merchandise")
-	public String getonemerchandise(@RequestParam("no") int no, Model model) {
+	public String getonemerchandise(@RequestParam("no") int no, Model model, HttpSession session) {
 		System.out.println("몰찬다이스 도킹");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
 		
 		ProductVo productVo = shoppingService.getonemerchandise(no);
 		
@@ -102,6 +109,15 @@ public class ShoppingController {
 		List<ShoppingCmtVo> cmtList = shoppingService.getCmtList(no);
 		
 		model.addAttribute("cmtList", cmtList);
+		
+		List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+		model.addAttribute("diarycontentList", diarycontentList);
+		System.out.println("=============================");
+		System.out.println(diarycontentList);
+		
+		List<DiaryContentVo> day = mydiaryService.getDiaryDateList(authUser);
+		model.addAttribute("dayList", day);
+		
 		
 		System.out.println("자 모델정보 뿌린다 잘봐라 밑에");
 		System.out.println(model);
