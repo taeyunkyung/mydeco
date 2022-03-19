@@ -1,6 +1,7 @@
 package com.mydeco.service;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -106,23 +107,30 @@ public class MydiaryService {
 		return 1;
 	}
 	
-	/*수정하기 클릭시 아이템 삭제하기*/
-	public String deleteDiaryItem(DiaryContentVo diarycontentvo) {
-		int result = mydiaryDao.deleteDiaryItem(diarycontentvo);
-		if(result > 0) {
-			return "success";
-		}else {
-			return "fail";
-		}
-	}
-	
-	/*수정하기*/
-	public String modify(DiaryContentVo diarycontentvo) {
+	/*일기 아이템 정보 업데이트*/
+	public void itemUpdate(DiaryContentVo diarycontentvo) {
 		
-		List<DiaryItemVo>ItemList = diarycontentvo.getItemList();
-		mydiaryDao.updateContent(diarycontentvo);
-		mydiaryDao.insertContent(ItemList);
-	
-		return "";
+		int diaryNo = diarycontentvo.getDiaryNo();
+		
+		//일기 아이템 삭제
+		mydiaryDao.deleteDiaryItem(diaryNo);
+		
+		//일기 정보 업데이트
+		mydiaryDao.updateDiary(diarycontentvo);
+		
+		//일기 아이템리스트 업데이트
+		List<DiaryItemVo> diaryItem = diarycontentvo.getItemList();
+		System.out.println(diaryItem);
+		
+		for(int i=0; i<diaryItem.size(); i++) {
+			DiaryItemVo diaryItemvo = diaryItem.get(i);
+			diaryItemvo.setDiaryNo(diaryNo);
+			mydiaryDao.updateDiaryItem(diaryItemvo);
+		}
+		
+		System.out.println("bbb");
 	}
+	
+	
+	
 }

@@ -2,6 +2,7 @@ package com.mydeco.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,20 +69,20 @@ public class MydiaryDao {
 		
 	}
 	
-	/*수정하기 클릭시 아이템 삭제하기*/
-	public int deleteDiaryItem(DiaryContentVo diarycontentvo) {
-		return sqlSession.delete("mydiary.deleteDiaryItem",diarycontentvo);
+	/*저장직전 일기 아이템 삭제*/
+	public void deleteDiaryItem(int diaryNo) {
+		sqlSession.delete("mydiary.deleteDiaryItem",diaryNo);
 	}
 	
-	/*수정하기-컨텐츠 업데이트*/
-	public void updateContent(DiaryContentVo diarycontentvo) {
-		
+	/*일기 정보 업데이트(수정하기)*/
+	public void updateDiary(DiaryContentVo diarycontentvo) {
+		sqlSession.update("mydiary.updateDiary",diarycontentvo);
 	}
 	
-	
-	/*수정하기-아이템 넣기*/
-	public void insertContent(List<DiaryItemVo> ItemList) {
-		
+	/*일기 아이템 업데이트(수정하기)*/
+	public void updateDiaryItem(DiaryItemVo diaryitemvo) {
+		System.out.println("modify-updateDiaryItemDao"+diaryitemvo);
+		sqlSession.insert("mydiary.updateDiaryItem",diaryitemvo);
 	}
 	
 }
