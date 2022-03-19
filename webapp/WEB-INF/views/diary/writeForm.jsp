@@ -188,6 +188,8 @@
 		 height: 510,
 		 //backgroundColor: 'rgb(100,150,134)'
 		 backgroundColor: '#dbd3c7'
+		 
+		 
 	});
 	
 	
@@ -230,7 +232,7 @@
 	//로딩된 후 요청
 
 	/*220316 수정*/
-	//종이를 클릭했을때
+	//종이를 클릭했을때--배경은 canvas.getObject안먹어서 이렇게만들었음
 	var paperNo ;//전역변수
 	var paperSrc ;
 	$(".paper").on("click", function(){
@@ -383,17 +385,30 @@
 
 		/*220316수정*/
 		//페이퍼 추가
-		var diaryItemVo = {};
-		diaryItemVo.stickerNo = paperNo;
-		diaryItemVo.stickerSrc = paperSrc;
-		diaryItemList.push(diaryItemVo);//배열에 추가
+
+		if( (paperNo == null) || (paperNo == undefined) || (paperNo == "") ){
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			writeDiary(diarycontentvo);
 		
-		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+		}else {
+			var diaryItemVo = {};
+			diaryItemVo.stickerNo = paperNo;
+			diaryItemVo.stickerSrc = paperSrc;
+			diaryItemList.push(diaryItemVo);//배열에 추가
+			
+			diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
+			
+			console.log("=페이퍼========================");
+			console.log(paperNo);
+			console.log(paperSrc);
+			/* console.log(diarycontentvo);
+			console.log(canvasObjList[0]);    */
 		
-		console.log("==========================");
-		/* console.log(diarycontentvo);
-		console.log(canvasObjList[0]);    */
-		writeDiary(diarycontentvo);
+			writeDiary(diarycontentvo);	
+		};
+		
+		
 		
 	});
 	
@@ -409,7 +424,7 @@
 	      data : JSON.stringify(diarycontentvo),//바꿔줬음
 	      dataType : "json",
 	      success : function(result) {
-	    	  if(result == 1){
+	    	  if(result == 1){//스트링
 	    		  location.href="${pageContext.request.contextPath}/diary/list";
 	    	  }else {
 	    		  alert('Fail to saving');

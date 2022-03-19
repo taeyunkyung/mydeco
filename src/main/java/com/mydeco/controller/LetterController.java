@@ -110,13 +110,13 @@ public class LetterController {
 	
 	@ResponseBody
 	@RequestMapping("/modify")
-	public String modify(@RequestBody LetterVo letterVo) {
+	public int modify(@RequestBody LetterVo letterVo) {
 		System.out.println("letter/modify");
 		System.out.println(letterVo);  
 		                         
 		letterService.itemUpdate(letterVo);
 		
-		return "redirect:/letter/letterList";
+		return letterService.itemUpdate(letterVo);
 	}
 	
 	

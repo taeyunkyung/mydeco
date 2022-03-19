@@ -58,9 +58,12 @@ public class LetterDao {
 	}
 	
 	//편지 아이템 업데이트
-	public void letterItemUpdate(LetterItemVo lItemVo) {
+	public int letterItemUpdate(LetterItemVo lItemVo) {
 		
-		sqlSession.insert("myLetter.updateLetterItem", sqlSession);
+		//System.out.println("DAO" + lItemVo);
+		int count = sqlSession.insert("myLetter.updateLetterItem", lItemVo);
+		
+		return count;
 		
 	}
 	

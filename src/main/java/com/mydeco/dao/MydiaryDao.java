@@ -70,19 +70,20 @@ public class MydiaryDao {
 	}
 	
 	/*저장직전 일기 아이템 삭제*/
-	public void deleteDiaryItem(int diaryNo) {
-		sqlSession.delete("mydiary.deleteDiaryItem",diaryNo);
+	public int deleteDiaryItem(int diaryNo) {
+		return sqlSession.delete("mydiary.deleteDiaryItem",diaryNo);
 	}
 	
 	/*일기 정보 업데이트(수정하기)*/
-	public void updateDiary(DiaryContentVo diarycontentvo) {
-		sqlSession.update("mydiary.updateDiary",diarycontentvo);
+	public int updateDiary(DiaryContentVo diarycontentvo) {
+		return sqlSession.update("mydiary.updateDiary",diarycontentvo);
 	}
 	
 	/*일기 아이템 업데이트(수정하기)*/
 	public void updateDiaryItem(DiaryItemVo diaryitemvo) {
 		System.out.println("modify-updateDiaryItemDao"+diaryitemvo);
 		sqlSession.insert("mydiary.updateDiaryItem",diaryitemvo);
+		
 	}
 	
 }
