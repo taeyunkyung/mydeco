@@ -60,10 +60,10 @@
 							 
                             <div class="clearfix" style="margin-right:20px;">
                                 <div class="diary-private">
-                                    <label><input id="diary-private" class="diaryset_private" type="radio" name="protect" value="${dcVo.protect}">비공개</label>
+                                    <label><input id="diary-private" class="diaryset_private" type="radio" name="protect" value="">비공개</label>
                                 </div>
                                 <div class="diary-all">
-                                    <label><input id="diary-all" class="diaryset" type="radio" name="protect" value="${dcVo.protect}">공개</label>                                                                     
+                                    <label><input id="diary-all" class="diaryset" type="radio" name="protect" value="">공개</label>                                                                     
                                 </div>
                                 <div class="mydiary-weather3">공개여부 :</div>
                             </div>                                   
@@ -229,11 +229,12 @@
 		    	$("[name=diaryDate]").val(DiaryContent.diaryDate);
 		    	$("#weatherselectbox").val(DiaryContent.weather);
 		    	
-		    	
 		    	if(DiaryContent.protect == "비공개") {
-		    		$("#diary-private").prop('checked', true);  
+		    		$("#diary-private").prop('checked', true);
+		    		$("#diary-private").val(DiaryContent.protect);
 		    	}else{
 		    		$("#diary-all").prop('checked', true);
+		    		$("#diary-all").val(DiaryContent.protect);
 		    	}
 		    	
 			    var DiaryItemList = DiaryContent.itemList;
@@ -276,7 +277,7 @@
 			//각도
 			text.angle = diaryitemVo.angle;
 			
-			//수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
+			//220319 수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
 			text.stickerNo = diaryitemVo.stickerNo;
 			text.stickerSrc = diaryitemVo.stickerSrc;
 
@@ -292,7 +293,7 @@
 		}else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
 			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
 				
-				//수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
+				//220319 수정하기 눌렀을때 해당 글이 갖고있던 스티커 이미지의 번호/경로를 추가해주기
 				paperNo = diaryitemVo.stickerNo;
 				paperSrc = diaryitemVo.stickerSrc;
 				
@@ -328,7 +329,7 @@
 				//커서모양기본
 				oImg.hoverCursor ="default";
 				
-				//수정하기 눌렀을땐 이미 있던 이미지가 갖고있던 stickerNo를 추가해주기
+				//220319 수정하기 눌렀을땐 이미 있던 이미지가 갖고있던 stickerNo를 추가해주기
 				oImg.stickerNo = diaryitemVo.stickerNo;
 				oImg.stickerSrc = diaryitemVo.stickerSrc;
 				
@@ -513,6 +514,7 @@
 			console.log(canvasObjList[i]); 
 		}
 
+		/*220319추가*/
 		/*220316수정*/
 		//페이퍼 추가
 
@@ -541,24 +543,6 @@
 			writeDiary(diarycontentvo);	
 		};
 		
-		
-		/*220316수정*/
-		//페이퍼 추가
-		/*
-		var diaryItemVo = {};
-		diaryItemVo.stickerNo = paperNo;
-		diaryItemVo.stickerSrc = paperSrc;
-		diaryItemList.push(diaryItemVo);//배열에 추가
-		
-		diarycontentvo.itemList = diaryItemList//var diarycontentvo에 itemList추가
-		
-		/* console.log(diarycontentvo);
-		console.log(canvasObjList[0]);    */
-		/*
-		console.log("===========modifyitem===============");
-		console.log(diarycontentvo);
-		console.log("===========modifyitem===============");*/
-		//writeDiary(diarycontentvo);
 		
 	});
 	

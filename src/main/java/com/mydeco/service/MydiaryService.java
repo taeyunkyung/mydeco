@@ -129,7 +129,7 @@ public class MydiaryService {
 			DiaryItemVo diaryItemvo = diaryItem.get(i);
 			diaryItemvo.setDiaryNo(diaryNo);
 			
-			/*text가 없을때의 처리를 해줘야함!*/
+			/*220319 text가 없을때의 처리를 해줘야함!*/
 			if(diaryItemvo.getText() == null) {
 				diaryItemvo.setText("");
 			}
