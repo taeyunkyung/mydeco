@@ -112,12 +112,33 @@
 			]]>
 	</insert>
 	
-	<!-- 수정하기 클릭시 일기 아이템 삭제하기 -->
-	<delete id="deleteDiaryItem" parameterType="com.mydeco.vo.DiaryContentVo">
+	
+	<!-- 일기아이템 삭제 -->
+	<delete id="deleteDiaryItem" parameterType="int">
 			<![CDATA[
 				delete from item
 				where diaryNo = #{diaryNo}
 			]]>
 	</delete>
+	
+	<!-- 일기 정보 업데이트(수정하기) -->
+	<update id="updateDiary" parameterType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				update diary
+				set diaryDate = #{diaryDate},
+					weather = #{weather},
+					protect = #{protect},
+					title = #{title}
+				where diaryNo = #{diaryNo}	
+			]]>
+	</update>
+	
+	<!-- 일기 아이템 업데이트(수정하기) -->
+	<insert id="updateDiaryItem" parameterType="com.mydeco.vo.DiaryItemVo">
+			<![CDATA[
+				insert into item(diaryitemNo, diaryNo, stickerNo, stickerSrc, top, left, scaleX, scaleY, angle, text)
+				values(seq_diaryitem_no.nextval, #{diaryNo}, #{stickerNo}, #{stickerSrc}, #{top}, #{left}, #{scaleX}, #{scaleY}, #{angle}, #{text})
+			]]>
+	</insert>
 	
 </mapper>

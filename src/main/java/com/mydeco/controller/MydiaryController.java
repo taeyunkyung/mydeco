@@ -100,7 +100,6 @@ public class MydiaryController {
 		System.out.println(diarycontentvo);
 		/*ajax - 목록에서 클릭한 일기의 번호*/
 		int diaryNo = diarycontentvo.getDiaryNo();
-		System.out.println("modifydiaryno"+ diaryNo);
 		
 		/*220316쿼리문 수정*/
 		/*다이어리번호가 ? 인 다이어리의 정보*/
@@ -111,30 +110,15 @@ public class MydiaryController {
 	
 	/*수정하기*/
 	@RequestMapping("/modifyForm")
-	public String modifyForm(@RequestParam("modaldiaryNo") int diaryNo, Model model) {
+	public String modifyForm(Model model) {
 		System.out.println("modifyForm");
-		System.out.println(diaryNo);
 		
 		/*꾸미기창 스티커 가져오기*/
 		Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
 		model.addAttribute("stickerMap",stickerMap);
 		
-		/*list페이지에서 선택한 다이어리(번호)의 정보 가져오기*/
-		/*
-		DiaryContentVo diaryContent = mydiaryService.getOneDiary(diaryNo);
-		model.addAttribute("dcVo",diaryContent);*/
-		model.addAttribute("diaryNo",diaryNo);
 		
 		return "diary/modifyForm";
-	}
-	
-	
-	/*수정하기 클릭시 아이템 삭제하기*/
-	@ResponseBody
-	@RequestMapping("/deleteDiaryItem")
-	public String deleteDiaryItem(@RequestBody DiaryContentVo diarycontentvo) {
-		
-		return mydiaryService.deleteDiaryItem(diarycontentvo);
 	}
 	
 	
@@ -142,10 +126,12 @@ public class MydiaryController {
 	@ResponseBody
 	@RequestMapping("/modify")
 	public String modify(@RequestBody DiaryContentVo diarycontentvo) {
+		System.out.println("modify");
+		System.out.println(diarycontentvo);
+		mydiaryService.itemUpdate(diarycontentvo);
 		
-		return mydiaryService.modify(diarycontentvo);
+		return "redirect:diary/list";
 	}
-	
 	
 	
 	/*db에 스티커 이미지 경로,이름 저장하기*/
