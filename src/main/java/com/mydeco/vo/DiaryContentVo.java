@@ -13,47 +13,17 @@ public class DiaryContentVo {
 	private String diaryBgmSrc;
 	private List<DiaryItemVo> itemList;
 
+	// 상품 페이지에 쓰일거 선흠 조금 덧붙임//
+
+	private int prodNo;
+
 	public DiaryContentVo() {
-		
+
 	}
-	
-	
-	public DiaryContentVo(String diaryDate) {
-		this.diaryDate = diaryDate;
-	}
-	
-
-	public DiaryContentVo(int diaryNo) {
-		this.diaryNo = diaryNo;
-	}
-
-
-	public DiaryContentVo(int userNo, String diaryDate, String weather, String protect, String title) {
-		super();
-		this.userNo = userNo;
-		this.diaryDate = diaryDate;
-		this.weather = weather;
-		this.protect = protect;
-		this.title = title;
-	}
-
-
-	public DiaryContentVo(int userNo, String diaryDate, String weather, String protect, String title,
-			String diaryBgmSrc, List<DiaryItemVo> itemList) {
-		super();
-		this.userNo = userNo;
-		this.diaryDate = diaryDate;
-		this.weather = weather;
-		this.protect = protect;
-		this.title = title;
-		this.diaryBgmSrc = diaryBgmSrc;
-		this.itemList = itemList;
-	}
-
-
 
 	public DiaryContentVo(int diaryNo, int userNo, String diaryDate, String weather, String protect, String title,
-			String diaryBgmSrc, List<DiaryItemVo> itemList) {
+			String diaryBgmSrc, List<DiaryItemVo> itemList, int prodNo) {
+
 		this.diaryNo = diaryNo;
 		this.userNo = userNo;
 		this.diaryDate = diaryDate;
@@ -62,10 +32,9 @@ public class DiaryContentVo {
 		this.title = title;
 		this.diaryBgmSrc = diaryBgmSrc;
 		this.itemList = itemList;
+		this.prodNo = prodNo;
 	}
 
-	
-	
 	public int getDiaryNo() {
 		return diaryNo;
 	}
@@ -130,14 +99,19 @@ public class DiaryContentVo {
 		this.itemList = itemList;
 	}
 
-	
+	public int getProdNo() {
+		return prodNo;
+	}
+
+	public void setProdNo(int prodNo) {
+		this.prodNo = prodNo;
+	}
+
 	@Override
 	public String toString() {
 		return "DiaryContentVo [diaryNo=" + diaryNo + ", userNo=" + userNo + ", diaryDate=" + diaryDate + ", weather="
 				+ weather + ", protect=" + protect + ", title=" + title + ", diaryBgmSrc=" + diaryBgmSrc + ", itemList="
-				+ itemList + "]";
+				+ itemList + ", prodNo=" + prodNo + "]";
 	}
-	
-	
 
 }
