@@ -77,7 +77,11 @@
                         <div>
                             <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
                         </div>
-                        <div>
+                        <div class="clearfix">
+                        	<div id="audioDiv" style="float:left; margin-top:10px;">
+                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+                        	</div>
+                        
                             <div class="writeform-button">
                                 <a class="writeform-modify" href="${pageContext.request.contextPath}/diary/list">목록</a><!--list페이지로 이동-->
                                 <input id="saveBtn" type="button" class="button writeform-save" value="저장하기"><!-- submit->button 바꿈. ajax사용하기 -->
@@ -142,24 +146,11 @@
 
                             
                             <div id="tab-3" class="tab-content">
-                                <div class="mydiary-writeForm-bgmList" data-val="INVU 태연 (TAEYEON)">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="mydiary-writeForm-bgmList">
-                                    사랑은 늘 도망가 임영웅 신사와글잘림 <!--아가씨 OST Part.2-->
-                                </div>
-                                <div class="mydiary-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="mydiary-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="mydiary-writeForm-bgmList">
-                                    ELEVEN IVE (아이브)ELEVEN
-                                </div>
-                                <div class="mydiary-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
+                                <c:forEach items="${bgmList}" var="bgmVo">
+									<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}">
+                                    	${bgmVo.bgmTitle}
+                                	</div>								
+								</c:forEach>
                             </div>
                            
                         </div>
@@ -236,6 +227,10 @@
 		    		$("#diary-all").prop('checked', true);
 		    		$("#diary-all").val(DiaryContent.protect);
 		    	}
+		    	
+		    	$("#audio").attr("src",DiaryContent.diaryBgmSrc);
+		    	//console.log($("#audio").attr("src"));
+		    	
 		    	
 			    var DiaryItemList = DiaryContent.itemList;
 			    console.log(DiaryItemList);
@@ -451,6 +446,19 @@
 		}
 	})
 	
+	//bgm 전역변수
+	var bgmSrc;
+	
+	/*bgm을 클릭했을때*/
+	$(".mydiary-writeForm-bgmList").on("click",function(){
+		//꾸미기창에서bgm을 클릭하면 그 bgm의 bgmsrc를 얻어온후 그 경로를 audio태그의 src에 넣고싶음
+		bgmSrc= $(this).data("bgmsrc");
+		console.log(bgmSrc);
+		
+		$("#audio").attr("src",bgmSrc);
+		
+	})
+	
 
 	
 	/*저장 버튼을 눌렀을때*/
@@ -488,6 +496,7 @@
 				weather: weather,
 				protect: protect,
 				title: title
+				diaryBgmSrc: bgmSrc
 		};
 		
 		//캔버스에 있는 전체 객체를 배열로 가져온다

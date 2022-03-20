@@ -89,12 +89,24 @@
 			]]>
 	</select>
 	
+	<!-- 220320추가 -->
+	<!-- bgm리스트 가져오기 -->
+	<select id="getBgmList" resultType="com.mydeco.vo.BgmVo">
+			<![CDATA[
+				select 	bgmNo,
+						bgmTitle,
+       				   	bgmSrc
+				from bgm
+			]]>
+	</select>
+	
+	
 	
 	<!-- 일기content(스티커제외) db에 저장 -->
 	<insert id="diaryContent" parameterType="com.mydeco.vo.DiaryContentVo">
 		<![CDATA[
-				insert into diary(diaryNo, userNo, diaryDate, weather, protect, title)
-				values(seq_diary_no.nextval, #{userNo}, #{diaryDate}, #{weather}, #{protect}, #{title})	
+				insert into diary(diaryNo, userNo, diaryDate, weather, protect, title, diaryBgmSrc)
+				values(seq_diary_no.nextval, #{userNo}, #{diaryDate}, #{weather}, #{protect}, #{title}, #{diaryBgmSrc})	
 		]]>
 	</insert>
 	
@@ -128,7 +140,8 @@
 				set diaryDate = #{diaryDate},
 					weather = #{weather},
 					protect = #{protect},
-					title = #{title}
+					title = #{title},
+					diaryBgmSrc = #{diaryBgmSrc}
 				where diaryNo = #{diaryNo}	
 			]]>
 	</update>

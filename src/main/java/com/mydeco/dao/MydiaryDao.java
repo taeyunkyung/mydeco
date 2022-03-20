@@ -2,11 +2,11 @@ package com.mydeco.dao;
 
 import java.util.List;
 
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.StickerVo;
@@ -50,6 +50,11 @@ public class MydiaryDao {
 	/*스티커목록(꾸미기패널) 가져오기*/
 	public List<StickerVo> getStickerList(int cateNo){
 		return sqlSession.selectList("mydiary.getStickerList", cateNo);
+	}
+	
+	/*bgm가져오기*/
+	public List<BgmVo> getBgmList(){
+		return sqlSession.selectList("mydiary.getBgmList");
 	}
 	
 	

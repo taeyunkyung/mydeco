@@ -20,6 +20,22 @@ public class DiaryContentVo {
 	public DiaryContentVo() {
 
 	}
+	
+
+	public DiaryContentVo(int diaryNo, int userNo, String diaryDate, String weather, String protect, String title,
+			String diaryBgmSrc, List<DiaryItemVo> itemList) {
+		super();
+		this.diaryNo = diaryNo;
+		this.userNo = userNo;
+		this.diaryDate = diaryDate;
+		this.weather = weather;
+		this.protect = protect;
+		this.title = title;
+		this.diaryBgmSrc = diaryBgmSrc;
+		this.itemList = itemList;
+	}
+
+
 
 	public DiaryContentVo(int diaryNo, int userNo, String diaryDate, String weather, String protect, String title,
 			String diaryBgmSrc, List<DiaryItemVo> itemList, int prodNo) {

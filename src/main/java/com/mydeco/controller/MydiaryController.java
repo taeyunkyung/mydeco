@@ -10,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
@@ -82,6 +82,9 @@ public class MydiaryController {
 			model.addAttribute("stickerMap",stickerMap);
 			System.out.println(stickerMap);
 			
+			List<BgmVo> bgmList = mydiaryService.getBgmList();
+			model.addAttribute("bgmList",bgmList);
+			
 			return "diary/writeForm";
 			
 		}else {
@@ -112,6 +115,8 @@ public class MydiaryController {
 		
 		/*220316쿼리문 수정*/
 		/*다이어리번호가 ? 인 다이어리의 정보*/
+		System.out.println(mydiaryService.getOneDiary(diaryNo));
+		System.out.println("======modifyForm-read-ajax========");
 		return mydiaryService.getOneDiary(diaryNo);
 		
 	}
@@ -127,6 +132,9 @@ public class MydiaryController {
 			/*꾸미기창 스티커 가져오기*/
 			Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
 			model.addAttribute("stickerMap",stickerMap);
+			
+			List<BgmVo> bgmList = mydiaryService.getBgmList();
+			model.addAttribute("bgmList",bgmList);
 			
 			return "diary/modifyForm";
 			

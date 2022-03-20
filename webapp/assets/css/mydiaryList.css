@@ -12,6 +12,19 @@
     src:url(../fonts/SCDream6.otf); font-family: "SCDream6";
 } 
 
+/*bgm*/
+/*
+audio#audio.a{
+	height:20px; 
+	width:300px; 
+	margin-left:38px;
+}*/
+
+div.addAudioDiv{
+	float:left;
+	margin-top:10px;
+}
+
 /*나의 일기 날짜 + 리스트창*/   
 .mydiarydiv{
     display:flex; 

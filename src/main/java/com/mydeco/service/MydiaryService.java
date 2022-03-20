@@ -1,7 +1,6 @@
 package com.mydeco.service;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mydeco.dao.MydiaryDao;
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.StickerVo;
@@ -79,6 +79,11 @@ public class MydiaryService {
 		return stickerMap;
 	}
 	
+	/*bgm리스트*/
+	public List<BgmVo> getBgmList() {
+		
+		return mydiaryDao.getBgmList();
+	}
 	
 	/*일기에 쓴 컨텐츠 저장하기*/
 	// db error rollback

@@ -110,7 +110,7 @@
 	                                    <div class="mydiaryText7 clearfix">
 	                                    	<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
 	                                        <div class="mydiary-Date">Date:</div>
-	                                        <div class="mydiary-Date" data-diaryDate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
+	                                        <div class="mydiary-Date" data-diarydate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
 	                                        
 			                                <c:choose>
 			                                	<c:when test="${dcvo.weather eq 'sunny'}">
@@ -154,7 +154,9 @@
 			        <div style="float: right;">
 	                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
 	                </div>
-			        <div style="float:left; margin-right:15px; margin-top:3px;">노래를넣는다면 여기가 노래재생되는곳</div>	
+			        <div style="float:left; margin-right:15px; margin-top:3px;">
+			        	<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:38px;"></audio><!-- 일기를 클릭해서 모달창 떴을때 autoplay속성 html코드에 추가되도록 -->
+			        </div>	
 		        </div>
 		       
 		        
@@ -215,10 +217,10 @@ $(".mydiary-list-box2").on("click",function(){
 	modalCanvasInit();
 	
 	/*클릭한 일기의 일기번호*/
-	diaryNo = $(this).data("diaryno")
+	diaryNo = $(this).data("diaryno");
 	console.log(diaryNo);
 
-	title = $(this).data("title")
+	title = $(this).data("title");
 	
 	/*키:값*/
 	var diarycontentvo = {diaryNo: diaryNo};
@@ -240,6 +242,7 @@ $(".mydiary-list-box2").on("click",function(){
 		    $("#modalDiaryDate").text(DiaryContent.diaryDate);
 		    $("#modalDiaryWeather").text(DiaryContent.weather);
 		    $("#modalDiaryProtect").text(DiaryContent.protect);
+		    $("#audio").attr("src",DiaryContent.diaryBgmSrc);
 		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
