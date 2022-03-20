@@ -15,7 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mydeco.dao.MyProdImgDao;
 import com.mydeco.dao.MyProductDao;
-import com.mydeco.vo.DiaryVo2;
+import com.mydeco.vo.DiaryContentVo;
+import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
@@ -30,7 +31,7 @@ public class MyShopService {
 	@Autowired
 	private MyProdImgDao myProdImgDao;
 
-	public List<DiaryVo2> getDiaryList(int userNo) {
+	public List<DiaryContentVo> getDiaryList(int userNo) {
 		return myProductDao.diaryList(userNo);
 	}
 
@@ -254,9 +255,21 @@ public class MyShopService {
 	// 임시 기능 //
 	public ProductVo selectOneProd(int prodNo) {
 		ProductVo productVo = myProductDao.selectOne(prodNo);
+		
 		productVo.setProdImgList(myProdImgDao.prodImgList(prodNo));
-		productVo.setProdDiaryList(myProdImgDao.prodDiaryList(prodNo));
+		productVo.setProdDiaryList(myProductDao.diaryPreview(prodNo));
+		
 		return productVo;
+	}
+	
+	public DiaryContentVo getOneDiary(int diaryNo) {
+		DiaryContentVo vo = myProductDao.selectByDiaryNo(diaryNo);
+		vo.setItemList(myProductDao.diaryItemList(diaryNo));
+		return vo;
+	}
+	
+	public List<DiaryItemVo> itemList(int diaryNo) {
+		return myProductDao.diaryItemList(diaryNo);
 	}
 	
 	public ProductVo checkpick(ProductVo productVo) {

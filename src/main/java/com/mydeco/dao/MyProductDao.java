@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydeco.vo.DiaryContentVo;
+import com.mydeco.vo.DiaryItemVo;
 import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo2;
@@ -19,7 +21,22 @@ public class MyProductDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<DiaryVo2> diaryList(int userNo) {
+	// 상품 상세 //
+	public List<DiaryVo2> diaryPreview(int prodNo) {
+		return sqlSession.selectList("myProduct.diaryPreview", prodNo);
+	}
+	
+	public DiaryContentVo selectByDiaryNo(int diaryNo) {
+		return sqlSession.selectOne("myProduct.selectByDNo", diaryNo);
+	}
+	
+	public List<DiaryItemVo> diaryItemList(int diaryNo) {
+		return sqlSession.selectList("myProduct.diaryItemList", diaryNo);
+	}
+	// 상품 상세 //
+	
+	// 상품 등록 //
+	public List<DiaryContentVo> diaryList(int userNo) {
 		return sqlSession.selectList("myProduct.diaryList", userNo);
 	}
 	
@@ -27,8 +44,9 @@ public class MyProductDao {
 		System.out.println("add.dao");
 		return sqlSession.insert("myProduct.addProduct", productVo);		
 	}
+	// 상품 등록 //
 	
-	public List<ProductVo> myProductList(int userNo) {
+	public List<ProductVo> myProductList(int userNo) { // <--페이징x
 		return sqlSession.selectList("myProduct.myProductList", userNo);
 	}
 	

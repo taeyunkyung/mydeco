@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +15,17 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 
 <style> 
 #main-content {
     width: 678.9px;
 }
 
-h3, h4 {
+h3, h4, p {
     font-family: 'SCDream4';
     font-weight: bolder;
-    margin-left: 15px;
+    margin-left: 5px;
 }
  
 .img {
@@ -96,7 +98,7 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
-					<h4>상품이름: ${productVo.prodName} / 일기장 제목: </h4> 
+					<h4>상품이름: ${productVo.prodName}</h4> 
 					<input type="hidden" name="prodNo" value="${productVo.prodNo}"> <input type="hidden" name="sellerNo" value="${productVo.userNo}">
 					<div class="img">
 						<img id="prod-img" src="${pageContext.request.contextPath}/upload/${productVo.prodImgList[0].prodImgSrc}">
@@ -116,10 +118,10 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 					</div>
 					
 					<div class="img">
-						<img id="prod-diary" src="${pageContext.request.contextPath}/upload/test.png" data-toggle="modal" data-target=".diaryview">
+						<img id="prod-diary" data-no="${productVo.prodDiaryList[0].diaryNo}" src="${productVo.prodDiaryList[0].stickerSrc}" data-toggle="modal" data-target=".diaryview">
 						
 						<div class="modal fade diaryview" tabindex="-1" role="dialog">
-							<div class="modal-dialog modal-lg">
+							<div class="modal-dialog modal-lg" style="width:710px; height: 570px;">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -128,21 +130,20 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 										<h4 class="modal-title">일기장 구경하기</h4>
 									</div>
 									<div class="modal-body">
-										<img id="modal-diary">
+										<p class="diaryContents"></p>
+										<canvas class="readCanvas" id="paper"></canvas>
 									</div>
 								</div>
 							</div>
 						</div>
-					
-						<div id="selectDiary">
-							<img class="sel-img" id="d1" onclick="viewDiary(1)"
-									src="${pageContext.request.contextPath}/upload/test.png">
-					
+
+						<div id="selectDiary">					
+							<!-- <img class="sel-img" id="d1" onclick="viewDiary(1)" src="${pageContext.request.contextPath}/upload/test.png"> -->					
 						
-						<!-- <c:forEach items="${productVo.prodImgList}" var="list">
-								<img class="sel-img" onclick="viewDiary()"
-									src="${pageContext.request.contextPath}/upload/${list.prodImgSrc}">
-							</c:forEach> -->
+							<c:forEach begin="0" end="${fn:length(productVo.prodDiaryList)-1}" step="1" var="count">
+								<img class="sel-img" id="d${count}" onclick="viewDiary(${productVo.prodDiaryList[count].diaryNo},${count})" 
+									src="${productVo.prodDiaryList[count].stickerSrc}">
+							</c:forEach>
 						</div>
 					</div>
 					
@@ -242,17 +243,148 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 </body>
 
 <script type="text/javascript">
+	$(function() {
+		if ($("#delivery").val()=='meet') {
+			$("#delivery").val('직거래')
+		} else if ($("#delivery").val()=='post') {
+			$("#delivery").val('택배')
+		}
+		
+		if ($("#emotion").val()=='happy') {
+			$("#emotion").val('기쁨')
+		} else if ($("#emotion").val()=='sad') {
+			$("#emotion").val('슬픔')
+		} else if ($("#emotion").val()=='angry') {
+			$("#emotion").val('화남')
+		} else if ($("#emotion").val()=='annoyed') {
+			$("#emotion").val('짜증')
+		} else if ($("#emotion").val()=='relieved') {
+			$("#emotion").val('홀가분')
+		}
+	})
+
 	function viewImg(no) {
 		console.log(no);
 		var selImgSrc = $("#i"+no).attr("src");
 		$("#prod-img").attr("src", selImgSrc);
+		//document.getElementById("i"+no).style.border = "solid 1px red";		
 	}
 	
-	function viewDiary(no) {
-		var diarySrc = $("#d"+no).attr("src");
-		$("#prod-diary").attr("src", diarySrc);
-		$("#modal-diary").attr("src", diarySrc);
+	$("#prod-diary").on("click", function() {	
+		var no = $("#prod-diary").data("no");
+		
+		$.ajax({			
+			url : "${pageContext.request.contextPath}/myshop/viewdiary",		
+			type : "post",
+			// contentType : "application/json",
+			data : {diaryNo: no},
+
+			dataType : "json",
+			success : function(diaryContentVo){
+				modalCanvasInit();
+				console.log(diaryContentVo);
+				$(".diaryContents").text(diaryContentVo.title+"\u00a0\u00a0"+diaryContentVo.diaryDate+"\u00a0\u00a0"+diaryContentVo.weather);
+				
+				var itemList = diaryContentVo.itemList;
+				
+				for(var i=0; i<itemList.length; i++) {
+					itemRender(itemList[i]);
+					console.log(itemList[i]);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}	
+		});
+	});
+	
+	function viewDiary(no, count) {
+		console.log(no);
+		var paperSrc = $("#d"+count).attr("src");
+		$("#prod-diary").attr("src", paperSrc);
+		$("#prod-diary").data("no", no);
 	}
+	
+	function modalCanvasInit(){
+		canvas.clear();
+		canvas.width = 680;
+		canvas.height = 510;
+		canvas.backgroundColor = '#dbd3c7';
+	}
+
+	function itemRender(diaryitemVo) {
+		if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
+			var text = new fabric.Textbox(diaryitemVo.text);
+
+			//기본 폰트 크기
+			text.fontSize = 18;
+			
+			//폰트
+			text.fontFamily = 'SCDream4';
+			
+			//좌표
+			text.top = diaryitemVo.top;
+			text.left = diaryitemVo.left;
+			
+			//스케일
+			text.scaleX = diaryitemVo.scaleX;
+			text.scaleY = diaryitemVo.scaleY;
+			
+			//각도
+			text.angle = diaryitemVo.angle;
+
+			//변경안되게
+			text.selectable = false;
+			
+			//커서모양기본
+			text.hoverCursor ="default";
+			
+			//캔버스에 추가
+			canvas.add(text);
+		
+		} else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
+
+				canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
+					scaleX: canvas.width / backImg.width,
+					scaleY: canvas.height / backImg.height
+				});
+				
+				console.log("=====================================");
+				console.log(backImg);
+			});
+			
+			
+		} else {  //스티커- stickerCateNo == 2
+			fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
+				//좌표
+				oImg.top = diaryitemVo.top;
+				oImg.left = diaryitemVo.left;
+				
+				//스케일
+				oImg.scaleX = diaryitemVo.scaleX;
+				oImg.scaleY = diaryitemVo.scaleY;
+				
+				//각도
+				oImg.angle = diaryitemVo.angle;
+				
+				//변경안되게
+				oImg.selectable = false;
+				
+				//커서모양기본
+				oImg.hoverCursor ="default";
+				
+				//캔버스에 추가
+				canvas.add(oImg);
+			});
+		}
+	}
+	
+	var canvas = new fabric.Canvas("paper", {
+		 width: 680,
+		 height: 510,
+		 backgroundColor: '#dbd3c7'
+	});
 
 	$(document).ready(function() {
 		$(".addreply").hide();

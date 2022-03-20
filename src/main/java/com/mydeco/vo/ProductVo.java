@@ -13,7 +13,7 @@ public class ProductVo {
 	private String prodInfo;
 	private String regDate;
 	private List<ProdImgVo> prodImgList; // 추가
-	private List<DiaryContentVo> prodDiaryList;
+	private List<DiaryVo2> prodDiaryList;
 	private String userName;
 
 	// 나의상품, 찜한상품 //
@@ -72,15 +72,14 @@ public class ProductVo {
 		this.pickCnt = pickCnt;
 	}
 	// 나의상품, 찜한상품 //
-
-	public List<DiaryContentVo> getProdDiaryList() {
+	public List<DiaryVo2> getProdDiaryList() {
 		return prodDiaryList;
 	}
 
-	public void setProdDiaryList(List<DiaryContentVo> prodDiaryList) {
+	public void setProdDiaryList(List<DiaryVo2> prodDiaryList) {
 		this.prodDiaryList = prodDiaryList;
 	}
-	
+
 	public ProductVo() {
 	}
 

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mydeco.service.MyShopService;
-import com.mydeco.vo.DiaryVo2;
+import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo2;
 import com.mydeco.vo.UserChatVo;
@@ -37,7 +37,7 @@ public class MyShopController {
 	public String addForm(HttpSession session, Model model) {
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		List<DiaryVo2> diaryList = myShopService.getDiaryList(authUser.getUserNo());
+		List<DiaryContentVo> diaryList = myShopService.getDiaryList(authUser.getUserNo());
 		model.addAttribute("diaryList", diaryList);
 
 		return "myshop/seller-add";
@@ -84,7 +84,7 @@ public class MyShopController {
 		model.addAttribute("productVo", productVo);
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		List<DiaryVo2> diaryList = myShopService.getDiaryList(authUser.getUserNo());
+		List<DiaryContentVo> diaryList = myShopService.getDiaryList(authUser.getUserNo());
 		model.addAttribute("diaryList", diaryList);
 		
 		return "myshop/seller-update";
@@ -195,6 +195,12 @@ public class MyShopController {
 		List<ShoppingCmtVo2> commentList = myShopService.commentList(prodNo);
 		model.addAttribute("commentList", commentList);
 		return "myshop/shop-prodDetails";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/viewdiary")
+	public DiaryContentVo viewDiary(@RequestParam int diaryNo) {
+		return myShopService.getOneDiary(diaryNo);
 	}
 	
 	@ResponseBody

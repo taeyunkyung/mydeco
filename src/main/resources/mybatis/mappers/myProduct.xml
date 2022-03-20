@@ -3,6 +3,49 @@
 
 <mapper namespace="myProduct">
 
+	<select id="diaryPreview" parameterType="int" resultType="com.mydeco.vo.DiaryVo2">
+		<![CDATA[
+			select  pd.diaryNo,
+        			it.stickerSrc
+			from diary d, prodDiary pd, item it, sticker s
+			where d.diaryNo = pd.diaryNo
+			and d.diaryNo = it.diaryNo
+			and it.stickerNo = s.stickerNo
+			and prodNo = #{prodNo}
+			and stickerCateNo = 1
+		]]>
+	</select>
+	
+	<select id="selectByDNo" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
+		<![CDATA[
+			select  to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
+        			weather,
+        			title,
+        			diaryBgmSrc
+        	from diary
+			where diaryNo = #{diaryNo}
+		]]>		
+	</select>
+
+	<select id="diaryItemList" parameterType="int" resultType="com.mydeco.vo.DiaryItemVo">
+		<![CDATA[
+			select  diaryItemNo,
+        			it.diaryNo,
+        			it.stickerNo,
+        			s.stickerCateNo,
+        			it.stickerSrc,
+        			it.top,
+        			it.left,
+        			it.angle,
+        			it.text,
+        			it.scaleX,
+        			it.scaleY
+			from item it, sticker s
+			where it.stickerNo = s.stickerNo(+)
+			and it.diaryNo = #{diaryNo}
+		]]>
+	</select>
+
 	<select id="diaryList" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
 		<![CDATA[
 			select  diaryNo,
@@ -12,7 +55,7 @@
 			where userNo = #{userNo}
 		]]>
 	</select>
-
+	
 	<insert id="addProduct" parameterType="ProductVo">
 		<selectKey keyProperty="prodNo" resultType="int" order="BEFORE">
 			select seq_product_no.nextval from dual

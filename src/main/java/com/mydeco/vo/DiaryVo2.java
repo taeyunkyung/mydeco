@@ -9,13 +9,14 @@ public class DiaryVo2 {
 	private String protect;
 	private String title;
 	private String diaryBgmSrc;
-	private String contentJSON;
+	private String stickerSrc;
 
 	public DiaryVo2() {
 	}
 
 	public DiaryVo2(int diaryNo, int userNo, String diaryDate, String weather, String protect, String title,
-			String diaryBgmSrc, String contentJSON) {
+			String diaryBgmSrc, String stickerSrc) {
+		super();
 		this.diaryNo = diaryNo;
 		this.userNo = userNo;
 		this.diaryDate = diaryDate;
@@ -23,7 +24,7 @@ public class DiaryVo2 {
 		this.protect = protect;
 		this.title = title;
 		this.diaryBgmSrc = diaryBgmSrc;
-		this.contentJSON = contentJSON;
+		this.stickerSrc = stickerSrc;
 	}
 
 	public int getDiaryNo() {
@@ -82,19 +83,19 @@ public class DiaryVo2 {
 		this.diaryBgmSrc = diaryBgmSrc;
 	}
 
-	public String getContentJSON() {
-		return contentJSON;
+	public String getStickerSrc() {
+		return stickerSrc;
 	}
 
-	public void setContentJSON(String contentJSON) {
-		this.contentJSON = contentJSON;
+	public void setStickerSrc(String stickerSrc) {
+		this.stickerSrc = stickerSrc;
 	}
 
 	@Override
 	public String toString() {
-		return "DiaryVo [diaryNo=" + diaryNo + ", userNo=" + userNo + ", diaryDate=" + diaryDate + ", weather="
+		return "DiaryVo2 [diaryNo=" + diaryNo + ", userNo=" + userNo + ", diaryDate=" + diaryDate + ", weather="
 				+ weather + ", protect=" + protect + ", title=" + title + ", diaryBgmSrc=" + diaryBgmSrc
-				+ ", contentJSON=" + contentJSON + "]";
+				+ ", stickerSrc=" + stickerSrc + "]";
 	}
 
 }
