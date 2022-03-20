@@ -33,6 +33,20 @@
     font-family: 'SCDream4';
 }
 
+.modal-button-modify{
+	border: 1px solid #6667AB;
+    background: #fff;
+    color: #6667AB; 
+    font-family: 'SCDream4';
+    display: inline-block;
+    width: 140px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px;
+    cursor: pointer; 
+}
+
 .modal-button-read:hover{
     background-color: #4b4b7a;}  
 

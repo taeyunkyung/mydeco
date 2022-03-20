@@ -86,4 +86,9 @@ public class MydiaryDao {
 		
 	}
 	
+	/*일기 삭제하기*/
+	public int deleteDiary(int diaryNo) {
+		return sqlSession.delete("mydiary.deleteDiary",diaryNo);
+	}
+	
 }

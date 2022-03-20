@@ -149,4 +149,21 @@ public class MydiaryService {
 	}
 	
 	
+	/*삭제하기*/
+	public String deleteDiary(DiaryContentVo diarycontentvo) {
+		int count1;
+		int count2;
+		int diaryNo = diarycontentvo.getDiaryNo();
+		count1 = mydiaryDao.deleteDiaryItem(diaryNo);
+		count2 = mydiaryDao.deleteDiary(diaryNo);
+		
+		int sum = count1+count2;
+		
+		if(sum>0) {
+			return "2";
+		}else {
+			return "0";
+		}
+	}
+	
 }

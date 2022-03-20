@@ -129,10 +129,10 @@
 	                                    </div>
 	                                </div>
 	                                
-	                               
+	                               <!--  
 	                                <div class="mydiaryImg-box7 mydiary-box7-support">
 	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-	                                </div>
+	                                </div>-->
 	                            </div>
                             </c:forEach>
                             
@@ -173,11 +173,15 @@
 		      	
 		      </div>
 		      <div class="modal-footer">
-		      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get">
+		      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get" style="float:left; margin-left:240px; ">
 		      		<button type="button" id="modalModifyBtn" class="modal-button-read">수정하기</button>
 		      		<input type="hidden" name="modaldiaryNo" value="">
 		      	</form>
-			      	<button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
+		      	<!--  
+		      	<form id="deleteForm" action="${pageContext.request.contextPath}/diary/deleteForm" method="get">
+		      		<button type="button" id="modalBtnDel" class="modal-button-read">삭제하기</button>
+		      	</form>-->
+		      	<button type="button" id="modalBtnDel" class="modal-button-read" style="margin-left:-220px;">삭제하기</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
@@ -346,7 +350,7 @@ function itemRender(diaryitemVo){
 }
 
 /*수정하기 버튼을 클릭했을 때*/
- 
+
 $("#modalModifyBtn").on("click",function(){
 	$("[name='modaldiaryNo']").val(diaryNo);
 	console.log(diaryNo);
@@ -354,6 +358,52 @@ $("#modalModifyBtn").on("click",function(){
 	$("#modifyForm").submit();
 });
 
+
+/*삭제하기 버튼을 클릭했을 때*/
+/*
+$("#modalBtnDel").on("click",function(){
+	$("[name='modaldiaryNo']").val(diaryNo);
+	console.log(diaryNo);
+	
+	$("#deleteForm").submit();
+});
+
+
+/*삭제하기 버튼을 클릭했을 때*/
+
+$("#modalBtnDel").on("click",function(){
+	if(confirm('삭제하시겠습니까')==true){
+		console.log("확인클릭");
+		
+		var diaryContentVo = {diaryNo: diaryNo};
+		console.log(diaryContentVo);
+		
+		$.ajax({
+		    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    type : "post",
+		    contentType : "application/json",
+		    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    dataType : "json",
+		    success : function(result) {
+				
+		    	if(result == 2){
+		    		location.href="${pageContext.request.contextPath}/diary/list"
+		    	}else{
+		    		alert('삭제할 수 없는 일기입니다.');
+		    	}
+			    
+		    },
+		    error : function(XHR, status, error) {
+		       console.error(status + " : " + error);
+		    }
+		 });
+		
+	}else{
+		console.log("취소클릭");
+		return;
+	}
+	
+});
 
 
 
