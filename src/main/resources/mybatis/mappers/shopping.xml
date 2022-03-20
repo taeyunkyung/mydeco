@@ -292,13 +292,20 @@
 	
 	</select>	
 	
-	<select id="shoppingGetDiaryContentList" parameterType="Int" resultType="productVo">
+	<select id="shoppingGetDiaryContentList" parameterType="Int" resultType="com.mydeco.vo.DiaryContentVo">
 		<![CDATA[
-			
-		
-		
-		
-		
+			    select pd.diaryNo diaryNo,
+				       userNo,
+				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
+				       weather,
+				       protect,
+				       title,
+				       diaryBgmSrc,
+                       pd.prodNo prodNo
+				from diary d, proddiary pd
+				where d.diaryNo = pd.diaryNo
+                and prodNo = #{no}
+				order by diaryDate desc
 		]]>
 	
 	

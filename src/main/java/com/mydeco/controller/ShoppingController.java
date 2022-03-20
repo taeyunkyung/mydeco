@@ -110,7 +110,7 @@ public class ShoppingController {
 		
 		model.addAttribute("cmtList", cmtList);
 		
-		List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+		List<DiaryContentVo> diarycontentList = shoppingService.getDiaryContentList(no);
 		model.addAttribute("diarycontentList", diarycontentList);
 		System.out.println("=============================");
 		System.out.println(diarycontentList);
