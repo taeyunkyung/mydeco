@@ -40,6 +40,7 @@
 							</div>
 							
 							<div class="writeform-top-button"> 
+								<a></a>
                             	<input type="submit" class="button writeform-save" id="btnSave" value="편지 보내기">
                             </div>
                            
@@ -306,6 +307,9 @@ function itemRender(letterItemVo){
 			
 			//캔버스에 추가
 			canvas.add(oImg);
+			
+			console.log("이 밑은 그려진 스티커 목록입니다");
+			console.log(oImg);
 		});
 	}
 	
@@ -444,7 +448,7 @@ $("#btnSave").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+	if((paperNo == null) || (paperNo == undefined) || (paperNo == "")){
 		
 		letterVo.itemList = letterItemList;
 		writeLetter(letterVo);	
@@ -507,7 +511,7 @@ $("#btnKeep").on("click", function(){
 		letterItemList.push(letterItemVo);
 	}
 
-	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+	if((paperNo == null) || (paperNo == undefined) || (paperNo == "")){
 		
 		letterVo.itemList = letterItemList;
 		writeLetter(letterVo);	

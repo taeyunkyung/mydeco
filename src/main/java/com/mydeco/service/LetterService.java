@@ -51,6 +51,19 @@ public class LetterService {
 	
 	
 	
+	//편지 삭제하기
+	public void letterDelete(int letterNo) {
+		
+		//편지 아이템 삭제하기
+		letterDao.letterItemDelete(letterNo);
+		
+		//편지 삭제하기
+		letterDao.letterDelete(letterNo);
+		
+	}
+	
+	
+	
 	
 	
 	

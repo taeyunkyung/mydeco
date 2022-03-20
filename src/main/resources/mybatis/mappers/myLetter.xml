@@ -107,7 +107,7 @@
 			<![CDATA[
 				select li.letterSticNo,
 					   li.letterNo,
-					   li.sticNo,
+					   s.stickerNo,
 					   li.stickerSrc,
 					   li.top,
 					   li.left,

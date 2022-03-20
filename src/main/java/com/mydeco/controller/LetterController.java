@@ -119,6 +119,20 @@ public class LetterController {
 		return letterService.itemUpdate(letterVo);
 	}
 	
+	//편지 삭제
+	@ResponseBody
+	@RequestMapping("/delete")
+	public int delete(@RequestBody int letterNo) {
+		System.out.println("letter/delete");
+		System.out.println(letterNo);  
+		                         
+		letterService.letterDelete(letterNo);
+		
+		return 1;
+	}
+	
+	
+	
 	
 	
 	/*

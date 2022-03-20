@@ -356,8 +356,10 @@ $("#btnKeep").on("click", function(){
 		
 		letterItemList.push(letterItemVo);
 	}
-
-	if((paper == null) || (paperNo == undefined) || (paperNo == "")){
+	console.log("*****");
+	console.log(letterItemList);
+	console.log("*****");
+	if((paperNo == null) || (paperNo == undefined) || (paperNo == "")){
 		
 		letterVo.itemList = letterItemList;
 		writeLetter(letterVo);	

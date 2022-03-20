@@ -7,11 +7,11 @@ public class LetterItemVo {
 	private int letterNo;
 	private int stickerNo;
 	private String stickerSrc = "";
-	private int top;
-	private int left;
-	private String letterPointX;
-	private String letterPointY;
-	private String angle;
+	private double top;
+	private double left;
+	private double letterPointX;
+	private double letterPointY;
+	private double angle;
 	private String text = "";
 
 	private int stickerCateNo;
@@ -20,8 +20,8 @@ public class LetterItemVo {
 	public LetterItemVo() {
 	}
 
-	public LetterItemVo(int letterStickerNo, int letterNo, int stickerNo, String stickerSrc, int top, int left,
-			String letterPointX, String letterPointY, String angle, String text, int stickerCateNo) {
+	public LetterItemVo(int letterStickerNo, int letterNo, int stickerNo, String stickerSrc, double top, double left,
+			double letterPointX, double letterPointY, double angle, String text, int stickerCateNo) {
 		super();
 		this.letterStickerNo = letterStickerNo;
 		this.letterNo = letterNo;
@@ -68,43 +68,43 @@ public class LetterItemVo {
 		this.stickerSrc = stickerSrc;
 	}
 
-	public int getTop() {
+	public double getTop() {
 		return top;
 	}
 
-	public void setTop(int top) {
+	public void setTop(double top) {
 		this.top = top;
 	}
 
-	public int getLeft() {
+	public double getLeft() {
 		return left;
 	}
 
-	public void setLeft(int left) {
+	public void setLeft(double left) {
 		this.left = left;
 	}
 
-	public String getLetterPointX() {
+	public double getLetterPointX() {
 		return letterPointX;
 	}
 
-	public void setLetterPointX(String letterPointX) {
+	public void setLetterPointX(double letterPointX) {
 		this.letterPointX = letterPointX;
 	}
 
-	public String getLetterPointY() {
+	public double getLetterPointY() {
 		return letterPointY;
 	}
 
-	public void setLetterPointY(String letterPointY) {
+	public void setLetterPointY(double letterPointY) {
 		this.letterPointY = letterPointY;
 	}
 
-	public String getAngle() {
+	public double getAngle() {
 		return angle;
 	}
 
-	public void setAngle(String angle) {
+	public void setAngle(double angle) {
 		this.angle = angle;
 	}
 

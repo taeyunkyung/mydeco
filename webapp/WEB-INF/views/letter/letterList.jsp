@@ -185,7 +185,7 @@
 		  	
 		  	<div class="modal-footer btn-center">
 		    	
-	    		<button class="btn-letter-close" type="button" data-dismiss="modal">삭제하기</button>
+	    		<button class="btn-letter-close" type="button" data-dismiss="modal" id="removeCheck">삭제하기</button>
 	    		<button class="btn-letter-close" type="button" data-dismiss="modal">닫기</button>
 	    		
 		 	</div>
@@ -214,14 +214,16 @@ var canvas = new fabric.Canvas("paper", {
 	 backgroundColor: '#CEC9EF'
 });
 
+var letterNo;
 
-
+//모달창 호출(보기 페이지)
 $(".popup_open_btn").on("click",function(){
 	
 	var openyn = $(this).data("openyn");
 	console.log(openyn);
 	
 	var letterNo = $(this).data("letterno");
+
 	
 	if(openyn == 'y'){ //열람가능한 편지
 		
@@ -234,10 +236,50 @@ $(".popup_open_btn").on("click",function(){
 	}else {
 		console.log("입력오류");
 	}
-	
-	
 
 });
+
+
+$("#removeCheck").on("click",function(){
+	
+	console.log("+++++");
+	console.log(letterNo);
+	
+	 if (confirm("정말 삭제하시겠습니까?") == true){//확인
+
+	     letterDelete(letterNo);
+
+	 }else{ //취소
+	     return false;
+	 }
+});
+
+
+
+//편지 삭제 함수
+function letterDelete(letterNo){
+	
+	//클릭한 편지의 편지 번호
+	var letterNo = letterNo;
+	
+	$.ajax({
+	    url : "${pageContext.request.contextPath}/letter/delete",
+	    type : "post",
+	    contentType : "application/json",
+	    data : JSON.stringify(letterNo),//데이터 보내기
+	    dataType : "json",
+	    success : function() {
+	    	
+	    	console.log("삭제되었습니다.");
+	    	
+	    },
+	    error : function(XHR, status, error) {
+	       console.error(status + " : " + error);
+	    }
+	 });
+	
+}
+
 
 
 //모달창 편지 보기 함수
@@ -297,9 +339,9 @@ function modalCanvasInit(){
 function itemRender(letterItemVo){
 	console.log(letterItemVo);
 	console.log("===============================");
+	
+	
 	if(letterItemVo.stickerCateNo == 0){ //텍스트 이면
-		
-		
 		var text = new fabric.Textbox(letterItemVo.text);
 
 		//기본 폰트 크기
@@ -342,7 +384,10 @@ function itemRender(letterItemVo){
 		
 		
 	}else {  //스티커- stickerCateNo == 2
+		console.log("*******");
+		console.log(letterItemVo);
 		fabric.Image.fromURL(letterItemVo.stickerSrc, function(oImg) {
+			
 			//좌표
 			oImg.top = letterItemVo.top;
 			oImg.left = letterItemVo.left;
@@ -359,6 +404,7 @@ function itemRender(letterItemVo){
 			
 			//커서모양기본
 			oImg.hoverCursor ="default";
+
 			
 			//캔버스에 추가
 			canvas.add(oImg);
