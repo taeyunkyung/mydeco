@@ -22,6 +22,14 @@ public class DiaryContentVo {
 	}
 	
 
+	public DiaryContentVo(int userNo, String diaryDate) {
+		super();
+		this.userNo = userNo;
+		this.diaryDate = diaryDate;
+	}
+
+
+
 	public DiaryContentVo(int diaryNo, int userNo, String diaryDate, String weather, String protect, String title,
 			String diaryBgmSrc, List<DiaryItemVo> itemList) {
 		super();

@@ -43,7 +43,6 @@
  
                             <!--날씨/선택박스-->
                             <div class="clearfix mydiary-we_sel">
-                                <!-- <div><img class="mydiary-weather-img" src="./assets/img/weather/sunny-day.png"></div> -->
                                 <div class="mydiary-weather2">날씨 :</div>
                                 
                                 <!--선택박스-->
@@ -228,7 +227,6 @@
 		console.log(paperSrc);
 		
 		fabric.Image.fromURL(paperSrc, function(backImg) {
-			//oImg.set({'borderColor': '#686099'});
 
 			//객체에 종이번호 추가
 			backImg.stickerNo = paperNo;
@@ -256,7 +254,6 @@
 		console.log(stickerSrc);
 		
 		fabric.Image.fromURL(stickerSrc, function(oImg) {
-			//oImg.set({'borderColor': '#686099'});
 			oImg.set({'cornerColor': '#686099'});
 
 			//객체에 스티커번호 추가
@@ -436,8 +433,6 @@
 	    		  alert('Fail to saving');
 	    	  }
 	    	  
-	         //이부분 처리 한거 없음 
-	         //컨트롤러에 데디터 잘 전달 되는지만 확인
 	      },
 	      error : function(XHR, status, error) {
 	         console.error(status + " : " + error);
@@ -445,7 +440,6 @@
 	   });
 	}
 
-	
 	
 	
 	

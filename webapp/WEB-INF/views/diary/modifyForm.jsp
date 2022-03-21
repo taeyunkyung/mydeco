@@ -215,6 +215,7 @@
 		    	console.log("========DiaryContent========================");
 		    	console.log(DiaryContent);
 		    	console.log("========DiaryContent========================");
+		    	
 		    	/*번호가 ? 인 일기의 정보*/
 		    	$("#title").val(DiaryContent.title);
 		    	$("[name=diaryDate]").val(DiaryContent.diaryDate);
@@ -367,7 +368,6 @@
 		console.log(paperSrc);
 		
 		fabric.Image.fromURL(paperSrc, function(backImg) {
-			//oImg.set({'borderColor': '#686099'});
 
 			//객체에 종이번호 추가
 			backImg.stickerNo = paperNo;
@@ -395,7 +395,6 @@
 		console.log(stickerSrc);
 		
 		fabric.Image.fromURL(stickerSrc, function(oImg) {
-			//oImg.set({'borderColor': '#686099'});
 			oImg.set({'cornerColor': '#686099'});
 
 			//객체에 스티커번호 추가
@@ -564,7 +563,7 @@
 	      url : "${pageContext.request.contextPath}/diary/modify",
 	      type : "post",
 	      contentType : "application/json",
-	      data : JSON.stringify(diarycontentvo),//바꿔줬음
+	      data : JSON.stringify(diarycontentvo),
 	      dataType : "json",
 	      success : function(result) {
 	    	  
@@ -580,7 +579,6 @@
 	      }
 	   });
 	}
-
 	
 	
 	

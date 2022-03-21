@@ -54,11 +54,7 @@
                         </h3>
                     </div>
                     
-    
-                    <!-- <div class="mydiarydiv">
-                        <div>d</div>
-                    </div> -->
-                    
+                        
                     <div class="ct-list col-xs-9">
 
                         <!--달력-->
@@ -70,9 +66,6 @@
                         <!--검색창/수정/삭제/정렬-->
                         <div class="li_nav clearfix">
                             <div class="searchfor5">
-                                <!--
-                                <input type="text" class="search">
-                                <img class="glass" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">-->
 
                                 <input type="text" class="search_new" name="" value="" placeholder="검색어를 입력해주세요">
                                 <button class="btn-search">
@@ -108,7 +101,6 @@
 	                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}" style=" border-bottom: 1px solid #686099;">
 	                                <div class="mydiaryText-list2">
 	                                    <div class="mydiaryText7 clearfix">
-	                                    	<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
 	                                        <div class="mydiary-Date">Date:</div>
 	                                        <div class="mydiary-Date" data-diarydate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
 	                                        
@@ -128,11 +120,6 @@
 	                                        ${dcvo.protect}
 	                                    </div>
 	                                </div>
-	                                
-	                               <!--  
-	                                <div class="mydiaryImg-box7 mydiary-box7-support">
-	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-	                                </div>-->
 	                            </div>
                             </c:forEach>
                             
@@ -179,10 +166,7 @@
 		      		<button type="button" id="modalModifyBtn" class="modal-button-read">수정하기</button>
 		      		<input type="hidden" name="modaldiaryNo" value="">
 		      	</form>
-		      	<!--  
-		      	<form id="deleteForm" action="${pageContext.request.contextPath}/diary/deleteForm" method="get">
-		      		<button type="button" id="modalBtnDel" class="modal-button-read">삭제하기</button>
-		      	</form>-->
+		      
 		      	<button type="button" id="modalBtnDel" class="modal-button-read" style="margin-left:-220px;">삭제하기</button>
 		      </div>
 		    </div><!-- /.modal-content -->
@@ -264,7 +248,6 @@ $(".mydiary-list-box2").on("click",function(){
 	$("#diaryModal").modal('show');
 	
 });
-
 
 
 
@@ -351,6 +334,7 @@ function itemRender(diaryitemVo){
 	
 }
 
+
 /*수정하기 버튼을 클릭했을 때*/
 
 $("#modalModifyBtn").on("click",function(){
@@ -360,15 +344,6 @@ $("#modalModifyBtn").on("click",function(){
 	$("#modifyForm").submit();
 });
 
-
-/*삭제하기 버튼을 클릭했을 때*/
-/*
-$("#modalBtnDel").on("click",function(){
-	$("[name='modaldiaryNo']").val(diaryNo);
-	console.log(diaryNo);
-	
-	$("#deleteForm").submit();
-});
 
 
 /*삭제하기 버튼을 클릭했을 때*/
@@ -410,7 +385,7 @@ $("#modalBtnDel").on("click",function(){
 
 
 //////////////////////////////////////////////////////////
-//달력 관련 ///도움
+//달력 관련 ///
 $( "#datepicker" ).datepicker({
 	
 	currentText: "오늘", 
@@ -427,8 +402,30 @@ $( "#datepicker" ).datepicker({
    	beforeShowDay: function(date){ //일기쓴날만 달력 활성화
    		return renderWriteDay(date);
    	},
-	onSelect:function(selected, evnt) {
-		console.log(selected);
+	onSelect:function(selectdate, evnt) {
+		console.log(selectdate);
+		console.log("====datepicker");
+		
+		//리다이렉트
+		$.ajax({
+			//요청
+			url : "${pageContext.request.contextPath }/diary/list",
+			type : "post",
+			contentType : "application/json",
+			data : {diaryDate: selectdate},
+			
+			//응답
+			/*
+			dataType : "json",
+			success : function(result){
+				/*성공시 처리해야될 코드 작성*/
+			/*
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}*/
+			
+		});
 	}
 });
 
@@ -440,13 +437,10 @@ function renderWriteDay(date) {
 		// dayList 에 하나씩 담아줌.
 		dayList.push("${writedayList.diaryDate}");
 	</c:forEach>
+	
 	//일기쓴날
-	/*원래 있던 코드
-	var writedDay = getWriteDay();*/
 	var writedDay = dayList;
 		
-		//["2022-02-01", "2022-02-02", "2022-02-03", "2022-02-07", "2022-02-28", "2022-03-01", "2022-03-03", "2022-04-25"];
-	
 	//월 구하기
 	var thismonth = date.getMonth()+1;
  	if(thismonth<10){
@@ -469,30 +463,6 @@ function renderWriteDay(date) {
     }
 }
 
-/*renderWriteDate함수 자체가 console너무 여러번 태워서 ajax사용안했음*/
-/* function getWriteDay() {
-	var writedeDayList = [];
-	//서버에 요청해서 일기쓴날 리스트
-	 $.ajax({
-	      url : "${pageContext.request.contextPath}/diary/datelist",
-	      type : "post",
-	      //contentType : "application/json",
-	      //data : JSON.stringify(diarycontentvo),//바꿔줬음
-	      dataType : "json",
-	      success : function(result) {
-	    	  
-	    	 for(var i=0; i<result.length; i++){
-	    		 
-	    		 writedeDayList.push(result[i].diaryDate);
-	    	 }
-    		 return writedeDayList;
-	      },
-	      error : function(XHR, status, error) {
-	         console.error(status + " : " + error);
-	      }
-	   });
-	
-} */
 
 
 /*저장아이콘 클릭시 이미지로 저장(제목으로 저장하기 해결)*/
