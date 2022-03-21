@@ -147,7 +147,7 @@
                             
                             <div id="tab-3" class="tab-content">
                                 <c:forEach items="${bgmList}" var="bgmVo">
-									<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}">
+									<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
                                     	${bgmVo.bgmTitle}
                                 	</div>								
 								</c:forEach>
@@ -229,7 +229,7 @@
 		    	}
 		    	
 		    	$("#audio").attr("src",DiaryContent.diaryBgmSrc);
-		    	//console.log($("#audio").attr("src"));
+		    	console.log($("#audio").attr("src"));
 		    	
 		    	
 			    var DiaryItemList = DiaryContent.itemList;
@@ -495,7 +495,7 @@
 				diaryDate: diaryDate,
 				weather: weather,
 				protect: protect,
-				title: title
+				title: title,
 				diaryBgmSrc: bgmSrc
 		};
 		

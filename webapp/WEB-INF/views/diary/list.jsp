@@ -154,8 +154,8 @@
 			        <div style="float: right;">
 	                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
 	                </div>
-			        <div style="float:left; margin-right:15px; margin-top:3px;">
-			        	<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:38px;"></audio><!-- 일기를 클릭해서 모달창 떴을때 autoplay속성 html코드에 추가되도록 -->
+			        <div class="audiodiv" style="float:left; margin-right:15px; margin-top:3px;">
+			        	<audio id="audio" src="" controls autoplay loop style="height:20px; width:300px; margin-left:38px;"></audio>
 			        </div>	
 		        </div>
 		       
@@ -216,6 +216,8 @@ $(".mydiary-list-box2").on("click",function(){
 	//캔버스 초기화(이전에 보여졌던 일기 지우기--일기겹치는 현상 없애기);
 	modalCanvasInit();
 	
+	//$(".audiodiv").html('<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:38px;"></audio>');
+	
 	/*클릭한 일기의 일기번호*/
 	diaryNo = $(this).data("diaryno");
 	console.log(diaryNo);
@@ -268,17 +270,14 @@ $(".mydiary-list-box2").on("click",function(){
 
 /*일기보기 모달창 초기화*/
 function modalCanvasInit(){
-	/* var objects = canvas.getObjects();
-	console.log(objects);
-	for(var i=0; i<objects.length; i++){
-		canvas.remove(objects[i]);
-	}canvas.renderAll();
-	 */
+	
 	canvas.clear();
 	canvas.width = 680;
 	canvas.height = 510;
 	canvas.backgroundColor = '#dbd3c7';
+	//$("audio").remove();
 }	
+
 
 /*220316추가*/
 //아이템 그리기

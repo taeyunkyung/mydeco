@@ -148,7 +148,7 @@
                             
                             <div id="tab-3" class="tab-content">
 								<c:forEach items="${bgmList}" var="bgmVo">
-									<div id="bgm" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}" class="mydiary-writeForm-bgmList">
+									<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
                                     	${bgmVo.bgmTitle}
                                 	</div>								
 								</c:forEach>
