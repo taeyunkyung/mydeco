@@ -67,7 +67,7 @@
 								<li id="l${productVo.prodNo}"><img class="prod-img" src="${pageContext.request.contextPath}/upload/${productVo.prodImgSrc}">
 									<div class="info">
 										<p class="emo-tag ${productVo.emotion}"></p> / <p>${productVo.id}</p>
-										<h4>${productVo.prodName}</h4>
+										<h4><a href="${pageContext.request.contextPath}/myshop/details?prodNo=${productVo.prodNo}">${productVo.prodName}</a></h4>
 										<p>${productVo.price}원</p>
 										<p class="${productVo.delivery}"></p>
 
@@ -105,13 +105,11 @@
 						</ul>
 					</nav>
 				</div> <!-- content -->
-				
-				<!-- footer -->
-				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
-			
 			</div>	<!-- row -->
 		</div> <!-- container -->
 	</div> <!-- wrap -->
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
 </body>
 
 <script type="text/javascript">

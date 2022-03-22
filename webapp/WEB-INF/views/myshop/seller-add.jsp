@@ -174,13 +174,13 @@ svg {width: 40%; height: 40%;}
 						</div>
 					</form>
 				</div> <!-- content -->
-				
-				<!-- footer -->
-				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
-			
 			</div> <!-- row -->
 		</div> <!-- container -->
 	</div> <!-- wrap -->
+	
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+	
 </body>
 
 <script type="text/javascript">

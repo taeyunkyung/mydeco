@@ -155,8 +155,6 @@ label[for="prod-img"], label[for="prod-diary"] {
     cursor: pointer; 
     background: #fff;
     color: #757686; }
-    label:hover{
-        background-color: #ebebeb;}
 
 #img-area ul {padding-left: 0px;}
 

@@ -104,13 +104,13 @@
 						</ul>
 					</nav>
 				</div> <!-- content -->
-				
-				<!-- footer -->
-				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
-			
 			</div> <!-- row -->
 		</div> <!-- container -->
 	</div> <!-- wrap -->
+	
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
+			
 </body>
 
 <script type="text/javascript">

@@ -171,8 +171,8 @@ svg {width: 40%; height: 40%;}
 										</div>
 									</div> 
 									<div id="diary-area" data-count="${fn:length(productVo.prodDiaryList)}">
-										<c:forEach items="${productVo.prodDiaryList}" var="prodDiaryVo" begin="0" step="1" end="${fn:length(productVo.prodDiaryList)-1}" var="count">
-											<input class="a${count}" type="hidden" value="${prodDiaryVo.diaryNo}">
+										<c:forEach items="${productVo.prodDiaryList}" var="prodDiaryVo">
+											<input class="a" type="hidden" value="${prodDiaryVo.diaryNo}">
 										</c:forEach>
 									</div>
 								</td> 
@@ -183,14 +183,11 @@ svg {width: 40%; height: 40%;}
 							<input type="submit" id="submitBtn" value="수정하기">
 						</div>
 					</form>
-				</div> <!-- content -->
-				
-				<!-- footer -->
-				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
-			
-			</div> <!-- row -->
+				</div> <!-- content --></div> <!-- row -->
 		</div> <!-- container -->
-	</div> <!-- wrap -->
+	</div> <!-- wrap -->	
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import> 
 </body>
 
 <script type="text/javascript">
@@ -204,7 +201,7 @@ $(document).ready(function() {
 	$("#"+delivery).attr("checked", "checked");	
 	
 	for(var i=0; i<$("#diary-area").data("count"); i++) {
-		prodDiary[i] = $("#a"+i).val();
+		//prodDiary[i] = $("#a"+i).val();
 	}
 	
 	console.log($(".added").val());
