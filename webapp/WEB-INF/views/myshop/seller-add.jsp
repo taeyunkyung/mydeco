@@ -19,6 +19,16 @@
 <style>
 #d-table {width: 100%;}
 svg {width: 40%; height: 40%;}
+#img-area::-webkit-scrollbar-track {    
+    background-color: #fff;
+} #img-area::-webkit-scrollbar {height: 3px;
+} #img-area::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border: 1px solid #686099;
+    border-radius: 10px;
+} #img-area {
+    width: 560px; height: 160px; overflow-x: scroll; 
+    display: inline-flex;
 </style>
 </head>
 <body>
