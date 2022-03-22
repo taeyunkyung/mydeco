@@ -28,9 +28,10 @@ public class MydiaryController {
 	
 	/*리스트*/
 	@RequestMapping("/list")
-	public String list(Model model, HttpSession Session,@RequestParam(value = "diaryDate", required=false, defaultValue="nodate") String diaryDate) {
+	public String list(Model model, HttpSession Session, @RequestParam(value = "diaryDate", required=false, defaultValue="nodate") String diaryDate) {
 		System.out.println("mydiarycontroller-list");
 		UserVo authUser = (UserVo)Session.getAttribute("authUser");
+		System.out.println(diaryDate);
 		
 		/*로그인 사용자일때*/
 		if(authUser!= null) {
@@ -83,6 +84,16 @@ public class MydiaryController {
 		System.out.println(mydiaryService.getclickDateDiaryList(diarycontentvo,authUser));
 		System.out.println("======clickdatediarylist=====");
 		return mydiaryService.getclickDateDiaryList(diarycontentvo,authUser);
+	}
+	
+	/*상품등록한 일기판별*/
+	@ResponseBody
+	@RequestMapping("/getProdNo")
+	public String getProdNo( @RequestParam("diaryNo") int diaryNo) {
+		System.out.println(diaryNo);
+		
+		return mydiaryService.getProdNo(diaryNo);
+		
 	}
 	
 	

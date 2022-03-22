@@ -46,6 +46,12 @@ public class MydiaryDao {
 		return sqlSession.selectList("mydiary.getclickDateDiaryList",diarycontentvo);
 	}
 	
+	/*상품등록한 일기판별*/
+	public int getProdNo(int diaryNo) {
+		return sqlSession.selectOne("mydiary.getProdNo",diaryNo);
+	}
+	
+	
 	public void dbsticker(StickerVo vo) {
 		
 		sqlSession.insert("mydiary.diary-db",vo);

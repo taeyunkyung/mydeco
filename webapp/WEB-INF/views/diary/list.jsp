@@ -174,6 +174,9 @@
 		</div><!-- /.modal -->
      
      <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+	<!-- footer -->
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+
 </body>
 
 
@@ -349,24 +352,80 @@ $("#modalModifyBtn").on("click",function(){
 /*삭제하기 버튼을 클릭했을 때*/
 
 $("#modalBtnDel").on("click",function(){
-	if(confirm('삭제하시겠습니까')==true){
-		console.log("확인클릭");
-		
-		var diaryContentVo = {diaryNo: diaryNo};
-		console.log(diaryContentVo);
-		
+	
+	console.log(diaryNo);
+	/*상품페이지에 등록한 일기일경우엔 이런 경고창이 떠야함-->diaryprodNo값이 존재하면..*/
 		$.ajax({
-		    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    url : "${pageContext.request.contextPath}/diary/getProdNo",
 		    type : "post",
-		    contentType : "application/json",
-		    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    /* contentType : "application/json", */
+		    data : {diaryNo: diaryNo},//데이터 보내기-파라미터로받기
 		    dataType : "json",
 		    success : function(result) {
-				
-		    	if(result == 2){
-		    		location.href="${pageContext.request.contextPath}/diary/list"
+		    	console.log(result);
+		    	if(result == 1){
+		    		if(confirm('상품페이지에 등록된 일기 정보가 함께 삭제됩니다. 일기를 삭제하시겠습니까?')==true){
+		    			console.log("확인클릭");
+		    			
+		    			var diaryContentVo = {diaryNo: diaryNo};
+		    			console.log(diaryContentVo);
+		    			
+		    			$.ajax({
+		    			    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    			    type : "post",
+		    			    contentType : "application/json",
+		    			    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    			    dataType : "json",
+		    			    success : function(result) {
+		    					
+		    			    	if(result == 2){
+		    			    		location.href="${pageContext.request.contextPath}/diary/list"
+		    			    	}else{
+		    			    		alert('삭제할 수 없는 일기입니다.');
+		    			    	}
+		    				    
+		    			    },
+		    			    error : function(XHR, status, error) {
+		    			       console.error(status + " : " + error);
+		    			    }
+		    			 });
+		    			
+		    		}else{
+		    			console.log("취소클릭");
+		    			return;
+		    		}
 		    	}else{
-		    		alert('삭제할 수 없는 일기입니다.');
+		    		
+		    		if(confirm('일기를 삭제하시겠습니까?')==true){
+		    			console.log("확인클릭");
+		    			
+		    			var diaryContentVo = {diaryNo: diaryNo};
+		    			console.log(diaryContentVo);
+		    			
+		    			$.ajax({
+		    			    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    			    type : "post",
+		    			    contentType : "application/json",
+		    			    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    			    dataType : "json",
+		    			    success : function(result) {
+		    					
+		    			    	if(result == 2){
+		    			    		location.href="${pageContext.request.contextPath}/diary/list"
+		    			    	}else{
+		    			    		alert('삭제할 수 없는 일기입니다.');
+		    			    	}
+		    				    
+		    			    },
+		    			    error : function(XHR, status, error) {
+		    			       console.error(status + " : " + error);
+		    			    }
+		    			 });
+		    			
+		    		}else{
+		    			console.log("취소클릭");
+		    			return;
+		    		}
 		    	}
 			    
 		    },
@@ -375,10 +434,8 @@ $("#modalBtnDel").on("click",function(){
 		    }
 		 });
 		
-	}else{
-		console.log("취소클릭");
-		return;
-	}
+	
+	
 	
 });
 
@@ -405,27 +462,13 @@ $( "#datepicker" ).datepicker({
 	onSelect:function(selectdate, evnt) {
 		console.log(selectdate);
 		console.log("====datepicker");
+		//var diaryDate = {diaryDate: selectdate}
+		//console.log(diaryDate);
 		
-		//리다이렉트
-		$.ajax({
-			//요청
-			url : "${pageContext.request.contextPath }/diary/list",
-			type : "post",
-			contentType : "application/json",
-			data : {diaryDate: selectdate},
-			
-			//응답
-			/*
-			dataType : "json",
-			success : function(result){
-				/*성공시 처리해야될 코드 작성*/
-			/*
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}*/
-			
-		});
+		
+		window.location.href = '${pageContext.request.contextPath }/diary/list?diaryDate='+selectdate;
+		
+		
 	}
 });
 

@@ -7,31 +7,29 @@
 	<select id="getDiaryContentList" parameterType="com.mydeco.vo.DiaryContentVo" resultType="com.mydeco.vo.DiaryContentVo">
 			<![CDATA[
 				select diaryNo,
-				       userNo,
-				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
-				       weather,
-				       protect,
-				       title,
-				       diaryBgmSrc
+				        userNo,
+				        to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
+				        weather,
+				        protect,
+				        title,
+				        diaryBgmSrc
 				from diary
+			]]>
+			<if test='diaryDate == "nodate"'>
+				<![CDATA[
 				where userNo = #{userNo}
 				order by diaryDate desc
-			]]>
-	</select>
-	<!-- 만약 #{diaryDate} == "nodate"면   where절에 userNo만있는거 실행시키고 아니면 where절에 userNo + diaryDate실행시키기
-		select diaryNo,
-				       userNo,
-				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
-				       weather,
-				       protect,
-				       title,
-				       diaryBgmSrc
-				from diary
+				]]>
+  			</if>
+  			<if test='diaryDate != "nodate"'>
+				<![CDATA[
 				where userNo = #{userNo}
 				and diaryDate = #{diaryDate}
-				order by diaryDate desc	
-	 -->
-	
+				order by diaryDate desc
+				]]>
+  			</if>
+	</select>
+
 	
 	<!--다이어리번호가 ?인 다이어리 정보 가져오기(스티커 아이템제외) -->
 	<select id="getDiary" parameterType="int" resultType="com.mydeco.vo.DiaryContentVo">
@@ -94,6 +92,16 @@
 				where userNo = #{userNo}
 				and diaryDate = #{diaryDate}
 				order by diaryDate desc
+			]]>
+	</select>
+
+	
+	<!-- 일기를 사용해 등록한 상품의 상품번호 -->
+	<select id="getProdNo" parameterType="int" resultType="int">
+			<![CDATA[
+				select prodNo
+				from prodDiary
+				where diaryNo = #{diaryNo}
 			]]>
 	</select>
 

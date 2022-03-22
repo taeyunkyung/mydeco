@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.mydeco.dao.MydiaryDao;
 import com.mydeco.vo.BgmVo;
@@ -27,6 +28,17 @@ public class MydiaryService {
 		DiaryContentVo diarycontentvo = new DiaryContentVo(userNo,diaryDate);
 		
 		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(diarycontentvo);
+		/*
+		for(int i=0; i<dcList.size(); i++) {
+			int diaryNo = dcList.get(i).getDiaryNo();
+			int prodNo = mydiaryDao.getProdNo(diaryNo);
+			if(prodNo != null) {
+				dcList.set(i, diarycontentvo).setProdNo(prodNo);
+			}else {
+				
+			}
+			
+		}*/
 		
 		return dcList;
 	}
@@ -35,6 +47,18 @@ public class MydiaryService {
 	/*다이어리 쓴 날짜 리스트*/
 	public List<DiaryContentVo> getDiaryDateList(UserVo authUser){
 		return mydiaryDao.getDiaryDateList(authUser);
+	}
+	
+	/*상품등록한 일기판별*/
+	public String getProdNo(int diaryNo) {
+		int prodNo = mydiaryDao.getProdNo(diaryNo);
+		Integer IprodNo = Integer.valueOf(prodNo);
+		if(IprodNo != null) {
+			return "1";
+		}else {
+			return "0";
+		}
+		
 	}
 	
 	
