@@ -142,9 +142,7 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 							</div>
 						</div>
 
-						<div id="selectDiary">					
-							<!-- <img class="sel-img" id="d1" onclick="viewDiary(1)" src="${pageContext.request.contextPath}/upload/test.png"> -->					
-						
+						<div id="selectDiary">	
 							<c:forEach begin="0" end="${fn:length(productVo.prodDiaryList)-1}" step="1" var="count">
 								<img class="sel-img" id="d${count}" onclick="viewDiary(${productVo.prodDiaryList[count].diaryNo},${count})" 
 									src="${productVo.prodDiaryList[count].stickerSrc}">

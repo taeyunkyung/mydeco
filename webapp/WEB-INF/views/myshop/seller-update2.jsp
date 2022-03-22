@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,21 +14,10 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 
 <style>
 #d-table {width: 100%;}
 svg {width: 40%; height: 40%;}
-#img-area::-webkit-scrollbar-track {    
-    background-color: #fff;
-} #img-area::-webkit-scrollbar {height: 3px;
-} #img-area::-webkit-scrollbar-thumb {
-    background-color: #fff;
-    border: 1px solid #686099;
-    border-radius: 10px;
-} #img-area {
-    width: 560px; height: 160px; overflow-x: scroll; 
-    display: inline-flex;
 </style>
 </head>
 <body>
@@ -45,7 +33,8 @@ svg {width: 40%; height: 40%;}
 				
 				<!-- content -->
 				<div class="col-xs-9" id="main-content">
-					<form action="${pageContext.request.contextPath}/myshop/add" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/myshop/update" method="post" enctype="multipart/form-data">
+					
 					<!-- <form name="dataForm" id="dataForm" onsubmit="return register()"> -->
 						<table id="a-table">
 							<colgroup>
@@ -108,7 +97,7 @@ svg {width: 40%; height: 40%;}
 							<tr>
 								<td><label for="img-td">이미지</label></td>
 								<td id="img-td"><label for="prod-img">이미지 추가</label> 
-								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">								
+								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">
 									<div id="img-area">
 										<c:forEach items="${productVo.prodImgList}" var="list">
 											<img class="prod-img"
@@ -123,56 +112,49 @@ svg {width: 40%; height: 40%;}
 							</tr>
 							<tr>
 								<td><label for="diary-td">일기</label></td>
-								<td><table id="d-table">
-										<colgroup>
-											<col style="width: 100px">
-											<col style="width: 350px">
-											<col style="width: 244px">
-											<col style="align: center">
-										</colgroup>
-										<tr>
-											<td>번호</td>
-											<td>제목</td>
-											<td>날짜</td>
-											<td></td>
-										</tr>
-										<c:forEach items="${diaryList}" var="diaryVo">
-											<tr>
-												<td>${diaryVo.diaryNo}</td>
-												<td class="diaryView" data-no="${diaryVo.diaryNo}" data-toggle="modal" data-target=".diaryview">${diaryVo.title}</td>
-												<td>${diaryVo.diaryDate}</td>
-												<td><input style="width: 13px" type="checkbox"
-													class="diarySelect" data-title="${diaryVo.title}"
-													data-no="${diaryVo.diaryNo}"></td>
-											</tr>
-										</c:forEach>
-									</table> 
-									<div class="modal fade diaryview" tabindex="-1" role="dialog">
-										<div class="modal-dialog modal-lg"
-											style="width: 710px; height: 570px;">
+								<td id="diary-td"><label for="prod-diary">일기 추가</label> 
+								<input id="prod-diary" type="button" data-toggle="modal" data-target=".diaryList" value="일기 불러오기">
+								
+									<div class="modal fade diaryList" tabindex="-1"	role="dialog">
+										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
-												<div class="modal-header" style="height:50px">
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														<span aria-hidden="true">x</span>
 													</button>
-													<h4 class="modal-title" style="display:inline-block; float: left">나의 일기장</h4>
-													<div class="audiodiv"
-														style="float: left; margin-right: 15px; margin-top: 3px;">
-														<audio id="audio" src="" controls autoplay loop
-															style="height: 20px; width: 300px; margin-left: 38px;"></audio>
-													</div>
+													<h4 class="modal-title">일기장 불러오기</h4>
 												</div>
 												<div class="modal-body">
-													<p class="diaryContents"></p>
-													<canvas class="readCanvas" id="paper"></canvas>
+													<table id="d-table">
+														<colgroup>
+															<col style="width: 100px">
+															<col style="width: 350px">
+															<col style="width: 244px">
+															<col style="align: center">
+														</colgroup>
+														<tr>
+															<td>번호</td>
+															<td>제목</td>
+															<td>날짜</td>
+															<td>선택</td>
+														</tr>
+														<c:forEach items="${diaryList}" var="diaryVo">
+															<tr>
+																<td>${diaryVo.diaryNo}</td>
+																<td>${diaryVo.title}</td>
+																<td>${diaryVo.diaryDate}</td>
+																<td><input style="width:13px" type="checkbox" class="diarySelect" data-title="${diaryVo.title}" data-no="${diaryVo.diaryNo}"></td>
+															</tr>
+														</c:forEach>														
+													</table>
+													<input id="diarySelBtn" type="button" data-dismiss="modal" style="margin-left:28%; margin-top:15px" value="선택">
 												</div>
 											</div>
 										</div>
-									</div> 
-									<div id="diary-area" data-count="${fn:length(productVo.prodDiaryList)}">
-										<c:forEach items="${productVo.prodDiaryList}" var="prodDiaryVo" begin="0" step="1" end="${fn:length(productVo.prodDiaryList)-1}" var="count">
-											<input class="a${count}" type="hidden" value="${prodDiaryVo.diaryNo}">
+									</div>
+									<div id="diary-area">
+										<c:forEach items="${productVo.prodDiaryList}" var="prodDiaryVo">
+											<p data-no="${prodDiaryVo.diaryNo}">${prodDiaryVo.title}</p>
 										</c:forEach>
 									</div>
 								</td> 
@@ -194,132 +176,15 @@ svg {width: 40%; height: 40%;}
 </body>
 
 <script type="text/javascript">
-var prodDiary = [];
-$(document).ready(function() {
-	var emotion = $("#prod-emo").data("emotion");
-	var delivery = $("#prod-deliv").data("delivery");
-	console.log(emotion)
-	
-	$("#"+emotion).attr("checked", "checked");
-	$("#"+delivery).attr("checked", "checked");	
-	
-	for(var i=0; i<$("#diary-area").data("count"); i++) {
-		prodDiary[i] = $("#a"+i).val();
-	}
-	
-	console.log($(".added").val());
-});
-
-$("#d-table").on("click", ".diaryView", function() {	
-	var $this = $(this);
-	var diaryNo = $this.data("no"); console.log(diaryNo);
-	
-	$.ajax({			
-		url : "${pageContext.request.contextPath}/myshop/viewdiary",		
-		type : "post",
-		// contentType : "application/json",
-		data : {diaryNo: diaryNo},
-
-		dataType : "json",
-		success : function(diaryContentVo){
-			modalCanvasInit();
-			console.log(diaryContentVo);
-			$(".diaryContents").text(diaryContentVo.title+"\u00a0\u00a0 / \u00a0\u00a0"+diaryContentVo.diaryDate+"\u00a0\u00a0 / \u00a0\u00a0"+diaryContentVo.weather);
-			$("#audio").attr("src", diaryContentVo.diaryBgmSrc);
-			
-			var itemList = diaryContentVo.itemList;
-			
-			for(var i=0; i<itemList.length; i++) {
-				itemRender(itemList[i]);
-				console.log(itemList[i]);
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}	
+	$(document).ready(function() {
+		var emotion = $("#prod-emo").data("emotion");
+		var delivery = $("#prod-deliv").data("delivery");
+		console.log(emotion)
+		
+		$("#"+emotion).attr("checked", "checked");
+		$("#"+delivery).attr("checked", "checked");
+		
 	});
-});
-
-function modalCanvasInit(){
-	canvas.clear();
-	canvas.width = 680;
-	canvas.height = 510;
-	canvas.backgroundColor = '#dbd3c7';
-}
-
-function itemRender(diaryitemVo) {
-	if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
-		var text = new fabric.Textbox(diaryitemVo.text);
-
-		//기본 폰트 크기
-		text.fontSize = 18;
-		
-		//폰트
-		text.fontFamily = 'SCDream4';
-		
-		//좌표
-		text.top = diaryitemVo.top;
-		text.left = diaryitemVo.left;
-		
-		//스케일
-		text.scaleX = diaryitemVo.scaleX;
-		text.scaleY = diaryitemVo.scaleY;
-		
-		//각도
-		text.angle = diaryitemVo.angle;
-
-		//변경안되게
-		text.selectable = false;
-		
-		//커서모양기본
-		text.hoverCursor ="default";
-		
-		//캔버스에 추가
-		canvas.add(text);
-	
-	} else if(diaryitemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
-		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(backImg) {
-
-			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
-				scaleX: canvas.width / backImg.width,
-				scaleY: canvas.height / backImg.height
-			});
-			
-			console.log("=====================================");
-			console.log(backImg);
-		});
-		
-		
-	} else {  //스티커- stickerCateNo == 2
-		fabric.Image.fromURL(diaryitemVo.stickerSrc, function(oImg) {
-			//좌표
-			oImg.top = diaryitemVo.top;
-			oImg.left = diaryitemVo.left;
-			
-			//스케일
-			oImg.scaleX = diaryitemVo.scaleX;
-			oImg.scaleY = diaryitemVo.scaleY;
-			
-			//각도
-			oImg.angle = diaryitemVo.angle;
-			
-			//변경안되게
-			oImg.selectable = false;
-			
-			//커서모양기본
-			oImg.hoverCursor ="default";
-			
-			//캔버스에 추가
-			canvas.add(oImg);
-		});
-	}
-}
-
-var canvas = new fabric.Canvas("paper", {
-	 width: 680,
-	 height: 510,
-	 backgroundColor: '#dbd3c7'
-});
 
 	// input multiple 초기화, 새로운 배열 만들기
 	var submitFiles = []; 
@@ -358,32 +223,39 @@ var canvas = new fabric.Canvas("paper", {
 	
 	var index = 0;
 	
-	function delImg(index) {
-		console.log("index:"+index);
-		submitFiles.splice(index, 1);
-		
-		$("#imgId"+index).remove();
-		
-		console.log(submitFiles);		
-	}
-	
 	// 일기 추가
 	var diary = [];
+	var diaryTitle = [];
 	$("#d-table").on("click", ".diarySelect", function() {
 		var $this = $(this);
 		var diaryNo = $this.data("no");
-		diary.push(diaryNo);
+		diary.push(diaryNo);		
+		var title = $this.data("title");
+		diaryTitle.push(title);
 		
-		console.log(diary);
+		console.log(diaryNo); console.log(diaryTitle);
 	});
 		
-	$("#submitBtn").on("click", function() {
+	$("#diarySelBtn").on("click", function() {
+		console.log(diary);
+		
 		var input = document.createElement("input");
 		input.setAttribute("type", "hidden");
 		input.setAttribute("name", "diaryNo[]");
 		input.setAttribute("value", diary);
-
+		
 		document.querySelector("div#diary-area").appendChild(input);
+		for(var i=0; i<diaryTitle.length; i++) {
+			var str = '	<p style="display:block">'+ diaryTitle[i] +'</p>';
+			$("#diary-area").append(str);
+		}
+				
+		$("input[type=checkbox]").prop("checked", false);
 	});
+	
+	$("[aria-label='Close']").on("click", function() {
+		$("input[type=checkbox]").prop("checked", false);
+	});
+	
 </script>
 </html>
