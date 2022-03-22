@@ -18,9 +18,30 @@ a.btn-letter-write {
 	background-color: #877fb9;
 }
 
+
+#modalTitle{
+	height: 57px;
+}
+
 h3 {
 	margin: 20px 0px 15px 0px;
 	font-weight:bold;
+}
+
+.forMe {
+	float:left;
+	width: 400px;
+}
+
+.audiodiv {
+	float:right;
+	width: 330px;
+	margin: 0px 0px 0px 0px;
+}
+
+#audio {
+	
+	margin: 20px 0px 0px 0px;
 }
 
 div#cTitle {

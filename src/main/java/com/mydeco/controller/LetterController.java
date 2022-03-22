@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.LetterService;
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.LetterVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
@@ -55,6 +56,9 @@ public class LetterController {
 			Map<String, List<StickerVo>> stickerMap = letterService.getStickerList();
 			model.addAttribute("stickerMap",stickerMap);
 			System.out.println(stickerMap);
+			
+			List<BgmVo> bgmList = letterService.getBgmList();
+			model.addAttribute("bgmList",bgmList);
 			
 			return "letter/writeForm";
 		}else {
@@ -101,6 +105,9 @@ public class LetterController {
 			Map<String, List<StickerVo>> stickerMap = letterService.getStickerList();
 			model.addAttribute("stickerMap",stickerMap);
 			//System.out.println(stickerMap);
+			
+			List<BgmVo> bgmList = letterService.getBgmList();
+			model.addAttribute("bgmList",bgmList);
 			
 			return "letter/modifyForm";
 		}else {

@@ -49,7 +49,7 @@ div.letterwriteForm-write-region{
 #openDay {
 	float: left;
 	font-size: 15px;
-	width: 300px;
+	width: 120px;
 	padding: 5px 0px 5px 10px;
     margin: 5px 0px 0px 0px;
     text-align: left;
@@ -58,6 +58,12 @@ div.letterwriteForm-write-region{
 .writeform-button{
 	text-align: center;
 
+}
+
+#btnDelete {
+	
+	 margin: 0px 10px 0px 0px;
+	
 }
 
 .writeform-top-button{
@@ -74,18 +80,19 @@ div.letterwriteForm-write-region{
 
 
 a.writeform-modify{
+	float: right;
     border: 1px solid #6667AB;
     background: #fff;
     color: #6667AB; 
     font-family: 'SCDream4';
-    display: inline-block;
+
     width: 140px;
     height: 40px;
     font-weight: 400;
     font-size: 13px;
     padding: 10px;
     cursor: pointer; 
-    margin: 0px 10px 0px 0px;
+    margin: 0px 0px 0px 10px;
 }
 
 
@@ -95,11 +102,22 @@ background-color: #ebebeb; }
 
 
 .writeform-deco-btn{
-    width: 109px;
+    width: 228px;
     height: 40px;
-    margin: 5px;
+    margin: 3px 5px 0px 5px;
+    padding: 0px 0px 2px 0px;
     justify-content: center;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    background: #686099;
+    border: none;
 }
+
+.writeform-deco-btn:hover{
+	color: #686099;
+	background-color: #ebebeb; 
+}
+
 
 #chooseFile {
     visibility: hidden;
@@ -116,14 +134,17 @@ label[for=chooseFile]{
 .writeform-btn-left{
     float: left;
 }
-.photowid{
-	width:110px;
-	height:30px;
-	padding:-10px;
-	margin-left:-10px;
-	
-}
 
+.bgmList{
+    width: 228px;
+    height: 20px;
+    background-color: #2e2e2e;
+    color: #b3b3b3;
+    font-family: 'SCDream4';
+    font-size: 13px;
+    padding-bottom: 30px;
+    padding-top: 12px;
+}
  /*스크롤바 설정*/ 
 .content-box::-webkit-scrollbar{ 
     /* 스크롤바 막대 너비 설정 */ 

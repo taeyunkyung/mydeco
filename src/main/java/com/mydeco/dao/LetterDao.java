@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.LetterItemVo;
 import com.mydeco.vo.LetterVo;
 import com.mydeco.vo.StickerVo;
@@ -25,6 +26,11 @@ public class LetterDao {
 		sqlSession.insert("myLetter.stickerDB", stickerVo);
 	}
 	
+	
+	/*bgm가져오기*/
+	public List<BgmVo> getBgmList(){
+		return sqlSession.selectList("myLetter.getBgmList");
+	}
 	
 	
 	/*스티커 카테고리 목록 가져오기*/

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mydeco.dao.LetterDao;
+import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.LetterItemVo;
 import com.mydeco.vo.LetterVo;
 import com.mydeco.vo.StickerVo;
@@ -34,6 +35,12 @@ public class LetterService {
 	    }	
 	}
 	
+	
+	/*bgm리스트*/
+	public List<BgmVo> getBgmList() {
+		
+		return letterDao.getBgmList();
+	}
 	
 	/*스티커목록(꾸기미패널) 가져오기*/
 	public Map<String, List<StickerVo>> getStickerList(){

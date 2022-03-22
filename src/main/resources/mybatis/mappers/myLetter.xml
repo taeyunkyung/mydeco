@@ -11,6 +11,18 @@
 			]]>
 	</insert>
 	
+	
+	<!-- bgm리스트 가져오기 -->
+	<select id="getBgmList" resultType="com.mydeco.vo.BgmVo">
+			<![CDATA[
+				select 	bgmNo,
+						bgmTitle,
+       				   	bgmSrc
+				from bgm
+			]]>
+	</select>
+	
+	
 	<!-- 스티커 목록 가져오기 -->
 	<select id="getStickerList" parameterType="int" resultType="com.mydeco.vo.StickerVo">
 			<![CDATA[
@@ -96,7 +108,8 @@
 						to_char(openDay, 'yyyy-mm-dd') openDay,
 				        bgmSrc, 
 				        readYN,
-				        saveYN 
+				        saveYN,
+				        bgmSrc
 				from letter
 				where letterNo = #{letterNo}
 			]]>
