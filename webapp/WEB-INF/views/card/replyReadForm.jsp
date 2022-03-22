@@ -41,132 +41,75 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
-						<div class="row">
-							<div class="col-xs-12 border-cardread">
-								<!--내가 작성한 카드-->
-								<div class="cardRead-subcard">
-									<div class="imgdate">2022-02-03</div>
-									<img
-										src="${pageContext.request.contextPath}/assets/img/card/img7.jpg"
-										alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="ment">나님이 댓글 작성한 최근 카드</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="cardReadImg">
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img1.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img2.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img3.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img4.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img5.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/slideRight.png">
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12 border-cardread1"><!--내가 작성한 카드-->
+                                <div class="cardRead-subcard">
+                                    <div class="imgdate">2022-02-03</div>
+                                    <div class="cardContent"></div>
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="ment">나님이 작성한 최근 댓글카드</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="cardReadImg">
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img2.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-					<div class="col-xs-6">
-						<div class="row">
-							<div class="col-xs-12 border-cardread">
-								<div class="cardRead-subcard">
-									<div class="imgdate">2022-02-03</div>
-									<img
-										src="${pageContext.request.contextPath}/assets/img/card/img1.jpg"
-										alt="">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="ment">총 50개 댓글</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="cardReadImg">
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12 border-cardread2">
+                                <div class="cardRead-subcard">
+                                    <div class="imgdate">2022-02-03</div>
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="ment2">총 50개 댓글</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="cardReadImg2">
 
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/slideLeft.png">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img3.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img4.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img5.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img6.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/card/img7.jpg"
-												alt="">
-										</div>
-										<div>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/slideRight.png">
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				<div class="row">
 					<div class="col-xs-11">
 						<div class="button-center">
 							<button type="button" class="btn-ReadList">
-								<a href="${pageContext.request.contextPath}/card/main">리스트로
-									돌아가기</a>
+								<a href="${pageContext.request.contextPath}/card/main">리스트로 돌아가기</a>
 							</button>
 							<!--list페이지로 이동-->
 						</div>
@@ -174,8 +117,7 @@
 					<div class="col-xs-1">
 						<div class="button-right">
 							<button type="submit" class="btn-ReadComment">
-								<a href="${pageContext.request.contextPath}/card/writereply">댓글카드
-									작성</a>
+								<a href="${pageContext.request.contextPath}/card//replywrite">댓글카드 작성</a>
 							</button>
 						</div>
 					</div>

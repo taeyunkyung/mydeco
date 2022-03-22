@@ -10,6 +10,7 @@
        <typeAlias alias="LetterVo" type="com.mydeco.vo.LetterVo" />
        <typeAlias alias="LetterItemVo" type="com.mydeco.vo.LetterItemVo" />
        <typeAlias alias="CardVo" type="com.mydeco.vo.CardVo" />
+       <typeAlias alias="CardReplyVo" type="com.mydeco.vo.CardReplyVo" />
        <typeAlias alias="ShoppingMainListVo" type="com.mydeco.vo.ShoppingMainListVo" />
     </typeAliases>
 

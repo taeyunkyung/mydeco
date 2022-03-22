@@ -22,7 +22,6 @@
 	<div class="wrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
 					<!-- header -->
 					<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 					<!-- header끝 -->
@@ -44,8 +43,8 @@
 									<div class="card_list">
 										<div id="card_tap">
 											<div class="btn-card-write">
-												<c:if test="${!empty authUser}">
-													<a href="${pageContext.request.contextPath}/card/cardWriteForm">카드
+												<c:if test="${!empty authUser}"><!-- 클릭시 로그인 후 사용가능한 서비스입니다 뜨면서 회원가입 페이지로 이동되게끔 -->
+													<a href="${pageContext.request.contextPath}/card/cardWriteForm" id="notSign">카드
 														쓰기</a>
 												</c:if>
 											</div>
@@ -61,21 +60,32 @@
 											<section id="content1">
 												<!-- <div class="tap_content"> -->
 
-
-												<div class="flex-container">
 												
+												<div class="flex-container">
+												<!-- for문으로 돌리는구간 -->
+												
+												<c:forEach items="${addList}" var="vo">
 													<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">${vo.sysdate}</div>
-														<div class="imgtext">${vo.content}</div>
-														<div class="imgnum">답장10개</div>
+														<img src="${vo.cardImgSrc}">
+														<div class="imgdate">${vo.cardRegdate}</div>
+														<div class="imgtext">${vo.cardContent}</div>
+														<div class="imgnum">답장 ${vo.count}개</div>
 													</div>
+												</c:forEach>	
 													
+												<!-- for문으로 돌리기끝 -->
+											
 												</div>
 												<div class="row">
 													<div class="col-xs-12">
 														<div class="divPaging">
-															<span>◀</span> <span>num</span> <span>▶</span>
+															<span>◀</span> 
+															<span>1</span>
+															<span>2</span>
+															<span>3</span>
+															<span>4</span> 
+															<span>5</span>  
+															<span>▶</span>
 														</div>
 													</div>
 												</div>
@@ -85,21 +95,28 @@
 											<!------------------section2----------------------->
 											<section id="content2">
 												<!-- <div class="tap_content"> -->
-
+												
 												<div class="flex-container">
-												
-												<div class="fitems">
-														<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-														<div class="imgdate">${vo.sysdate}</div>
-														<div class="imgtext">${vo.content}</div>
-														<div class="imgnum">답장10개</div>
-													</div>
-												
+													<c:forEach items="${dList}" var="vo">
+												 		<div class="fitems">
+															<img src="${vo.cardImgSrc}">
+															<div class="imgdate">${vo.replyRegdate}</div>
+															<div class="imgtext">${vo.replyContent}</div>
+															<div class="imgnum">답장개</div>
+															<div class="chk-subcard"><input type="checkbox" class="chk-del" name="del" /></div>
+														</div>
+													</c:forEach>
 												</div>
-
+												
 												<div class="row">
 													<div class="divPaging">
-														<span>◀</span> <span>num</span> <span>▶</span>
+														<span>◀</span> 
+														<span>1</span>
+														<span>2</span>
+														<span>3</span>
+														<span>4</span> 
+														<span>5</span>  
+														<span>▶</span>
 													</div>
 													<button class="btn-card-del" type="reset">삭제</button>
 												</div>
@@ -114,5 +131,20 @@
 							<!--aside&content끝-->
 						</div>
 					</div>
+			</div>
+		</div>
+	</div>			
+	
+	<script type="text/javascript">
+	$("#notSign").on("click",function(){
+	alert("로그인 후 이용 가능한 서비스입니다.");	
+	
+	setTimeout(function(){
+		location.href="${pageContext.request.contextPath}/mydeco/loginForm";
+	},1000);
+	
+	});
+	
+	</script>
 </body>
 </html>

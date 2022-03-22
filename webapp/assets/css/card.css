@@ -18,10 +18,11 @@
 }
 
 div#fTitle{
+	width: 980px;
   border-bottom: #CEC9EF;
     border-width: 2px;
     border-bottom-style: solid;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 40px;
 }
 
 div#cTitle {
@@ -118,8 +119,8 @@ input {
 
 
 .btn-card-write a{
+	margin-right: 150px;
 	margin-top: 5px;
-  margin-right: 130px;
   float: right;
   padding-top: 10px;
   text-align: center;
@@ -150,7 +151,7 @@ input {
   background: rgb(104, 96, 153);
   position: relative;
     top: 90px;
-    left: 585px;
+    left: 595px;
   border: 0px;
   outline: 0px;
 }
@@ -253,6 +254,8 @@ input {
   color: black;
   font-size: 13px;
   margin-top: 0px;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .fitems .imgnum{
@@ -313,8 +316,8 @@ input, select, textarea {
 } */
 
 .cardwriteimg{
-  width: 640px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   margin: 70px 40px 40px 50px;
 }
 
@@ -322,7 +325,7 @@ input, select, textarea {
 a.btnwhite{
   float: left;
   padding-top: 10px;
-  margin-left: 40px;
+  margin-left: 30px;
   text-align: center;
   border: 1px solid #6667AB;
   background: #fff;
@@ -336,7 +339,7 @@ a.btnwhite{
 }
 
 .btn-writeform-save {
-	margin-left: 30px;
+	margin-left: -120px;
 	float: left;
   font-family: 'SCDream4';
   width: 140px;
@@ -347,6 +350,11 @@ a.btnwhite{
   cursor: pointer;
   background: #686099;
   color: #fff;
+}
+
+.writermargintop{
+	positive:relative;
+	bottom:50px;
 }
 
 .btn-writeform-save :hover{
@@ -395,8 +403,8 @@ a.btnwhite{
 
 #text_cnt{
   position: relative;
-  bottom: 540px;
-  left: 340px;
+ bottom: 530px;
+ left: 280px;
 }
 
 #c-text{
@@ -405,11 +413,15 @@ a.btnwhite{
   border: 0;
   background-color: #00ff0000;
   position: relative;
-    bottom: 550px;
-    left: 160px;
+ bottom: 520px;
+    left: 100px;
     resize: none;
-    width: 420px;
-    height: 420px;
+    width: 400px;
+    height: 400px;
+}
+
+.marginleft50{
+	margin-left:50px;
 }
 
 .age-op{
@@ -463,13 +475,26 @@ a.btnwhite{
 }
 
 .ment{
-  margin: 10px 0px 10px 0px;
+ margin: 10px 0px 10px 0px;
   text-align: center;
+}
+
+.ment2{
+ margin: 10px 0px 10px 150px;
 }
 
 
 .cardReadImg{
+	margin-left:50px;
   display: flex;
+  width: calc(80% / 1);
+  justify-content: space-around;
+}
+
+.cardReadImg2{
+	margin-left:-30px;
+  display: flex;
+  width: calc(80% / 1);
   justify-content: space-around;
 }
 
@@ -480,9 +505,17 @@ a.btnwhite{
   justify-content: space-around;
 }
 
+.cardReadImg2 img{
+  margin-left: -20px;
+  width: 50px;
+  height: 50px;
+  justify-content: space-around;
+}
+
 .cardRead-subcard img{
- width: 400px;
+ width: 380px;
  height: 400px;
+ padding-left: 10px;
 }
 
 .replyRead-subcard img{
@@ -492,17 +525,33 @@ a.btnwhite{
  }
  
 
-.border-cardread{
-  width: 90%;
+.border-cardread1{
+  width: 430px;
   border: 2px solid #c4c4c2f8;
-  margin-top: 20px;
-  margin-left: 30px;
+  margin-top: 10px;
+  margin-left: 70px;
+  padding-top: 10px;
+}
+
+.border-cardread2{
+  width: 430px;
+  border: 2px solid #c4c4c2f8;
+  margin-top: 10px;
   padding-top: 10px;
 }
 
 .button-center{
-  margin-top: 10px;
+  margin-top: 25px;
   text-align: center;
+}
+
+.btnmargin{
+	margin-top:25px;
+}
+
+.btncenter{
+	text-align: center;
+	margin-left: -50px;
 }
 
 .btn-ReadList{
@@ -511,12 +560,10 @@ font-family: 'SCDream4';
     background: #fff;
     color: #6667AB;
     width: 140px;
-    height: 40px;
     font-weight: 400;
     font-size: 13px;
     cursor: pointer;
-    margin-top:50px;
-    text-align:center;
+    padding:10px;
 }
 
 /*.btn-ReadList{
@@ -543,7 +590,7 @@ display: inline-block;
   font-family: 'SCDream4';
   width: 140px;
   height: 40px;
-  margin: 15px 0px 15px 0px;
+  margin: 15px 150px 15px 0px;
   font-weight: 400;
   font-size: 13px;
   border: none;
@@ -557,7 +604,6 @@ display: inline-block;
 }
 
 .cardRead-subcard{
-  text-align: center;
   margin-bottom: 40px;
 }
 .cardRead-subcard .imgdate{
@@ -623,15 +669,15 @@ display: inline-block;
 }
 
 .r-bgtext{
-  width:200px;
-  position: relative;
-  bottom: 500px;
-  left: 1040px;
+    width: 200px;
+    position: relative;
+    bottom: 510px;
+    left: 750px;
 }
 
 .r-bgtext button{
-  width: 70px;
-  height: 26px;
+    width: 100px;
+    height: 35px;
   border: 1px solid #6667AB;
   background: #fff;
   color: #6667AB; 

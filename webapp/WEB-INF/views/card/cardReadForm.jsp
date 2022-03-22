@@ -32,10 +32,11 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="row">
-                            <div class="col-xs-12 border-cardread"><!--내가 작성한 카드-->
+                            <div class="col-xs-12 border-cardread1"><!--내가 작성한 카드-->
                                 <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt="">
+                                    <div class="cardContent"></div>
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -47,11 +48,11 @@
                                 <div class="col-xs-12">
                                     <div class="cardReadImg">
                                         <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
-                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt=""></div>
-                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg" alt=""></div>
-                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt=""></div>
-                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg" alt=""></div>
-                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img2.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
+                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
                                         <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
                                         
                                     </div>
@@ -64,39 +65,38 @@
 
                     <div class="col-xs-6">
                         <div class="row">
-                            <div class="col-xs-12 border-cardread">
+                            <div class="col-xs-12 border-cardread2">
                                 <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="ment">총 50개 댓글</div>
+                                <div class="ment2">총 50개 댓글</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="cardReadImg">
+                                <div class="cardReadImg2">
 
                                     <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
-                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg" alt=""></div>
-                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg" alt=""></div>
-                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg" alt=""></div>
-                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg" alt=""></div>
-                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg" alt=""></div>
+                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt=""></div>
                                     <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
                                     
                                 </div>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="reset" class="btn-ReadList"><a class="cardMainForm" href="${pageContext.request.contextPath}/card/main">리스트로 돌아가기</a><!--list페이지로 이동-->
+                <div class="row btnmargin">
+                    <div class="col-xs-12 btncenter">
+                        <a href="${pageContext.request.contextPath}/card/main" class="btn-ReadList" >리스트로 돌아가기</a><!--list페이지로 이동-->
                         </div>
                     </div>
                 </div>

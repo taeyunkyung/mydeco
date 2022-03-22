@@ -32,9 +32,9 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <form action="${pageContext.request.contextPath}/card/cardwrite" method="get">
+	                <form action="${pageContext.request.contextPath}/card/cardWrite" method="get">
 		                <div class="row">
-		                    <div class="col-xs-8">
+		                    <div class="col-xs-6">
 		                        
 		                            <div class="row">
 		                            
@@ -42,8 +42,8 @@
 		                                    <div class="height600">
 		                                 
 		                                        <img id="big" class="cardwriteimg" src="${bgList[0].cardImgSrc}" alt="">
-		                                        <input type="text" name="cardImgNo" value="${bgList[0].cardImgSrc}">
-		                                        <textarea id="c-text" name="cardContent" cols="30" rows="10" onkeydown="limit(this.form)"></textarea>
+		                                        <input type="text" name="cardImgSrc" value="${bgList[0].cardImgSrc}">
+		                                        <textarea id="c-text" name="cardContent" cols="30" rows="10"></textarea>
 		                                        <div id="text_cnt">(0 / 300)</div>
 		                                         
 		                                    </div>
@@ -51,7 +51,7 @@
 		                            </div>
 		                    </div>
 		
-		                    <div class="col-xs-4">
+		                    <div class="col-xs-4 marginleft50">
 		                        <div class="border-cardwrite">
 		                            <div class="cardwritebg">
 		                                <div class="row">
@@ -64,11 +64,11 @@
 		                            </div>
 		                        </div>
 		                    </div>
-	                        
+	                        <div class="col-xs-2"></div>
 	                	</div>
 					
 		                <div class="row">
-		                    <div class="col-xs-8">
+		                    <div class="col-xs-8 writermargintop">
 		                         <div class="row">
 		                             <div class="col-xs-12 cardwriteradio">       
 		                                 <h4 class="r-age">성별</h4>
@@ -79,7 +79,7 @@
 		                         <div class="row">
 		                             <div class="col-xs-12 cardwriteradio">
 		                                 <h4 class="r-gender">연령</h4>
-		                                 <label><input type="radio" name="cardAge" value="teen">10대</label>
+		                                 <label><input type="radio" name="cardAge" value="teen" >10대</label>
 		                                 <label><input type="radio" name="cardAge" value="twn">20대</label>
 		                                 <label><input type="radio" name="cardAge" value="trn">30대</label>
 		                                 <label><input type="radio" name="cardAge" value="ftn" >40대 이상</label>
@@ -117,6 +117,8 @@
             });
         });
         
+        
+        
 		
 		//이미지 클릭시 썸네일 바뀜
 		/* var bigPic = document.querySelector("#big");
@@ -146,8 +148,7 @@
 			//배경이미지 경로 저장
 			$('[name="cardImgNo"]').val(cardImgSrc);
 		});
-		
-		
+	
 		
 		
     </script>

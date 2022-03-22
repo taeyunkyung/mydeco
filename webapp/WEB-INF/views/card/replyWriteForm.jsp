@@ -36,10 +36,10 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="row">
-                            <div class="col-xs-12 border-replyread"><!--내가 작성한 카드-->
-                                <div class="replyRead-subcard">
+                            <div class="col-xs-12 border-cardread1"><!--내가 작성한 카드-->
+                                <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -49,10 +49,10 @@
 
                     <div class="col-xs-6">
                         <div class="row">
-                            <div class="col-xs-12 border-replyread">
-                                <div class="replyRead-subcard">
+                            <div class="col-xs-12 border-cardread2">
+                                <div class="cardRead-subcard">
                                     <div class="imgdate">2022-02-03</div>
-                                    <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -62,55 +62,36 @@
                 <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
 
 
-                <%-- <div id="my_modal">
-                    
-                    <div>
-                        <div class="bgs">
-                            배경 선택
-                        </div>
-                        
-                        <div id="card-read">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (1).jpg"><!--누르면 적용-->
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (2).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (3).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (4).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (5).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (6).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (7).jpg">
-                            <img src="${pageContext.request.contextPath}/assets/img/card/img (8).jpg">
-                        </div>
-                    </div>
-                    <div class="btn-center">
-                        <button class="btn-card-application" type="button">적용</button>
-                    </div>
-                </div> --%>
+                   <div id="modal_write" class="modal fade">
+			   		<div class="modal-dialog modal-lg">
+			      		<div class="modal-content">
+			         		<div class="modal-header">
+			             
+			             	</div>
+			         	
+			         
+			           		<div class="modal-body">
+			        	
+			           	<!-- 모달창 주요 컨텐츠 -->
+			           
+			           		</div>
+			           
+			           
+				           <div class="modal-footer">
+				              <button type="button" class="modal-button-read">수정하기</button>
+				          	</div>
+			          
+			      		</div><!-- /.modal-content -->
+			   		</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				
+				
             </div>
         </div>
     </div>
     
-    <div id="modal_write" class="modal fade">
-   		<div class="modal-dialog modal-lg">
-      		<div class="modal-content">
-         		<div class="modal-header">
-             
-             	</div>
-         	
-         
-           		<div class="modal-body">
-        	
-           	<!-- 모달창 주요 컨텐츠 -->
-           
-           		</div>
-           
-           
-           <div class="modal-footer">
-              <button type="button" class="modal-button-read">수정하기</button>
-              <button id="modalBtnDel" type="button" class="modal-button-read">삭제하기</button>
-          	</div>
-          
-      	</div><!-- /.modal-content -->
-   	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
 
 
     </body>

@@ -3,23 +3,22 @@
 
 <mapper namespace="card">
 <!-- <select>, <insert>, <update>, <delete> -->
-	<!-- 디비 넣기 -->
+	
+	
+	<!-- 내가 작성한 카드 넣기 -->
 	<insert id="sendcard" parameterType="CardVo">
+		<selectKey keyProperty="cardNo" resultType="int" order="BEFORE">
+			select seq_card_no.nextval from dual
+		</selectKey>
 		<![CDATA[
 			insert into card 
-			values(seq_card_no.nextval,#{userNo},#{replyNo},#{cardImgNo},#{cardContent},sysdate,#{cardAge},#{cardGender})
-		]]>
-	
-	</insert> 
-
-	<insert id="receivecard" parameterType="CardVo">
-		<![CDATA[
-			insert into receiveCard 
-			values(seq_receivecard_no.nextval,#{userNo},#{replyNo},#{cardImgNo},#{receiveContent},sysdate,#{cardAge},#{cardGender})
+			values(#{cardNo}, #{userNo}, #{cardContent}, sysdate, #{cardAge}, #{cardGender}, #{cardImgSrc})
 		]]>
 	
 	</insert> 
 	
+	
+	<!-- 이미지 넣기 -->
 	<insert id="cardImg" parameterType="CardVo">
 		<![CDATA[
 			insert into cardImg
@@ -38,12 +37,111 @@
 		]]>
 	</select>
 	
-	<!-- 내가 쓴 카드 목록 가져오기 -->
+	
+	<!-- 내가 쓴 카드 리스트 가져오기 -->
+	<select id="ListaddCount" parameterType="Int" resultType="CardVo">
+	
+		<![CDATA[
+			select  c.cardNo cardNo,
+			        c.userNo userNo,
+			        substr(c.cardContent,1,50) as cardContent,
+        			to_char(c.cardRegdate,'YYYY-MM-DD') cardRegdate,
+			        c.cardAge cardAge,
+			        c.cardGender cardGender,
+			        c.cardImgSrc cardImgSrc,
+			        cnt.count count
+			from card c,  (select count(replyCardNo) count,
+							      cardNo
+				           from replyCard
+				           group by cardNo) cnt
+			where c.cardNo = cnt.cardNo(+)
+			and c.userNo = #{no}
+			order by c.cardRegdate asc
+		]]>
+	</select>
+	
+	<!-- 받은 카드 리스트 가져오기 -->
+	<select id="receiveCardList" parameterType="Int" resultType="CardReplyVo">
+		<![CDATA[
+			select  replyCardNo,
+			        userNo,
+			        cardNo,
+			        targetAge,
+			        targetGender,
+			        sendYN,
+			        replyContent,
+			        replyRegdate,
+			        cardImgSrc
+			from replyCard
+			where userNo = #{no}
+		]]>
+	</select>
+	
+	<!-- 연령대 조건 넣기-->
+	<select id="selectTargetList" parameterType="CardVo" resultType="CardReplyVo">
+		<![CDATA[
+			select a.trueAge targetAge,
+			       a.gender targetGender,
+			       a.userNo
+			from (select  to_number(to_char(sysdate, 'yyyy')) - to_number(to_char(substr(personalNo,1,4))) + 1 as trueage,
+			              gender,
+			              userNo
+			      from users
+			      where gender = #{cardGender}) a
+		]]>
+		<if test='cardAge == "teen"'>
+			<![CDATA[
+			where a.trueAge < 20
+			]]>
+		</if>	
+		<if test='cardAge == "twn"'>
+			<![CDATA[
+			where a.trueAge >= 20
+			and a.trueAge < 30
+			]]>
+		</if>	
+		<if test='cardAge == "trn"'>
+			<![CDATA[
+			where a.trueAge >= 30
+			and a.trueAge < 40
+			]]>
+		</if>
+		<if test='cardAge == "ftn"'>
+			<![CDATA[
+			where a.trueAge >= 40
+			]]>
+		</if>		
+	</select>
 	
 	
+	<!-- 답장카드 저장  보내기 개념 -->
+	<insert id="replyCardInsert" parameterType="CardReplyVo">
+		<![CDATA[
+			insert into replyCard (replyCardNo,
+                       userNo,
+                       cardNo,
+                       targetAge,
+                       targetGender,
+                       sendYN)
+			values(seq_replyCard_no.nextval,
+			       #{userNo},
+			       #{cardNo},
+			       #{targetAge},
+			       #{targetGender},
+			       #{sendYN})
+		]]>
+	</insert>
 	
-	<!-- 답장 갯수 가져오기 -->
-	<select id="reply" resultType="CardVo">
+	<!-- 받은카드 삭제하기 -->
+	<delete id="deleteCard" parameterType="int">
+    	<![CDATA[
+			delete from card
+			where cardNo = #{cardNo}
+    	]]>
+	</delete>
+	
+	<!-- 댓글 갯수 가져오기 -->
+	<!-- <select id="reply" resultType="CardVo">
 		<![CDATA[
 			select  cd.cardNo cardNo,
 		        	cd.userNo userNo,
@@ -60,10 +158,6 @@
 			where cd.cardNo = rc.replyNo
 			and cntrn.replyNo = cd.replyNo
 		]]>
-	</select>
-
-
-
-
+	</select> -->
 
 </mapper>

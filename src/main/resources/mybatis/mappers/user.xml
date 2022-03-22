@@ -6,7 +6,8 @@
 	<select id="login" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[
 			select  userNo,
-        			name
+        			name,
+        			gender
 			from users
 			where id = #{id}
 			and password = #{password}
