@@ -8,7 +8,11 @@
 </head>
 <body>
 
-	<div id="footer">Copyright ⓒ 2022 MyDeco. All right reserved</div>
+	<div id="footer">
+	
+		<p id="footer-top">Copyright ⓒ 2022 MyDeco. All right reserved</p>
+	
+	</div>
 	
 </body>
 </html>

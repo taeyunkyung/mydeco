@@ -166,7 +166,16 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-			 	<h3>나에게 보내는 편지</h3>
+			
+				<div id="modalTitle">
+					
+					<div class="audiodiv" style="float:right; margin-right:15px; margin-top:3px;">
+		        		<audio id="audio" src="" controls autoplay loop style="height:20px; width:300px; margin-left:38px;"></audio>
+		        	</div>	
+		        	
+		        	<h3 class="forMe">나에게 보내는 편지</h3>
+				</div>
+			 	
 				
 				<div class="days">
 		    		<div class="modal-day-left">
@@ -222,8 +231,8 @@ $(".popup_open_btn").on("click",function(){
 	var openyn = $(this).data("openyn");
 	console.log(openyn);
 	
-	var letterNo = $(this).data("letterno");
-
+	letterNo = $(this).data("letterno");
+	
 	
 	if(openyn == 'y'){ //열람가능한 편지
 		
@@ -305,6 +314,7 @@ function showLetter(letterNo){
 	    	
 		    $("#modal-regDate").text(letterVo.regDate);
 		    $("#modal-openDay").text(letterVo.openDay);
+		    $("#audio").attr("src",letterVo.bgmSrc);
 		    
 		    var letterItemList = letterVo.itemList;
 		    

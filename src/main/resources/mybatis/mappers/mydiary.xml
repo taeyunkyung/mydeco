@@ -4,7 +4,7 @@
 <mapper namespace="mydiary">
 
 	<!-- 다이어리 리스트 가져오기 -->
-	<select id="getDiaryContentList" parameterType="com.mydeco.vo.UserVo" resultType="com.mydeco.vo.DiaryContentVo">
+	<select id="getDiaryContentList" parameterType="com.mydeco.vo.DiaryContentVo" resultType="com.mydeco.vo.DiaryContentVo">
 			<![CDATA[
 				select diaryNo,
 				       userNo,
@@ -18,6 +18,19 @@
 				order by diaryDate desc
 			]]>
 	</select>
+	<!-- 만약 #{diaryDate} == "nodate"면   where절에 userNo만있는거 실행시키고 아니면 where절에 userNo + diaryDate실행시키기
+		select diaryNo,
+				       userNo,
+				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
+				       weather,
+				       protect,
+				       title,
+				       diaryBgmSrc
+				from diary
+				where userNo = #{userNo}
+				and diaryDate = #{diaryDate}
+				order by diaryDate desc	
+	 -->
 	
 	
 	<!--다이어리번호가 ?인 다이어리 정보 가져오기(스티커 아이템제외) -->
@@ -64,6 +77,23 @@
 				select to_char(diaryDate, 'YYYY-MM-DD')diaryDate
 				from diary
 				where userNo = #{userNo}
+			]]>
+	</select>
+	
+	<!-- 달력에서 날짜 클릭시 해당 날짜에 쓴 일기리스트 출력 -->
+	<select id="getclickDateDiaryList" parameterType="com.mydeco.vo.DiaryContentVo" resultType="com.mydeco.vo.DiaryContentVo">
+			<![CDATA[
+				select diaryNo,
+				       userNo,
+				       to_char(diaryDate, 'YYYY-MM-DD') diaryDate,
+				       weather,
+				       protect,
+				       title,
+				       diaryBgmSrc
+				from diary
+				where userNo = #{userNo}
+				and diaryDate = #{diaryDate}
+				order by diaryDate desc
 			]]>
 	</select>
 

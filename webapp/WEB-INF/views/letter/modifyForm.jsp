@@ -40,8 +40,8 @@
 							</div>
 							
 							<div class="writeform-top-button"> 
-								<a></a>
                             	<input type="submit" class="button writeform-save" id="btnSave" value="편지 보내기">
+                            	<input type="submit" class="button writeform-save" id="btnDelete" value="삭제하기">
                             </div>
                            
                         </div>
@@ -55,7 +55,9 @@
                         </div>
                         
                         
-                        
+                        <div id="audioDiv" style="float:left; margin-top:10px;">
+                        	<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+                        </div>
                         
                         
                         <div>
@@ -72,17 +74,9 @@
                     <div class="letterwriteForm-right">
                     	
                         <div class="clearfix">
-                            <form method="post" enctype="multipart/form-data">
-                                <div class="button writeform-btn-left writeform-deco-btn">
-                                    <label for="chooseFile">
-                                    	<div class="photowid">사진</div>
-                                    </label>
-                            
-                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                                </div>
-                            </form>
+
                             <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -122,24 +116,11 @@
 
                             
                             <div id="tab-3" class="tab-content">
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    사랑은 늘 도망가 임영웅 
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    ELEVEN IVE (아이브)ELEVEN
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
+								<c:forEach items="${bgmList}" var="bgmVo">
+									<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
+                                    	${bgmVo.bgmTitle}
+                                	</div>								
+								</c:forEach>
                             </div>
                            
                         </div>
@@ -191,11 +172,14 @@ var canvas = new fabric.Canvas("paper", {
 }); 
 
 
+var letterNo;
+
+
 //편지 보기 함수
 function showLetter(){
 
 	//클릭한 편지의 편지 번호
-	var letterNo = ${param.letterNo};
+	letterNo = ${param.letterNo};
 	
 	/*키:값*/
 	var lettervo = {letterNo : letterNo};
@@ -208,6 +192,8 @@ function showLetter(){
 	    data : JSON.stringify(lettervo),//데이터 보내기
 	    dataType : "json",
 	    success : function(letterVo) {
+	    	
+		    $("#audio").attr("src",letterVo.bgmSrc);
 		    
 		    var letterItemList = letterVo.itemList;
 		    
@@ -223,6 +209,61 @@ function showLetter(){
 
 
 }
+
+
+
+
+$("#btnDelete").on("click",function(){
+	
+	console.log("+++++");
+	console.log(letterNo);
+	
+	 if (confirm("정말 삭제하시겠습니까?") == true){//확인
+
+	     letterDelete(letterNo);
+
+	 }else{ //취소
+	     return false;
+	 }
+});
+
+
+
+//편지 삭제 함수
+function letterDelete(letterNo){
+	
+	//클릭한 편지의 편지 번호
+	var letterNo = letterNo;
+	
+	$.ajax({
+	    url : "${pageContext.request.contextPath}/letter/delete",
+	    type : "post",
+	    contentType : "application/json",
+	    data : JSON.stringify(letterNo),//데이터 보내기
+	    dataType : "json",
+	    success : function() {
+	    	
+	    	console.log("삭제되었습니다.");
+	    	
+	    	location.href="${pageContext.request.contextPath}/letter";
+	    	
+	    },
+	    error : function(XHR, status, error) {
+	       console.error(status + " : " + error);
+	    }
+	 });
+	
+}
+
+
+
+
+
+
+
+
+
+
 
 //아이템 그리기
 function itemRender(letterItemVo){
@@ -421,7 +462,8 @@ $("#btnSave").on("click", function(){
 	var letterVo = {
 			letterNo: letterNo,
 			openDay: openDay,
-			saveYN: saveYN
+			saveYN: saveYN,
+			bgmSrc: bgmSrc
 	};
 	
 	//캔버스에 있는 전체 객체를 배열로 가져온다
@@ -484,7 +526,8 @@ $("#btnKeep").on("click", function(){
 	var letterVo = {
 			letterNo: letterNo,
 			openDay: openDay,
-			saveYN: saveYN
+			saveYN: saveYN,
+			bgmSrc: bgmSrc
 	};
 	
 	//캔버스에 있는 전체 객체를 배열로 가져온다
@@ -531,6 +574,20 @@ $("#btnKeep").on("click", function(){
 });
 
 
+//bgm 전역변수
+var bgmSrc;
+
+/*bgm을 클릭했을때*/
+$(".bgmList").on("click",function(){
+	bgmSrc= $(this).data("bgmsrc");
+	console.log(bgmSrc);
+	
+	$("#audio").attr("src",bgmSrc);
+	
+	console.log("====")
+	console.log($("#audio").attr("src"));
+	console.log("====")
+})
 
 
 //저장 함수

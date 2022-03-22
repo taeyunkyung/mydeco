@@ -52,6 +52,10 @@
                         </div>
                         
                         <div>
+                        	<div id="audioDiv" style="float:left; margin-top:10px;">
+                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+                        	</div>
+                        
                             <div class="writeform-button">
                                 <a class="writeform-modify" id="btnKeep">임시 저장</a>
                                 <a class="writeform-modify" href="${pageContext.request.contextPath}/letter">취소</a>
@@ -65,17 +69,8 @@
                     <div class="letterwriteForm-right">
                     	
                         <div class="clearfix">
-                            <form method="post" enctype="multipart/form-data">
-                                <div class="button writeform-btn-left writeform-deco-btn">
-                                    <label for="chooseFile">
-                                    	<div class="photowid">사진</div>
-                                    </label>
-                            
-                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                                </div>
-                            </form>
                             <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="writeform-deco-btn" value="텍스트">
                             </div>
                         </div>
 
@@ -83,6 +78,7 @@
                         <div class="menu-box">
  
                             <ul class="tabs">
+                            
 								
 									<li class="tab-link current" data-tab="tab-1">스티커</li>
 										
@@ -115,24 +111,11 @@
 
                             
                             <div id="tab-3" class="tab-content">
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    사랑은 늘 도망가 임영웅 
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    ELEVEN IVE (아이브)ELEVEN
-                                </div>
-                                <div class="letter-writeForm-bgmList">
-                                    INVU 태연 (TAEYEON)
-                                </div>
+								<c:forEach items="${bgmList}" var="bgmVo">
+									<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
+                                    	${bgmVo.bgmTitle}
+                                	</div>								
+								</c:forEach>
                             </div>
                            
                         </div>
@@ -272,7 +255,8 @@ $("#btnSave").on("click", function(){
 	
 	var letterVo = {
 			openDay: openDay,
-			saveYN: saveYN
+			saveYN: saveYN,
+			bgmSrc: bgmSrc
 	};
 	
 	//캔버스에 있는 전체 객체를 배열로 가져온다
@@ -330,7 +314,8 @@ $("#btnKeep").on("click", function(){
 	
 	var letterVo = {
 			openDay: openDay,
-			saveYN: saveYN
+			saveYN: saveYN,
+			bgmSrc: bgmSrc
 	};
 	
 	//캔버스에 있는 전체 객체를 배열로 가져온다
@@ -378,6 +363,21 @@ $("#btnKeep").on("click", function(){
 	};
 });
 
+
+//bgm 전역변수
+var bgmSrc;
+
+/*bgm을 클릭했을때*/
+$(".bgmList").on("click",function(){
+	bgmSrc= $(this).data("bgmsrc");
+	console.log(bgmSrc);
+	
+	$("#audio").attr("src",bgmSrc);
+	
+	console.log("====")
+	console.log($("#audio").attr("src"));
+	console.log("====")
+})
 
 
 //저장 함수
