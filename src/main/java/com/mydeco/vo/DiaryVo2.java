@@ -1,5 +1,7 @@
 package com.mydeco.vo;
 
+import java.util.List;
+
 public class DiaryVo2 {
 
 	private int diaryNo;
@@ -10,6 +12,7 @@ public class DiaryVo2 {
 	private String title;
 	private String diaryBgmSrc;
 	private String stickerSrc;
+	private List<DiaryItemVo> itemList;
 
 	public DiaryVo2() {
 	}
@@ -89,6 +92,14 @@ public class DiaryVo2 {
 
 	public void setStickerSrc(String stickerSrc) {
 		this.stickerSrc = stickerSrc;
+	}
+
+	public List<DiaryItemVo> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<DiaryItemVo> itemList) {
+		this.itemList = itemList;
 	}
 
 	@Override

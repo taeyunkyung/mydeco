@@ -19,9 +19,9 @@ public class MydiaryDao {
 	SqlSession sqlSession;
 	
 	/*다이어리 리스트 가져오기*/
-	public List<DiaryContentVo> getDiaryContentList(UserVo authUser){
+	public List<DiaryContentVo> getDiaryContentList(DiaryContentVo diarycontentvo){
 		
-		return sqlSession.selectList("mydiary.getDiaryContentList", authUser);
+		return sqlSession.selectList("mydiary.getDiaryContentList", diarycontentvo);
 	}
 	
 	/*다이어리번호가 ? 인 다이어리 정보 가져오기(스티커 아이템제외)*/
@@ -39,6 +39,11 @@ public class MydiaryDao {
 	/*다이어리 쓴 날짜 리스트*/
 	public List<DiaryContentVo> getDiaryDateList(UserVo authUser){
 		return sqlSession.selectList("mydiary.getDiaryDateList",authUser);
+	}
+	
+	/*달력에서 날짜 클릭시 해당 날짜에 쓴 일기리스트 출력*/
+	public List<DiaryContentVo> getclickDateDiaryList(DiaryContentVo diarycontentvo){
+		return sqlSession.selectList("mydiary.getclickDateDiaryList",diarycontentvo);
 	}
 	
 	public void dbsticker(StickerVo vo) {

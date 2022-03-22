@@ -21,9 +21,12 @@ public class MydiaryService {
 	MydiaryDao mydiaryDao;
 	
 	/*다이어리 리스트 가져오기*/
-	public List<DiaryContentVo> getDiaryContentList(UserVo authUser){
+	public List<DiaryContentVo> getDiaryContentList(UserVo authUser,String diaryDate){
 		
-		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(authUser);
+		int userNo = authUser.getUserNo();
+		DiaryContentVo diarycontentvo = new DiaryContentVo(userNo,diaryDate);
+		
+		List<DiaryContentVo> dcList = mydiaryDao.getDiaryContentList(diarycontentvo);
 		
 		return dcList;
 	}
@@ -44,6 +47,15 @@ public class MydiaryService {
 	    	StickerVo vo = new StickerVo(stickerName,stickerSrc);
 	    	mydiaryDao.dbsticker(vo);
 	    }	
+	}
+	
+	/*달력에서 날짜 클릭시 해당 날짜에 쓴 일기리스트 출력*/
+	public List<DiaryContentVo> getclickDateDiaryList(DiaryContentVo diarycontentvo,UserVo authUser){
+		
+		int userNo = authUser.getUserNo();
+		diarycontentvo.setUserNo(userNo);
+		
+		return mydiaryDao.getclickDateDiaryList(diarycontentvo);
 	}
 	
 	

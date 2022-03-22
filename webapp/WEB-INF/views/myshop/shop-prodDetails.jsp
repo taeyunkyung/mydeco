@@ -123,12 +123,17 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 						<div class="modal fade diaryview" tabindex="-1" role="dialog">
 							<div class="modal-dialog modal-lg" style="width:710px; height: 570px;">
 								<div class="modal-content">
-									<div class="modal-header">
+									<div class="modal-header" style="height:50px">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">x</span>
 										</button>
-										<h4 class="modal-title">일기장 구경하기</h4>
-									</div>
+										<h4 class="modal-title" style="display:inline-block; float: left">일기장 구경하기</h4>
+										<div class="audiodiv"
+											style="float: left; margin-right: 15px; margin-top: 3px;">
+											<audio id="audio" src="" controls autoplay loop
+												style="height: 20px; width: 300px; margin-left: 38px;"></audio>
+										</div>
+									</div>									
 									<div class="modal-body">
 										<p class="diaryContents"></p>
 										<canvas class="readCanvas" id="paper"></canvas>
@@ -283,7 +288,8 @@ input[id="price"], input[id="emotion"], input[id="delivery"] {
 			success : function(diaryContentVo){
 				modalCanvasInit();
 				console.log(diaryContentVo);
-				$(".diaryContents").text(diaryContentVo.title+"\u00a0\u00a0"+diaryContentVo.diaryDate+"\u00a0\u00a0"+diaryContentVo.weather);
+				$(".diaryContents").text(diaryContentVo.title+"\u00a0\u00a0 / \u00a0\u00a0"+diaryContentVo.diaryDate+"\u00a0\u00a0 / \u00a0\u00a0"+diaryContentVo.weather);
+				$("#audio").attr("src", diaryContentVo.diaryBgmSrc);
 				
 				var itemList = diaryContentVo.itemList;
 				

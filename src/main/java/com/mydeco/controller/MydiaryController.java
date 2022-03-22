@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.MydiaryService;
@@ -27,14 +28,14 @@ public class MydiaryController {
 	
 	/*리스트*/
 	@RequestMapping("/list")
-	public String list(Model model, HttpSession Session) {
+	public String list(Model model, HttpSession Session,@RequestParam(value = "diaryDate", required=false, defaultValue="nodate") String diaryDate) {
 		System.out.println("mydiarycontroller-list");
 		UserVo authUser = (UserVo)Session.getAttribute("authUser");
 		
 		/*로그인 사용자일때*/
 		if(authUser!= null) {
 			/*일기 리스트*/
-			List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser);
+			List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser,diaryDate);
 			model.addAttribute("diarycontentList", diarycontentList);
 			System.out.println("=============================");
 			System.out.println(diarycontentList);
@@ -68,6 +69,23 @@ public class MydiaryController {
 		
 	}
 	
+	/*달력에서 날짜 클릭시 해당 날짜에 쓴 일기리스트 출력*/
+	@ResponseBody
+	@RequestMapping("/clickDateDiaryList")
+	public List<DiaryContentVo> clickDateDiaryList(@RequestBody DiaryContentVo diarycontentvo, HttpSession Session){
+		
+		UserVo authUser = (UserVo)Session.getAttribute("authUser");
+		
+		String diaryDate = diarycontentvo.getDiaryDate();
+		System.out.println(diaryDate);
+		
+		System.out.println("======clickdatediarylist=====");
+		System.out.println(mydiaryService.getclickDateDiaryList(diarycontentvo,authUser));
+		System.out.println("======clickdatediarylist=====");
+		return mydiaryService.getclickDateDiaryList(diarycontentvo,authUser);
+	}
+	
+	
 	/*220316수정*/
 	/*쓰기폼*/
 	@RequestMapping("/writeForm")
@@ -82,6 +100,7 @@ public class MydiaryController {
 			model.addAttribute("stickerMap",stickerMap);
 			System.out.println(stickerMap);
 			
+			/*bgm*/
 			List<BgmVo> bgmList = mydiaryService.getBgmList();
 			model.addAttribute("bgmList",bgmList);
 			
@@ -133,6 +152,7 @@ public class MydiaryController {
 			Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
 			model.addAttribute("stickerMap",stickerMap);
 			
+			/*bgm*/
 			List<BgmVo> bgmList = mydiaryService.getBgmList();
 			model.addAttribute("bgmList",bgmList);
 			
