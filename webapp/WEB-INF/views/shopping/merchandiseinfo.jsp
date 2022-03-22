@@ -405,45 +405,7 @@
 
 	});
 
-	/////////////////////////////////////////대댓글 달기////////////////////////
 
-		$("#listArea").on("click", ".replesub", function() {
-
-		var cmtContent = $(this).val("textarea");
-		
-		var cmtNo = $(this).data("cmtno");
-		console.log('리플섭 정보 출력');
-		console.log(cmtNo);
-		console.log(cmtContent);
-		var ShoppingCmtVo ={ cmtNo: cmtNo,
-							 cmtContent: comtContent,
-							 
-		};
-
-		var ShoppingCmtVo = {
-			cmtContent : cmttext,
-			prodNo : prodNo
-		};
-		console.log(cmttext);
-		console.log(prodNo);
-/*
-		$.ajax({
-
-			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(ShoppingCmtVo),
-
-			dataType : "json",
-			success : function(result) {
-				/*성공시 처리해야될 코드 작성*/
-
-/*			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});*/
-	});
 
 	//////////////////////////////////////////이미지 순서바꾸기//////////////////
 
@@ -777,7 +739,7 @@ $("#modalModifyBtn").on("click",function(){
 
 
 
-/////////////////////////대댓글달기/////////////////////////////////
+/////////////////////////대댓글 작성 창 열기/////////////////////////////////
 
 	$("#listArea").on("click", ".reReple", function() {
 		
@@ -787,10 +749,10 @@ $("#modalModifyBtn").on("click",function(){
 		
 		var str ="";
 		str += '<div class="row backgroundgray">';
-		str += '	<div class="col-xs-10 padding0">';
-		str += '		<textarea placeholder="댓글을 입력해주세요"></textarea>';
+		str += '	<div class="col-xs-10 padding0 rereCmt">';
+		str += '		<textarea placeholder="댓글을 입력해주세요" class="txt-rereCmt"></textarea>';
 		str += '	</div>';
-		str += '	<div class="col-xs-2 padding0"><button class="button button2 marginauto replesub r-button">답글 달기</button></div>';
+		str += '	<div class="col-xs-2 padding0"><button class="button button2 marginauto replesub r-button" data-cmtno="'+cmtNo+'" >답글 달기</button></div>';
 		str += '</div>';
 
 	
@@ -799,7 +761,47 @@ $("#modalModifyBtn").on("click",function(){
 		$(this).parents(".purpleback.underborder").next().append(str);
 		//$("#listArea").off("click",".reReple");
 	});
-	
+
+/////////////////////////대댓글 작성 창 작성/////////////////////////////////
+
+	$("#listArea").on("click", ".replesub", function() {
+		console.log("대댓글 저장 버튼 클릭");
+		console.log($(this).parents().find(".rereCmt").children(".txt-rereCmt").val());
+		//prodNo
+		var prodNo ="${product.prodNo}"
+		
+		//cmtNo
+		var cmtNo = $(this).data("cmtno");
+		//cmtContent
+		
+		//var cmtContent = $(this).val("textarea");
+		var cmtContent =  $(this).parents().find(".rereCmt").children(".txt-rereCmt").val();
+		
+		var ShoppingCmtVo ={
+				prodNo: prodNo,
+				cmtNo: cmtNo,
+				cmtContent: cmtContent
+		};
+
+		console.log(ShoppingCmtVo);
+/*
+		$.ajax({
+
+			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(ShoppingCmtVo),
+
+			dataType : "json",
+			success : function(result) {
+				/*성공시 처리해야될 코드 작성*/
+
+/*			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});*/
+	});
 	
 </script>
 
