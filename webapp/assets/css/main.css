@@ -175,6 +175,7 @@ input[id="keyword"] {
 
 /*footer*/
 #footer {
+	width: 1100px;
     text-align: center;    
     font-family: 'SCDream4';
     border-color: #CEC9EF;

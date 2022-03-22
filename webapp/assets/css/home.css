@@ -1,9 +1,9 @@
 /*이미지 슬라이드*/
 #visual {
     position: relative;
-    width: 1140px;
-    height: 624px;
-    margin: 0 auto;
+    width: 1000px;
+    height: 560px;
+    margin: 0px 0px 0px 40px;
     overflow: hidden;           
     box-shadow: 1px 5px 10px 2px #CEC9EF;
 }
