@@ -221,7 +221,7 @@
 						<div class="row text-left">
 							<div class="col-xs-12">
 								<!-- ajax로 출력할부분 -->
-								<div class="row">
+								<div class="row purpleback">
 									<div class="col-xs-10">
 										<span class="recomandfontstyle">명수박님</span>
 									</div>
@@ -229,13 +229,13 @@
 										<span class="text-right">2022-02-22</span>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row purpleback">
 									<div class="col-xs-11">
 										<div class="height60">
 											<span>오랜 친구를 보내시는군요 섭섭하시겠어요</span>
 										</div>
 									</div>
-									<div class="col-xs-1">
+									<div class="col-xs-1 padding0">
 										<button id="recmt">댓글</button>
 									</div>
 								</div>
@@ -407,15 +407,18 @@
 
 	/////////////////////////////////////////대댓글 달기////////////////////////
 
-	$("#recmt").on("click", function() {
+		$("#listArea").on("click", ".replesub", function() {
 
-		var cmttext = $("#recmt").val();
-
-		var prodNo = $
-		{
-			product.prodNo
-		}
-		;
+		var cmtContent = $(this).val("textarea");
+		
+		var cmtNo = $(this).data("cmtno");
+		console.log('리플섭 정보 출력');
+		console.log(cmtNo);
+		console.log(cmtContent);
+		var ShoppingCmtVo ={ cmtNo: cmtNo,
+							 cmtContent: comtContent,
+							 
+		};
 
 		var ShoppingCmtVo = {
 			cmtContent : cmttext,
@@ -423,7 +426,7 @@
 		};
 		console.log(cmttext);
 		console.log(prodNo);
-
+/*
 		$.ajax({
 
 			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
@@ -435,11 +438,11 @@
 			success : function(result) {
 				/*성공시 처리해야될 코드 작성*/
 
-			},
+/*			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		});
+		});*/
 	});
 
 	//////////////////////////////////////////이미지 순서바꾸기//////////////////
@@ -558,23 +561,26 @@
 
 	function render(ShoppingCmtVo, updown) {
 		var str = '';
-		str += '	<div class="row backgroundgray">';
+		str += '	<div class="row purpleback">';
 		str += '		<div class="col-xs-10">';
-		str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name
-				+ '님</span>';
+		str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name+ '님</span>';
 		str += '		</div>';
 		str += '		<div class="col-xs-2">';
-		str += '			<span class="text-right">' + ShoppingCmtVo.regDate
-				+ '</span>';
+		str += '			<span class="text-right">' + ShoppingCmtVo.regDate+ '</span>';
 		str += '		</div>';
 		str += '	</div>';
-		str += '	<div class="row backgroundgray">';
-		str += '		<div class="col-xs-12">';
-		str += '			<div class="height60">'; //data-no 부분에 항상 소문자만 쓰기 
+		str += '	<div class="row purpleback underborder">';
+		str += '		<div class="col-xs-11">';
+		str += '			<div class="height30">'; //data-no 부분에 항상 소문자만 쓰기 
 		str += '				<span>' + ShoppingCmtVo.cmtContent + '</span>';
 		str += '			</div>';
 		str += '		</div>';
+		str += ' 		<div class="col-xs-1 padding0">';
+		str += ' 			<button class="replebutton reReple" data-cmtno="'+ ShoppingCmtVo.cmtNo +'">댓글</button>';
+		str += '		</div>';
 		str += '	</div>';
+		str += '	<div></div>';
+		
 
 		if (updown == 'down') {
 			$("#listArea").append(str);
@@ -771,14 +777,28 @@ $("#modalModifyBtn").on("click",function(){
 
 
 
-//////////////////////////////////////////////////////////
+/////////////////////////대댓글달기/////////////////////////////////
+
+	$("#listArea").on("click", ".reReple", function() {
+		
+		var cmtNo = $(this).data("cmtno");
+		console.log(cmtNo);
+		
+		
+		var str ="";
+		str += '<div class="row backgroundgray">';
+		str += '	<div class="col-xs-10 padding0">';
+		str += '		<textarea placeholder="댓글을 입력해주세요"></textarea>';
+		str += '	</div>';
+		str += '	<div class="col-xs-2 padding0"><button class="button button2 marginauto replesub r-button">답글 달기</button></div>';
+		str += '</div>';
 
 	
-	
-	
-	
-	
-	
+		
+		$(this).parents(".purpleback.underborder").next().children().first().remove();
+		$(this).parents(".purpleback.underborder").next().append(str);
+		//$("#listArea").off("click",".reReple");
+	});
 	
 	
 </script>

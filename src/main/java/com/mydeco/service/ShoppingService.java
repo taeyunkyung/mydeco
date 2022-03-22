@@ -61,10 +61,19 @@ public class ShoppingService {
 	}
 
 	///////////////////// 찜하기 /////////////////////////
-	public void addpick(ProductVo productVo) {
+	public String addpick(ProductVo productVo) {
 		System.out.println("서비스의 픽미픽미픽미업");
 
-		shoppingDao.addpick(productVo);
+		ProductVo pVo = shoppingDao.pickCheck(productVo);
+		
+		if(pVo == null) {
+			shoppingDao.addpick(productVo);
+			return "addPick";
+		}else{
+			System.out.println("서비스의 픽넘"+pVo.getPickNo());
+			shoppingDao.deletepick(pVo.getPickNo()); 
+			return "delPick";
+		}
 	}
 
 	////////////////// 페이징/////////////
@@ -130,5 +139,8 @@ public class ShoppingService {
 		System.out.println("서비스의 다이어리 확인용" + dcList);
 		return dcList;
 	}
+	
+	//////////////////메인 리스트 기능 다 합침/////////
+
 
 }

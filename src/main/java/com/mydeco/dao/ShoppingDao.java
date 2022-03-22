@@ -65,10 +65,10 @@ public class ShoppingDao {
 	}
 
 	//////////////////////////// 찜하기//////////////////////////////
-	public void addpick(ProductVo productVo) {
+	public int addpick(ProductVo productVo) {
 		System.out.println("다오의 픽미픽미픽미업");
 		System.out.println("다오의 픽미픽미픽미업 정보" + productVo);
-		sqlSession.insert("shopping.addpick", productVo);
+		return sqlSession.insert("shopping.addpick", productVo);
 	}
 
 	////////////////////////// 페이징////////////////////////////
@@ -113,4 +113,18 @@ public class ShoppingDao {
 		return dcList;
 	}
 
+	///////////////////////찜 추가되었는지 확인////////////
+	public ProductVo pickCheck(ProductVo productVo) {
+		System.out.println("다오의 픽첵 도킹");
+		System.out.println("다오의 푸로덕트 브이오" +productVo);
+		
+		ProductVo pVo = sqlSession.selectOne("shopping.pickCheck", productVo);
+		System.out.println("다오의 넘버체크"+pVo);
+		return pVo;
+	}	
+	////////////////////픽 지우기//////////////////////
+	public int deletepick(int no) {
+		System.out.println("다오의 픽딜리트 도킹");
+		return sqlSession.delete("shopping.delPick", no);
+	}
 }

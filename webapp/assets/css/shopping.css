@@ -76,6 +76,9 @@
 .height60{
     height: 60px;
 }
+.height30{
+	height: 30px;
+}
 .infotext{
     font-family: 'Montserrat';
     font-weight: 500;
@@ -150,4 +153,18 @@ color: #fff;
 
 .text-left{
 	text-align: left;
+}
+.purpleback{
+	background-color: #D7D6E5;
+}
+.underborder{
+	border-bottom: 1px dotted gray;
+}
+.replebutton{
+	border: none;
+    cursor: pointer;
+    background: #72B1E3;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 3px;
 }

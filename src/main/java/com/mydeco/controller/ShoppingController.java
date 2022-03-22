@@ -59,7 +59,7 @@ public class ShoppingController {
 
 	@ResponseBody
 	@RequestMapping("/addpick")
-	public void addpick(@RequestBody ProductVo productVo, HttpSession session) {
+	public String addpick(@RequestBody ProductVo productVo, HttpSession session) {
 		
 		System.out.println("컨트롤러의 픽미픽미픽미업");
 		
@@ -71,8 +71,11 @@ public class ShoppingController {
 		System.out.println(session.getAttribute("authUser"));
 	
 		productVo.setUserNo(authUser.getUserNo());
-		shoppingService.addpick(productVo); 
+		String pickResult = shoppingService.addpick(productVo); 
 		
+		//shoppingService.pickCheck(productVo);
+		
+		return pickResult;
 	}
 	
 	///////////////////////////쇼핑몰 메인 제목 검색////////////////////////////////////
@@ -164,7 +167,7 @@ public class ShoppingController {
 		return cmtList;
 	}
 	////////////////////////페이징//////////////////////
-	@RequestMapping("/myProduct")
+	@RequestMapping("/page")
 	public String myProductList(Model model,
 			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
 			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) {
