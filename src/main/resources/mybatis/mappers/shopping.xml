@@ -310,4 +310,21 @@
 	
 	
 	</select>
+	<select id="pickCheck" parameterType="ProductVo" resultType="ProductVo">
+		<![CDATA[
+			select pickNo,
+			       userNo,
+			       prodNo,
+			       regDate
+			from pick
+			where prodNo = #{prodNo}
+			and userNo = #{userNo}	
+		]]>
+	</select>
+	
+	<delete id="delPick" parameterType="Int">
+		<![CDATA[
+			delete pick where pickNo = #{no}
+		]]>
+	</delete>
 </mapper>
