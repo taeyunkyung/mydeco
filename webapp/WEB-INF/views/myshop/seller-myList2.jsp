@@ -35,7 +35,7 @@
 					
 					<div class="row">
 					
-						<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+						<c:import url="/WEB-INF/views/include/aside-shop2.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">
 							<h3 class="subtitle">

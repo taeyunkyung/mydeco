@@ -23,7 +23,7 @@ public class MyUserController {
 	@RequestMapping("/signup")
 	public String signup() {
 		System.out.println("signup.page");
-		return "user/signup";
+		return "user/signup2";
 	}
 
 	@ResponseBody
@@ -67,7 +67,7 @@ public class MyUserController {
 		UserVo userVo = myUserService.modifyForm(authUser.getUserNo());
 		model.addAttribute("userVo", userVo);
 		
-		return "user/modifyForm";
+		return "user/modifyForm2";
 	}
 	
 	@RequestMapping("/modify")
