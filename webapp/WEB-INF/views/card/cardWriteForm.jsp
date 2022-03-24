@@ -18,91 +18,128 @@
     </head>
 
     <body>
-        <div class="wrap">
-            <div class="container">
-                <div class="row">
-	                <!-- header -->
-					<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-	    			<!-- header끝 -->
-	                <!--contents-->
-	                <div class="row">
-	                    <div class="col-xs-12">
-	                        <div id="fTitle">
-	                            <h3>소통 카드</h3>
-	                        </div>
-	                    </div>
-	                </div>
-	                <form action="${pageContext.request.contextPath}/card/cardWrite" method="get">
-		                <div class="row">
-		                    <div class="col-xs-6">
-		                        
-		                            <div class="row">
-		                            
-		                                <div class="col-xs-12">
-		                                    <div class="height600">
-		                                 
-		                                        <img id="big" class="cardwriteimg" src="${bgList[0].cardImgSrc}" alt="">
-		                                        <input type="text" name="cardImgSrc" value="${bgList[0].cardImgSrc}">
-		                                        <textarea id="c-text" name="cardContent" cols="30" rows="10"></textarea>
-		                                        <div id="text_cnt">(0 / 300)</div>
-		                                         
-		                                    </div>
-		                                </div>
-		                            </div>
-		                    </div>
+        <div id="wrap">
 		
-		                    <div class="col-xs-4 marginleft50">
-		                        <div class="border-cardwrite">
-		                            <div class="cardwritebg">
-		                                <div class="row">
-		                                	<c:forEach items="${bgList}" var="vo">
-			                                	<div class="col-xs-6">
-			                                        <img class="small" src="${vo.cardImgSrc}" data-cardimgno="${vo.cardImgNo}" >
-			                                    </div>
-		                                	</c:forEach>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-	                        <div class="col-xs-2"></div>
-	                	</div>
-					
-		                <div class="row">
-		                    <div class="col-xs-8 writermargintop">
-		                         <div class="row">
-		                             <div class="col-xs-12 cardwriteradio">       
-		                                 <h4 class="r-age">성별</h4>
-		                                 <label><input type="radio" name="cardGender" value="male">남성</label>
-		                                 <label><input type="radio" name="cardGender" value="female">여성</label>                                      
-		                             </div>
-		                         </div> 
-		                         <div class="row">
-		                             <div class="col-xs-12 cardwriteradio">
-		                                 <h4 class="r-gender">연령</h4>
-		                                 <label><input type="radio" name="cardAge" value="teen" >10대</label>
-		                                 <label><input type="radio" name="cardAge" value="twn">20대</label>
-		                                 <label><input type="radio" name="cardAge" value="trn">30대</label>
-		                                 <label><input type="radio" name="cardAge" value="ftn" >40대 이상</label>
-		                             </div>
-		                         </div>
-		                    </div>
-		                   
-		                    <!--보내기/취소-->
-		                    <div class="col-xs-4">
-		                    	
-		                        <button id="saveBtn" type="submit" class="btn-writeform-save">보내기</button>
-		                        <a href="${pageContext.request.contextPath}/card/main" class="btnwhite">취소</a><!--list페이지로 이동-->
-		                    </div>
-		                </div>
-				</form>
+		<div class="container">
+		
+			<!-- header -->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
+			<div class="row">
 				
-            </div>
-       </div>
-   </div>
-                
-                
+				<!-- content -->
+				<div id="content" class="col-xs-12">
+					
+					<div class="row">
+					
+						<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
+					
+						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
+							<div id="cTitle">
+								<h3>소통 카드</h3>
+							</div>
+							
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+								
+									<form action="${pageContext.request.contextPath}/card/cardWrite" method="get">
+						                <div class="row">
+						                    <div class="col-xs-6">
+						                        
+						                            <div class="row">
+						                            
+						                                <div class="col-xs-12">
+						                                    <div class="height600">
+						                                 
+						                                        <img id="big" class="cardwriteimg" src="${bgList[0].cardImgSrc}" alt="">
+						                                        <input type="text" name="cardImgSrc" value="${bgList[0].cardImgSrc}">
+						                                        <textarea id="c-text" name="cardContent" cols="30" rows="10"></textarea>
+						                                        <div id="text_cnt">(0 / 300)</div>
+						                                         
+						                                    </div>
+						                                </div>
+						                            </div>
+						                    </div>
+						
+						                    <div class="col-xs-4 marginleft50">
+						                        <div class="border-cardwrite">
+						                            <div class="cardwritebg">
+						                                <div class="row">
+						                                	<c:forEach items="${bgList}" var="vo">
+							                                	<div class="col-xs-6">
+							                                        <img class="small" src="${vo.cardImgSrc}" data-cardimgno="${vo.cardImgNo}" >
+							                                    </div>
+						                                	</c:forEach>
+						                                </div>
+						                            </div>
+						                        </div>
+						                    </div>
+					                        <div class="col-xs-2"></div>
+					                	</div>
+									
+						                <div class="row">
+						                    <div class="col-xs-8 writermargintop">
+						                         <div class="row">
+						                             <div class="col-xs-12 cardwriteradio">       
+						                                 <h4 class="r-age">성별</h4>
+						                                 <label><input type="radio" name="cardGender" value="male">남성</label>
+						                                 <label><input type="radio" name="cardGender" value="female">여성</label>                                      
+						                             </div>
+						                         </div> 
+						                         <div class="row">
+						                             <div class="col-xs-12 cardwriteradio">
+						                                 <h4 class="r-gender">연령</h4>
+						                                 <label><input type="radio" name="cardAge" value="teen" >10대</label>
+						                                 <label><input type="radio" name="cardAge" value="twn">20대</label>
+						                                 <label><input type="radio" name="cardAge" value="trn">30대</label>
+						                                 <label><input type="radio" name="cardAge" value="ftn" >40대 이상</label>
+						                             </div>
+						                         </div>
+						                    </div>
+						                   
+						                    <!--보내기/취소-->
+						                    <div class="col-xs-4">
+						                    	
+						                        <button id="saveBtn" type="submit" class="btn-writeform-save">보내기</button>
+						                        <a href="${pageContext.request.contextPath}/card/main" class="btnwhite">취소</a><!--list페이지로 이동-->
+						                    </div>
+						                </div>
+									</form>
+								
+	
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
+						</div>
+						<!-- //main-content -->
+					
+					</div>
+					<!-- //row -->
+					
+				</div>
+				<!-- //content -->
+			
+			</div>
+			<!-- //row -->
+			
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
 
-    </body>
+			
+		</div>
+		<!-- //container -->
+		
+	</div>
+	<!-- //wrap -->
+	
+ </body>
     
     <script type="text/javascript">
 		

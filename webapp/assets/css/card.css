@@ -26,7 +26,7 @@ div#fTitle{
 }
 
 div#cTitle {
-    width:720px;
+    /*width:720px; 수정했습니다*/
     border-bottom: #CEC9EF;
     border-width: 2px;
     border-bottom-style: solid;
@@ -65,7 +65,7 @@ section {
   display: none;
    background-color: #f6f5f5;
    display:none;
-   width:720px;
+   /*width:720px; 수정했습니다*/
    height:550px;
    box-sizing:border-box;
    /* padding-right: 30px; */
@@ -119,7 +119,7 @@ input {
 
 
 .btn-card-write a{
-	margin-right: 150px;
+	/*margin-right: 150px; 수정했습니다*/
 	margin-top: 5px;
   float: right;
   padding-top: 10px;
@@ -151,7 +151,8 @@ input {
   background: rgb(104, 96, 153);
   position: relative;
     top: 90px;
-    left: 595px;
+    /*left: 595px; 588px로 수정했습니다*/
+    left:588px;
   border: 0px;
   outline: 0px;
 }

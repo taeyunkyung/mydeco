@@ -19,27 +19,32 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/card.css">
 <body>
-	<div class="wrap">
+
+	<div id="wrap">
+		
 		<div class="container">
+		
+			<!-- header -->
 			<div class="row">
-					<!-- header -->
-					<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-					<!-- header끝 -->
-					<!--aside&contents-->
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
+			<div class="row">
+				
+				<!-- content -->
+				<div id="content" class="col-xs-12">
 					<div class="row">
 						<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
-						<!--aside 끝-->
-
-						<!--contents 시작-->
-						<div class="col-xs-9">
+					
+						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
 							<div id="cTitle">
 								<h3>소통 카드</h3>
 							</div>
-
-							<div class="row">
-								<div class="col-xs-12">
-
-
+							
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+								
 									<div class="card_list">
 										<div id="card_tap">
 											<div class="btn-card-write">
@@ -126,14 +131,32 @@
 											<!------------------section2끝----------------------->
 										</div>
 									</div>
-								</div>
-							</div>
-							<!--aside&content끝-->
+	
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
 						</div>
+						<!-- //main-content -->
 					</div>
+					<!-- //row -->
+				</div>
+				<!-- //content -->
 			</div>
+			<!-- //row -->
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
+			
 		</div>
-	</div>			
+		<!-- //container -->
+		
+	</div>
+	<!-- //wrap -->
+	
+</body>	
 	
 	<script type="text/javascript">
 	$("#notSign").on("click",function(){
@@ -146,5 +169,4 @@
 	});
 	
 	</script>
-</body>
 </html>
