@@ -20,6 +20,33 @@ audio#audio.a{
 	margin-left:38px;
 }*/
 
+/*데이트피커writeform*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+	
+}
+
+div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
+	
+}
+
+
+h3{
+	font-size: 20px;
+    font-family: 'SCDream4';
+    margin: 20px 0px 15px 0px;
+    font-weight: bold;
+}
+
+/*지우씨꺼*/
+#main-content h3.subtitle {
+    border-bottom: #CEC9EF;
+    border-width: 2px;
+    border-bottom-style: solid;
+    /*width: 705px;*/
+    margin: 20px 0px 15px 0px;
+
+}
+
 div.addAudioDiv{
 	float:left;
 	margin-top:10px;
