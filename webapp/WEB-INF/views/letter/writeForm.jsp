@@ -1,134 +1,192 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MyDeco</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+<!-- 이부분에 이페이지에 필요한 css 추가 -->	    
+	    
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/letter2.css">
 
 
 <script src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
+
+
+
 </head>
+
 <body>
-    <div id="wrap">
-        <div class="container">
-            <div class="row">
 
-	            <!-- header -->
-	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>                          
-
-                <div class="letterwriteForm-write-region clearfix">
-                    <div class="letterwriteForm-left">
-                        <div class="letterwriteForm-da-we clearfix">
+	<div id="wrap">
+		
+		<div class="container">
+		
+			<!-- header -->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
+			<div class="row">
+				
+				<!-- content -->
+				<div id="content" class="col-xs-12">
+					
+					<div class="row">
+					
+					
+						<div class="col-xs-12" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
 							
-							<div class="letter-openday" style="margin-left: 22px;">공개일:</div>
-							<select name="Dday" id="openday-select">
-								<option value="none">-- 공개일 선택 --</option>
-								<option value="month">한 달 뒤</option>
-								<option value="halfYear">반년 뒤</option>
-								<option value="year">1년 뒤</option>
-							</select>
-							
-							<div id="openDay">
-								
-							</div>
-							
-							<div class="writeform-top-button"> 
-                            	<input type="submit" class="button writeform-save" id="btnSave" value="편지 보내기">
-                            </div>
-                           
-                        </div>
-                        
-                        <!--내용-->
-          
-                        <div id="letter-content">
-                            <canvas style="margin-left:12px; margin-top:14px;" id="paper"></canvas>                                                          
-                        </div>
-                        
-                        <div>
-                        	<div id="audioDiv" style="float:left; margin-top:10px;">
-                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
-                        	</div>
-                        
-                            <div class="writeform-button">
-                                <a class="writeform-modify" id="btnKeep">임시 저장</a>
-                                <a class="writeform-modify" href="${pageContext.request.contextPath}/letter">취소</a>
-                            </div>
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+											
+								<div class="letterwriteForm-write-region clearfix">
+				                    <div class="letterwriteForm-left">
+				                        <div class="clearfix">
+											
+											<div class="letter-openday" style="margin-left: 22px;">공개일:</div>
+											<select name="Dday" id="openday-select">
+												<option value="none">-- 공개일 선택 --</option>
+												<option value="month">한 달 뒤</option>
+												<option value="halfYear">반년 뒤</option>
+												<option value="year">1년 뒤</option>
+											</select>
+											
+											<div id="openDay">
+												
+											</div>
+											
+											<div class="writeform-top-button"> 
+				                            	<input type="submit" class="button writeform-save" id="btnSave" value="편지 보내기">
+				                            </div>
+				                           
+				                        </div>
+				                        <!-- //letterwriteForm-da-we -->        
+				                        
+				                        
+				                        
+				                        <!--내용-->
+				          				<div id="letter-content">
+				                            <canvas style="margin-left:12px; margin-top:14px;" id="paper"></canvas>                                                          
+				                        </div>
+				                        
+				                        
+											<div class="bottom clearfix">
+				                        	<div id="audioDiv" style="float:left; margin-top:10px;">
+				                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+				                        	</div>
+				                        
+				                            <div class="writeform-button">
+				                                <a class="writeform-modify" id="btnKeep">임시 저장</a>
+				                                <a class="writeform-modify" href="${pageContext.request.contextPath}/letter">취소</a>
+				                            </div>
+				
+				                         
 
-                         
-                        </div>
-                        
-                    </div>                                                    
 
-                    <div class="letterwriteForm-right">
-                    	
-                        <div class="clearfix">
-                            <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="writeform-deco-btn" value="텍스트">
-                            </div>
-                        </div>
 
-                        <!--스티커/bgm-->
-                        <div class="menu-box">
- 
-                            <ul class="tabs">
-                            
-								
-									<li class="tab-link current" data-tab="tab-1">스티커</li>
-										
-                                	<li class="tab-link" data-tab="tab-2">편지지</li>
-                                 
-                                	<li class="tab-link" data-tab="tab-3">bgm</li>
-                              
-                            </ul>
-                           
-                            <div id="tab-1" class="tab-content current content-box">
-                 
-                             	
-                             	<c:forEach items="${stickerMap.stickerList}" var="stickVo">
-									<div>
-										<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickersrc="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
-									</div>
-								</c:forEach>
-								
-                            </div>
+				                        </div>
+				                        
+				                    </div>     
+				                    <!-- //letterwriteForm-left -->                                               
+									
+				
+				
+				                    <div class="letterwriteForm-right">
+				                    	
+				                        <div class="clearfix">
+				                            <div class="writeform-btn-right">
+				                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="writeform-deco-btn" value="텍스트">
+				                            </div>
+				                        </div>
+				
+				                        <!--스티커/bgm-->
+				                        <div class="menu-box">
+				 
+				                            <ul class="tabs">
+													<li class="tab-link current" data-tab="tab-1">스티커</li>
+				                                	<li class="tab-link" data-tab="tab-2">편지지</li>
+				                                	<li class="tab-link" data-tab="tab-3">bgm</li>
+				                            </ul>
+				                           
+				                            <div id="tab-1" class="tab-content current content-box">
+				                 
+				                             	
+				                             	<c:forEach items="${stickerMap.stickerList}" var="stickVo">
+													<div>
+														<img  class="sticker" data-stickerno="${stickVo.stickerNo}" data-stickersrc="${stickVo.stickerSrc}" src="${stickVo.stickerSrc}">
+													</div>
+												</c:forEach>
+												
+				                            </div>
+				
+				                            <div id="tab-2" class="tab-content content-box">
+				                            	<div class="clearfix">
+				                                	<c:forEach items="${stickerMap.paperList}" var="paperVo">
+					                                	<div class="">
+						                                	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+					                                	</div>
+				                                	</c:forEach>
+				                                </div>
+				                            </div>
+				
+				                            
+				                            <div id="tab-3" class="tab-content">
+												<c:forEach items="${bgmList}" var="bgmVo">
+													<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
+				                                    	${bgmVo.bgmTitle}
+				                                	</div>								
+												</c:forEach>
+				                            </div>
+				                           
+				                        </div>
+										<!-- //menu-box -->  
+				
+				                    </div>
+				                    <!-- //letterwriteForm-right -->  
+			                	</div>
+								<!-- //letterwriteForm-write-region -->
+	
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
+						
+						</div>
+						<!-- //main-content -->
+						
+						
+					
+					</div>
+					<!-- //row -->
+					
+				</div>
+				<!-- //content -->
+			
+			</div>
+			<!-- //row -->
+			
+			
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
 
-                            <div id="tab-2" class="tab-content content-box">
-                               <div class="clearfix">
-                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
-	                                		<div class="">
-		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
-	                                		</div>
-                                		</c:forEach>
-                                	</div>
-                            </div>
-
-                            
-                            <div id="tab-3" class="tab-content">
-								<c:forEach items="${bgmList}" var="bgmVo">
-									<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
-                                    	${bgmVo.bgmTitle}
-                                	</div>								
-								</c:forEach>
-                            </div>
-                           
-                        </div>
-
-                    </div>
-                </div>
-    
-  
-            </div>
-        </div>    
-    </div>
-
-    
+			
+		</div>
+		<!-- //container -->
+		
+	</div>
+	<!-- //wrap -->
+	
 </body>
 
 <script type="text/javascript">
@@ -447,4 +505,6 @@ $("#openday-select").on("change", function(){
 	
 });
 </script>
+
+
 </html>
