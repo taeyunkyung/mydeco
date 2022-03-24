@@ -51,6 +51,15 @@ public class ShoppingService {
 
 		shoppingDao.addcmt(shoppingCmtVo);
 	}
+	/////////////////// 상세정보 대댓글///////////////
+	public int cmtwrite2(ShoppingCmtVo shoppingCmtVo) {
+		System.out.println("서비스의 쇼핑대댓글");
+		shoppingCmtVo.setCmtSeq(shoppingCmtVo.getCmtSeq()+1);
+		shoppingCmtVo.setDepth(shoppingCmtVo.getDepth()+1);
+		System.out.println("쇼핑의 대댓글 확인용"+shoppingCmtVo);
+		return shoppingDao.addReCmt(shoppingCmtVo);
+		
+	}
 
 	/////////////////////// 쇼핑메인리스트가져오기//////////////
 	public List<ShoppingMainListVo> getmerchandiseList() {

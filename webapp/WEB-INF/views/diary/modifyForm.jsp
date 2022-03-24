@@ -197,7 +197,9 @@
 		drawDiary();
 		
 	});
-	 
+	
+	/*bgm을변경하지 않았을때를 위한 전역변수*/
+	var bgmSrc;
 	
 	//일기 그리기
 	function drawDiary(){
@@ -234,6 +236,8 @@
 		    	$("#audio").attr("src",DiaryContent.diaryBgmSrc);
 		    	console.log($("#audio").attr("src"));
 		    	
+		    	/*0324추가*/
+		    	bgmSrc = DiaryContent.diaryBgmSrc;
 		    	
 			    var DiaryItemList = DiaryContent.itemList;
 			    console.log(DiaryItemList);
@@ -448,7 +452,7 @@
 	})
 	
 	//bgm 전역변수
-	var bgmSrc;
+	//var bgmSrc;
 	
 	/*bgm을 클릭했을때*/
 	$(".mydiary-writeForm-bgmList").on("click",function(){

@@ -40,7 +40,7 @@ public class ShoppingController {
 		model.addAttribute("merchandiseList",merchandiseList);
 		
 		
-		return "shopping/shoppingmain";
+		return "shopping/shopmain";
 	}
 
 //////////////////////////////쇼핑몰 메인 감정///////////////////////////////////////////
@@ -124,7 +124,7 @@ public class ShoppingController {
 		
 		System.out.println("자 모델정보 뿌린다 잘봐라 밑에");
 		System.out.println(model);
-		return "shopping/merchandiseinfo";
+		return "shopping/merchandise";
 	}
 
 	
@@ -149,6 +149,26 @@ public class ShoppingController {
 		shoppingService.cmtwrite(shoppingCmtVo);
 		
 		
+	}
+///////////////////상품상세의 대댓글 ajax//////////////////////////////
+	@ResponseBody
+	@RequestMapping("/recmtwrite")
+	public int recmtwrite(@RequestBody ShoppingCmtVo shoppingCmtVo, HttpSession session) {
+		System.out.println("ajax 리코멘트전송 컨트롤러진입");
+		
+		System.out.println(shoppingCmtVo);
+		
+		System.out.println(session.getAttribute("authUser"));
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		shoppingCmtVo.setUserNo(authUser.getUserNo());
+		shoppingCmtVo.setName(authUser.getName());
+		
+		System.out.println(shoppingCmtVo);
+		return shoppingService.cmtwrite2(shoppingCmtVo);
+		
+		 
 	}
 	
 	
@@ -181,5 +201,6 @@ public class ShoppingController {
 	}
 
 
+	
 }
 
