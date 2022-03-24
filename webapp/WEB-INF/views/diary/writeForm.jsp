@@ -22,148 +22,191 @@
 </head>
 
 <body>
-	 <div id="wrap">
-        <div class="container">
-            <div class="row">
 
-                <!-- header -->
-				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>				              
+	<div id="wrap">
+		
+		<div class="container">
+		
+			<!-- header -->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
+			<div class="row">
+				
+				<!-- content -->
+				<div class="col-xs-12" id= "content">
+					
+					<div class="row" >
 
-                <div class="mydiarywriteForm-write-region clearfix">
-                    <div class="mydiarywriteForm-left">
-                        <div class="mydiarywriteForm-da-we clearfix">
-                          
-                          	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
-                          
-                            <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
-                            <div class="mydiarywriteForm-inform">
-                                <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
-                                <input type="text" id="datepicker" name="diaryDate" style="width: 110px; height: 30px; padding: 15px;">
-                            </div>                          
- 
-                            <!--날씨/선택박스-->
-                            <div class="clearfix mydiary-we_sel">
-                                <div class="mydiary-weather2">날씨 :</div>
-                                
-                                <!--선택박스-->
-                                <div class="selectbox-weather">
-                                    <form>
-                                        <select id="weatherselectbox" name="weather" class="selectbox-we">
-                                            <option value="">ㅡㅡ 선택 ㅡㅡ</option>
-                                            <option value="sunny">맑음</option>
-                                            <option value="rainy">비</option>
-                                            <option value="snow">눈</option>
-                                        </select>
-                                    </form>    
-                                </div>
-                            </div>
-							 
-                            <div class="clearfix" style="margin-right:20px;">
-                                <div class="diary-private">
-                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
-                                </div>
-                                <div class="diary-all">
-                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
-                                </div>
-                                <div class="mydiary-weather3">공개여부 :</div>
-                            </div>                                   
-                                    
-                        </div>
-                        
-                        <!--제목/내용-->
-                        <div>
-                            <input type="text" maxlength='35' style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
-                        </div>
-                        <div>
-                            <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
-                        </div>
-                        <div class="clearfix">
-                        	<div id="audioDiv" style="float:left; margin-top:10px;">
-                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
-                        	</div>
-                        
-                            <div class="writeform-button">
-                                <a class="writeform-modify" href="${pageContext.request.contextPath}/diary/list">목록</a><!--list페이지로 이동-->
-                                <input id="saveBtn" type="button" class="button writeform-save" value="저장하기"><!-- submit->button 바꿈. ajax사용하기 -->
-                            </div>
+						
+						<div class="col-xs-12" id="main-content">   <!-- aside가 없는경우 -->    
+		
+							
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
 
-                        </div>
-                        
-                    </div>                                                    
-
-                    <div class="mydiarywriteForm-right">
-                        <!--이미지/지도-->
-                        <div class="clearfix">
-                            <form method="post" enctype="multipart/form-data">
-                                <div class="button writeform-btn-left writeform-deco-btn">
-                                    <label for="chooseFile">
-                                    	<div id="btnPhoto" class="photowid">사진</div>
-                                    </label>
-                            
-                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> 
-                                </div>
-                            </form>
-                            <div class="writeform-btn-right">
-                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
-                            </div>
-                        </div>
-
-
-                        <!--스티커/bgm-->
-                        <div class="sticker-bgm-plus-menu-box">
- 
-                            <ul class="tabs">
-                              <li class="tab-link current" data-tab="tab-1">스티커</li>
-                              
-                                <li class="tab-link" data-tab="tab-2">종이</li>
-                              
-                                <li class="tab-link" data-tab="tab-3">bgm</li>
-                             
-                            </ul>
-                           
-                            <div id="tab-1" class="tab-content current sticker-bgm-box2">
-                            
-                            	<c:forEach items="${stickerMap.stickerList}" var="stickerVo">
-                            		<div style="float:left; margin-left:12px;">
-                           				<img class="writeform-sticker-size sticker" data-stickerno="${stickerVo.stickerNo}" data-stickersrc="${stickerVo.stickerSrc}" src="${stickerVo.stickerSrc}">
-                                	</div>
-                            	</c:forEach>
-                               
-                            </div>
-
-                            <div id="tab-2" class="tab-content sticker-bgm-box3">
-                                <!--div안에 꽉차게 보이게 만들기 원본 이미지사이즈 줄이기x-->
-                                <!--용지가로2개-->
-                                
-                                	<div class="clearfix">
-                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
-	                                		<div class="mydiaryImg-box8">
-		                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
-	                                		</div>
-                                		</c:forEach>
-                                	</div>
-                            </div>
-
-                            
-                            <div id="tab-3" class="tab-content">
-								<c:forEach items="${bgmList}" var="bgmVo">
-									<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
-                                    	${bgmVo.bgmTitle}
-                                	</div>								
-								</c:forEach>
-                            </div>
-                           
-                        </div>
-
-                    </div>
-                </div>
-    
-            </div>
-        </div>    
-    </div>
-	<!-- footer -->
-	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-
+				                <div class="mydiarywriteForm-write-region clearfix">
+				                    <div class="mydiarywriteForm-left">
+				                        <div class="mydiarywriteForm-da-we clearfix">
+				                          
+				                          	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
+				                          
+				                            <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
+				                            <div class="mydiarywriteForm-inform">
+				                                <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
+				                                <input type="text" id="datepicker" name="diaryDate" style="width: 110px; height: 30px; padding: 15px;">
+				                            </div>                          
+				 
+				                            <!--날씨/선택박스-->
+				                            <div class="clearfix mydiary-we_sel">
+				                                <div class="mydiary-weather2">날씨 :</div>
+				                                
+				                                <!--선택박스-->
+				                                <div class="selectbox-weather">
+				                                    <form>
+				                                        <select id="weatherselectbox" name="weather" class="selectbox-we">
+				                                            <option value="">ㅡㅡ 선택 ㅡㅡ</option>
+				                                            <option value="sunny">맑음</option>
+				                                            <option value="rainy">비</option>
+				                                            <option value="snow">눈</option>
+				                                        </select>
+				                                    </form>    
+				                                </div>
+				                            </div>
+											 
+				                            <div class="clearfix" style="margin-right:20px;">
+				                                <div class="diary-private">
+				                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
+				                                </div>
+				                                <div class="diary-all">
+				                                    <label><input class="diaryset" type="radio" name="protect" value="공개">공개</label>                                                                     
+				                                </div>
+				                                <div class="mydiary-weather3">공개여부 :</div>
+				                            </div>                                   
+				                                    
+				                        </div>
+				                        
+				                        <!--제목/내용-->
+				                        <div>
+				                            <input type="text" maxlength='35' style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
+				                        </div>
+				                        <div>
+				                            <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
+				                        </div>
+				                        <div class="clearfix">
+				                        	<div id="audioDiv" style="float:left; margin-top:10px;">
+				                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+				                        	</div>
+				                        
+				                            <div class="writeform-button">
+				                                <a class="writeform-modify" href="${pageContext.request.contextPath}/diary/list">목록</a><!--list페이지로 이동-->
+				                                <input id="saveBtn" type="button" class="button writeform-save" value="저장하기"><!-- submit->button 바꿈. ajax사용하기 -->
+				                            </div>
+				
+				                        </div>
+				                        
+				                    </div>                                                    
+				
+				                    <div class="mydiarywriteForm-right2">
+				                        <!--이미지/지도-->
+				                        <div class="clearfix">
+				                            <form method="post" enctype="multipart/form-data">
+				                                <div class="button writeform-btn-left writeform-deco-btn">
+				                                    <label for="chooseFile">
+				                                    	<div id="btnPhoto" class="photowid">사진</div>
+				                                    </label>
+				                            
+				                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> 
+				                                </div>
+				                            </form>
+				                            <div class="writeform-btn-right">
+				                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+				                            </div>
+				                        </div>
+				
+				
+				                        <!--스티커/bgm-->
+				                        <div class="sticker-bgm-plus-menu-box">
+				 
+				                            <ul class="tabs">
+				                              <li class="tab-link current" data-tab="tab-1">스티커</li>
+				                              
+				                                <li class="tab-link" data-tab="tab-2">종이</li>
+				                              
+				                                <li class="tab-link" data-tab="tab-3">bgm</li>
+				                             
+				                            </ul>
+				                           
+				                            <div id="tab-1" class="tab-content current sticker-bgm-box2">
+				                            
+				                            	<c:forEach items="${stickerMap.stickerList}" var="stickerVo">
+				                            		<div style="float:left; margin-left:12px;">
+				                           				<img class="writeform-sticker-size sticker" data-stickerno="${stickerVo.stickerNo}" data-stickersrc="${stickerVo.stickerSrc}" src="${stickerVo.stickerSrc}">
+				                                	</div>
+				                            	</c:forEach>
+				                               
+				                            </div>
+				
+				                            <div id="tab-2" class="tab-content sticker-bgm-box3">
+				                                <!--div안에 꽉차게 보이게 만들기 원본 이미지사이즈 줄이기x-->
+				                                <!--용지가로2개-->
+				                                
+				                                	<div class="clearfix">
+				                                		<c:forEach items="${stickerMap.paperList}" var="paperVo">
+					                                		<div class="mydiaryImg-box8">
+						                                    	<img class="paper" data-paperno="${paperVo.stickerNo}" data-papersrc="${paperVo.stickerSrc}" src="${paperVo.stickerSrc}">
+					                                		</div>
+				                                		</c:forEach>
+				                                	</div>
+				                            </div>
+				
+				                            
+				                            <div id="tab-3" class="tab-content">
+												<c:forEach items="${bgmList}" var="bgmVo">
+													<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
+				                                    	${bgmVo.bgmTitle}
+				                                	</div>								
+												</c:forEach>
+				                            </div>
+				                           
+				                        </div>
+				
+				                    </div>
+				                </div>
+					
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
+							
+		
+						</div>
+						<!-- //main-content -->
+						
+					</div>
+					<!-- //row -->
+					
+				</div>
+				<!-- //content -->
+			
+			</div>
+			<!-- //row -->
+			
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
+				
+			
+		</div>
+		<!-- //container -->
+		
+	</div>
+	<!-- //wrap -->
+	
 </body>
 
 <script type="text/javascript">

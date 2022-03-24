@@ -8,15 +8,17 @@ div.letterwriteForm-write-region{
 .letterwriteForm-write-region{
     /*border: 1px solid #000000; */
     text-align: center;
-   
-    margin-left: 50px;
 
+}
+
+.bottom {
+	margin: 0px 0px 10px 0px;
+	padding: 0px 12px 0px 0px; 
 }
 
 .letterwriteForm-left{
     float: left;
     width: 706px;
-    height: 770px;
     border: 1px solid  #000000;
     padding: 10px 0px 0px 0px;
     
@@ -27,7 +29,7 @@ div.letterwriteForm-write-region{
     width: 240px;
     height: 690px;
     border: 1px solid  #ebebeb;
-    margin-left: 10px;
+    margin-left: 4px;
     background-color: rgb(54, 54, 54);
     padding: 2px 0px 5px 0px;
 }
@@ -260,7 +262,7 @@ img {
 }
 
 #letter-content {
-	height: 730px;
+	height: 715px;
 }
 
 
@@ -307,4 +309,5 @@ img {
     background-color: #1d1d1d;
     color: #ffffff;
 }
+
 
