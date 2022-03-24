@@ -6,12 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.mydeco.dao.MydiaryDao;
 import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
+import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
 
@@ -50,6 +50,7 @@ public class MydiaryService {
 	}
 	
 	/*상품등록한 일기판별*/
+	/*
 	public String getProdNo(int diaryNo) {
 		int prodNo = mydiaryDao.getProdNo(diaryNo);
 		Integer IprodNo = Integer.valueOf(prodNo);
@@ -59,6 +60,18 @@ public class MydiaryService {
 			return "0";
 		}
 		
+	}*/
+	
+	
+	/*상품등록한 일기판별*/
+	/*
+	public List<ProdDiaryVo> getProdNo(int diaryNo) {
+		return mydiaryDao.getProdNo(diaryNo);
+	}
+	
+	/*상품등록한 일기판별*/
+	public ProdDiaryVo getProdNo(int diaryNo) {
+		return mydiaryDao.getProdNo(diaryNo);
 	}
 	
 	
@@ -191,6 +204,7 @@ public class MydiaryService {
 	
 	
 	/*삭제하기*/
+	/*
 	public String deleteDiary(DiaryContentVo diarycontentvo) {
 		int count1;
 		int count2;
@@ -201,6 +215,27 @@ public class MydiaryService {
 		int sum = count1+count2;
 		
 		if(sum>0) {
+			return "2";
+		}else {
+			return "0";
+		}
+	}*/
+	
+	
+	/*삭제하기*/
+	public String deleteDiary(DiaryContentVo diarycontentvo) {
+		int count1;
+		int count2;
+		int count3;
+		int diaryNo = diarycontentvo.getDiaryNo();
+		
+		count1 = mydiaryDao.deleteProdDiarydiaryNo(diaryNo);
+		count2 = mydiaryDao.deleteDiaryItem(diaryNo);
+		count3 = mydiaryDao.deleteDiary(diaryNo);
+		
+		int sum = count1+count2+count3;
+		
+		if(sum>=1) {
 			return "2";
 		}else {
 			return "0";

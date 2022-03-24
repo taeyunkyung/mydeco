@@ -97,13 +97,26 @@
 
 	
 	<!-- 일기를 사용해 등록한 상품의 상품번호 -->
-	<select id="getProdNo" parameterType="int" resultType="int">
+	<!--  
+	<select id="getProdNo" parameterType="int" resultType="com.mydeco.vo.ProdDiaryVo">
 			<![CDATA[
-				select prodNo
+				select prodNo,
+					   count(prodNo) count
+				from prodDiary
+				where diaryNo = #{diaryNo}
+				group by prodNo
+			]]>
+	</select>-->
+	
+	<!-- 일기를 사용해 등록한 상품의 상품번호 -->
+	<select id="getProdNo" parameterType="int" resultType="com.mydeco.vo.ProdDiaryVo">
+			<![CDATA[
+				select count(prodNo) count
 				from prodDiary
 				where diaryNo = #{diaryNo}
 			]]>
 	</select>
+	
 
 
 	<insert id="diary-db" parameterType="com.mydeco.vo.StickerVo">
@@ -196,6 +209,14 @@
 	<delete id="deleteDiary" parameterType="int">
 			<![CDATA[
 				delete from diary
+				where diaryNo = #{diaryNo}
+			]]>
+	</delete>
+	
+	<!-- prodDiary테이블에서 일기번호 삭제하기 -->
+	<delete id="deleteProdDiarydiaryNo" parameterType="int">
+			<![CDATA[
+				delete from prodDiary
 				where diaryNo = #{diaryNo}
 			]]>
 	</delete>
