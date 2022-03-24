@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>My Deco</title>
+<title>MyDeco</title>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shop-my.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shop-my.css">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
 .d-table {width: 100%;}
@@ -31,162 +31,188 @@ svg {width: 40%; height: 40%;}
     display: inline-flex;}    
 </style>
 </head>
+
 <body>
+
 	<div id="wrap">
+		
 		<div class="container">
+		
+			<!-- header -->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
 			<div class="row">
 				
-				<!-- header -->
-				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-				
-				<!-- aside -->
-				<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
-				
 				<!-- content -->
-				<div class="col-xs-9" id="main-content">
-					<form action="${pageContext.request.contextPath}/myshop/add" method="post" enctype="multipart/form-data">
-					<!-- <form name="dataForm" id="dataForm" onsubmit="return register()"> -->
-						<table id="a-table">
-							<colgroup>
-								<col style="width: 80px">
-								<col style="width: 600px">
-							</colgroup>
-							<tr>
-								<td id="sub" colspan="2">
-									<h3>새 상품 등록</h3>
-								</td>
-							</tr>
-
-							<tr>
-								<td><label for="prod-title">상품 이름</label></td>
-								<td><input id="prod-title" type="text" name="prodName" value=""></td>
-							</tr>
-							<tr>
-								<td><label for="prod-emo">감정</label></td>
-								<td class="a-chk">
-									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="happy" value="happy"> <label
-											for="happy">기쁨</label> <span class="check"></span>
-									</div>
-									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="sad" value="sad"> <label
-											for="sad">슬픔</label> <span class="check"></span>
-									</div>
-									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="angry" value="angry"> <label
-											for="angry">화남</label> <span class="check"></span>
-									</div>
-									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="annoyed" value="annoyed"> <label
-											for="annoyed">짜증</label> <span class="check"></span>
-									</div>
-									<div class="form-radio-item">
-										<input type="radio" name="emotion" id="relieved" value="relieved"> <label
-											for="relieved">홀가분</label> <span class="check"></span>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td><label for="prod-price">가격</label></td>
-								<td><input id="prod-price" type="text" name="price"
-									value=""> 원</td>
-							</tr>
-							<tr>
-								<td><label for="prod-deliv">배송방법</label></td>
-								<td class="a-chk">
-									<div class="form-radio-item">
-										<input type="radio" name="delivery" id="post" value="post"> <label
-											for="post">택배</label> <span class="check"></span>
-									</div>
-									<div class="form-radio-item">
-										<input type="radio" name="delivery" id="meet" value="meet"> <label
-											for="meet">직거래</label> <span class="check"></span>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td><label for="img-td">이미지</label></td>
-								<td id="img-td"><label for="prod-img">이미지 추가</label> 
-								<input id="prod-img" type="file" name="prodImgFile" accept="image/*" multiple="multiple">								
-									<div id="img-area">
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td><label for="prod-story">상품설명</label></td>
-								<td><textarea id="prod-story" name="prodInfo"></textarea></td>
-							</tr>
-							<tr>
-								<td><label for="diary-td">일기</label></td>
-								<td style="height: 270px;">
-									
-									<table class="d-table table table-striped" style="border-bottom: 1px solid #ebebeb">
+				<div id="content" class="col-xs-12">
+					
+					<div class="row">
+					
+						<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
+					
+						<div class="col-xs-9" id="main-content">  			
+							<h3 class="subtitle">
+								새 상품 등록
+							</h3>
+							
+							<div id="main">
+								<form action="${pageContext.request.contextPath}/myshop/add"
+									method="post" enctype="multipart/form-data">
+									<table id="a-table">
 										<colgroup>
-											<col style="align: center; width: 100px; height: 39px">
-											<col style="width: 350px; height: 39px">
-											<col style="width: 244px; height: 39px">
-											<col style="align: center; height: 39px">
+											<col style="width: 80px">
+											<col style="width: 600px">
 										</colgroup>
-										<thead>
-											<tr>
-												<td>번호</td>
-												<td>제목</td>
-												<td>날짜</td>
-												<td></td>
-											</tr>
-										</thead>
-										<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
-											<tbody class="tb" id="tbody${count}"></tbody>
-										</c:forEach>
-									</table>
-									
-									<div id="diary-pg" data-page="${pageBtn}" style="width: 100%; display: inline-flex; justify-content: right;">
-										<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
-											<p class="bullet" id="p${count}" data-pg="${count}" style="cursor: pointer;">${count}</p>
-										</c:forEach>
-									</div> 
-									
-									<div class="modal fade diaryview" tabindex="-1" role="dialog">
-										<div class="modal-dialog modal-lg"
-											style="width: 710px; height: 570px;">
-											<div class="modal-content">
-												<div class="modal-header" style="height:50px">
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">x</span>
-													</button>
-													<h4 class="modal-title" style="display:inline-block; float: left">나의 일기장</h4>
-													<div class="audiodiv"
-														style="float: left; margin-right: 15px; margin-top: 3px;">
-														<audio id="audio" src="" controls autoplay loop
-															style="height: 20px; width: 300px; margin-left: 38px;"></audio>
+										<tr>
+											<td><label for="prod-title">상품 이름</label></td>
+											<td><input id="prod-title" type="text" name="prodName"
+												value=""></td>
+										</tr>
+										<tr>
+											<td><label for="prod-emo">감정</label></td>
+											<td class="a-chk">
+												<div class="form-radio-item">
+													<input type="radio" name="emotion" id="happy" value="happy">
+													<label for="happy">기쁨</label> <span class="check"></span>
+												</div>
+												<div class="form-radio-item">
+													<input type="radio" name="emotion" id="sad" value="sad">
+													<label for="sad">슬픔</label> <span class="check"></span>
+												</div>
+												<div class="form-radio-item">
+													<input type="radio" name="emotion" id="angry" value="angry">
+													<label for="angry">화남</label> <span class="check"></span>
+												</div>
+												<div class="form-radio-item">
+													<input type="radio" name="emotion" id="annoyed"
+														value="annoyed"> <label for="annoyed">짜증</label> <span
+														class="check"></span>
+												</div>
+												<div class="form-radio-item">
+													<input type="radio" name="emotion" id="relieved"
+														value="relieved"> <label for="relieved">홀가분</label>
+													<span class="check"></span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td><label for="prod-price">가격</label></td>
+											<td><input id="prod-price" type="text" name="price"
+												value=""> 원</td>
+										</tr>
+										<tr>
+											<td><label for="prod-deliv">배송방법</label></td>
+											<td class="a-chk">
+												<div class="form-radio-item">
+													<input type="radio" name="delivery" id="post" value="post">
+													<label for="post">택배</label> <span class="check"></span>
+												</div>
+												<div class="form-radio-item">
+													<input type="radio" name="delivery" id="meet" value="meet">
+													<label for="meet">직거래</label> <span class="check"></span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td><label for="img-td">이미지</label></td>
+											<td id="img-td"><label for="prod-img">이미지 추가</label> <input
+												id="prod-img" type="file" name="prodImgFile"
+												accept="image/*" multiple="multiple">
+												<div id="img-area"></div></td>
+										</tr>
+										<tr>
+											<td><label for="prod-story">상품설명</label></td>
+											<td><textarea id="prod-story" name="prodInfo"></textarea></td>
+										</tr>
+										<tr>
+											<td><label for="diary-td">일기</label></td>
+											<td style="height: 270px;">
+
+												<table class="d-table table table-striped"
+													style="border-bottom: 1px solid #ebebeb">
+													<colgroup>
+														<col style="align: center; width: 100px; height: 39px">
+														<col style="width: 350px; height: 39px">
+														<col style="width: 244px; height: 39px">
+														<col style="align: center; height: 39px">
+													</colgroup>
+													<thead>
+														<tr>
+															<td>번호</td>
+															<td>제목</td>
+															<td>날짜</td>
+															<td></td>
+														</tr>
+													</thead>
+													<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
+														<tbody class="tb" id="tbody${count}"></tbody>
+													</c:forEach>
+												</table>
+
+												<div id="diary-pg" data-page="${pageBtn}"
+													style="width: 100%; display: inline-flex; justify-content: right;">
+													<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
+														<p class="bullet" id="p${count}" data-pg="${count}"
+															style="cursor: pointer;">${count}</p>
+													</c:forEach>
+												</div>
+
+												<div class="modal fade diaryview" tabindex="-1"
+													role="dialog">
+													<div class="modal-dialog modal-lg"
+														style="width: 710px; height: 570px;">
+														<div class="modal-content">
+															<div class="modal-header" style="height: 50px">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<span aria-hidden="true">x</span>
+																</button>
+																<h4 class="modal-title"
+																	style="display: inline-block; float: left">나의 일기장</h4>
+																<div class="audiodiv"
+																	style="float: left; margin-right: 15px; margin-top: 3px;">
+																	<audio id="audio" src="" controls autoplay loop
+																		style="height: 20px; width: 300px; margin-left: 38px;"></audio>
+																</div>
+															</div>
+															<div class="modal-body">
+																<p class="diaryContents"></p>
+																<canvas class="readCanvas" id="paper"></canvas>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="modal-body">
-													<p class="diaryContents"></p>
-													<canvas class="readCanvas" id="paper"></canvas>
-												</div>
-											</div>
-										</div>
-									</div> 
-									<div id="diary-area"></div>
-								</td> 
-							</tr>
-						</table>
-						<div id="add">
-							<input type="submit" id="submitBtn" value="등록하기">
+												<div id="diary-area"></div>
+											</td>
+										</tr>
+									</table>
+									<div id="add">
+										<input type="submit" id="submitBtn" value="등록하기">
+									</div>
+								</form>
+							</div>						
 						</div>
-					</form>
-				</div> <!-- content -->
-			</div> <!-- row -->
-		</div> <!-- container -->
-	</div> <!-- wrap -->
-	
-	<!-- footer -->
-	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-	
+						<!-- //main-content -->
+					</div>
+					<!-- //row -->					
+				</div>
+				<!-- //content -->			
+			</div>
+			<!-- //row -->
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
+		</div>
+		<!-- //container -->		
+	</div>
+	<!-- //wrap -->	
 </body>
-
 <script type="text/javascript">
 $(document).ready(function() {
 	var page = $("#diary-pg").data("page");

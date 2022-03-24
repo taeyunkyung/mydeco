@@ -33,12 +33,27 @@ public class MyProductDao {
 	public List<DiaryItemVo> diaryItemList(int diaryNo) {
 		return sqlSession.selectList("myProduct.diaryItemList", diaryNo);
 	}
-	// 상품 상세 //
-	
+	// 상품 상세 //	
+		
 	// 상품 등록 //
 	public List<DiaryContentVo> diaryList(int userNo) {
 		return sqlSession.selectList("myProduct.diaryList", userNo);
 	}
+	
+	// 상픔 등록 - 일기 페이징 //
+	public List<DiaryVo2> diaryListpg(int userNo, int startNum, int endNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userNo", userNo);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+
+		return sqlSession.selectList("myProduct.diaryListpg", map);
+	}
+	
+	public int diaryTotal(int userNo) {
+		return sqlSession.selectOne("myProduct.diaryTotalCnt", userNo);
+	}
+	// 상픔 등록 - 일기 페이징 //
 	
 	public int add(ProductVo productVo) {
 		System.out.println("add.dao");

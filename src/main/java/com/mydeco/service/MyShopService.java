@@ -17,6 +17,7 @@ import com.mydeco.dao.MyProdImgDao;
 import com.mydeco.dao.MyProductDao;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
+import com.mydeco.vo.DiaryVo2;
 import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
@@ -33,6 +34,29 @@ public class MyShopService {
 
 	public List<DiaryContentVo> getDiaryList(int userNo) {
 		return myProductDao.diaryList(userNo);
+	}
+
+	public int pagebutton(int userNo) {
+		int totalCnt = myProductDao.diaryTotal(userNo);
+		return (totalCnt / 6) + 1;
+	}
+	
+	public Map<String, Object> getDiaryListpg(int userNo, int crtPage) {
+		int listCnt = 6;
+		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
+
+		int startNum = (crtPage - 1) * listCnt + 1;
+		int endNum = startNum + listCnt - 1;
+		List<DiaryVo2> diaryList = myProductDao.diaryListpg(userNo, startNum, endNum);
+
+		int totalCnt = myProductDao.diaryTotal(userNo);
+		int pageBtn = (totalCnt / listCnt) + 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("diaryList", diaryList);
+		map.put("pageBtn", pageBtn);
+
+		return map;
 	}
 
 	public void addProduct(ProductVo productVo, MultipartFile[] file, String[] diaryNoArr) {
@@ -77,46 +101,46 @@ public class MyShopService {
 	public List<ProductVo> getMyProductList(int userNo) {
 
 		List<ProductVo> myProductList = myProductDao.myProductList(userNo);
-				
+
 		for (int i = 0; i < myProductList.size(); i++) {
 			int prodNo = myProductList.get(i).getProdNo();
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
-			
+
 			myProductList.get(i).setProdImgSrc(prodImgSrc);
 			myProductList.get(i).setDiaryCnt(diaryCnt);
 		}
-		
+
 		return myProductList;
 	}
-	
+
 	// 페이징-나의 상품//
 	public Map<String, Object> getMyProductpgList(int userNo, String keyword, int crtPage) {
 		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
-		
+
 		int startNum = (crtPage - 1) * listCnt + 1;
 		int endNum = startNum + listCnt - 1;
 		List<ProductVo> myProductList = myProductDao.myProductpgList(userNo, keyword, startNum, endNum);
-		
+
 		for (int i = 0; i < myProductList.size(); i++) {
 			int prodNo = myProductList.get(i).getProdNo();
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
 			int commentCnt = myProdImgDao.commentCnt(prodNo);
-			
+
 			myProductList.get(i).setProdImgSrc(prodImgSrc);
 			myProductList.get(i).setDiaryCnt(diaryCnt);
 			myProductList.get(i).setPickCnt(pickCnt);
 			myProductList.get(i).setCommentCnt(commentCnt);
 		}
-		
+
 		int totalCnt = myProductDao.selectTotal(userNo);
 		int pageBtnCnt = 5;
 		int endPageBtnNo = (int) (Math.ceil(crtPage / (double) pageBtnCnt)) * pageBtnCnt;
 		int startPageBtnNo = endPageBtnNo - pageBtnCnt + 1;
-		
+
 		boolean next = false;
 		if (endPageBtnNo * listCnt < totalCnt) {
 			next = true;
@@ -128,60 +152,60 @@ public class MyShopService {
 		if (startPageBtnNo != 1) {
 			prev = true;
 		}
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myProductList", myProductList);
 		map.put("prev", prev);
 		map.put("startPageBtnNo", startPageBtnNo);
 		map.put("endPageBtnNo", endPageBtnNo);
 		map.put("next", next);
-		
+
 		return map;
 	}
 	// 페이징-나의상품//
-	
+
 	public int updateInfo(ProductVo productVo, String[] diaryNoArr) {
-				
+
 		for (int i = 0; i < diaryNoArr.length; i++) {
 			ProdDiaryVo prodDiaryVo = new ProdDiaryVo(productVo.getProdNo(), Integer.parseInt(diaryNoArr[i]));
 			myProdImgDao.updateDiary(prodDiaryVo);
 		}
-		
+
 		return myProductDao.update(productVo);
 	}
-	
+
 	public int myProductRemove(ProductVo productVo) {
 		System.out.println("remove.service");
 		return myProductDao.remove(productVo);
 	}
-	
+
 	// 페이징-찜한상품//
 	public Map<String, Object> getMyPickpgList(int userNo, String keyword, int crtPage) {
 		int listCnt = 4;
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
-		
+
 		int startNum = (crtPage - 1) * listCnt + 1;
 		int endNum = startNum + listCnt - 1;
 		List<ProductVo> myPickList = myProductDao.myPickpgList(userNo, keyword, startNum, endNum);
-		
+
 		for (int i = 0; i < myPickList.size(); i++) {
 			int prodNo = myPickList.get(i).getProdNo();
 			String prodImgSrc = myProdImgDao.previewImg(prodNo);
 			int diaryCnt = myProdImgDao.diaryCnt(prodNo);
 			int pickCnt = myProdImgDao.pickCnt(prodNo);
 			int commentCnt = myProdImgDao.commentCnt(prodNo);
-			
+
 			myPickList.get(i).setProdImgSrc(prodImgSrc);
 			myPickList.get(i).setDiaryCnt(diaryCnt);
 			myPickList.get(i).setPickCnt(pickCnt);
 			myPickList.get(i).setCommentCnt(commentCnt);
 		}
-		
+
 		int totalCnt = myProductDao.selectTotalPick(userNo);
 		int pageBtnCnt = 5;
 		int endPageBtnNo = (int) (Math.ceil(crtPage / (double) pageBtnCnt)) * pageBtnCnt;
 		int startPageBtnNo = endPageBtnNo - pageBtnCnt + 1;
-		
+
 		boolean next = false;
 		if (endPageBtnNo * listCnt < totalCnt) {
 			next = true;
@@ -193,103 +217,103 @@ public class MyShopService {
 		if (startPageBtnNo != 1) {
 			prev = true;
 		}
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myPickList", myPickList);
 		map.put("prev", prev);
 		map.put("startPageBtnNo", startPageBtnNo);
 		map.put("endPageBtnNo", endPageBtnNo);
 		map.put("next", next);
-		
+
 		return map;
 	}
 	// 페이징-찜한상품//
-	
+
 	public int myPickRemove(ProductVo productVo) {
 		System.out.println("pickRemove.service");
 		return myProductDao.pickRemove(productVo);
 	}
-	
+
 	public Map<String, Object> getChatList(int authUserNo) {
 		List<UserChatVo> myBuyList = myProductDao.buyList(authUserNo);
 		List<UserChatVo> mySellList = myProductDao.sellList(authUserNo);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myBuyList", myBuyList);
 		map.put("mySellList", mySellList);
-		
+
 		return map;
 	}
-	
+
 	public List<UserChatVo> getChatDetails(UserChatVo userChatVo) {
-		
-		List<UserChatVo> chatDetails = null;		
-		if(userChatVo.getBuyerNo()==0) {
+
+		List<UserChatVo> chatDetails = null;
+		if (userChatVo.getBuyerNo() == 0) {
 			List<UserChatVo> myBuyDetails = myProductDao.buyDetails(userChatVo);
-			chatDetails =  myBuyDetails;
-			
-		} else if(userChatVo.getSellerNo()==0) {
+			chatDetails = myBuyDetails;
+
+		} else if (userChatVo.getSellerNo() == 0) {
 			List<UserChatVo> mySellDetails = myProductDao.sellDetails(userChatVo);
 			chatDetails = mySellDetails;
-		}			
+		}
 		return chatDetails;
 	}
-	
+
 	public UserChatVo insertChat(UserChatVo userChatVo) {
 		UserChatVo addReturn = null;
-		
-		if(userChatVo.getBuyerNo()==0) {
+
+		if (userChatVo.getBuyerNo() == 0) {
 			myProductDao.buyChat(userChatVo);
 			int chatNo = userChatVo.getChatNo();
 			addReturn = myProductDao.addReturn(chatNo);
-			
-		} else if(userChatVo.getSellerNo()==0) {
+
+		} else if (userChatVo.getSellerNo() == 0) {
 			myProductDao.sellChat(userChatVo);
 			int chatNo = userChatVo.getChatNo();
 			addReturn = myProductDao.addReturn(chatNo);
 		}
-		
+
 		return addReturn;
 	}
-	
+
 	// 임시 기능 //
 	public ProductVo selectOneProd(int prodNo) {
 		ProductVo productVo = myProductDao.selectOne(prodNo);
-		
+
 		productVo.setProdImgList(myProdImgDao.prodImgList(prodNo));
 		productVo.setProdDiaryList(myProductDao.diaryPreview(prodNo));
-		
+
 		return productVo;
 	}
-	
+
 	public DiaryContentVo getOneDiary(int diaryNo) {
 		DiaryContentVo vo = myProductDao.selectByDiaryNo(diaryNo);
 		vo.setItemList(myProductDao.diaryItemList(diaryNo));
 		return vo;
 	}
-	
+
 	public List<DiaryItemVo> itemList(int diaryNo) {
 		return myProductDao.diaryItemList(diaryNo);
 	}
-	
+
 	public ProductVo checkpick(ProductVo productVo) {
 		return myProductDao.checkpick(productVo);
 	}
-	
+
 	public int addPick(ProductVo productVo) {
 		return myProductDao.addpick(productVo);
 	}
-	
+
 	public List<ShoppingCmtVo2> commentList(int prodNo) {
 		return myProductDao.getList(prodNo);
 	}
-	
+
 	public ShoppingCmtVo2 insertFirst(ShoppingCmtVo2 shoppingCmtVo) {
 		myProductDao.insertFirst(shoppingCmtVo);
 		int cmtNo = shoppingCmtVo.getCmtNo();
 		return myProductDao.addRComment(cmtNo);
 	}
-		
+
 	public ShoppingCmtVo2 insertReply(ShoppingCmtVo2 shoppingCmtVo) {
 		myProductDao.orderUpdate(shoppingCmtVo);
 		myProductDao.insertReply(shoppingCmtVo);

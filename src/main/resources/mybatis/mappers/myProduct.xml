@@ -53,6 +53,39 @@
         			to_char(diaryDate, 'YYYY/MM/DD') diaryDate
 			from diary
 			where userNo = #{userNo}
+			and protect='공개'
+		]]>
+	</select>
+	
+	<select id="diaryListpg" parameterType="map" resultType="com.mydeco.vo.DiaryVo2">
+		<![CDATA[
+			select  rt.rn,
+        			rt.diaryNo,
+        			rt.title,
+        			to_char(rt.diaryDate, 'YYYY/MM/DD') diaryDate
+			from (select  rownum rn,
+        				  ot.diaryNo,
+        				  ot.title,
+        				  ot.diaryDate
+				  from (select  diaryNo,
+        					    title,
+        					    diaryDate
+					    from diary
+					    where userNo = #{userNo}
+					    and protect='공개'
+					    order by diaryDate desc) ot
+			) rt
+			where rt.rn >= #{startNum}
+			and rt.rn <= #{endNum}
+		]]>
+	</select>
+	
+	<select id="diaryTotalCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select  count(*)
+			from diary
+			where userNo = #{userNo}
+			and protect='공개'
 		]]>
 	</select>
 	

@@ -37,17 +37,18 @@
 					
 						<c:import url="/WEB-INF/views/include/aside.jsp"></c:import>
 					
-						<div class="col-xs-9" id="main-content">
+						<div class="col-xs-9" id="main-content">    			
 							<h3 class="subtitle">
-								나의 상품
+								찜한 상품
 							</h3>
-							
+
 							<div id="main">
 								<div class="searchTop" style="width: 100%">
 									<select id="keyword-cate" name="">
 										<option value="">선택</option>
 										<option value="prodName">제목</option>
 										<option value="emotion">감정</option>
+										<option value="id">아이디</option>
 									</select> <input type="text" id="keyword" name="keyword" value=""
 										placeholder="검색어를 입력해주세요">
 									<button type="button" id="searchBtn">
@@ -76,20 +77,22 @@
 								</div>
 
 								<div id="showSearch">
-									<label for="keyword">검색어:</label>
+									<label for="keyword-cate">검색어:</label>
 									<p id="keyword"></p>
 								</div>
 
 								<div id="product-area">
 									<ol>
-										<c:forEach items="${map.myProductList}" var="productVo">
+										<c:forEach items="${map.myPickList}" var="productVo">
 											<li id="l${productVo.prodNo}"><img class="prod-img"
 												src="${pageContext.request.contextPath}/upload/${productVo.prodImgSrc}">
 												<div class="info">
 													<p class="emo-tag ${productVo.emotion}"></p>
+													/
+													<p>${productVo.id}</p>
 													<h4>
 														<a
-															href="${pageContext.request.contextPath}/myshop/updateForm?prodNo=${productVo.prodNo}">${productVo.prodName}</a>
+															href="${pageContext.request.contextPath}/myshop/details?prodNo=${productVo.prodNo}">${productVo.prodName}</a>
 													</h4>
 													<p>${productVo.price}원</p>
 													<p class="${productVo.delivery}"></p>
@@ -149,24 +152,21 @@
 			<div class="row">
 	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
 			</div>
-			<!-- //footer -->
-			
+			<!-- //footer -->			
 		</div>
-		<!-- //container -->
-		
+		<!-- //container -->		
 	</div>
-	<!-- //wrap -->
-	
+	<!-- //wrap -->	
 </body>
 <script type="text/javascript">
 	$(function () {
-			$(".happy").text('기쁨');
-			$(".sad").text('슬픔');
-			$(".angry").text('화남');
-			$(".annoyed").text('짜증');
-			$(".relieved").text('홀가분');
-			$(".post").text('택배');
-			$(".meet").text('직거래');
+		$(".happy").text('기쁨');
+		$(".sad").text('슬픔');
+		$(".angry").text('화남');
+		$(".annoyed").text('짜증');
+		$(".relieved").text('홀가분');
+		$(".post").text('택배');
+		$(".meet").text('직거래');
 	});
 
 	$("#addBtn").on("click", function() {
@@ -188,7 +188,7 @@
 			console.log(delprodNo);
 			
 			$.ajax({			
-				url : "${pageContext.request.contextPath}/myshop/myProducts/remove",		
+				url : "${pageContext.request.contextPath}/myshop/myPick/remove",		
 				type : "post",
 				// contentType : "application/json",
 				data : {delprodNo: delprodNo},
@@ -200,7 +200,7 @@
 					if(result === 'success') {					
 						$("#l"+ delprodNo).remove();
 						$('.delModal').modal('hide');
-						window.location.href = "${pageContext.request.contextPath}/myshop/myProducts?crtPage=1"
+						window.location.href = "${pageContext.request.contextPath}/myshop/pickedProducts?crtPage=1"
 					} 								
 				},
 				error : function(XHR, status, error) {
@@ -212,17 +212,17 @@
 	
 	$("#searchBtn").on("click", function() {
 		var keyword = $("#keyword").val();
-		console.log(keyword);		
+		console.log(keyword);
 		
 		$.ajax({			
-			url : "${pageContext.request.contextPath}/myshop/myProducts",		
+			url : "${pageContext.request.contextPath}/myshop/pickedProducts",		
 			type : "post",
 			// contentType : "application/json",
 			data : {keyword: keyword},
 
 			//dataType : "json",
 			success : function(){
-				window.location.href = "${pageContext.request.contextPath}/myshop/myProducts?keyword="+keyword;						
+				window.location.href = "${pageContext.request.contextPath}/myshop/pickedProducts?keyword="+keyword;
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
