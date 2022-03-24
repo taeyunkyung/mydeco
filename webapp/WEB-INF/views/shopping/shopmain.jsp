@@ -9,10 +9,10 @@
 <title>MyDeco</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
-        <script src="../assets/js/jquery-1.12.4.js"></script>
-        <script src="../assets/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/js/jquery-1.12.4.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.js"></script>
 <!-- 이부분에 이페이지에 필요한 css 추가 -->	    
 	    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,18 +40,18 @@
 					
 					<div class="row">
 					
-						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
+						<c:import url="/WEB-INF/views/include/aside2.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-								<div class="div-sub">
-									<h3 class="subtitle">
-										Shopping
-									</h3>
-								</div>
+							<h3 class="subtitle">
+								나의 일기 목록
+							</h3>
+							
 							<div id="main">
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
 			
-							   <!-- --쇼핑-------------------- -->
+			
+				   <!-- --쇼핑-------------------- -->
                             <!-- 여기가 옵션 검색창 -->
         
                             <div class="row div-sub">
@@ -153,6 +153,17 @@
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
 					
@@ -189,58 +200,6 @@
 	
 </body>
 
-   <script type="text/javascript">
-     
- 	$(function () {
-		$(".happy").text('기쁨');
-		$(".sad").text('슬픔');
-		$(".angry").text('화남');
-		$(".annoyed").text('짜증');
-		$(".relieved").text('홀가분');
-		$(".post").text('택배');
-		$(".meet").text('직거래');
-	});
-
-    $(".pickButton").on("click",function(){
-    	 
-		var prodNo =  $(this).data("prodno");
-		console.log(prodNo);    	 
-
-     	$.ajax({
-     		url : "${pageContext.request.contextPath }/shopping/addpick",		
-     		type : "post",
-     		contentType : "application/json",
-     		data : JSON.stringify({prodNo : prodNo}),
-
-     		dataType : "json",
-     		success : function(pickResult){
-     			console.log(pickResult);
-     			if(pickResult == 'addPick'){
-     				//찜 카운트 올리기
-     				var pickCnt = $("#pp"+prodNo).text();
-     				var newPickCnt = parseInt(pickCnt)+1;
-     			 	$("#pp"+prodNo).text(newPickCnt); 
-     			}else if(pickResult == 'delPick'){
-     				////카운트 줄이기
-     				var pickCnt = $("#pp"+prodNo).text();
-     				var newPickCnt = parseInt(pickCnt)-1;
-     			 	$("#pp"+prodNo).text(newPickCnt); 
-     			}
-     			
-     			
-     		},
-     		error : function(XHR, status, error) {
-     			console.error(status + " : " + error);
-     		}
-     	});
-     });
-     
-     
-     
-     
-     
-     
-     </script>
 
 
 

@@ -21,9 +21,9 @@
 </head>
 <body>
 	<div id="wrap">
-		<div class="container-fluid text-center">
+		<div class="container text-center">
 
-			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+			<c:import url="/WEB-INF/views/include/header2.jsp"></c:import>
 			<!-- 메인 -->
 			<div class="row">
 				<!-- 어사이드부분 -->

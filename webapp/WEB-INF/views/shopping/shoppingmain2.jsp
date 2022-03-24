@@ -1,57 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>MyDeco</title>
-
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>shoppingMain</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
         <script src="../assets/js/jquery-1.12.4.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.js"></script>
-<!-- 이부분에 이페이지에 필요한 css 추가 -->	    
-	    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-
-</head>
-
-<body>
-
-	<div id="wrap">
-		
-		<div class="container">
-		
-			<!-- header -->
-			<div class="row">
-	            <c:import url="/WEB-INF/views/include/header2.jsp"></c:import>    
-			</div>
-			<!-- //header -->
-			
-			<div class="row">
-				
-				<!-- content -->
-				<div id="content" class="col-xs-12">
-					
-					<div class="row">
-					
-						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
-					
-						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-								<div class="div-sub">
-									<h3 class="subtitle">
-										Shopping
-									</h3>
-								</div>
-							<div id="main">
-                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
-			
-							   <!-- --쇼핑-------------------- -->
+    </head>
+    <body>
+        <div id="wrap">
+            <div class="container text-center">  
+               <!-- header -->
+               
+               			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+               
+               <!--/header-->
+                <!-- 메인 -->
+                <div class="row">
+                    <!-- 어사이드부분 -->
+                    <c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
+                    <!-- /어사이드부분 -->
+                    <!-- 메인컨텐츠 -->
+                    <div class="col-xs-9">
+                        <div class="width700">
+                            <div class="div-sub">
+                                <h3>Shopping</h3>
+                            </div>
+                            <!-- --쇼핑-------------------- -->
                             <!-- 여기가 옵션 검색창 -->
         
                             <div class="row div-sub">
@@ -72,9 +53,8 @@
                                 </div>
                             </div>
                             <!-- /옵션 검색창 -->
-			
-			
-							<!-- 포문으로 돌림 -->
+                           
+                           <!-- 포문으로 돌림 -->
                            <c:forEach items="${merchandiseList}" var="vo">
 	                            <div class="row div-sub">
 	                                <div class="col-xs-2 imgbox">
@@ -118,10 +98,7 @@
 	                            </div>
                             </c:forEach>
                             <!-- /포문으로돌림 -->
-                            
-                            
-                            
-                            <!-- 페이징 -->
+						<!-- 페이징 -->
 						<ul class="pagination pagination-sm">
 							<c:if test="${map.prev == true}">
 								<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${map.startPageBtnNo-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -143,53 +120,21 @@
 							</c:if>
                         </ul>
 						<!-- /페이징 -->
-                            
-			
-		
-			
-			
-			
-			
-			
-			
-			
-	
-                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
-					
-							</div>	
-						
-						</div>
-						<!-- //main-content -->
-						
-						
-					
-					</div>
-					<!-- //row -->
-					
-				</div>
-				<!-- //content -->
-			
-			</div>
-			<!-- //row -->
-			
-			
-			
-			<!--footer-->
-			<div class="row">
-	            <c:import url="/WEB-INF/views/include/footer2.jsp"></c:import>   
-			</div>
-			<!-- //footer -->
-
-			
-		</div>
-		<!-- //container -->
-		
-	</div>
-	<!-- //wrap -->
-	
-</body>
-
-   <script type="text/javascript">
+                	</div>
+                </div>
+				<!-- 푸터부분 -->
+                <div class="row">
+                    <div class="col-xs-12">
+                    	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </body>
+    
+    <script type="text/javascript">
      
  	$(function () {
 		$(".happy").text('기쁨');
@@ -241,7 +186,4 @@
      
      
      </script>
-
-
-
 </html>
