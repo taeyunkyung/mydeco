@@ -874,6 +874,22 @@ a.ui-datepicker-next.ui-corner-all{
 a.ui-state-default{
 	color:#ffffff;
 }
+
+/*
+a.ui-state-default.hover{
+	background: #686099;
+	font-weight: bold;
+	color: #2b2b2b;
+	font-family:'SCDream4';
+	font-size:13px;
+}*/
+
+/*writeform에서의 데이트피커 사이즈*/
+div#ui-datepicker-div.ui-corner-all{
+	width: 290px !important;
+	height: 235px !important;
+}
+
 	
 #text{
 	color:#FFFFFF;
