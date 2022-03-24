@@ -60,19 +60,6 @@ div.addAudioDiv{
     overflow-y:scroll;    
  }
 
- /*달력*/
- /* .cal_nav{
-    width:705px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "SCDream4";
-    font-weight: 700;
-    font-size: 60px;
-    background-color: #686099;
-    color: #ffffff;
-  
- } */
 
  .cal_nav{
     width:705px;
@@ -141,12 +128,15 @@ a.btn-diarylist {
     font-family: 'SCDream4';
     color: #ffffff;
     float: right;
-    margin-right: -100px;
+    /*margin-right: -100px;*/
+    margin-right: -7px;
 }
 
 .selectbox-small{
-    padding: 6px;
-    margin-left: 116px;
+    padding: 5px;
+    /*margin-left: 95px;
+    margin-left: 116px;*/
+    margin-left:23px;
     text-align:center;
 }
 
@@ -465,7 +455,7 @@ div.mydiary-Date{
 }
 
 .mydiary-list-box2{
-    width: 700px; height: 155px;
+    width: 712.5px; height: 155px;
     border-bottom: 1px solid #686099; 
     
 }
@@ -796,7 +786,7 @@ button.btn-search:hover{
 }
 
 .sectionLine{
-    width: 700px;
+    width: 712.5px;
     border-bottom: 1px solid #686099;
 }
 
@@ -813,19 +803,96 @@ h3.subtitle{
 }
 
 
-#main-content{
-	margin-left:-15px; 
-	margin-top:15px;
+.ui-datepicker{
+	width: 714px !important;
+	height: 250px !important;
 }
 
-.ui-datepicker{
-	width: 700px !important;
-	height: 300px !important;
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+    margin-top:2px; 
 }
+
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: 0.2em 0;
+    background-color: #686099;
+    height:40px;
+}
+
+span.ui-datepicker-year{
+	color:#FFFFFF;
+	font-family:'SCDream4';
+	font-size: 15px;
+}
+
+span.ui-datepicker-month{
+	color:#FFFFFF;
+	font-family:'SCDream4';
+	font-size: 15px;
+}
+
+
+a.ui-datepicker-prev.ui-corner-all{
+	margin-top:3px;
+}
+
+a.ui-datepicker-next.ui-corner-all{
+	margin-top:3px;
+}
+
+a.ui-state-default{
+	color:#ffffff;
+}
+	
+#text{
+	color:#FFFFFF;
+	font-family:'SCDream4';
+	font-size: 13px;
+}	
+
+table.ui-datepicker-calendar{
+	width:280px;
+	height:170.69px;
+}
+
+
+td.ui-datepicker-week-end.writedDay{
+	border: 0;
+    border-top-color: initial;
+    border-top-style: initial;
+    border-top-width: 0px;
+    border-right-color: initial;
+    border-right-style: initial;
+    border-right-width: 0px;
+    border-bottom-color: initial;
+    border-bottom-style: initial;
+    border-bottom-width: 0px;
+    border-left-color: initial;
+    border-left-style: initial;
+    border-left-width: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    padding: 1px;
+    padding-top: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+}
+	
+
 	
 .writedDay {
 	background-color: #7030A0;
+	color:#686099;
 }
+
 
 .readCanvas{
 	margin-left:43px;

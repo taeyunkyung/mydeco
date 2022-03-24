@@ -1,76 +1,113 @@
 @charset "UTF-8";
+
 @font-face {
     font-family: 'main';
     src: url(../fonts/BinggraeⅡ-Bold.ttf);
-}
-html {
-    display: flex;
-    justify-content: center;
-}
-#wrap {
-    width: 1140px;
 }
 
 .clearfix{*zoom:1;}
 .clearfix:before, .clearfix:after {display: block; content: ""; line-height: 0;}
 .clearfix:after {clear: both;} 
 
+
 ul, ol {list-style: none;}
 a:link {text-decoration: none; color: #000000;}
 a:visited {text-decoration: none; color: #000000;}
 a:hover {text-decoration: none; color: #000000;}
 
+
 *{ box-sizing: border-box; }
 
-/*header*/
-#header>h1 {
-    width: 200px;
-    height: 100px;
-    float: left;
+
+
+/*레이아웃*/
+#wrap {
+    width: 950px;
     padding: 0px 0px 0px 0px;
-    margin: 20px 0px 0px 30px;
+    margin: 0 auto;
 }
 
-#logo {
-    width: 200px;
+#wrap .container {
+	width: 950px;
+}
+
+.container #header {
+    margin: 0px 0px 35px 0px;
+    padding: 25px 0px 0px 0px;
+}
+
+/* 
+.container #content {
+}
+*/
+
+/*footer*/
+.container  #footer {
+  	margin: 50px 0px 15px 0px;
+    padding: 20px 20px 20px 20px;
+    text-align: center;    
+    font-family: 'SCDream4';
+    border-color: #CEC9EF;
+    border-top-style: solid;
+    border-width: 2px;
+}
+
+
+
+/***************************************************************/
+/*header*/
+/***************************************************************/
+#header>h1 {
+    float: left;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
+}
+
+#header #logo {
+    width: 200px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px -5px;
 }
 
 #category {
     font-family: 'SCDream4';
     font-weight: bold; 
     float: left;
-    margin: 30px 10px 30px 10px;
+    margin: 20px 0px 0px 80px;
+    padding: 0px 0px 0px 0px;
     text-align: center;
 }
 #category>li {
     float: left;
-    margin: 50px 0px 50px 0px;
-    padding: 10px 10px 10px 10px;
+    margin: 0px 80px 0px 0px;
+    padding: 0px 0px 0px 0px;
     text-align: center;
 }
 
 #user {
-    margin: 0px;
     font-family: 'SCDream4';
     font-weight: bold; 
-    float: left;
-    text-align: center;
-}
-#user>li {
     float: right;
-    padding: 10px 10px 10px 10px;
-    margin: 30px 0px 30px 0px;
+	margin: 20px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     text-align: center;
 }
 
+#user>li {
+    float: right;
+    padding: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+}
+
+
+/* 서버메뉴 관련 */
 .dropdown {
-    width: 130px;
+   /*  width: 130px; */
     text-align: center;
     position: relative;
     display: inline-block;
-    padding: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
 }
 
 .dropdown-content {
@@ -97,7 +134,23 @@ a:hover {text-decoration: none; color: #000000;}
     display: block;
   }
 
+
+
+/***************************************************************/
+/*content > aside*/
+/***************************************************************/
+
 /* aside, aside-shop */
+#aside {
+	padding: 0px 15px 0px 0px;
+}
+
+
+#aside>ul{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
 #aside #title, #aside .title {
     font-family: 'SCDream4';
     font-weight: bold; 
@@ -112,6 +165,7 @@ a:hover {text-decoration: none; color: #000000;}
 #orange{color: rgba(255, 145, 0, 0.952);} 
 #green{color: rgba(47, 255, 92, 0.959);} 
 #pink{color: rgb(255, 192, 195);}
+
 
 #aside .color {
     font-weight: 700%;
@@ -144,6 +198,49 @@ a:hover {text-decoration: none; color: #000000;}
         background-color: #ebebeb;
     }
 
+
+
+/***************************************************************/
+/*content > #main-content*/
+/***************************************************************/
+
+#content #main-content {
+	padding: 0px 0px 0px 0px ;
+}
+
+#main-content h3.subtitle {
+	margin: 18px 0px 0px 0px;
+	padding: 0px 0px 18px 0px;
+	border-bottom: 1px solid #686099;
+	font-family: 'SCDream4';
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*footer-search*/ 
 #search {
     display: inline-flex;
@@ -173,23 +270,59 @@ input[id="keyword"] {
     width: 80px; height: 35px;
 } 
 
+
+
+
+
+
 /*footer*/
 #footer {
-	margin: 0px 0px 0px 10px;
-	width: 1100px;
+  	margin: 50px 0px 15px 0px;
+    padding: 20px 20px 20px 20px;
     text-align: center;    
     font-family: 'SCDream4';
-}
-
-
-#footer-top{
-	width: 1050px;
-	border-color: #CEC9EF;
+    border-color: #CEC9EF;
     border-top-style: solid;
     border-width: 2px;
-    margin: 50px 0px 15px 0px;
-    padding-top: 20px;
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* des */

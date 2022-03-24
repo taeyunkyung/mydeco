@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.mydeco.vo.BgmVo;
 import com.mydeco.vo.DiaryContentVo;
 import com.mydeco.vo.DiaryItemVo;
+import com.mydeco.vo.ProdDiaryVo;
 import com.mydeco.vo.StickerVo;
 import com.mydeco.vo.UserVo;
 
@@ -47,7 +48,13 @@ public class MydiaryDao {
 	}
 	
 	/*상품등록한 일기판별*/
-	public int getProdNo(int diaryNo) {
+	/*
+	public List<ProdDiaryVo> getProdNo(int diaryNo) {
+		return sqlSession.selectList("mydiary.getProdNo",diaryNo);
+	}
+	
+	/*상품등록한 일기판별*/
+	public ProdDiaryVo getProdNo(int diaryNo) {
 		return sqlSession.selectOne("mydiary.getProdNo",diaryNo);
 	}
 	
@@ -105,6 +112,12 @@ public class MydiaryDao {
 	/*일기 삭제하기*/
 	public int deleteDiary(int diaryNo) {
 		return sqlSession.delete("mydiary.deleteDiary",diaryNo);
+	}
+	
+
+	/*prodDiary테이블에서 일기번호 삭제하기*/
+	public int deleteProdDiarydiaryNo(int diaryNo) {
+		return sqlSession.delete("mydiary.deleteProdDiarydiaryNo",diaryNo);
 	}
 	
 }

@@ -15,7 +15,7 @@ div.mydiarywriteForm-write-region{
     /*border: 1px solid #000000; */
     text-align: center;
    
-    margin-left: 50px;
+    /*margin-left: 50px;*/
 
 }
 
@@ -33,6 +33,17 @@ div.mydiarywriteForm-write-region{
     height: 690px;
     border: 1px solid  #ebebeb;
     margin-left: 10px;
+    background-color: rgb(54, 54, 54);
+
+}
+
+/*넓이950px에 맞춰서 margin-left 줄얼들었음*/
+.mydiarywriteForm-right2{
+    float: left;
+    width: 240px;
+    height: 690px;
+    border: 1px solid  #ebebeb;
+    margin-left: 4px;
     background-color: rgb(54, 54, 54);
 
 }

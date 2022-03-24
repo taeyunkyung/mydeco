@@ -355,16 +355,23 @@ $("#modalBtnDel").on("click",function(){
 	
 	console.log(diaryNo);
 	/*상품페이지에 등록한 일기일경우엔 이런 경고창이 떠야함-->diaryprodNo값이 존재하면..*/
+	/*해당일기를 추가한 상품의 개수, 상품번호 ProdDiaryVo에 담아오기*/
 		$.ajax({
 		    url : "${pageContext.request.contextPath}/diary/getProdNo",
 		    type : "post",
 		    /* contentType : "application/json", */
 		    data : {diaryNo: diaryNo},//데이터 보내기-파라미터로받기
 		    dataType : "json",
-		    success : function(result) {
-		    	console.log(result);
-		    	if(result == 1){
-		    		if(confirm('상품페이지에 등록된 일기 정보가 함께 삭제됩니다. 일기를 삭제하시겠습니까?')==true){
+		    success : function(prodDiaryVo) {
+		    	console.log(prodDiaryVo);
+		    	console.log("=======prodDIaryVo수정=====")
+		    	
+		    	var count = prodDiaryVo.count;
+		    	console.log(count);
+		    	
+		    	if(count > 0){
+		    		
+		    		if(confirm(count+'개의 상품에 등록된 일기입니다. 상품페이지에 등록된 일기 정보가 함께 삭제됩니다. 일기를 삭제하시겠습니까?')==true){
 		    			console.log("확인클릭");
 		    			
 		    			var diaryContentVo = {diaryNo: diaryNo};
@@ -381,7 +388,7 @@ $("#modalBtnDel").on("click",function(){
 		    			    	if(result == 2){
 		    			    		location.href="${pageContext.request.contextPath}/diary/list"
 		    			    	}else{
-		    			    		alert('삭제할 수 없는 일기입니다.');
+		    			    		alert('일기 삭제에 실패했습니다.');
 		    			    	}
 		    				    
 		    			    },
@@ -394,7 +401,9 @@ $("#modalBtnDel").on("click",function(){
 		    			console.log("취소클릭");
 		    			return;
 		    		}
-		    	}else{
+		    		
+		    		
+		    	}else{ //count <= 0이면
 		    		
 		    		if(confirm('일기를 삭제하시겠습니까?')==true){
 		    			console.log("확인클릭");
@@ -413,7 +422,7 @@ $("#modalBtnDel").on("click",function(){
 		    			    	if(result == 2){
 		    			    		location.href="${pageContext.request.contextPath}/diary/list"
 		    			    	}else{
-		    			    		alert('삭제할 수 없는 일기입니다.');
+		    			    		alert('일기 삭제에 실패했습니다.');
 		    			    	}
 		    				    
 		    			    },
@@ -426,6 +435,7 @@ $("#modalBtnDel").on("click",function(){
 		    			console.log("취소클릭");
 		    			return;
 		    		}
+		    		
 		    	}
 			    
 		    },
@@ -433,6 +443,106 @@ $("#modalBtnDel").on("click",function(){
 		       console.error(status + " : " + error);
 		    }
 		 });
+	
+	
+			
+		/* $.ajax({
+		    url : "${pageContext.request.contextPath}/diary/getProdNo",
+		    type : "post",
+		    /* contentType : "application/json", */
+		    /*
+		    data : {diaryNo: diaryNo},//데이터 보내기-파라미터로받기
+		    dataType : "json",
+		    success : function(prodDiaryList) {
+		    	console.log(prodDiaryList);
+		    	console.log("=======prodDIaryVo수정=====")
+		    	
+		    	var count = prodDiaryList.count;
+		    	console.log(count);
+		    	
+		    	var sum = 0;
+		    	for(var i=0; i<prodDiaryList.length; i++){
+		    		console.log(count[i] = prodDiaryList[i].count);
+		    		
+		    		count[i] = prodDiaryList[i].count;
+		    		count = count[i];
+		    		sum = sum + count;
+		    	}
+		    	
+		    	if(sum > 0){
+		    		
+		    		if(confirm(sum+'개의 상품에 등록된 일기입니다. 상품페이지에 등록된 일기 정보가 함께 삭제됩니다. 일기를 삭제하시겠습니까?')==true){
+		    			console.log("확인클릭");
+		    			
+		    			var diaryContentVo = {diaryNo: diaryNo};
+		    			console.log(diaryContentVo);
+		    			
+		    			$.ajax({
+		    			    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    			    type : "post",
+		    			    contentType : "application/json",
+		    			    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    			    dataType : "json",
+		    			    success : function(result) {
+		    					
+		    			    	if(result == 2){
+		    			    		location.href="${pageContext.request.contextPath}/diary/list"
+		    			    	}else{
+		    			    		alert('일기 삭제에 실패했습니다.');
+		    			    	}
+		    				    
+		    			    },
+		    			    error : function(XHR, status, error) {
+		    			       console.error(status + " : " + error);
+		    			    }
+		    			 });
+		    			
+		    		}else{
+		    			console.log("취소클릭");
+		    			return;
+		    		}
+		    		
+		    		
+		    	}else{ //sum <= 0이면
+		    		
+		    		if(confirm('일기를 삭제하시겠습니까?')==true){
+		    			console.log("확인클릭");
+		    			
+		    			var diaryContentVo = {diaryNo: diaryNo};
+		    			console.log(diaryContentVo);
+		    			
+		    			$.ajax({
+		    			    url : "${pageContext.request.contextPath}/diary/deleteForm",
+		    			    type : "post",
+		    			    contentType : "application/json",
+		    			    data : JSON.stringify(diaryContentVo),//데이터 보내기
+		    			    dataType : "json",
+		    			    success : function(result) {
+		    					
+		    			    	if(result == 2){
+		    			    		location.href="${pageContext.request.contextPath}/diary/list"
+		    			    	}else{
+		    			    		alert('일기 삭제에 실패했습니다.');
+		    			    	}
+		    				    
+		    			    },
+		    			    error : function(XHR, status, error) {
+		    			       console.error(status + " : " + error);
+		    			    }
+		    			 });
+		    			
+		    		}else{
+		    			console.log("취소클릭");
+		    			return;
+		    		}
+		    		
+		    	}
+			    
+		    },
+		    error : function(XHR, status, error) {
+		       console.error(status + " : " + error);
+		    }
+		 }); */
 		
 	
 	
