@@ -34,9 +34,16 @@
 	<insert id="addcmt" parameterType="ShoppingCmtVo">
 		<![CDATA[
 			insert into comments
-			values(seq_comment_no.nextval,#{prodNo},#{userNo},#{cmtContent},sysdate,1,1,0)
+			values(seq_comment_no.nextval,#{prodNo},#{userNo},#{cmtContent},sysdate,seq_comment_no.CURRVAL,1,0)
 		]]>
 	
+	</insert>
+	
+	<insert id="reAddCmt" parameterType="ShoppingCmtVo">
+		<![CDATA[
+			insert into comments
+			values(seq_comment_no.nextval, #{prodNo} , #{userNo} , #{cmtContent} , SYSDATE , #{cmtNo} ,#{cmtSeq} , #{depth})
+		]]> 
 	</insert>
 	
 	
@@ -46,7 +53,7 @@
 		        prodNo,
 		        c.userNo userNo,
 		        cmtContent,
-		        regDate,
+		        to_char(regDate, 'YYYY-MM-DD') regDate,
 		        groupNo,
 		        cmtSeq,
 		        depth,
@@ -54,7 +61,7 @@
 		from comments c, users u
 		where u.userNo = c.userNo
 		and prodNo = #{no}
-		order by regDate asc, groupNo asc
+		order by groupNo asc, cmtSeq asc
 		]]>	
 	</select>
 

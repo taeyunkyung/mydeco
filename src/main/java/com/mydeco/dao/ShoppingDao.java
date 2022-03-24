@@ -45,6 +45,14 @@ public class ShoppingDao {
 		System.out.println(shoppingCmtVo);
 		sqlSession.insert("shopping.addcmt", shoppingCmtVo);
 	}
+	////////////////////////////코멘코멘트 넣기///////////////////////
+	public int addReCmt(ShoppingCmtVo shoppingCmtVo) {
+		System.out.println("다오의 recmt 넣기 도킹");
+		System.out.println(shoppingCmtVo);
+		System.out.println("최종 대댓글 확인용"+shoppingCmtVo);
+		return sqlSession.insert("shopping.reAddCmt", shoppingCmtVo);
+		
+	}
 	/////////////////////// 코멘트리스트가져오기//////////////////////////
 
 	public List<ShoppingCmtVo> getCmtList(int no) {

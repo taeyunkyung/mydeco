@@ -150,6 +150,26 @@ public class ShoppingController {
 		
 		
 	}
+///////////////////상품상세의 대댓글 ajax//////////////////////////////
+	@ResponseBody
+	@RequestMapping("/recmtwrite")
+	public int recmtwrite(@RequestBody ShoppingCmtVo shoppingCmtVo, HttpSession session) {
+		System.out.println("ajax 리코멘트전송 컨트롤러진입");
+		
+		System.out.println(shoppingCmtVo);
+		
+		System.out.println(session.getAttribute("authUser"));
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		shoppingCmtVo.setUserNo(authUser.getUserNo());
+		shoppingCmtVo.setName(authUser.getName());
+		
+		System.out.println(shoppingCmtVo);
+		return shoppingService.cmtwrite2(shoppingCmtVo);
+		
+		 
+	}
 	
 	
 	
@@ -181,5 +201,6 @@ public class ShoppingController {
 	}
 
 
+	
 }
 

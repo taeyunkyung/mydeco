@@ -12,14 +12,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiaryList_modal.css">
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui-1.13.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
-	 
-	   
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>
+
 </head>
 <body>
 	<div id="wrap">
@@ -42,7 +40,7 @@
 							<div class="col-xs-12">
 								<h3 class="text-left">${product.prodName}</h3>
 							</div>
-		
+
 						</div>
 
 						<!-- 메인 컨텐츠 -->
@@ -130,84 +128,92 @@
 								<h3>일기장</h3>
 							</div>
 							<div class="col-xs-12 height320 overf">
-								
-								
-								
-								
-								
-								
+
+
+
+
+
+
 								<!--긁어온 일기 시작  -->
-								
+
 								<c:forEach items="${diarycontentList}" var="dcvo">
-	                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}" style=" border-bottom: 1px solid #686099;">
-	                                <div class="mydiaryText-list2">
-	                                    <div class="mydiaryText7 clearfix">
-	                                    	<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
-	                                        <div class="mydiary-Date">Date:</div>
-	                                        <div class="mydiary-Date" data-diaryDate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
-	                                        
-			                                <c:choose>
-			                                	<c:when test="${dcvo.weather eq 'sunny'}">
-			                                	 	<div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png"></div>	
-			                                	</c:when>
-			                                	<c:when test="${dcvo.weather eq 'rainy'}">
-			                                		<div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/rainy.png"></div>
-			                                	</c:when>
-			                                	<c:otherwise><div><img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/snowflake.png"></div></c:otherwise>
-			                                </c:choose>
-	                                    </div>
-	
-	                                    <div class="mydiaryText7 mydiary-content" data-title="${dcvo.title}">${dcvo.title}</div>
-	                                    <div class="opensetting text-left" data-protect="${dcvo.protect}">
-	                                        ${dcvo.protect}
-	                                    </div>
-	                                </div>
-	                                
-	                               
-	                                <div class="mydiaryImg-box7 mydiary-box7-support">
-	                                    <img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
-	                                </div>
-	                            </div>
-                            </c:forEach>
-								
-								
-								
-								
-								
-								
-								
-								
-								
+									<div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}" style="border-bottom: 1px solid #686099;">
+										<div class="mydiaryText-list2">
+											<div class="mydiaryText7 clearfix">
+												<!-- <input type="hidden" name="diaryNo" value="${dcvo.diaryNo}">-->
+												<div class="mydiary-Date">Date:</div>
+												<div class="mydiary-Date" data-diaryDate="${dcvo.diaryDate}">${dcvo.diaryDate}</div>
+
+												<c:choose>
+													<c:when test="${dcvo.weather eq 'sunny'}">
+														<div>
+															<img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/sunny-day.png">
+														</div>
+													</c:when>
+													<c:when test="${dcvo.weather eq 'rainy'}">
+														<div>
+															<img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/rainy.png">
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div>
+															<img id="se_weather_img" class="mydiary-weather2" src="${pageContext.request.contextPath}/assets/img/weather/snowflake.png">
+														</div>
+													</c:otherwise>
+												</c:choose>
+											</div>
+
+											<div class="mydiaryText7 mydiary-content" data-title="${dcvo.title}">${dcvo.title}</div>
+											<div class="opensetting text-left" data-protect="${dcvo.protect}">${dcvo.protect}</div>
+										</div>
+
+
+										<div class="mydiaryImg-box7 mydiary-box7-support">
+											<img class="mydiaryImg-innerbox7" src="./assets/img/writediary/writediary.png">
+										</div>
+									</div>
+								</c:forEach>
+
+
+
+
+
+
+
+
+
 								<!-- 긁어온 일기 끝 -->
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 							</div>
 						</div>
 
 						<!-- /일기장 -->
 
+
+						<!-- 댓글작성  -->
 						<div class="row">
 							<div class="div-sub fontstyle">댓글</div>
 							<div class="col-xs-10 padding0">
@@ -272,7 +278,10 @@
 
 
 
-								<div id="listArea"></div>
+								<div id="listArea">
+								
+								
+								</div>
 
 								<!--/ajax로 출력할부분  -->
 							</div>
@@ -292,267 +301,421 @@
 		</div>
 	</div>
 	<!--모달시작  -->
-	
-	     <!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
-	     <div id="diaryModal" class="modal fade">
-		  <div class="modal-dialog modal-lg">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close" style="font-size:30px;"><span aria-hidden="true">&times;</span></button>
-		        <div class="clearfix">
-			        <div style="float: right;">
-	                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
-	                </div>
-			        <div style="float:left; margin-right:15px; margin-top:3px;">노래를넣는다면 여기가 노래재생되는곳</div>	
-		        </div>
-		       		        
-		        <div class="clearfix" style="margin-top:28px;">
-			        <div style="float:left; margin-left:41px;"><h4 class="modal-title" id="modalDiaryTitle" style="font-size:19px; font-weight:900"></h4></div>
-			        <div class="readcontent clearfix" style="float:right; width:176px; margin-right:40px; margin-top:7px;" >
-			        	<div style="float:left; font-family:'SCDream4'; width:84px;"id="modalDiaryDate"></div>
-			        	<div style="float:left; font-family:'SCDream4'; width:50px; text-align:center;"id="modalDiaryWeather"></div>
-			        	<div style="float:left; font-family:'SCDream4'; width:42px; text-align:center;"id="modalDiaryProtect"></div>
-			        </div>
-		        </div>
-		      </div>
-		      <div class="modal-body">
-		      
-		      <canvas class="readCanvas" id="paper"></canvas>
-		      	
-		      </div>
-		      <div class="modal-footer">
-		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-     
-     <!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
-	
-	
-	
-	
-	
-	
-	
+
+	<!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
+	<div id="diaryModal" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 30px;">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="clearfix">
+						<div style="float: right;">
+							<img class="saveImgbtn" style="margin-right: 11px; width: 19px; height: 19px; margin-top: 3px; cursor: pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
+						</div>
+						<div class="audiodiv" style="float: left; margin-right: 15px; margin-top: 3px;">
+							<audio id="audio" src="" controls autoplay loop style="height: 20px; width: 300px; margin-left: 38px;"></audio>
+						</div>
+					</div>
+
+					<div class="clearfix" style="margin-top: 28px;">
+						<div style="float: left; margin-left: 41px;">
+							<h4 class="modal-title" id="modalDiaryTitle" style="font-size: 19px; font-weight: 900"></h4>
+						</div>
+						<div class="readcontent clearfix" style="float: right; width: 176px; margin-right: 40px; margin-top: 7px;">
+							<div style="float: left; font-family: 'SCDream4'; width: 84px;" id="modalDiaryDate"></div>
+							<div style="float: left; font-family: 'SCDream4'; width: 50px; text-align: center;" id="modalDiaryWeather"></div>
+							<div style="float: left; font-family: 'SCDream4'; width: 42px; text-align: center;" id="modalDiaryProtect"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body">
+
+					<canvas class="readCanvas" id="paper"></canvas>
+
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!--부트스트랩취소버튼 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button> -->
+
+
+
+
+
+
+
 </body>
 
 <script type="text/javascript">
-	//시작시 바로 그려주기
+//시작시 바로 그려주기(댓글리스트 그리기)///////////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
 
-	$(document).ready(function() {
+	console.log("리스트요청");
 
-		console.log("리스트요청");
+	//리스트그리기
+	fetchList();
 
-		//리스트그리기
-		fetchList();
+});
 
-	});
+function fetchList() {
+	$.ajax({
 
-	function fetchList() {
-		$
-				.ajax({
+				url : "${pageContext.request.contextPath }/shopping/fetch?no=${product.prodNo}",
+				type : "post",
 
-					url : "${pageContext.request.contextPath }/shopping/fetch?no=${product.prodNo}",
-					type : "post",
-
-					dataType : "json",
-					success : function(cmtList) {
-
-						//입력화면 초기화
-						console.log(cmtList);
-						for (var i = 0; i < cmtList.length; i++) {
+				dataType : "json",
+				success : function(cmtList) {
+					$("#listArea .row").remove();
+					//입력화면 초기화
+					console.log(cmtList);
+					
+					for (var i = 0; i < cmtList.length; i++) {
+						
+						if(cmtList[i].depth == 0){
 							render(cmtList[i], "down"); //방명록리스트 그리기
+							
+						}else if(cmtList[i].depth == 1){
+							render2(cmtList[i], "down"); //방명록리스트 그리기	
+						}else{
+							console.log("오류났습니다");
 						}
-
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
+						
 					}
-				});
+
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+};
+
+
+/////////////////////////댓글 그리기///////////////	
+function render(ShoppingCmtVo, updown) {
+	var str = '';
+	str += '	<div class="row purpleback">';
+	str += '		<div class="col-xs-10">';
+	str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name+ '님</span>';
+	str += '		</div>';
+	str += '		<div class="col-xs-2">';
+	str += '			<span class="text-right">' + ShoppingCmtVo.regDate+ '</span>';
+	str += '		</div>';
+	str += '	</div>';
+	str += '	<div class="row purpleback underborder">';
+	str += '		<div class="col-xs-11">';
+	str += '			<div class="height30">'; //data-no 부분에 항상 소문자만 쓰기 
+	str += '				<span>' + ShoppingCmtVo.cmtContent + '</span>';
+	str += '			</div>';
+	str += '		</div>';
+	str += ' 		<div class="col-xs-1 padding0">';
+	str += ' 			<button class="replebutton reReple" data-depth="'+ ShoppingCmtVo.depth +'" data-cmtseq="'+ ShoppingCmtVo.cmtSeq + '" data-cmtno="'+ ShoppingCmtVo.cmtNo +'">댓글</button>';
+	str += '		</div>';
+	str += '	</div>';
+	str += '	<div></div>';
+	
+	if (updown == 'down') {
+		$("#listArea").append(str);
+	} else if (updown == 'up') {
+		$("#listArea").prepend(str);
+	} else {
+		console.log("방향오류");
+	}
+
+};
+//////////////////////대댓글 그리기///////////////////
+function render2(ShoppingCmtVo, updown) {
+	
+	
+	var str = '';
+	str += '	<div class="row backgroundgray">';
+	str += '        <div class="col-xs-1"></div>';
+	str += '		<div class="col-xs-9">';
+	str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name+ '님</span>';
+	str += '		</div>';
+	str += '		<div class="col-xs-2">';
+	str += '			<span class="text-right">' + ShoppingCmtVo.regDate+ '</span>';
+	str += '		</div>';
+	str += '	</div>';
+	str += '	<div class="row backgroundgray underborder">';
+	str += '		<div class="col-xs-1"></div>';
+	str += '		<div class="col-xs-10">';
+	str += '			<div class="height30">'; //data-no 부분에 항상 소문자만 쓰기 
+	str += '				<span>' + ShoppingCmtVo.cmtContent + '</span>';
+	str += '			</div>';
+	str += '		</div>';
+	str += ' 		<div class="col-xs-1 padding0">';
+	str += ' 			<input type="hidden" class="reReple" data-depth="'+ ShoppingCmtVo.depth +'" data-cmtseq="'+ ShoppingCmtVo.cmtSeq + '" data-cmtno="'+ ShoppingCmtVo.cmtNo +'">';
+	str += '		</div>';
+	str += '	</div>';
+	str += '	<div></div>';
+	
+	
+
+
+
+	if (updown == 'down') {
+		$("#listArea").append(str);
+	} else if (updown == 'up') {
+		$("#listArea").prepend(str);
+	} else {
+		console.log("방향오류");
+	}
+
+};
+
+//////////////////댓글달기////////////////////////
+$("#cmtsend").on("click", function() {
+	var cmttext = $("#cmttext").val();
+	var prodno = $("#cmtsend").val();
+	var ShoppingCmtVo = {
+		cmtContent : cmttext,
+		prodNo : prodno
 	};
-
-	$("#cmtsend").on("click", function() {
-
-		var cmttext = $("#cmttext").val();
-
-		var prodno = $("#cmtsend").val();
-
-		var ShoppingCmtVo = {
-			cmtContent : cmttext,
-			prodNo : prodno
-		};
-		console.log(cmttext);
-		console.log(prodno);
-
-		$.ajax({
-
-			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(ShoppingCmtVo),
-			success : function() {
-
-				//입력화면 초기화
-				$("#listArea").empty();
-				fetchList();
-
-				document.getElementById("cmttext").value = '';
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-
-	});
-
-
-
-	//////////////////////////////////////////이미지 순서바꾸기//////////////////
-
-	$("#img1")
-			.on(
-					"click",
-					function() {
-						console.log("이미지클릭");
-						$("#img0")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
-						$("#img1")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
-						$("#img2")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
-						$("#img3")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
-						$("#img4")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
-
-					});
-
-	$("#img2")
-			.on(
-					"click",
-					function() {
-						console.log("이미지클릭");
-						$("#img0")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
-						$("#img1")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
-						$("#img2")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
-						$("#img3")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
-						$("#img4")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
-
-					});
-
-	$("#img3")
-			.on(
-					"click",
-					function() {
-						console.log("이미지클릭");
-						$("#img0")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
-						$("#img1")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
-						$("#img2")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
-						$("#img3")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
-						$("#img4")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
-
-					});
-
-	$("#img4")
-			.on(
-					"click",
-					function() {
-						console.log("이미지클릭");
-						$("#img0")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
-						$("#img1")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
-						$("#img2")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
-						$("#img3")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
-						$("#img4")
-								.attr(
-										"src",
-										"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
-
-					});
-
-	function render(ShoppingCmtVo, updown) {
-		var str = '';
-		str += '	<div class="row purpleback">';
-		str += '		<div class="col-xs-10">';
-		str += '			<span class="recomandfontstyle">' + ShoppingCmtVo.name+ '님</span>';
-		str += '		</div>';
-		str += '		<div class="col-xs-2">';
-		str += '			<span class="text-right">' + ShoppingCmtVo.regDate+ '</span>';
-		str += '		</div>';
-		str += '	</div>';
-		str += '	<div class="row purpleback underborder">';
-		str += '		<div class="col-xs-11">';
-		str += '			<div class="height30">'; //data-no 부분에 항상 소문자만 쓰기 
-		str += '				<span>' + ShoppingCmtVo.cmtContent + '</span>';
-		str += '			</div>';
-		str += '		</div>';
-		str += ' 		<div class="col-xs-1 padding0">';
-		str += ' 			<button class="replebutton reReple" data-cmtno="'+ ShoppingCmtVo.cmtNo +'">댓글</button>';
-		str += '		</div>';
-		str += '	</div>';
-		str += '	<div></div>';
-		
-
-		if (updown == 'down') {
-			$("#listArea").append(str);
-		} else if (updown == 'up') {
-			$("#listArea").prepend(str);
-		} else {
-			console.log("방향오류");
+	console.log(cmttext);
+	console.log(prodno);
+	$.ajax({
+		url : "${pageContext.request.contextPath }/shopping/cmtwrite",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(ShoppingCmtVo),
+		success : function() {
+			//입력화면 초기화
+			$("#listArea").empty();
+			fetchList();
+			document.getElementById("cmttext").value = '';
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
 		}
+	});
+});
 
+
+
+
+
+/////////////////////////대댓글 작성 창 열기/////////////////////////////////
+
+$("#listArea").on("click", ".reReple", function() {
+	//다들 대댓글 입력창 삭제
+	$(".backgroundgray2").remove(); 
+	
+	
+	
+	
+	var cmtNo = $(this).data("cmtno");
+	var cmtSeq = $(this).data("cmtseq");
+	var depth= $(this).data("depth");
+	console.log(cmtNo);
+	console.log(cmtSeq);
+	console.log(depth);
+	
+	
+	var str ="";
+	str += '<div class="row backgroundgray2">';
+	str += '	<div class="col-xs-10 padding0 rereCmt">';
+	str += '		<textarea placeholder="댓글을 입력해주세요" class="txt-rereCmt"></textarea>';
+	str += '	</div>';
+	str += '	<div class="col-xs-2 padding0"><button class="button button2 marginauto replesub r-button" data-depth="'+ depth + '" data-cmtseq="'+ cmtSeq +'" data-cmtno="'+cmtNo+'" >답글 달기</button></div>';
+	str += '</div>';
+
+
+	
+	$(this).parents(".purpleback.underborder").next().children().first().remove();
+	$(this).parents(".purpleback.underborder").next().append(str);
+	//$("#listArea").off("click",".reReple");
+});
+
+
+
+/////////////////////////대댓글 작성 창 작성/////////////////////////////////
+
+$("#listArea").on("click", ".replesub", function() {
+	console.log("대댓글 저장 버튼 클릭");
+	
+	
+	//prodNo
+	var prodNo ="${product.prodNo}"
+	
+	//cmtNo
+	var cmtNo = $(this).data("cmtno");
+	
+	//cmtSeq
+	var cmtSeq = $(this).data("cmtseq");
+	
+	//cmtContent
+	var cmtContent =  $(this).parents().find(".rereCmt").children(".txt-rereCmt").val();
+	
+	//depth
+	var depth = $(this).data("depth");
+	
+	//console.log(depth);
+	
+	var ShoppingCmtVo ={
+			prodNo: prodNo,
+			cmtNo: cmtNo,
+			cmtContent: cmtContent,
+			cmtSeq: cmtSeq,
+			depth: depth
 	};
+
+	console.log(ShoppingCmtVo);
+
+	$.ajax({
+
+		url : "${pageContext.request.contextPath }/shopping/recmtwrite",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(ShoppingCmtVo),
+
+		dataType : "json",
+		success : function(result) {
+			/*성공시 처리해야될 코드 작성*/
+			
+			console.log("확인용");
+			console.log(result)
+			
+			fetchList();
+			
+			
+
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
+
+
+
+
+
+
+
+
+////이미지 순서바꾸기////////////////////////////////////////////////////////////////////
+$("#img1").on("click", function() {
+	console.log("이미지클릭");
+	$("#img0").attr("src", "${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+	$("#img1")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+					$("#img2")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+					$("#img3")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+					$("#img4")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+
+				});
+
+
+
+$("#img2")
+		.on(
+				"click",
+				function() {
+					console.log("이미지클릭");
+					$("#img0")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+					$("#img1")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+					$("#img2")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+					$("#img3")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+					$("#img4")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+
+				});
+
+
+
+$("#img3")
+		.on(
+				"click",
+				function() {
+					console.log("이미지클릭");
+					$("#img0")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+					$("#img1")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+					$("#img2")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+					$("#img3")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+					$("#img4")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+
+				});
+
+
+
+
+$("#img4")
+		.on(
+				"click",
+				function() {
+					console.log("이미지클릭");
+					$("#img0")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+					$("#img1")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[0].prodImgSrc}");
+					$("#img2")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[1].prodImgSrc}");
+					$("#img3")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[2].prodImgSrc}");
+					$("#img4")
+							.attr(
+									"src",
+									"${pageContext.request.contextPath}/upload/${product.prodImgList[3].prodImgSrc}");
+
+				});
+
+
+//////////////////채린씨 일기관련/////////////////////////////////////////////////////////
 
 	/////////////////////////////채린씨가준 뻥션///////////
 	function downImg() {
@@ -562,7 +725,7 @@
 			console.log(savename);
 			downloadURI(myImage, savename);
 		});
-	}
+	};
 
 	function downloadURI(uri, name) {
 		var link = document.createElement("a")
@@ -570,38 +733,37 @@
 		link.href = uri;
 		document.body.appendChild(link);
 		link.click();
-	}
+	};
 	
-	
-	
+
 	//////////////////모달 채린님꺼 긁어온거///////////////////////
 	
 	//캔버스 초기화 설정
-var canvas = new fabric.Canvas("paper", {
-	 width: 680,
-	 height: 510,
-	 //backgroundColor: 'rgb(100,150,134)'
-	 backgroundColor: '#dbd3c7'
-});
-console.log(canvas);
-
-//제목으로 이미지 저장하기 위해 선언
-var title;
-
-//수정하기 일기번호 보내기 위해 선언
-var diaryNo;
-
-/*하나의 일기 div 클릭했을 때 모달창 보이기*/
-$(".mydiary-list-box2").on("click",function(){
+	var canvas = new fabric.Canvas("paper", {
+		 width: 680,
+		 height: 510,
+		 //backgroundColor: 'rgb(100,150,134)'
+		 backgroundColor: '#dbd3c7'
+	});
+	console.log(canvas);
+	
+	//제목으로 이미지 저장하기 위해 선언
+	var title;
+	
+	//수정하기 일기번호 보내기 위해 선언
+	var diaryNo;
+	
+	/*하나의 일기 div 클릭했을 때 모달창 보이기*/
+	$(".mydiary-list-box2").on("click",function(){
 	
 	//캔버스 초기화(이전에 보여졌던 일기 지우기--일기겹치는 현상 없애기);
 	modalCanvasInit();
 	
 	/*클릭한 일기의 일기번호*/
-	diaryNo = $(this).data("diaryno")
+	diaryNo = $(this).data("diaryno");
 	console.log(diaryNo);
 
-	title = $(this).data("title")
+	title = $(this).data("title");
 	
 	/*키:값*/
 	var diarycontentvo = {diaryNo: diaryNo};
@@ -623,6 +785,7 @@ $(".mydiary-list-box2").on("click",function(){
 		    $("#modalDiaryDate").text(DiaryContent.diaryDate);
 		    $("#modalDiaryWeather").text(DiaryContent.weather);
 		    $("#modalDiaryProtect").text(DiaryContent.protect);
+		    $("#audio").attr("src",DiaryContent.diaryBgmSrc);
 		    
 		    var DiaryItemList = DiaryContent.itemList;
 		    
@@ -641,23 +804,25 @@ $(".mydiary-list-box2").on("click",function(){
 	/*모달창 보이기*/
 	$("#diaryModal").modal('show');
 	
-});
+	});
 
 
 
+	/*일기보기 모달창 초기화*/
+	function modalCanvasInit(){
+		var objects = canvas.getObjects();
+		console.log(objects);
+		for(var i=0; i<objects.length; i++){
+			canvas.remove(objects[i]);
+		}canvas.renderAll();
+	}	
+	
+	
+	
 
-/*일기보기 모달창 초기화*/
-function modalCanvasInit(){
-	var objects = canvas.getObjects();
-	console.log(objects);
-	for(var i=0; i<objects.length; i++){
-		canvas.remove(objects[i]);
-	}canvas.renderAll();
-}	
-
-/*220316추가*/
-//아이템 그리기
-function itemRender(diaryitemVo){
+	/*220316추가*/
+	//아이템 그리기
+	function itemRender(diaryitemVo){
 	
 	if(diaryitemVo.stickerCateNo == 0){ //텍스트 이면
 		var text = new fabric.Textbox(diaryitemVo.text);
@@ -680,7 +845,7 @@ function itemRender(diaryitemVo){
 		text.angle = diaryitemVo.angle;
 
 		//변경안되게
-		text.selectable = false;
+		text.selectable = "false";
 		
 		//커서모양기본
 		text.hoverCursor ="default";
@@ -725,83 +890,23 @@ function itemRender(diaryitemVo){
 		});
 	}
 	
-}
+	}
 
-/*수정하기 버튼을 클릭했을 때*/
+	/*수정하기 버튼을 클릭했을 때*/
  
-$("#modalModifyBtn").on("click",function(){
-	$("[name='modaldiaryNo']").val(diaryNo);
-	console.log(diaryNo);
-	
-	$("#modifyForm").submit();
-});
-
-
-
-
-/////////////////////////대댓글 작성 창 열기/////////////////////////////////
-
-	$("#listArea").on("click", ".reReple", function() {
+	$("#modalModifyBtn").on("click",function(){
+		$("[name='modaldiaryNo']").val(diaryNo);
+		console.log(diaryNo);
 		
-		var cmtNo = $(this).data("cmtno");
-		console.log(cmtNo);
-		
-		
-		var str ="";
-		str += '<div class="row backgroundgray">';
-		str += '	<div class="col-xs-10 padding0 rereCmt">';
-		str += '		<textarea placeholder="댓글을 입력해주세요" class="txt-rereCmt"></textarea>';
-		str += '	</div>';
-		str += '	<div class="col-xs-2 padding0"><button class="button button2 marginauto replesub r-button" data-cmtno="'+cmtNo+'" >답글 달기</button></div>';
-		str += '</div>';
-
-	
-		
-		$(this).parents(".purpleback.underborder").next().children().first().remove();
-		$(this).parents(".purpleback.underborder").next().append(str);
-		//$("#listArea").off("click",".reReple");
+		$("#modifyForm").submit();
 	});
 
-/////////////////////////대댓글 작성 창 작성/////////////////////////////////
 
-	$("#listArea").on("click", ".replesub", function() {
-		console.log("대댓글 저장 버튼 클릭");
-		console.log($(this).parents().find(".rereCmt").children(".txt-rereCmt").val());
-		//prodNo
-		var prodNo ="${product.prodNo}"
-		
-		//cmtNo
-		var cmtNo = $(this).data("cmtno");
-		//cmtContent
-		
-		//var cmtContent = $(this).val("textarea");
-		var cmtContent =  $(this).parents().find(".rereCmt").children(".txt-rereCmt").val();
-		
-		var ShoppingCmtVo ={
-				prodNo: prodNo,
-				cmtNo: cmtNo,
-				cmtContent: cmtContent
-		};
 
-		console.log(ShoppingCmtVo);
-/*
-		$.ajax({
 
-			url : "${pageContext.request.contextPath }/shopping/cmtwrite",
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(ShoppingCmtVo),
 
-			dataType : "json",
-			success : function(result) {
-				/*성공시 처리해야될 코드 작성*/
 
-/*			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});*/
-	});
+
 	
 </script>
 
