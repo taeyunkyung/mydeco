@@ -32,13 +32,13 @@ quote.innerText = todaysQuote.quote;
 
 
 function begin(){
-    main.style.WebkitAnimation = "fadeOut 1s";
-    main.style.animation = "fadeOut 1s";
+    firstSection.style.WebkitAnimation = "fadeOut 1s";
+    firstSection.style.animation = "fadeOut 1s";
     setTimeout(() => {
       result.style.WebkitAnimation = "fadeIn 1s";
       result.style.animation = "fadeIn 1s";
       setTimeout(() => {
-        main.style.display = "none";
+        firstSection.style.display = "none";
         result.style.display = "block"
       }, 450)
       let qIdx = 0;

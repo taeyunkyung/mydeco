@@ -42,7 +42,7 @@
     font-size: 25px;
     font-weight: bolder;
     width: 550px;
-    margin: 30px 0px 30px 10px;
+    margin: 40px 0px 40px 10px;
     text-align: center;
 }
 
@@ -54,7 +54,7 @@
     width: 80%;
     border: 0px;
     font-size: 20px;
-    margin: 15px 30px 40px 30px;
+    margin: 15px 20px 40px 35px;
     padding: 10px;
   }
   
@@ -68,7 +68,7 @@
     width: 80%;
     background-color: white;
     border-radius: 20px;
-    margin: 0px 10px 10px 20px;
+    margin: 0px 10px 10px 30px;
   }
   
   .statusBar {
@@ -166,21 +166,21 @@
   
 /*mood contents*/
 
-#main-content {
+#mood-content {
   background-color: #CEC9EF;
   height: 570px;
-  width: 720px;
+  width: 712px;
   text-align: center;
   padding: 40px 20px 80px 20px;
-  margin: 0px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
 }
 
-#main-img {
+#magic-img {
   height: 250px;
   margin: 30px;
 }
 
-#main-btn {
+#magic-btn {
   margin: 30px;
   padding: 10px;
   color:#686099;
@@ -189,16 +189,16 @@
   font-family: 'main';
 }
 
-#main-btn:hover {
+#magic-btn:hover {
   color: #f6f5f5;
   background-color: #686099;
   cursor: pointer;
 }
 
-#main>h2 {
+#firstSection>h2 {
   font-family: 'main';
 }
 
-#main>p {
+#firstSection>p {
   font-family: 'SCDream4';
 }
