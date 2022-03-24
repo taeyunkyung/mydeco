@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
@@ -11,51 +10,119 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+<!-- 이부분에 이페이지에 필요한 css 추가 -->	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/home.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
 </head>
 
 <body>
 
 	<div id="wrap">
+		
 		<div class="container">
-			<div class="row">
-			
+		
 			<!-- header -->
-            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
-
-				<div id="visual">
-					<div class="on">
-						<a href="#"><img src="${pageContext.request.contextPath}/assets/img/login_main.jpg" alt="1"
-							width="100%" height="100%"></a>
-					</div>
-					<div>
-						<a href="#"><img
-							src="${pageContext.request.contextPath}/assets/img/mainbackground_before_login.png" alt="2"
-							width="100%" height="100%"></a>
-					</div>
-					<div>
-						<a href="#"><img
-							src="${pageContext.request.contextPath}/assets/img/mainbackground_before_login.jpg" alt="3"
-							width="100%" height="100%"></a>
-					</div>
-					<section>
-						<div id="left">
-							<span></span> <span></span>
-						</div>
-						<div id="right">
-							<span></span> <span></span>
-						</div>
-					</section>
-					<section id="control">
-						<a class="on" href="#"></a> <a href="#"></a> <a href="#"></a>
-					</section>
-				</div>
-				<!--footer영역-->
-				<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>    
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
 			</div>
+			<!-- //header -->
+			
+			<div class="row">
+				
+				<!-- content -->
+				<div id="content" class="col-xs-12">
+					
+					<div class="row">
+
+						
+						<div class="col-xs-12" id="main-content">   <!-- aside가 없는경우 -->    
+		
+							
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+			
+	
+	
+	
+								<div id="visual">
+									<div class="on">
+										<a href="#"><img src="${pageContext.request.contextPath}/assets/img/login_main.jpg" alt="1"
+											width="100%" height="100%"></a>
+									</div>
+									<div>
+										<a href="#"><img
+											src="${pageContext.request.contextPath}/assets/img/mainbackground_before_login.png" alt="2"
+											width="100%" height="100%"></a>
+									</div>
+									<div>
+										<a href="#"><img
+											src="${pageContext.request.contextPath}/assets/img/mainbackground_before_login.jpg" alt="3"
+											width="100%" height="100%"></a>
+									</div>
+									<section>
+										<div id="left">
+											<span></span> <span></span>
+										</div>
+										<div id="right">
+											<span></span> <span></span>
+										</div>
+									</section>
+									<section id="control">
+										<a class="on" href="#"></a> <a href="#"></a> <a href="#"></a>
+									</section>
+								</div>
+								<!--  //visual  -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
+							
+		
+						</div>
+						<!-- //main-content -->
+						
+					</div>
+					<!-- //row -->
+					
+				</div>
+				<!-- //content -->
+			
+			</div>
+			<!-- //row -->
+			
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
+				
+			
 		</div>
+		<!-- //container -->
+		
 	</div>
+	<!-- //wrap -->
+	
 </body>
 
 
@@ -120,5 +187,7 @@
 		$("section>a").eq(srt).addClass('on').siblings().removeClass('on');
 	});
 </script>
+
+
 
 </html>
