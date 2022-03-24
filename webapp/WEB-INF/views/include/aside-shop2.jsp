@@ -10,7 +10,7 @@
                    	         		<li><a href="${pageContext.request.contextPath}/loginForm">1:1 채팅내역</a></li>
                  	           		<li><a href="${pageContext.request.contextPath}/loginForm">찜한 상품</a></li>
                             		<li><a class="color" href="${pageContext.request.contextPath}/loginForm">나의 상품</a></li>
-                            		<li><a class="color" href="${pageContext.request.contextPath}/loginForm">판매자등록</a></li>                        		
+                            		<li><a class="color" href="">판매자등록</a></li>                        		
                         		</c:when>
                         		<c:otherwise>
                             		<li id="title" style="pointer-events:none;">My</li>                            
