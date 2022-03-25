@@ -221,8 +221,41 @@
 	<!-- //wrap -->
 	
 </body>
+<script type="text/javascript">
+  $(".pickButton").on("click",function(){
+    	 
+		var prodNo =  $(this).data("prodno");
+		console.log(prodNo);    	 
 
+     	$.ajax({
+     		url : "${pageContext.request.contextPath }/shopping/addpick",		
+     		type : "post",
+     		contentType : "application/json",
+     		data : JSON.stringify({prodNo : prodNo}),
 
+     		dataType : "json",
+     		success : function(pickResult){
+     			console.log(pickResult);
+     			if(pickResult == 'addPick'){
+     				//찜 카운트 올리기
+     				var pickCnt = $("#pp"+prodNo).text();
+     				var newPickCnt = parseInt(pickCnt)+1;
+     			 	$("#pp"+prodNo).text(newPickCnt); 
+     			}else if(pickResult == 'delPick'){
+     				////카운트 줄이기
+     				var pickCnt = $("#pp"+prodNo).text();
+     				var newPickCnt = parseInt(pickCnt)-1;
+     			 	$("#pp"+prodNo).text(newPickCnt); 
+     			}
+     			
+     			
+     		},
+     		error : function(XHR, status, error) {
+     			console.error(status + " : " + error);
+     		}
+     	});
+     });
+ </script>
 
 
 </html>
