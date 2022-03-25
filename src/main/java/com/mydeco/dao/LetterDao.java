@@ -60,6 +60,7 @@ public class LetterDao {
 	
 	//편지 정보 업데이트
 	public void letterUpdate(LetterVo letterVo) {
+	
 		
 		sqlSession.update("myLetter.updateLetterContents", letterVo);
 		

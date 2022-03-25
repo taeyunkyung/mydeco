@@ -30,15 +30,16 @@ public class LetterController {
 	//편지 목록 + 페이징
 	@RequestMapping("")
 	public String letter(Model model,
-						@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
+						@RequestParam(value = "crtPage1", required = false, defaultValue = "1") int crtPage1,
+						@RequestParam(value = "crtPage2", required = false, defaultValue = "1") int crtPage2) {
 		System.out.println("letter/list");
 		
 		//보낸 편지 리스트
-		Map<String, Object> saveMap = letterService.getSaveList(crtPage);
+		Map<String, Object> saveMap = letterService.getSaveList(crtPage1);
 		model.addAttribute("saveMap", saveMap);
 
 		//작성 중인 편지 리스트
-		Map<String, Object> keepMap = letterService.getKeepList(crtPage);
+		Map<String, Object> keepMap = letterService.getKeepList(crtPage2);
 		model.addAttribute("keepMap", keepMap);
 
 		

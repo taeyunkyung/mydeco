@@ -221,7 +221,7 @@ $(document).ready(function(){
 var canvas = new fabric.Canvas("paper", {
 	 width: 680,
 	 height: 690,
-	 backgroundColor: '#686099'
+	 backgroundColor: '#ebebeb'
 }); 
 
 
@@ -503,6 +503,7 @@ $("#btnSave").on("click", function(){
 	var letterNo = ${param.letterNo};
 	var openDay = $("#openDay").text();
 	var saveYN = "YES";
+	var readYN = "NO";
 	
 	console.log(openDay);
 	console.log(letterNo);
@@ -517,7 +518,8 @@ $("#btnSave").on("click", function(){
 			letterNo: letterNo,
 			openDay: openDay,
 			saveYN: saveYN,
-			bgmSrc: bgmSrc
+			bgmSrc: bgmSrc,
+			readYN: readYN
 	};
 	
 	//캔버스에 있는 전체 객체를 배열로 가져온다

@@ -53,12 +53,21 @@
 								
 								<div class="letter_list">
 									<div id="letter_tap">
-			                        	<input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-			                            <label for="tab1">보낸 편지</label>
+									   <c:if test="${param.tab != 2}">
+				                          	<input id="tab1" type="radio" name="tabs" checked="checked"> <!--디폴트 메뉴-->
+				                            <label for="tab1">보낸 편지</label>
+				                            
+				                            <input id="tab2" type="radio" name="tabs" >
+			                            	<label for="tab2">작성 중인 편지</label>
+			                            </c:if>
 			                            
-			                            <input id="tab2" type="radio" name="tabs">
-			                            <label for="tab2">작성 중인 편지</label>
-			                                
+			                            <c:if test="${param.tab == 2}">
+				                        	<input id="tab1" type="radio" name="tabs" > <!--디폴트 메뉴-->
+				                            <label for="tab1">보낸 편지</label>
+				                            
+				                            <input id="tab2" type="radio" name="tabs" checked="checked">
+			                            	<label for="tab2">작성 중인 편지</label>
+			                            </c:if>
 			                                
 			                            <c:if test="${authUser != null}">
 			                            	<a class="btn-letter-write" href="${pageContext.request.contextPath}/letter/writeForm">편지 쓰기</a>
@@ -134,16 +143,16 @@
 														<c:forEach begin="${saveMap.startPageBtnNo}" end="${saveMap.endPageBtnNo}" step="1" var="page">
 															<c:choose>
 																<c:when test="${param.crtPage == page}">
-																	<li class="active"><a href="${pageContext.request.contextPath}/letter?crtPage=${page}">${page}</a></li>
+																	<li class="active"><a href="${pageContext.request.contextPath}/letter?tab=1&crtPage1=${page}">${page}</a></li>
 																</c:when>
 																<c:otherwise>
-																	<li><a href="${pageContext.request.contextPath}/letter?crtPage=${page}">${page}</a></li>
+																	<li><a href="${pageContext.request.contextPath}/letter?tab=1&crtPage1=${page}">${page}</a></li>
 																</c:otherwise>
 															</c:choose>
 														</c:forEach>
 														
 														<c:if test="${saveMap.next == true}">									
-															<li><a href="${pageContext.request.contextPath}/letter?crtPage=${saveMap.endPageBtnNo + 1}">▶</a></li>
+															<li><a href="${pageContext.request.contextPath}/letter?crtPage1=${saveMap.endPageBtnNo + 1}">▶</a></li>
 														</c:if>								
 													</ul>
 				                                </div>
@@ -186,22 +195,22 @@
 					                                   	<div class="page">
 															<ul>	
 																<c:if test="${keepMap.prev == true}">
-																	<li><a href="${pageContext.request.contextPath}/letter?crtPage=${keepMap.startPageBtnNo - 1}">◀</a></li>
+																	<li><a href="${pageContext.request.contextPath}/letter?crtPage2=${keepMap.startPageBtnNo - 1}">◀</a></li>
 																</c:if>	
 																					
 																<c:forEach begin="${keepMap.startPageBtnNo}" end="${keepMap.endPageBtnNo}" step="1" var="page">
 																	<c:choose>
 																		<c:when test="${param.crtPage == page}">
-																			<li class="active"><a href="${pageContext.request.contextPath}/letter?crtPage=${page}">${page}</a></li>
+																			<li class="active"><a href="${pageContext.request.contextPath}/letter?tab=2&crtPage2=${page}">${page}</a></li>
 																		</c:when>
 																		<c:otherwise>
-																			<li><a href="${pageContext.request.contextPath}/letter?crtPage=${page}">${page}</a></li>
+																			<li><a href="${pageContext.request.contextPath}/letter?tab=2&crtPage2=${page}">${page}</a></li>
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
 																
 																<c:if test="${keepMap.next == true}">									
-																	<li><a href="${pageContext.request.contextPath}/letter?crtPage=${keepMap.endPageBtnNo + 1}">▶</a></li>
+																	<li><a href="${pageContext.request.contextPath}/letter?crtPage2=${keepMap.endPageBtnNo + 1}">▶</a></li>
 																</c:if>								
 															</ul>
 					                                	</div>
@@ -345,6 +354,7 @@ $("#removeCheck").on("click",function(){
 	 if (confirm("정말 삭제하시겠습니까?") == true){//확인
 
 	     letterDelete(letterNo);
+	     location.reload();
 
 	 }else{ //취소
 	     return false;
@@ -432,6 +442,11 @@ function modalCanvasInit(){
 
 };	
 
+/*모달창 닫힐때 bgm삭제*/
+$('#ModalLetterView').on('hidden.bs.modal', function (e) {
+	$("#audio").attr("src","");
+}) 
+ 
 
 //아이템 그리기
 function itemRender(letterItemVo){
