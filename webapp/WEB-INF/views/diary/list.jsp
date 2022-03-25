@@ -224,9 +224,11 @@ $(".mydiary-list-box2").on("click",function(){
 
 	title = $(this).data("title");
 	
+	
 	/*키:값*/
 	var diarycontentvo = {diaryNo: diaryNo};
 	console.log(diarycontentvo);
+	
 	
 	$.ajax({
 	    url : "${pageContext.request.contextPath}/diary/read",
@@ -262,9 +264,7 @@ $(".mydiary-list-box2").on("click",function(){
 	
 	/*모달창 보이기*/
 	$("#diaryModal").modal('show');
-	
 });
-
 
 
 /*일기보기 모달창 초기화*/
@@ -275,8 +275,14 @@ function modalCanvasInit(){
 	canvas.height = 510;
 	canvas.backgroundColor = '#dbd3c7';
 	//$("audio").remove();
-	$("#audio").attr("src","");
 }	
+
+
+/*모달창 닫힐때 bgm삭제*/
+$('#diaryModal').on('hidden.bs.modal', function (e) {
+	$("#audio").attr("src","");
+}) 
+ 
 
 
 /*220316추가*/

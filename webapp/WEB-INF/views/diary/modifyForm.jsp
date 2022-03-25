@@ -445,7 +445,8 @@
 		
 		fabric.Image.fromURL(stickerSrc, function(oImg) {
 			oImg.set({'cornerColor': '#686099'});
-
+			oImg.scale(1/4)
+			
 			//객체에 스티커번호 추가
 			oImg.stickerNo = stickerNo;
 			oImg.stickerSrc = stickerSrc;
