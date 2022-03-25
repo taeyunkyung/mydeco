@@ -13,6 +13,7 @@ public class DiaryVo2 {
 	private String diaryBgmSrc;
 	private String stickerSrc;
 	private List<DiaryItemVo> itemList;
+	private int rn;
 
 	public DiaryVo2() {
 	}
@@ -100,6 +101,14 @@ public class DiaryVo2 {
 
 	public void setItemList(List<DiaryItemVo> itemList) {
 		this.itemList = itemList;
+	}
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 
 	@Override

@@ -17,11 +17,11 @@
 </head>
 <body>
 	<div id="wrap">
-		<div class="container">
-			<div class="row">
-				
-				<!-- header -->
-				<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<div class="container">			
+			<!-- header -->
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+			
+			<div class="row">				
 				
 				<!-- aside -->
 				<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>

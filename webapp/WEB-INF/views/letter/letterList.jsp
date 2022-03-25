@@ -1,165 +1,263 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
+
+
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <title>My Deco</title>
+<meta charset="UTF-8">
+<title>MyDeco</title>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
+<!-- 이부분에 이페이지에 필요한 css 추가 -->	    
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/letter.css">
     
-    
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/letter.css">
-    
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
+<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+	  
+
+
+
 </head>
 
 <body>
-    <div id="wrap">
-        <div class="container">
-            <div class="row">
-                
-                <!-- header -->
-	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>         
-    
-    
-               	<!-- aside -->
-				<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
-                
-    
-                <div class="col-xs-9" id="main-content">
-                
-                	 <div class="letter_list">
-                	 
-                     	<div id="cTitle">
-                      		<h3>우체통</h3>
-                   		</div>
-                   		
-                     	<div id="letter_tap">
-                        	<input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-                            <label for="tab1">보낸 편지</label>
-                            
-                            <input id="tab2" type="radio" name="tabs">
-                            <label for="tab2">작성 중인 편지</label>
-                                
-                                
-                            <c:if test="${authUser != null}">
-                            	<a class="btn-letter-write" href="${pageContext.request.contextPath}/letter/writeForm">편지 쓰기</a>
-                            </c:if>
-                            
-                            
-                            <section id="content1">
-                            	<div class="tap_content">
 
-									<c:forEach items="${requestScope.letterSaveList}" var="letterVo">
-										<c:if test="${letterVo.userNo == authUser.userNo}">
-											<c:choose>
-												<c:when test="${letterVo.readYN eq 'NO'}">
-													<div class="envelope">
-														<div class="envelope-img">
-															<img src="${pageContext.request.contextPath}/assets/img/envelope.png">
-														</div>
-														
-														
-														<!-- 열지않은 편지 -->
-														<c:choose>
-															<c:when test="${letterVo.dDay < 0}"> <!-- 오픈일 지난거 -->
-																<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
-																	<h3 class="Dday">OPEN</h3>
-																	<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
-																	<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
-																</div>
-															</c:when>
-															<c:when test="${letterVo.dDay == 0}"> <!-- 오늘 오픈편지 -->
-																<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
-																	<h3 class="Dday">D-DAY</h3>
-																	<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
-																	<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
-																</div>
-															</c:when>
-															<c:otherwise> <!-- 오픈일 남은 편지 -->
-																<div class="day popup_open_btn" data-openyn="n" data-letterno="${letterVo.letterNo}">
-																	<h3 class="Dday">D-${letterVo.dDay}</h3>
-																	<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
-																	<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
-																</div>
-																</c:otherwise>
-														</c:choose>
+	<div id="wrap">
+		
+		<div class="container">
+		
+			<!-- header -->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
+			</div>
+			<!-- //header -->
+			
+			<div class="row">
 				
-													</div>
-												</c:when>
-												<c:otherwise>
-													<div class="envelope">
-														<div class="envelope-img">
-															<img src="${pageContext.request.contextPath}/assets/img/read.png">
-														</div>
-														<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
-															<p class="RsendDay">보낸 날짜: ${letterVo.regDate}</p>
-															<p class="read">${letterVo.text}</p>
-															<p class="RopenDay">공개 날짜: ${letterVo.openDay}</p>
-															
-														</div>
-													</div>
-												</c:otherwise>
-											</c:choose>
-										</c:if>
-									</c:forEach>
-
-								</div>
-                                
-                                <div class="page">
-                                	<p class="page-no">◀  1  2  3  4  5  6  7  8  9  10  ▶</p>
-                                </div>
-                            </section>
-                            
-                                <section id="content2">
-                                    <div class="tap_content">
-
-
-									<c:forEach items="${requestScope.letterKeepList}" var="letterVo">
-										<c:if test="${letterVo.userNo == authUser.userNo}">
-											<div class="envelope" >
-												<div class="envelope-img">
-													<img
-														src="${pageContext.request.contextPath}/assets/img/read.png">
-												</div>
-												
-												<!-- 파라미터 값(letterNo) 수정폼으로 보내기 -->
-												<a href="${pageContext.request.contextPath}/letter/modifyForm?letterNo=${letterVo.letterNo}">
-													<div class="day modify">
-														<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
-														<p class="letter-ing">${letterVo.text}</p>
-													</div>
-												</a>
+				<!-- content -->
+				<div id="content" class="col-xs-12">
+					
+					<div class="row">
+					
+						<c:import url="/WEB-INF/views/include/ppaside.jsp"></c:import>
+					
+						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
+							<h3 class="subtitle">
+								우체통
+							</h3>
+							
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+								
+								<div class="letter_list">
+									<div id="letter_tap">
+									   <c:if test="${param.tab != 2}">
+				                          	<input id="tab1" type="radio" name="tabs" checked="checked"> <!--디폴트 메뉴-->
+				                            <label for="tab1">보낸 편지</label>
+				                            
+				                            <input id="tab2" type="radio" name="tabs" >
+			                            	<label for="tab2">작성 중인 편지</label>
+			                            </c:if>
+			                            
+			                            <c:if test="${param.tab == 2}">
+				                        	<input id="tab1" type="radio" name="tabs" > <!--디폴트 메뉴-->
+				                            <label for="tab1">보낸 편지</label>
+				                            
+				                            <input id="tab2" type="radio" name="tabs" checked="checked">
+			                            	<label for="tab2">작성 중인 편지</label>
+			                            </c:if>
+			                                
+			                            <c:if test="${authUser != null}">
+			                            	<a class="btn-letter-write" href="${pageContext.request.contextPath}/letter/writeForm">편지 쓰기</a>
+			                            </c:if>
+			                            
+			                            
+			                            <section id="content1">
+			                            	<div class="tap_content clearfix">
+			
+												<c:forEach items="${requestScope.saveMap.saveList}" var="letterVo">
+													<c:if test="${letterVo.userNo == authUser.userNo}">
+														<c:choose>
+															<c:when test="${letterVo.readYN eq 'NO'}">
+																<div class="envelope">
+																	<div class="envelope-img">
+																		<img src="${pageContext.request.contextPath}/assets/img/envelope.png">
+																	</div>
+																	
+																	
+																	<!-- 열지않은 편지 -->
+																	<c:choose>
+																		<c:when test="${letterVo.dDay < 0}"> <!-- 오픈일 지난거 -->
+																			<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
+																				<h3 class="Dday">OPEN</h3>
+																				<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
+																				<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
+																			</div>
+																		</c:when>
+																		<c:when test="${letterVo.dDay == 0}"> <!-- 오늘 오픈편지 -->
+																			<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
+																				<h3 class="Dday">D-DAY</h3>
+																				<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
+																				<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
+																			</div>
+																		</c:when>
+																		<c:otherwise> <!-- 오픈일 남은 편지 -->
+																			<div class="day popup_open_btn" data-openyn="n" data-letterno="${letterVo.letterNo}">
+																				<h3 class="Dday">D-${letterVo.dDay}</h3>
+																				<p class="sendDay">보낸 날짜: ${letterVo.regDate}</p>
+																				<p class="openDay">공개 날짜: ${letterVo.openDay}</p>
+																			</div>
+																			</c:otherwise>
+																	</c:choose>
+							
+																</div>
+															</c:when>
+															<c:otherwise>
+																<div class="envelope">
+																	<div class="envelope-img">
+																		<img src="${pageContext.request.contextPath}/assets/img/read.png">
+																	</div>
+																	<div class="day popup_open_btn" data-openyn="y" data-letterno="${letterVo.letterNo}">
+																		<p class="RsendDay">보낸 날짜: ${letterVo.regDate}</p>
+																		<p class="read">${letterVo.text}</p>
+																		<p class="RopenDay">공개 날짜: ${letterVo.openDay}</p>
+																		
+																	</div>
+																</div>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
+												</c:forEach>
+			
 											</div>
-										</c:if>
-									</c:forEach>
-
-
+											
+			                                <c:if test="${authUser != null}">
+				                                <div class="page">
+													<ul>	
+														<c:if test="${saveMap.prev == true}">
+															<li><a href="${pageContext.request.contextPath}/letter?crtPage=${saveMap.startPageBtnNo - 1}">◀</a></li>
+														</c:if>	
+																			
+														<c:forEach begin="${saveMap.startPageBtnNo}" end="${saveMap.endPageBtnNo}" step="1" var="page">
+															<c:choose>
+																<c:when test="${param.crtPage == page}">
+																	<li class="active"><a href="${pageContext.request.contextPath}/letter?tab=1&crtPage1=${page}">${page}</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li><a href="${pageContext.request.contextPath}/letter?tab=1&crtPage1=${page}">${page}</a></li>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+														
+														<c:if test="${saveMap.next == true}">									
+															<li><a href="${pageContext.request.contextPath}/letter?crtPage1=${saveMap.endPageBtnNo + 1}">▶</a></li>
+														</c:if>								
+													</ul>
+				                                </div>
+			                                </c:if>
+			                                
+			                            </section>
+			                            
+			                            
+			                            
+			                            
+			                                <section id="content2">
+			                                    <div class="tap_content clearfix">
+			
+			
+												<c:forEach items="${requestScope.keepMap.keepList}" var="letterVo">
+													<c:if test="${letterVo.userNo == authUser.userNo}">
+														<div class="envelope" >
+															<div class="envelope-img">
+																<img
+																	src="${pageContext.request.contextPath}/assets/img/read.png">
+															</div>
+															
+															<!-- 파라미터 값(letterNo) 수정폼으로 보내기 -->
+															<a href="${pageContext.request.contextPath}/letter/modifyForm?letterNo=${letterVo.letterNo}">
+																<div class="day modify">
+																	<p class="saveDay">저장 날짜: ${letterVo.regDate}</p>
+																	<p class="letter-ing">${letterVo.text}</p>
+																</div>
+															</a>
+														</div>
+													</c:if>
+												</c:forEach>
+			
+			
+											</div>
+			                                    <!-- //tap_content -->
+			                                    
+			                                    
+			                                     <c:if test="${authUser != null}">
+					                                   	<div class="page">
+															<ul>	
+																<c:if test="${keepMap.prev == true}">
+																	<li><a href="${pageContext.request.contextPath}/letter?crtPage2=${keepMap.startPageBtnNo - 1}">◀</a></li>
+																</c:if>	
+																					
+																<c:forEach begin="${keepMap.startPageBtnNo}" end="${keepMap.endPageBtnNo}" step="1" var="page">
+																	<c:choose>
+																		<c:when test="${param.crtPage == page}">
+																			<li class="active"><a href="${pageContext.request.contextPath}/letter?tab=2&crtPage2=${page}">${page}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li><a href="${pageContext.request.contextPath}/letter?tab=2&crtPage2=${page}">${page}</a></li>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+																
+																<c:if test="${keepMap.next == true}">									
+																	<li><a href="${pageContext.request.contextPath}/letter?crtPage2=${keepMap.endPageBtnNo + 1}">▶</a></li>
+																</c:if>								
+															</ul>
+					                                	</div>
+			                                	</c:if>
+			                                	
+			                                </section>
+			                        </div>
 								</div>
-                                    <!-- //tap_content -->
-                                    
-                                   	<div class="page">
-                                		<p class="page-no">◀  1  2  3  4  5  6  7  8  9  10  ▶</p>
-                                	</div>
-                                </section>
-                        </div>
-                 
-                	</div>
-                
-            </div>
-        </div>
-    </div>
-    <!--footer영역-->
-	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>  
-</div>
-    
-    
+			
+	
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+					
+							</div>	
+						
+						</div>
+						<!-- //main-content -->
+						
+						
+					
+					</div>
+					<!-- //row -->
+					
+				</div>
+				<!-- //content -->
+			
+			</div>
+			<!-- //row -->
+			
+			
+			
+			<!--footer-->
+			<div class="row">
+	            <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>   
+			</div>
+			<!-- //footer -->
+
+			
+		</div>
+		<!-- //container -->
+		
+	</div>
+	<!-- //wrap -->
+
+
+
+
+
 <!---편지보기 모달창------------------------------------------------------>
 
 <div id="ModalLetterView" class="modal fade">
@@ -205,9 +303,8 @@
 
 
 
-<!------------------------------------------------------------------->
 
-    
+
 	
 </body>
 
@@ -257,6 +354,7 @@ $("#removeCheck").on("click",function(){
 	 if (confirm("정말 삭제하시겠습니까?") == true){//확인
 
 	     letterDelete(letterNo);
+	     location.reload();
 
 	 }else{ //취소
 	     return false;
@@ -344,6 +442,11 @@ function modalCanvasInit(){
 
 };	
 
+/*모달창 닫힐때 bgm삭제*/
+$('#ModalLetterView').on('hidden.bs.modal', function (e) {
+	$("#audio").attr("src","");
+}) 
+ 
 
 //아이템 그리기
 function itemRender(letterItemVo){
@@ -425,4 +528,5 @@ function itemRender(letterItemVo){
 }
 
 </script>
+
 </html>

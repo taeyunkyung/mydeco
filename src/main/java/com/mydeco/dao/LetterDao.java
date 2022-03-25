@@ -1,6 +1,8 @@
 package com.mydeco.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,7 @@ public class LetterDao {
 	
 	//편지 정보 업데이트
 	public void letterUpdate(LetterVo letterVo) {
+	
 		
 		sqlSession.update("myLetter.updateLetterContents", letterVo);
 		
@@ -99,19 +102,46 @@ public class LetterDao {
 	
 	
 	//편지 목록 불러오기 : 보낸 편지 목록
-	public List<LetterVo> selectSaveList() {
-		List<LetterVo> saveList = sqlSession.selectList("myLetter.selectSaveList");
+	public List<LetterVo> selectSaveList(int startRnum, int endRnum) {
 
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRnum", startRnum);
+		map.put("endRnum", endRnum);
+		
+		List<LetterVo> saveList = sqlSession.selectList("myLetter.selectSaveList",map);
+		
 		return saveList;
 	}
 	
 	//편지 목록 불러오기 : 작성중인 편지 목록
-	public List<LetterVo> selectKeepList() {
-		List<LetterVo> keepList = sqlSession.selectList("myLetter.selectKeepList");
+	public List<LetterVo> selectKeepList(int startRnum, int endRnum) {
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRnum", startRnum);
+		map.put("endRnum", endRnum);
+		
+		List<LetterVo> keepList = sqlSession.selectList("myLetter.selectKeepList",map);
 
 		
 		return keepList;
 	}
+	
+	
+	//편지 글 개수 가져오기: 보낸 편지 목록
+	public int selectSaveListTotal() {
+		
+		return sqlSession.selectOne("myLetter.totalSaveListCount");
+	}
+	
+	
+	//편지 글 개수 가져오기: 작성 중인 편지 목록
+	public int selectKeepListCount() {
+		
+		return sqlSession.selectOne("myLetter.totalKeepListCount");
+	}
+	
+	
+	
 	
 	
 	

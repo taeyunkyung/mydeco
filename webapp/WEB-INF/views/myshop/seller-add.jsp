@@ -17,7 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 
 <style>
-#d-table {width: 100%;}
+.d-table {width: 100%;}
 svg {width: 40%; height: 40%;}
 #img-area::-webkit-scrollbar-track {    
     background-color: #fff;
@@ -28,7 +28,7 @@ svg {width: 40%; height: 40%;}
     border-radius: 10px;
 } #img-area {
     width: 560px; height: 160px; overflow-x: scroll; 
-    display: inline-flex;
+    display: inline-flex;}    
 </style>
 </head>
 <body>
@@ -118,30 +118,34 @@ svg {width: 40%; height: 40%;}
 							</tr>
 							<tr>
 								<td><label for="diary-td">일기</label></td>
-								<td><table id="d-table">
+								<td style="height: 270px;">
+									
+									<table class="d-table table table-striped" style="border-bottom: 1px solid #ebebeb">
 										<colgroup>
-											<col style="width: 100px">
-											<col style="width: 350px">
-											<col style="width: 244px">
-											<col style="align: center">
+											<col style="align: center; width: 100px; height: 39px">
+											<col style="width: 350px; height: 39px">
+											<col style="width: 244px; height: 39px">
+											<col style="align: center; height: 39px">
 										</colgroup>
-										<tr>
-											<td>번호</td>
-											<td>제목</td>
-											<td>날짜</td>
-											<td></td>
-										</tr>
-										<c:forEach items="${diaryList}" var="diaryVo">
+										<thead>
 											<tr>
-												<td>${diaryVo.diaryNo}</td>
-												<td class="diaryView" data-no="${diaryVo.diaryNo}" data-toggle="modal" data-target=".diaryview">${diaryVo.title}</td>
-												<td>${diaryVo.diaryDate}</td>
-												<td><input style="width: 13px" type="checkbox"
-													class="diarySelect" data-title="${diaryVo.title}"
-													data-no="${diaryVo.diaryNo}"></td>
+												<td>번호</td>
+												<td>제목</td>
+												<td>날짜</td>
+												<td></td>
 											</tr>
+										</thead>
+										<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
+											<tbody class="tb" id="tbody${count}"></tbody>
 										</c:forEach>
-									</table> 
+									</table>
+									
+									<div id="diary-pg" data-page="${pageBtn}" style="width: 100%; display: inline-flex; justify-content: right;">
+										<c:forEach begin="1" end="${pageBtn}" step="1" var="count">
+											<p class="bullet" id="p${count}" data-pg="${count}" style="cursor: pointer;">${count}</p>
+										</c:forEach>
+									</div> 
+									
 									<div class="modal fade diaryview" tabindex="-1" role="dialog">
 										<div class="modal-dialog modal-lg"
 											style="width: 710px; height: 570px;">
@@ -184,8 +188,68 @@ svg {width: 40%; height: 40%;}
 </body>
 
 <script type="text/javascript">
+$(document).ready(function() {
+	var page = $("#diary-pg").data("page");
+	console.log(page);
+	
+	for(var x=1; x<=page; x++) {
+		const count = x;
+	$.ajax({			
+		url : "${pageContext.request.contextPath}/myshop/diarypg",		
+		type : "post",
+		// contentType : "application/json",
+		data : {crtPage: x},
 
-$("#d-table").on("click", ".diaryView", function() {	
+		dataType : "json",
+		success : function(diarymap){
+			console.log(diarymap.diaryList); console.log(count);
+			var diaryList = diarymap.diaryList;						
+			for(var i=0; i<6; i++) {
+				renderTable(diaryList[i], count);
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}			
+	});
+	
+	}
+	
+	$(".tb").hide();
+	$("#tbody1").show();
+	
+});
+
+function renderTable(diaryVo, count) {
+	var str = '';
+	if(!diaryVo) {
+		str += '<tr>';
+		str += '<td>\u00a0\u00a0</td>';
+		str += '<td>\u00a0\u00a0</td>';
+		str += '<td>\u00a0\u00a0</td>';
+		str += '<td>\u00a0\u00a0</td>';
+		str += '</tr>';
+	} else {	
+		str += '<tr>'
+		str += '<td>'+ diaryVo.rn +'</td>';
+		str += '<td class="diaryView" data-no="'+ diaryVo.diaryNo +'" data-toggle="modal" data-target=".diaryview" style="cursor: pointer;">'+ diaryVo.title +'</td>';
+		str += '<td>'+ diaryVo.diaryDate +'</td>';
+		str += '<td><input style="width: 13px" type="checkbox" class="diarySelect" data-no="'+ diaryVo.diaryNo +'"></td>';
+		str += '</tr>';
+	}
+	$("#tbody"+count).append(str);
+}
+
+$("#diary-pg").on("click", ".bullet", function() {
+	var $this = $(this);
+	var crtPage = $this.data("pg");
+	console.log(crtPage);
+	
+	$(".tb").hide();
+	$("#tbody"+crtPage).show();	
+});
+
+$(".d-table").on("click", ".diaryView", function() {	
 	var $this = $(this);
 	var diaryNo = $this.data("no"); console.log(diaryNo);
 	
@@ -345,7 +409,7 @@ var canvas = new fabric.Canvas("paper", {
 	// 일기 추가
 	var diary = [];
 	var diaryTitle = [];
-	$("#d-table").on("click", ".diarySelect", function() {
+	$(".d-table").on("click", ".diarySelect", function() {
 		var $this = $(this);
 		var diaryNo = $this.data("no");
 		diary.push(diaryNo);
@@ -354,6 +418,11 @@ var canvas = new fabric.Canvas("paper", {
 	});
 		
 	$("#submitBtn").on("click", function() {
+		if(Array.isArray(diary) && diary.length === 0) {
+			alert("일기장을 1개 이상 선택해주세요.");
+			return false;
+		}
+		
 		var input = document.createElement("input");
 		input.setAttribute("type", "hidden");
 		input.setAttribute("name", "diaryNo[]");

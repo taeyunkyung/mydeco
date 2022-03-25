@@ -377,10 +377,13 @@ button.ui-button::-moz-focus-inner {
 	text-align: center;
 	font-weight: bold;
 	border: 0;
+	font-family: 'SCDream4'
 }
+/*날짜별 색 뒷배경*/
 .ui-datepicker td {
 	border: 0;
 	padding: 1px;
+	background: white;
 }
 .ui-datepicker td span,
 .ui-datepicker td a {
@@ -388,6 +391,11 @@ button.ui-button::-moz-focus-inner {
 	padding: .2em;
 	text-align: right;
 	text-decoration: none;
+	
+	font-weight: bold;
+	font-family:'SCDream4';
+	font-size:13px;
+	
 }
 .ui-datepicker .ui-datepicker-buttonpane {
 	background-image: none;
@@ -890,11 +898,13 @@ body .ui-tooltip {
 .ui-widget .ui-widget {
 	font-size: 1em;
 }
+
+/*writeForm에서의 데이트 피커 월년선택박스 폰트변경*/
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: Arial,Helvetica,sans-serif;
+	font-family: 'SCDream4';
 	font-size: 1em;
 }
 .ui-widget.ui-widget-content {
@@ -925,15 +935,73 @@ body .ui-tooltip {
 .ui-widget-header .ui-state-default,
 .ui-button,
 
+/*220325수정 달력 숫자 폰트바꿈*/
 /* We use html here because we need a greater specificity to make sure disabled
 works properly when clicked or hovered */
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
 	border: 1px solid #c5c5c5;
-	background: #f6f6f6;
-	font-weight: normal;
-	color: #454545;
+	/*background: #f6f6f6; 지우니까 기본설정된보라색나옴*/
+	font-weight: bold;
+	/*color: #ffffff;*/
+	font-family:'SCDream4';
+	font-size:13px;
+	/*text-align:center;*/
+	
 }
+
+/*list페이지에서 왼쪽달력*/
+div.ui-datepicker-group.ui-datepicker-group-first>table.ui-datepicker-calendar>tbody>tr>td>a.ui-state-default{
+	background: #a8a0db;
+	color:#ffffff;
+	font-size:13px;
+	
+}
+
+/*list페이지에서 오른쪽달력*/
+div.ui-datepicker-group.ui-datepicker-group-last>table.ui-datepicker-calendar>tbody>tr>td>a.ui-state-default{
+	background: #a8a0db;
+	color:#ffffff;
+	font-size:13px;
+}
+
+
+/*list페이지 달력에서 일기쓴 날짜에 연보라색 채워 넣은 부분*/
+a.ui-state-default{
+	/*background: #CEC9EF;*/
+	/*background: #b6b0dd;*/
+	/*background: #a19acf; 이거랑고민*/
+	background: #a8a0db;
+}
+
+/*writeForm 데이트피커에서의 달력날짜 배경색과 숫자색 *****/
+table.ui-datepicker-calendar>tbody>tr>td>a.ui-state-default{
+	color:#b3b3b3;
+	background: #ffffff;
+	font-size: 12px;
+}
+
+/*writeForm 데이트피커에서 선택한 날짜의 배경색+숫자색*/
+table.ui-datepicker-calendar>tbody>tr>td>a.ui-state-default.ui-state-active{
+	background:#907ec7;
+	color:#ffffff;
+}
+
+/*writeForm 데이트피커에서 당일 날짜의 배경색+숫자색*/
+table.ui-datepicker-calendar>tbody>tr>td>a.ui-state-default.ui-state-highlight{
+	background:#f5aba7;
+	color:#ffffff;
+	border: 1px solid #f07a73;
+}
+
+
+/**/
+td.ui-datepicker-week-end.writedDay{
+	/*background: #CEC9EF;*/
+}
+
+
+
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited,
@@ -941,9 +1009,12 @@ a.ui-button,
 a:link.ui-button,
 a:visited.ui-button,
 .ui-button {
-	color: #454545;
+	/*color: #686099;*/
+	background: #686099;
 	text-decoration: none;
 }
+
+/*달력 호버색*/
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,
@@ -952,10 +1023,19 @@ a:visited.ui-button,
 .ui-widget-header .ui-state-focus,
 .ui-button:hover,
 .ui-button:focus {
+	/*
 	border: 1px solid #cccccc;
 	background: #ededed;
 	font-weight: normal;
+	color: #rgb(121, 2, 253), 255, 255), 2, 253), 2, 253), 2, 253), 2, 253), 0, 255)*/
+	
+	border: 1px solid #cccccc;
+	background: #686099;
+	font-weight: bold;
 	color: #2b2b2b;
+	font-family:'SCDream4';
+	font-size:13px;
+	
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -969,20 +1049,29 @@ a.ui-button:hover,
 a.ui-button:focus {
 	color: #2b2b2b;
 	text-decoration: none;
+	font-weight: nomal;
+	
 }
 
 .ui-visual-focus {
 	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
+
+
+/*writeForm 데이트피커에서 선택한 날짜의 배경색*/
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active,
 a.ui-button:active,
 .ui-button:active,
 .ui-button.ui-state-active:hover {
+	/*
 	border: 1px solid #003eff;
-	background: #007fff;
-	font-weight: normal;
+	background: #007fff;*/
+	border: 1px solid #907ec7;
+	background: #907ec7;
+	
+	font-weight: bold;
 	color: #ffffff;
 }
 .ui-icon-background,

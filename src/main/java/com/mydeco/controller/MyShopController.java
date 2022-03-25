@@ -37,10 +37,17 @@ public class MyShopController {
 	public String addForm(HttpSession session, Model model) {
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		List<DiaryContentVo> diaryList = myShopService.getDiaryList(authUser.getUserNo());
-		model.addAttribute("diaryList", diaryList);
+		int pageBtn = myShopService.pagebutton(authUser.getUserNo());
+		model.addAttribute("pageBtn", pageBtn);
 
-		return "myshop/seller-add";
+		return "myshop/seller-add2";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/diarypg")
+	public Map<String, Object> diarypg(HttpSession session, @RequestParam int crtPage) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		return myShopService.getDiaryListpg(authUser.getUserNo(), crtPage);
 	}
 	
 	@RequestMapping("/add")
@@ -74,7 +81,7 @@ public class MyShopController {
 		Map<String, Object> map = myShopService.getMyProductpgList(authUser.getUserNo(), keyword, crtPage);
 		model.addAttribute("map", map);
 
-		return "myshop/seller-myList";
+		return "myshop/seller-myList2";
 	}
 	
 	@RequestMapping("/updateForm")
@@ -84,10 +91,10 @@ public class MyShopController {
 		model.addAttribute("productVo", productVo);
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		List<DiaryContentVo> diaryList = myShopService.getDiaryList(authUser.getUserNo());
-		model.addAttribute("diaryList", diaryList);
+		int pageBtn = myShopService.pagebutton(authUser.getUserNo());
+		model.addAttribute("pageBtn", pageBtn);
 		
-		return "myshop/seller-update";
+		return "myshop/seller-update2";
 	}
 	
 	@RequestMapping("/update")
@@ -128,7 +135,7 @@ public class MyShopController {
 		Map<String, Object> map = myShopService.getMyPickpgList(authUser.getUserNo(), keyword, crtPage);
 		model.addAttribute("map", map);
 
-		return "myshop/shop-likedList";
+		return "myshop/shop-likedList2";
 	}
 
 	@ResponseBody
@@ -157,7 +164,7 @@ public class MyShopController {
 		Map<String, Object> map = myShopService.getChatList(authUser.getUserNo());
 		model.addAttribute("map", map);
 
-		return "myshop/shop-chatList";
+		return "myshop/shop-chatList2";
 	}
 
 	@ResponseBody

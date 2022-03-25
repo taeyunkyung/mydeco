@@ -139,102 +139,191 @@
 	
 	
 	<!-- 편지 목록 불러오기 : 보낸 편지 목록 -->
-	<select id="selectSaveList" resultType="LetterVo">
+	<select id="selectSaveList" parameterType="map" resultType="LetterVo">
     	<![CDATA[
-			select   lt.letterNo,
-			         lt.userNo,
-			         to_char(lt.regDate, 'yyyy-mm-dd') regDate,
-			         to_char(lt.openDay, 'yyyy-mm-dd') openDay,
-			         TO_DATE(TO_CHAR(openDay, 'YYYYMMDD')) - TO_DATE(sysdate) dDay,
-			         lt.bgmSrc,
-			         lt.readYN,
-			         lt.saveYN,
-			         st.letterSticNo,
-			         st.letterNo,
-			         st.sticNo,
-			         st.text,
-			         st.top,
-			         st.left,
-			         st.letterPointX,
-			         st.letterPointY,
-			         st.angle
-			from
-			    (select  letterNo,
-			             userNo,
-			             regDate,
-			             openDay,
-			             bgmSrc,
-			             readYN,
-			             saveYN
-			    from letter
-			    where saveYN = 'YES') lt,
-			    (select  lit.letterSticNo,
-			             lit.letterNo,
-			             lit.sticNo,
-			             lit.text,
-			             lit.top,
-			             lit.left,
-			             lit.letterPointX,
-			             lit.letterPointY,
-			             lit.angle
-			    from letterItem lit,
-			         (select letterNo, min(letterSticNo) letterSticNo
-			          from letterItem 
-			          where sticno = 0
-			          group by letterNo) mnt
-			    where lit.letterSticNo = mnt.letterSticNo) st
-			where lt.letterNo=st.letterNo(+)
-			order by readyn asc, openday asc
+			select  rt.rn,
+			        rt.letterNo,
+			        rt.userNo,
+			        to_char(regDate, 'yyyy-mm-dd') regDate,
+					to_char(openDay, 'yyyy-mm-dd') openDay,
+			        rt.bgmSrc,
+			        rt.readYN,
+			        rt.saveYN,
+			        rt.dDay,
+			        rt.letterSticNo,
+			        rt.sticNo,
+			        rt.text,
+			        rt.top,
+			        rt.left,
+			        rt.letterPointX,
+			        rt.letterPointY,
+			        rt.angle
+			from   (select  rownum rn,
+			        ot.letterNo,
+			        ot.userNo,
+			        ot.regDate,
+			        ot.openDay,
+			        ot.bgmSrc,
+			        ot.readYN,
+			        ot.saveYN,
+			        ot.dDay,
+			        ot.letterSticNo,
+			        ot.sticNo,
+			        ot.text,
+			        ot.top,
+			        ot.left,
+			        ot.letterPointX,
+			        ot.letterPointY,
+			        ot.angle
+			from (select    lt.letterNo,
+			                lt.userNo,
+			                lt.regDate,
+			                lt.openDay,
+			                lt.bgmSrc,
+			                lt.readYN,
+			                lt.saveYN,
+			                TO_DATE(TO_CHAR(openDay, 'YYYYMMDD')) - TO_DATE(sysdate) dDay,
+			                st.letterSticNo,
+			                st.sticNo,
+			                st.text,
+			                st.top,
+			                st.left,
+			                st.letterPointX,
+			                st.letterPointY,
+			                st.angle
+			      from  (select  letterNo,
+			                     userNo,
+			                     regDate,
+			                     openDay,
+			                     bgmSrc,
+			                     readYN,
+			                     saveYN
+			            from letter
+			            where saveYN = 'YES') lt,
+			            (select  lit.letterSticNo,
+			                     lit.letterNo,
+			                     lit.sticNo,
+			                     lit.text,
+			                     lit.top,
+			                     lit.left,
+			                     lit.letterPointX,
+			                     lit.letterPointY,
+			                     lit.angle
+			             from letterItem lit,
+			                 (select letterNo, min(letterSticNo) letterSticNo
+			                  from letterItem 
+			                  where sticno = 0
+			                  group by letterNo) mnt
+			             where lit.letterSticNo = mnt.letterSticNo) st
+			      where lt.letterNo=st.letterNo(+)
+			      order by regdate desc
+			        )ot
+			      )rt
+			where rn >= #{startRnum}
+			and rn <= #{endRnum}
     	]]>
 	</select>
 	
 	<!-- 편지 목록 불러오기 : 작성중인 편지 목록 -->
-	<select id="selectKeepList" resultType="LetterVo">
+	<select id="selectKeepList" parameterType="map" resultType="LetterVo">
     	<![CDATA[
-			select   lt.letterNo,
-			         lt.userNo,
-			         to_char(lt.regDate, 'yyyy-mm-dd') regDate,
-			         to_char(lt.openDay, 'yyyy-mm-dd') openDay,
-			         lt.bgmSrc,
-			         lt.readYN,
-			         lt.saveYN,
-			         st.letterSticNo,
-			         st.letterNo,
-			         st.sticNo,
-			         st.text,
-			         st.top,
-			         st.left,
-			         st.letterPointX,
-			         st.letterPointY,
-			         st.angle
-			from
-			    (select  letterNo,
-			             userNo,
-			             regDate,
-			             openDay,
-			             bgmSrc,
-			             readYN,
-			             saveYN
-			    from letter
-			    where saveYN = 'NO') lt,
-			    (select  lit.letterSticNo,
-			             lit.letterNo,
-			             lit.sticNo,
-			             lit.text,
-			             lit.top,
-			             lit.left,
-			             lit.letterPointX,
-			             lit.letterPointY,
-			             lit.angle
-			    from letterItem lit,
-			         (select letterNo, min(letterSticNo) letterSticNo
-			          from letterItem 
-			          where sticno = 0
-			          group by letterNo) mnt
-			    where lit.letterSticNo = mnt.letterSticNo) st
-			where lt.letterNo=st.letterNo(+)
-			order by regdate desc
+			select  rt.rn,
+			        rt.letterNo,
+			        rt.userNo,
+				    to_char(rt.regDate, 'yyyy-mm-dd') regDate,
+					to_char(rt.openDay, 'yyyy-mm-dd') openDay,
+			        rt.bgmSrc,
+			        rt.readYN,
+			        rt.saveYN,
+			        rt.letterSticNo,
+			        rt.sticNo,
+			        rt.text,
+			        rt.top,
+			        rt.left,
+			        rt.letterPointX,
+			        rt.letterPointY,
+			        rt.angle
+			from   (select  rownum rn,
+			        ot.letterNo,
+			        ot.userNo,
+			        ot.regDate,
+			        ot.openDay,
+			        ot.bgmSrc,
+			        ot.readYN,
+			        ot.saveYN,
+			        ot.letterSticNo,
+			        ot.sticNo,
+			        ot.text,
+			        ot.top,
+			        ot.left,
+			        ot.letterPointX,
+			        ot.letterPointY,
+			        ot.angle
+			from (select    lt.letterNo,
+			                lt.userNo,
+			                lt.regDate,
+			                lt.openDay,
+			                lt.bgmSrc,
+			                lt.readYN,
+			                lt.saveYN,
+			                st.letterSticNo,
+			                st.sticNo,
+			                st.text,
+			                st.top,
+			                st.left,
+			                st.letterPointX,
+			                st.letterPointY,
+			                st.angle
+			      from  (select  letterNo,
+			                     userNo,
+			                     regDate,
+			                     openDay,
+			                     bgmSrc,
+			                     readYN,
+			                     saveYN
+			            from letter
+			            where saveYN = 'NO') lt,
+			            (select  lit.letterSticNo,
+			                     lit.letterNo,
+			                     lit.sticNo,
+			                     lit.text,
+			                     lit.top,
+			                     lit.left,
+			                     lit.letterPointX,
+			                     lit.letterPointY,
+			                     lit.angle
+			             from letterItem lit,
+			                 (select letterNo, min(letterSticNo) letterSticNo
+			                  from letterItem 
+			                  where sticno = 0
+			                  group by letterNo) mnt
+			             where lit.letterSticNo = mnt.letterSticNo) st
+			      where lt.letterNo=st.letterNo(+)
+			      order by regdate desc
+			        )ot
+			      )rt
+			where rn >= #{startRnum}
+			and rn <= #{endRnum}
     	]]>
+	</select>
+	
+	
+	<!-- 보낸 편지 글 개수 카운트 -->
+	<select id= "totalSaveListCount" resultType="int">
+		<![CDATA[
+			select  count(*)
+			from letter
+			where saveYN = 'YES'
+		]]>
+	</select>
+	
+	<!-- 작성 중인 편지 글 개수 카운트 -->
+	<select id= "totalKeepListCount" resultType="int">
+		<![CDATA[
+			select  count(*)
+			from letter
+			where saveYN = 'NO'
+		]]>
 	</select>
 	
 	
@@ -264,7 +353,8 @@
 				set	regDate = sysdate,
 					openDay = #{openDay},
 					bgmSrc = #{bgmSrc},
-					saveYN = #{saveYN}
+					saveYN = #{saveYN},
+					readYN = #{readYN}
 				where	letterNo = #{letterNo}
 			]]>
 	</update>

@@ -45,7 +45,7 @@ div#cTitle {
 
 .card_list{
 font-family: 'SCDream4';
- height: 700px;
+ /* height: 700px; */
 }
 /* 
 #card_tap {
@@ -65,8 +65,8 @@ section {
   display: none;
    background-color: #f6f5f5;
    display:none;
-   width:720px;
-   height:550px;
+   width:712.5px;
+   /* height:550px; */
    box-sizing:border-box;
    /* padding-right: 30px; */
 }
@@ -119,7 +119,6 @@ input {
 
 
 .btn-card-write a{
-	margin-right: 150px;
 	margin-top: 5px;
   float: right;
   padding-top: 10px;
@@ -141,6 +140,7 @@ input {
 
 
 
+
 .btn-card-del{
   font-family: 'SCDream4';
   color: white;
@@ -150,8 +150,7 @@ input {
   height: 40px;
   background: rgb(104, 96, 153);
   position: relative;
-    top: 90px;
-    left: 595px;
+  left: 588px;
   border: 0px;
   outline: 0px;
 }
@@ -187,7 +186,6 @@ input {
   flex-direction: row;
   flex-wrap: wrap;
   width: 700px;
-  height: 400px;
 }
 
 
@@ -224,9 +222,7 @@ input {
 
 
 .divPaging{
-  position: relative;
-  top:120px;
-  left: 350px;
+	text-align :center;
 }
 
 
@@ -301,10 +297,11 @@ input, select, textarea {
 }
 
 .border-cardwrite{
-  height: 700px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 1px solid  #ebebeb;
+width: 300px;
+    height: 580px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ebebeb;
 }
 
 /* .border-cardwrite2{
@@ -316,9 +313,9 @@ input, select, textarea {
 } */
 
 .cardwriteimg{
-  width: 500px;
-  height: 500px;
-  margin: 70px 40px 40px 50px;
+    width: 400px;
+    height: 400px;
+    margin: 40px 40px 40px 0px;
 }
 
 
@@ -333,16 +330,16 @@ a.btnwhite{
   font-family: 'SCDream4';
   font-weight:bold;
   text-align:center;
-  width:140px;
+  width:120px;
   height:40px;
   outline:0;
 }
 
 .btn-writeform-save {
-	margin-left: -120px;
+	margin-left: -60px;
 	float: left;
   font-family: 'SCDream4';
-  width: 140px;
+  width: 120px;
   height: 40px;
   font-weight: 400;
   font-size: 13px;
@@ -384,14 +381,12 @@ a.btnwhite{
 
 .cardwritebg{
   padding-top: 10px;
-  padding-left: 10px;
 }
 
 .cardwritebg img{
-  
-  width: 150px;
-  height: 150px;
-  padding : 10px;
+width: 120px;
+    height: 130px;
+    margin: 5px;
 }
 
 .cardwrite-imgdate{
@@ -452,11 +447,6 @@ a.btnwhite{
 
 /************card read.html************/
 
-.wrap{
-  font-family: 'SCDream4';
-}
-
-
 .cardRead-left{
   width: 480px;
   height: 600px;
@@ -475,27 +465,27 @@ a.btnwhite{
 }
 
 .ment{
+	    font-family: 'SCDream4';
  margin: 10px 0px 10px 0px;
   text-align: center;
 }
 
 .ment2{
- margin: 10px 0px 10px 150px;
+	    font-family: 'SCDream4';
+ margin: 10px 0px 20px 150px;
 }
 
 
 .cardReadImg{
-	margin-left:50px;
   display: flex;
-  width: calc(80% / 1);
+  width: calc(100% / 1);
   justify-content: space-around;
 }
 
 .cardReadImg2{
-	margin-left:-30px;
-  display: flex;
-  width: calc(80% / 1);
-  justify-content: space-around;
+    display: flex;
+    width: calc(110% / 1);
+    justify-content: space-around;
 }
 
 .cardReadImg img{
@@ -513,31 +503,81 @@ a.btnwhite{
 }
 
 .cardRead-subcard img{
- width: 380px;
- height: 400px;
- padding-left: 10px;
+width: 350px;
+    height: 350px;
+    padding-right: 20px;
 }
 
 .replyRead-subcard img{
-  padding-top: 10px;
-  width: 400px;
-  height: 400px;
+    width: 320px;
+    height: 340px;
  }
  
 
 .border-cardread1{
-  width: 430px;
-  border: 2px solid #c4c4c2f8;
-  margin-top: 10px;
-  margin-left: 70px;
-  padding-top: 10px;
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding : 0px 10px 0px 10px;
 }
 
 .border-cardread2{
-  width: 430px;
-  border: 2px solid #c4c4c2f8;
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding : 0px 10px 0px 10px;
+}
+
+
+.replyReadImg{
+  display: flex;
+  width: calc(100% / 1);
+  justify-content: space-around;
+}
+
+.replyReadImg2{
+    display: flex;
+    width: calc(110% / 1);
+    justify-content: space-around;
+}
+
+.replyReadImg img{
   margin-top: 10px;
-  padding-top: 10px;
+  width: 50px;
+  height: 50px;
+  justify-content: space-around;
+}
+
+.replyReadImg2 img{
+  margin-left: -20px;
+  width: 50px;
+  height: 50px;
+  justify-content: space-around;
+}
+
+.replyRead-subcard img{
+width: 350px;
+    height: 350px;
+    padding-right: 20px;
+}
+
+
+.border-replyread1{
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding : 0px 10px 0px 10px;
+}
+
+.border-replyread2{
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding : 0px 10px 0px 10px;
 }
 
 .button-center{
@@ -551,7 +591,6 @@ a.btnwhite{
 
 .btncenter{
 	text-align: center;
-	margin-left: -50px;
 }
 
 .btn-ReadList{
@@ -587,6 +626,9 @@ display: inline-block;
 
 
 .btn-ReadComment{
+	bottom: 40px;
+    left: 570px;
+    position: relative;
   font-family: 'SCDream4';
   width: 140px;
   height: 40px;
@@ -604,7 +646,8 @@ display: inline-block;
 }
 
 .cardRead-subcard{
-  margin-bottom: 40px;
+	margin-top: -20px;
+    margin-bottom: 10px;
 }
 .cardRead-subcard .imgdate{
   position:relative; 
@@ -663,9 +706,10 @@ display: inline-block;
 
 
 .r-text{
-  position: relative;
-  bottom: 480px;
-  left: 30px;
+ font-size: 20px;
+    position: relative;
+    bottom: 480px;
+    left: 230px;
 }
 
 .r-bgtext{

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mydeco.service.LetterService;
@@ -26,19 +27,21 @@ public class LetterController {
 	LetterService letterService;
 	
 	
-	
+	//편지 목록 + 페이징
 	@RequestMapping("")
-	public String letter(Model model) {
-		System.out.println("letter");
+	public String letter(Model model,
+						@RequestParam(value = "crtPage1", required = false, defaultValue = "1") int crtPage1,
+						@RequestParam(value = "crtPage2", required = false, defaultValue = "1") int crtPage2) {
+		System.out.println("letter/list");
 		
-		List<LetterVo> saveList = letterService.selectSaveList();
-		model.addAttribute("letterSaveList", saveList);
-		
-		List<LetterVo> keepList = letterService.selectKeepList();
-		model.addAttribute("letterKeepList", keepList);
-		
-		System.out.println(saveList);
-		
+		//보낸 편지 리스트
+		Map<String, Object> saveMap = letterService.getSaveList(crtPage1);
+		model.addAttribute("saveMap", saveMap);
+
+		//작성 중인 편지 리스트
+		Map<String, Object> keepMap = letterService.getKeepList(crtPage2);
+		model.addAttribute("keepMap", keepMap);
+
 		
 		return "letter/letterList";
 	}

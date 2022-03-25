@@ -46,7 +46,7 @@ public class LetterService {
 	public Map<String, List<StickerVo>> getStickerList(){
 		
 		List<StickerVo> stickerList = letterDao.getStickerList(2);
-		List<StickerVo> paperList = letterDao.getStickerList(1);
+		List<StickerVo> paperList = letterDao.getStickerList(3);
 		
 		
 		Map<String, List<StickerVo>> stickerMap = new HashMap<String, List<StickerVo>>();
@@ -148,18 +148,131 @@ public class LetterService {
 	
 	
 	//편지 목록 불러오기 : 보낸 편지 목록
-	public List<LetterVo> selectSaveList() {
-		List<LetterVo> saveList = letterDao.selectSaveList();
+	public Map<String,Object> getSaveList(int crtPage) {
+			
+		//페이지당 글 개수
+		int listCnt = 6;
+		
+		//현재 페이지 결정
+		crtPage = (crtPage>0) ? crtPage : (crtPage=1); 
 
-		return saveList;
+		
+		//시작 글 번호 = 페이지(숫자)를 입력했을 때 해당 페이지의 첫 번째 글 번호가 도출되는 식
+		int startRnum = (crtPage - 1)*listCnt + 1;
+		
+		//마지막 글 번호 = 페이지(숫자)를 입력했을 때 해당 페이지의 마지막 글 번호가 도출되는 식
+		int endRnum = (startRnum + listCnt) - 1; 
+		
+		List<LetterVo> saveList = letterDao.selectSaveList(startRnum, endRnum);
+		
+		
+		/*페이징 버튼 구현*/
+		
+		//전체 글 개수 가져오기
+		int totalCnt = letterDao.selectSaveListTotal();
+		//System.out.println("totalCount = " + totalCnt);
+	
+		//페이지당 버튼 개수
+		int pageBtnCount = 5;
+		
+		//☆마지막 버튼 번호
+		int endPageBtnNo = (int)(  Math.ceil(crtPage/(double)pageBtnCount)  )*pageBtnCount;
+		
+		//시작 버튼 번호
+		int startPageBtnNo = endPageBtnNo - (pageBtnCount-1);
+		
+		//다음 화살표 유무 판별
+		boolean next = false;
+		if(endPageBtnNo*listCnt < totalCnt) {//계산된 값이 총 게시글 수보다 적을 경우에만 화살표 표기
+			next = true;
+		}else {//다음 화살표가 보이지 않으면 마지막 버튼 값을 다시 계산한다.
+			endPageBtnNo = (int)Math.ceil(totalCnt/(double)listCnt);
+		}
+
+		//이전 화살표 유무 판별
+		boolean prev = false;
+		if(startPageBtnNo>1) {
+			prev = true;
+		}
+		
+		
+		/*도출된 값들 하나로 포장하기*/
+		Map<String, Object> saveMap = new HashMap<String, Object>();
+		saveMap.put("prev", prev);
+		saveMap.put("startPageBtnNo", startPageBtnNo);
+		saveMap.put("endPageBtnNo", endPageBtnNo);
+		saveMap.put("next", next);
+		saveMap.put("saveList", saveList);
+	
+		
+		return saveMap;
 	}
 	
+	
 	//편지 목록 불러오기 : 작성중인 편지 목록
-	public List<LetterVo> selectKeepList() {
-		List<LetterVo> keepList = letterDao.selectKeepList();
+	public Map<String,Object> getKeepList(int crtPage) {
+		
+		//페이지당 글 개수
+		int listCnt = 6;
+		
+		//현재 페이지 결정
+		crtPage = (crtPage>0) ? crtPage : (crtPage=1); 
 
-		return keepList;
+		
+		//시작 글 번호 = 페이지(숫자)를 입력했을 때 해당 페이지의 첫 번째 글 번호가 도출되는 식
+		int startRnum = (crtPage - 1)*listCnt + 1;
+		
+		//마지막 글 번호 = 페이지(숫자)를 입력했을 때 해당 페이지의 마지막 글 번호가 도출되는 식
+		int endRnum = (startRnum + listCnt) - 1; 
+		
+		List<LetterVo> keepList = letterDao.selectKeepList(startRnum, endRnum);
+		
+		
+		/*페이징 버튼 구현*/
+		
+		//전체 글 개수 가져오기
+		int totalCnt = letterDao.selectKeepListCount();
+		//System.out.println("totalCount = " + totalCnt);
+	
+		//페이지당 버튼 개수
+		int pageBtnCount = 5;
+		
+		//☆마지막 버튼 번호
+		int endPageBtnNo = (int)(  Math.ceil(crtPage/(double)pageBtnCount)  )*pageBtnCount;
+		
+		//시작 버튼 번호
+		int startPageBtnNo = endPageBtnNo - (pageBtnCount-1);
+		
+		//다음 화살표 유무 판별
+		boolean next = false;
+		if(endPageBtnNo*listCnt < totalCnt) {//계산된 값이 총 게시글 수보다 적을 경우에만 화살표 표기
+			next = true;
+		}else {//다음 화살표가 보이지 않으면 마지막 버튼 값을 다시 계산한다.
+			endPageBtnNo = (int)Math.ceil(totalCnt/(double)listCnt);
+		}
+
+		//이전 화살표 유무 판별
+		boolean prev = false;
+		if(startPageBtnNo>1) {
+			prev = true;
+		}
+		
+		
+		/*도출된 값들 하나로 포장하기*/
+		Map<String, Object> keepMap = new HashMap<String, Object>();
+		keepMap.put("prev", prev);
+		keepMap.put("startPageBtnNo", startPageBtnNo);
+		keepMap.put("endPageBtnNo", endPageBtnNo);
+		keepMap.put("next", next);
+		keepMap.put("keepList", keepList);
+	
+		
+		return keepMap;
 	}
+	
+	
+	
+	
 	
 	
 	//편지 읽어오기(아이템 추가)
