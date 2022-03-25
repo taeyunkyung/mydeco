@@ -138,11 +138,13 @@
 				                            </div>
 				
 				                            
-				                            <div id="tab-3" class="tab-content">
+				                            <div id="tab-3" class="tab-content content-box">
 												<c:forEach items="${bgmList}" var="bgmVo">
-													<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
-				                                    	${bgmVo.bgmTitle}
-				                                	</div>								
+													<div class="">
+														<div class="bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
+				                                    		${bgmVo.bgmTitle}
+				                                		</div>		
+													</div>
 												</c:forEach>
 				                            </div>
 				                           
@@ -210,7 +212,7 @@ $(document).ready(function(){
 var canvas = new fabric.Canvas("paper", {
 	 width: 680,
 	 height: 690,
-	 backgroundColor: '#686099'
+	 backgroundColor: '#ebebeb'
 }); 
 
 //텍스트 상자를 클릭했을때

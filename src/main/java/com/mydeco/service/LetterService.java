@@ -46,7 +46,7 @@ public class LetterService {
 	public Map<String, List<StickerVo>> getStickerList(){
 		
 		List<StickerVo> stickerList = letterDao.getStickerList(2);
-		List<StickerVo> paperList = letterDao.getStickerList(1);
+		List<StickerVo> paperList = letterDao.getStickerList(3);
 		
 		
 		Map<String, List<StickerVo>> stickerMap = new HashMap<String, List<StickerVo>>();
