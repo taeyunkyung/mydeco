@@ -39,8 +39,8 @@ h3{
 
 /*지우씨꺼*/
 #main-content h3.subtitle {
-    border-bottom: #CEC9EF;
-    border-width: 2px;
+    /*border-bottom: #CEC9EF;
+    border-width: 2px;*/
     border-bottom-style: solid;
     /*width: 705px;*/
     /*margin: 20px 0px 15px 0px; 220324 오후7시지웠음*/
@@ -835,13 +835,24 @@ h3.subtitle{
 	height: 250px !important;
 }
 
+/*2022년3월 자체에 먹인 설정*/
 .ui-datepicker .ui-datepicker-title {
     margin: 0 2.3em;
     line-height: 1.8em;
     text-align: center;
     margin-top:2px; 
+    color: white;
+    font-family: 'SCDream4';
 }
 
+/*writeForm 에서 datepicker 눌렀을때 나오는 월 글씨 색(이거안먹이면) 위에title때문에 색 하얗게바뀜*/
+div.ui-datepicker-title>select.ui-datepicker-month{
+	color: #000000;
+}
+
+div.ui-datepicker-title>select.ui-datepicker-year{
+	color: #000000;
+}
 
 .ui-datepicker .ui-datepicker-header {
     position: relative;
@@ -850,6 +861,7 @@ h3.subtitle{
     height:40px;
 }
 
+/*
 span.ui-datepicker-year{
 	color:#FFFFFF;
 	font-family:'SCDream4';
@@ -860,7 +872,7 @@ span.ui-datepicker-month{
 	color:#FFFFFF;
 	font-family:'SCDream4';
 	font-size: 15px;
-}
+}*/
 
 
 a.ui-datepicker-prev.ui-corner-all{
