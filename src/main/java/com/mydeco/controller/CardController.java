@@ -74,7 +74,23 @@ public class CardController {
 	}
 	
 	
+	@RequestMapping("/cardReadForm")
+	public String cardReadForm(){
+		
+		return "card/cardReadForm";
+	}
 	
+	@RequestMapping("/replyReadForm")
+	public String replyReadForm(){
+		
+		return "card/replyReadForm";
+	}
+	
+	@RequestMapping("/replyWriteForm")
+	public String replyWriteForm(){
+		
+		return "card/replyWriteForm";
+	}
 	
 	
 }
