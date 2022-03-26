@@ -5,41 +5,8 @@
 <!-- <select>, <insert>, <update>, <delete> -->
 	
 	
-	<!-- 내가 작성한 카드 넣기 -->
-	<insert id="sendcard" parameterType="CardVo">
-		<selectKey keyProperty="cardNo" resultType="int" order="BEFORE">
-			select seq_card_no.nextval from dual
-		</selectKey>
-		<![CDATA[
-			insert into card 
-			values(#{cardNo}, #{userNo}, #{cardContent}, sysdate, #{cardAge}, #{cardGender}, #{cardImgSrc})
-		]]>
-	
-	</insert> 
-	
-	
-	<!-- 이미지 넣기 -->
-	<insert id="cardImg" parameterType="CardVo">
-		<![CDATA[
-			insert into cardImg
-			values(seq_cardImg_no.nextval,#{cardImgName},#{cardImgSrc})
-		]]>
-	</insert>
-	
-	
-	<!-- 사진 목록 가져오기 -->
-	<select id="cardbg" resultType="CardVo"><!-- vo객체로 쿼리실행결과값 받을때 resultType -->
-		<![CDATA[
-			select  cardImgNo,
-			        cardImgName,
-			        cardImgSrc
-			from cardImg
-		]]>
-	</select>
-	
-	
 	<!-- 내가 쓴 카드 리스트 가져오기 -->
-	<select id="ListaddCount" parameterType="Int" resultType="CardVo">
+	<select id="selectListCard" parameterType="Int" resultType="CardVo">
 	
 		<![CDATA[
 			select  c.cardNo cardNo,
@@ -56,26 +23,203 @@
 				           group by cardNo) cnt
 			where c.cardNo = cnt.cardNo(+)
 			and c.userNo = #{no}
-			order by c.cardRegdate asc
+			order by c.cardRegdate desc
 		]]>
 	</select>
 	
+	
 	<!-- 받은 카드 리스트 가져오기 -->
-	<select id="receiveCardList" parameterType="Int" resultType="CardReplyVo">
+	<select id="selectListReplyCard" parameterType="int" resultType="com.mydeco.vo.CardandReplyVo">
 		<![CDATA[
-			select  replyCardNo,
-			        userNo,
-			        cardNo,
-			        targetAge,
-			        targetGender,
-			        sendYN,
-			        replyContent,
-			        replyRegdate,
-			        cardImgSrc
-			from replyCard
-			where userNo = #{no}
+			select  ort.rn,
+			        ort.cardNo,
+			        ort.userNo,
+			        ort.count,
+			        ort.cardContent,
+			        ort.cardRegdate,
+			        ort.cardAge,
+			        ort.cardGender,
+			        ort.cardImgSrc,
+			       
+			        ort.replycardno,
+			        ort.reUserNo reUserNo,
+			        ort.targetAge,
+			        ort.targetGender,
+			        ort.sendyn,
+			        ort.replyContent,
+			        ort.replyRegdate,
+			        ort.recardImgSrc
+			from(select rownum rn,
+			            ot.cardNo,
+			            ot.userNo,
+			            ot.count,
+			            ot.cardContent,
+			            ot.cardRegdate,
+			            ot.cardAge,
+			            ot.cardGender,
+			            ot.cardImgSrc,
+			           
+			            ot.replycardno,
+			            ot.reUserNo reUserNo,
+			            ot.targetAge,
+			            ot.targetGender,
+			            ot.sendyn,
+			            ot.replyContent,
+			            ot.replyRegdate,
+			            ot.recardImgSrc
+			      from (select tl.cardNo,
+			                   tl.userNo,
+			                   nvl(tl.count, 0) count,
+			                   substr(tl.cardContent,1,50) cardContent,
+			                   to_char(tl.cardRegdate,'YYYY-MM-DD') cardRegdate,
+			                   tl.cardAge,
+			                   tl.cardGender,
+			                   tl.cardImgSrc,
+			               
+			                   tr.replycardno,
+			                   tr.reUserNo reUserNo,
+			                   tr.targetAge,
+			                   tr.targetGender,
+			                   tr.sendyn,
+			                   substr(tr.replyContent,1,50) replyContent,
+			                   to_char(tr.replyRegdate,'YYYY-MM-DD') replyRegdate,
+			                   tr.cardImgSrc recardImgSrc
+						 from  (select  oct.cardNo,
+						                oct.userNo,
+						                rc.count,
+						                oct.cardContent,
+						                oct.cardRegdate,
+						                oct.cardAge,
+						                oct.cardGender,
+						                oct.cardImgSrc 
+						         from (select  cardNo,
+						                       userNo,
+						                       cardContent,
+						                       cardRegdate,
+						                       cardAge,
+						                       cardGender,
+						                       cardImgSrc
+						                from card) oct,
+						               (select cardNo, count(*) count
+						                from replycard
+						                where sendyn = 'Y'
+						                group by cardNo) rc            
+						         where oct.cardNo =  rc.cardNo(+) ) tl,
+						         (select replycardno,
+						                 userNo reUserNo,
+						                 cardNo,
+						                 targetAge,
+						                 targetGender,
+						                 sendyn,
+						                 replyContent,
+						                 replyRegdate,
+						                 cardImgSrc
+						          from replycard
+						          where userNo = #{userNo}) tr
+						 where tl.cardNo = tr.cardNo
+						 order by cardRegdate desc )ot
+			    )ort
+			where rn>=1
+			and rn<=1000
 		]]>
 	</select>
+	
+	<!-- 선택한 받은 카드 가져오기 -->
+	<select id="selectReplyOne" parameterType="map" resultType="com.mydeco.vo.CardandReplyVo">
+		<![CDATA[
+					select  ort.rn,
+			        ort.cardNo,
+			        ort.userNo,
+			        ort.count,
+			        ort.cardContent,
+			        ort.cardRegdate,
+			        ort.cardAge,
+			        ort.cardGender,
+			        ort.cardImgSrc,
+			       
+			        ort.replycardno,
+			        ort.reUserNo reUserNo,
+			        ort.targetAge,
+			        ort.targetGender,
+			        ort.sendyn,
+			        ort.replyContent,
+			        ort.replyRegdate,
+			        ort.recardImgSrc
+			from(select rownum rn,
+			            ot.cardNo,
+			            ot.userNo,
+			            ot.count,
+			            ot.cardContent,
+			            ot.cardRegdate,
+			            ot.cardAge,
+			            ot.cardGender,
+			            ot.cardImgSrc,
+			           
+			            ot.replycardno,
+			            ot.reUserNo reUserNo,
+			            ot.targetAge,
+			            ot.targetGender,
+			            ot.sendyn,
+			            ot.replyContent,
+			            ot.replyRegdate,
+			            ot.recardImgSrc
+			      from (select tl.cardNo,
+			                   tl.userNo,
+			                   nvl(tl.count, 0) count,
+			                   substr(tl.cardContent,1,50) cardContent,
+			                   to_char(tl.cardRegdate,'YYYY-MM-DD') cardRegdate,
+			                   tl.cardAge,
+			                   tl.cardGender,
+			                   tl.cardImgSrc,
+			               
+			                   tr.replycardno,
+			                   tr.reUserNo reUserNo,
+			                   tr.targetAge,
+			                   tr.targetGender,
+			                   tr.sendyn,
+			                   substr(tr.replyContent,1,50) replyContent,
+			                   to_char(tr.replyRegdate,'YYYY-MM-DD') replyRegdate,
+			                   tr.cardImgSrc recardImgSrc
+						 from  (select  oct.cardNo,
+						                oct.userNo,
+						                rc.count,
+						                oct.cardContent,
+						                oct.cardRegdate,
+						                oct.cardAge,
+						                oct.cardGender,
+						                oct.cardImgSrc 
+						         from (select  cardNo,
+						                       userNo,
+						                       cardContent,
+						                       cardRegdate,
+						                       cardAge,
+						                       cardGender,
+						                       cardImgSrc
+						                from card) oct,
+						               (select cardNo, count(*) count
+						                from replycard
+						                where sendyn = 'Y'
+						                group by cardNo) rc            
+						         where oct.cardNo =  rc.cardNo(+) ) tl,
+						         (select replycardno,
+						                 userNo reUserNo,
+						                 cardNo,
+						                 targetAge,
+						                 targetGender,
+						                 sendyn,
+						                 replyContent,
+						                 replyRegdate,
+						                 cardImgSrc
+						          from replycard
+						          where userNo = #{userNo}) tr
+						 where tl.cardNo = tr.cardNo
+						 order by cardRegdate desc )ot
+			    )ort
+			where rn=#{cardNo}
+		]]>
+	</select>
+	
+	
 	
 	<!-- 연령대 조건 넣기-->
 	<select id="selectTargetList" parameterType="CardVo" resultType="CardReplyVo">
@@ -110,12 +254,16 @@
 			<![CDATA[
 			where a.trueAge >= 40
 			]]>
-		</if>		
+		</if>	
+		<![CDATA[
+			and userNo != #{userNo}
+		]]>		
 	</select>
 	
+		
 	
 	<!-- 답장카드 저장  보내기 개념 -->
-	<insert id="replyCardInsert" parameterType="CardReplyVo">
+	<insert id="replyCardInsert" parameterType="CardReplyVo" >
 		<![CDATA[
 			insert into replyCard (replyCardNo,
                        userNo,
@@ -131,6 +279,128 @@
 			       #{sendYN})
 		]]>
 	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 내가 작성한 카드 넣기 -->
+	<insert id="sendcard" parameterType="CardVo">
+		<selectKey keyProperty="cardNo" resultType="int" order="BEFORE">
+			select seq_card_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into card 
+			values(#{cardNo}, #{userNo}, #{cardContent}, sysdate, #{cardAge}, #{cardGender}, #{cardImgSrc})
+		]]>
+	
+	</insert> 
+	
+	
+	<!-- 이미지 넣기 -->
+	<insert id="cardImg" parameterType="CardVo">
+		<![CDATA[
+			insert into cardImg
+			values(seq_cardImg_no.nextval,#{cardImgName},#{cardImgSrc})
+		]]>
+	</insert>
+	
+	
+	<!-- 사진 목록 가져오기 -->
+	<select id="cardbg" resultType="CardVo"><!-- vo객체로 쿼리실행결과값 받을때 resultType -->
+		<![CDATA[
+			select  cardImgNo,
+			        cardImgName,
+			        cardImgSrc
+			from cardImg
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 받은 카드 리스트 가져오기 -->
+	<select id="receiveCardList" parameterType="Int" resultType="CardReplyVo">
+		<![CDATA[
+			select  replyCardNo,
+			        userNo,
+			        cardNo,
+			        targetAge,
+			        targetGender,
+			        sendYN,
+			        replyContent,
+			        replyRegdate,
+			        cardImgSrc
+			from replyCard
+			where userNo = #{no}
+		]]>
+	</select>
+	
+
 	
 	<!-- 받은카드 삭제하기 -->
 	<delete id="deleteCard" parameterType="int">

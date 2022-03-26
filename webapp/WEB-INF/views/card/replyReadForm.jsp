@@ -8,10 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mydeco</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.css">
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/card.css">
     
+    
+    	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+    	<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.js"></script>
     </head>
 
 <body>
@@ -48,27 +50,28 @@
 					                        <div class="row">
 					                            <div class="col-xs-12 border-replyread1"><!--내가 작성한 카드-->
 					                                <div class="replyRead-subcard">
-					                                    <div class="imgdate">2022-02-03</div>
-					                                    <div class="cardContent"></div>
-					                                    <img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt="">
+					                                    <div class="imgdate">${replyCardList[0].cardRegdate}</div>
+					                                    <div class="cardContent">${replyCardList[0].cardContent}</div>
+					                                   	<img src="${replyCardList[0].cardImgSrc}">
 					                                </div>
 					                            </div>
 					                        </div>
 					                        <div class="row">
 					                            <div class="col-xs-12">
-					                                <div class="ment">나님이 작성한 최근 댓글카드</div>
+					                                <div class="ment">나님이 작성한 최근 댓글카드ㅁㅁ</div>
 					                            </div>
 					                            <div class="row">
 					                                <div class="col-xs-12">
 					                                    <div class="replyReadImg">
+					                                    
 					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
-					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt=""></div>
-					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img2.jpg" alt=""></div>
-					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
-					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
-					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
+					                                       
+				                                        	<div id="cardThumbNailBox">
+					                                        	<!-- 원본 카드 썸네일 리스트 -->
+					                                        		
+				                                        	</div>
+
 					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
-					                                        
 					                                    </div>
 					                                </div>
 					                            </div>
@@ -91,6 +94,7 @@
 					                                <div class="ment2">총 50개 댓글</div>
 					                            </div>
 					                        </div>
+					                        <%-- 
 					                        <div class="row">
 					                            <div class="col-xs-12">
 					                                <div class="replyReadImg2">
@@ -106,6 +110,8 @@
 					                                </div>
 					                            </div>
 					                        </div>
+					                         --%>
+					                        
 					                    </div>
 					                </div>
 					                <div class="row btnmargin">
@@ -116,7 +122,7 @@
 					                    <div class="col-xs-1">
 											<div class="button-right">
 												<button type="submit" class="btn-ReadComment">
-													<a href="${pageContext.request.contextPath}/card/replywrite">댓글카드 작성</a>
+													<a href="${pageContext.request.contextPath}/card/replyWriteForm">댓글카드 작성</a>
 												</button>
 											</div>
 										</div>
@@ -152,4 +158,63 @@
 	<!-- //wrap -->
 	
 </body>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+	// 실행할 기능을 정의해주세요. 
+
+	getReplyCardList();
+	
+});
+
+
+
+function getReplyCardList(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/card/getReplyCardList",
+		type : "post",
+		/* contentType : "application/json", */
+		/* data : JSON.stringify(productVo), */
+		/* async: false, */
+		dataType : "json",
+		success : function(cardList) {
+			
+			
+			for(var i=0; i<cardList.length; i++){
+				cardRender(cardList[i], "up");	
+			}
+			
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
+
+//리스트 그리기(1개씩)
+function cardRender(cardVo, direction){
+	console.log(cardVo);
+	var str ='';
+	str +='<div><img src="'+cardVo.cardImgSrc+'"></div>';
+	
+	
+	if(direction == "up"){
+		$("#cardThumbNailBox").prepend(str);
+	}else if(direction == "down"){
+		$("#cardThumbNailBox").append(str);
+	}else{
+		console.log("direction 오류");
+	}
+}
+
+
+</script>
+
+
+
+
+
 </html>

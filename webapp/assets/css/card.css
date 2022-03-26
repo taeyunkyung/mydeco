@@ -9,7 +9,19 @@
   font-family: "SCDream4";
 }
 
+#wrap{
+	  font-family: 'SCDream4';
+	
+}
+
 #cTitle >h3 {
+  font-size: 20px;
+  margin: 20px 0px 15px 0px;
+  font-weight:bold;
+  text-align: left;
+}
+
+#fTitle >h3 {
   font-size: 20px;
   font-family: 'SCDream4';
   margin: 20px 0px 15px 0px;
@@ -17,20 +29,17 @@
   text-align: left;
 }
 
+
 div#fTitle{
 	width: 980px;
-  border-bottom: #CEC9EF;
-    border-width: 2px;
-    border-bottom-style: solid;
+  border-bottom: 1px solid #000000;
     margin: 0px 0px 0px 40px;
 }
 
 div#cTitle {
     width:720px;
-    border-bottom: #CEC9EF;
-    border-width: 2px;
-    border-bottom-style: solid;
-    margin: 0px 0px 0px 0px;
+   border-bottom: 1px solid #000000;
+ margin: 0px 0px 0px 0px;
   }
 
 /* .tap_content {
@@ -397,22 +406,22 @@ width: 120px;
 }
 
 #text_cnt{
-  position: relative;
- bottom: 530px;
- left: 280px;
+position: relative;
+    bottom: 420px;
+    left: 180px;
 }
 
 #c-text{
-  font-family: 'SCDream4';
-  font-size: medium;
-  border: 0;
-  background-color: #00ff0000;
-  position: relative;
- bottom: 520px;
-    left: 100px;
+	border:none;
+	font-family: 'SCDream4';
+    font-size: medium;
+    background-color: #00ff0000;
+    position: relative;
+    bottom: 430px;
+    left: 50px;
     resize: none;
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
 }
 
 .marginleft50{
@@ -506,6 +515,11 @@ width: 120px;
 width: 350px;
     height: 350px;
     padding-right: 20px;
+}
+
+.replyRead-subcard{
+margin-top: -20px;
+    margin-bottom: 10px;
 }
 
 .replyRead-subcard img{
@@ -624,21 +638,37 @@ display: inline-block;
   float: right;
 }
 
+.btn-writeComment{
+bottom: 40px;
+position: relative;
+font-family: 'SCDream4';
+width: 140px;
+height: 40px;
+font-weight: 400;
+font-size: 13px;
+border: none;
+cursor: pointer;
+background: #686099;
+color: #fff;
+	
+}
 
-.btn-ReadComment{
+.btn-writeComment>a{
+  color:#fff;
+}
+
+.btn-ReadComment{    
 	bottom: 40px;
-    left: 570px;
+    left: 675px;
     position: relative;
   font-family: 'SCDream4';
   width: 140px;
   height: 40px;
-  margin: 15px 150px 15px 0px;
   font-weight: 400;
   font-size: 13px;
   border: none;
   cursor: pointer;
   background: #686099;
-  color: #fff;
 }
 
 .btn-ReadComment>a{
@@ -713,15 +743,15 @@ display: inline-block;
 }
 
 .r-bgtext{
-    width: 200px;
+	width: 200px;
     position: relative;
-    bottom: 510px;
-    left: 750px;
+    top: 25px;
+    left: 600px;
 }
 
 .r-bgtext button{
-    width: 100px;
-    height: 35px;
+    width: 120px;
+    height: 40px;
   border: 1px solid #6667AB;
   background: #fff;
   color: #6667AB; 
@@ -774,4 +804,40 @@ display: inline-block;
 
 .height30{
   height: 30px;
+}
+
+.modal-dialog{
+width:500px;
+	z-index: 0;
+}
+
+.btn-modalComment{
+	font-family: 'SCDream4';
+    width: 120px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    background: #686099;
+    color: #fff;
+}
+
+.modal-header{
+	height: 80px;
+}
+
+/* .modal-body{
+	height: 300px;
+}
+ */
+.replyWriteimg{
+	margin-right: -30px;
+    padding: 20px;
+    margin-top: -10px;
+}
+
+.replyWriteimg img{
+  width: 100px;
+  height: 100px;
 }

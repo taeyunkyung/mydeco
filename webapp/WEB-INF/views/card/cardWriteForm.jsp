@@ -183,7 +183,7 @@
 			
 			
 			//배경이미지 경로 저장
-			$('[name="cardImgNo"]').val(cardImgSrc);
+			$('[name="cardImgSrc"]').val(cardImgSrc);
 		});
 	
 		
