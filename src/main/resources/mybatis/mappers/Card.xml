@@ -70,7 +70,7 @@
 			      from (select tl.cardNo,
 			                   tl.userNo,
 			                   nvl(tl.count, 0) count,
-			                   substr(tl.cardContent,1,50) cardContent,
+			                   tl.cardContent cardContent,
 			                   to_char(tl.cardRegdate,'YYYY-MM-DD') cardRegdate,
 			                   tl.cardAge,
 			                   tl.cardGender,
@@ -81,7 +81,7 @@
 			                   tr.targetAge,
 			                   tr.targetGender,
 			                   tr.sendyn,
-			                   substr(tr.replyContent,1,50) replyContent,
+			                   tr.replyContent replyContent,
 			                   to_char(tr.replyRegdate,'YYYY-MM-DD') replyRegdate,
 			                   tr.cardImgSrc recardImgSrc
 						 from  (select  oct.cardNo,
@@ -123,6 +123,30 @@
 			and rn<=1000
 		]]>
 	</select>
+	
+	
+	<!-- 특정카드의 댓글 모두 가져오기 -->
+	<select id="getReplyCardCommentList" parameterType="com.mydeco.vo.CardVo" resultType="com.mydeco.vo.CardandReplyVo">
+		<![CDATA[
+			select replycardno,
+			       userNo reUserNo,
+			       targetAge,
+			       targetGender,
+			       sendyn,
+			       replyContent,
+			       replyRegdate,
+			       cardImgSrc recardImgSrc
+			from replycard
+			where cardNo = #{cardNo}
+			and sendyn = 'Y'
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
 	
 	<!-- 선택한 받은 카드 가져오기 -->
 	<select id="selectReplyOne" parameterType="map" resultType="com.mydeco.vo.CardandReplyVo">
@@ -166,7 +190,7 @@
 			      from (select tl.cardNo,
 			                   tl.userNo,
 			                   nvl(tl.count, 0) count,
-			                   substr(tl.cardContent,1,50) cardContent,
+			                   tl.cardContent cardContent,
 			                   to_char(tl.cardRegdate,'YYYY-MM-DD') cardRegdate,
 			                   tl.cardAge,
 			                   tl.cardGender,
@@ -177,7 +201,7 @@
 			                   tr.targetAge,
 			                   tr.targetGender,
 			                   tr.sendyn,
-			                   substr(tr.replyContent,1,50) replyContent,
+			                   tr.replyContent replyContent,
 			                   to_char(tr.replyRegdate,'YYYY-MM-DD') replyRegdate,
 			                   tr.cardImgSrc recardImgSrc
 						 from  (select  oct.cardNo,

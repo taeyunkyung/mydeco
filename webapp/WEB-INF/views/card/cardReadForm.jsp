@@ -165,7 +165,7 @@ function getCardList(){
 		type : "post",
 		/* contentType : "application/json", */
 		/* data : JSON.stringify(productVo), */
-		/* async: false, */
+		async: false,
 		dataType : "json",
 		success : function(cardList) {
 			
@@ -177,7 +177,7 @@ function getCardList(){
 			$("#leftCard img").attr("src", cardInfoList[0].cardImgSrc);
 			
 			for(var i=0; i<cardList.length; i++){
-				cardRender(cardList[i], "down");	
+				cardRender(cardList[i], "down", i);	
 			}
 			
 			
@@ -189,7 +189,7 @@ function getCardList(){
 }
 
 //리스트 그리기(1개씩)
-function cardRender(cardVo, direction){
+function cardRender(cardVo, direction, index){
 	console.log(cardVo);
 	var str ='';
 	str +='<div><img class="leftItem pointer" data-lno="'+index+'" src="'+cardVo.cardImgSrc+'"></div>';
@@ -205,7 +205,6 @@ function cardRender(cardVo, direction){
 }
 
 //왼쪽 아이템을 클릭할때
-
 $("#leftItemBox").on("click", ".leftItem", function(){
 	
 	var index = $(this).data("lno");
@@ -215,7 +214,45 @@ $("#leftItemBox").on("click", ".leftItem", function(){
 	$("#leftCard .cardContent").html(cardInfoList[index].cardContent);
 	$("#leftCard img").attr("src", cardInfoList[index].cardImgSrc);
 	
+	//댓글 카드 리스트 요청
+	var cardNo = cardInfoList[index].cardNo
+	getReplyCardCommentList(cardNo);
 });
+
+
+
+
+function getReplyCardCommentList(cardNo){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/card/getReplyCardCommentList",
+		type : "post",
+		/* contentType : "application/json", */
+		data : {cardNo: cardNo}, 
+		async: false, 
+		dataType : "json",
+		success : function(replyCardList) {
+			console.log("======================================");
+			
+			console.log(replyCardList);
+			console.log("======================================");
+			
+			//replyCardInfoList = replyCardList;
+			
+			/* 
+			$("#leftCard .imgdate").html(cardInfoList[0].cardRegdate);
+			$("#leftCard .cardContent").html(cardInfoList[0].cardContent);
+			$("#leftCard img").attr("src", cardInfoList[0].cardImgSrc);
+			
+			for(var i=0; i<cardList.length; i++){
+				cardRender(cardList[i], "down", i);	
+			} */
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
 
 </script>
 </html>

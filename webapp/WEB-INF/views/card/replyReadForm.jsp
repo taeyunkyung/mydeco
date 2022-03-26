@@ -52,8 +52,8 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-replyread1"><!--내가 작성한 카드-->
-					                                <div id="leftCard" class="replyRead-subcard">
-					                                    <div class="imgdate">${replyCardList[0].cardRegdate}</div>
+					                                <div id="leftCard" class="replyRead-subcard" style="margin-top: -80px;">
+					                                    <div class="imgdate" style="position: relative;top: 100px;left: 40px;font-size: 20px;color: black;width: 200px;    height: 30px;">${replyCardList[0].cardRegdate}</div>
 					                                    <div class="cardContent">${replyCardList[0].cardContent}</div>
 					                                   	<img src="${replyCardList[0].cardImgSrc}">
 					                                </div>
@@ -165,6 +165,8 @@
 <script type="text/javascript">
 
 var cardInfoList;
+var replyCardInfoList
+
 //화면이 그려지기 직전
 $(document).ready(function(){ 
 	// 실행할 기능을 정의해주세요. 
@@ -222,17 +224,56 @@ function cardRender(cardVo, direction, index){
 
 
 //왼쪽 아이템을 클릭할때
-
 $("#leftItemBox").on("click", ".leftItem", function(){
 	
 	var index = $(this).data("lno");
 	console.log(cardInfoList[index]);
 	
+	//상단에 정보 출력
 	$("#leftCard .imgdate").html(cardInfoList[index].cardRegdate);
 	$("#leftCard .cardContent").html(cardInfoList[index].cardContent);
 	$("#leftCard img").attr("src", cardInfoList[index].cardImgSrc);
 	
+	
+	//댓글 카드 리스트 요청
+	var cardNo = cardInfoList[index].cardNo
+	getReplyCardCommentList(cardNo);
 });
+
+
+
+
+function getReplyCardCommentList(cardNo){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/card/getReplyCardCommentList",
+		type : "post",
+		/* contentType : "application/json", */
+		data : {cardNo: cardNo}, 
+		async: false, 
+		dataType : "json",
+		success : function(replyCardList) {
+			console.log("======================================");
+			
+			console.log(replyCardList);
+			console.log("======================================");
+			
+			//replyCardInfoList = replyCardList;
+			
+			/* 
+			$("#leftCard .imgdate").html(cardInfoList[0].cardRegdate);
+			$("#leftCard .cardContent").html(cardInfoList[0].cardContent);
+			$("#leftCard img").attr("src", cardInfoList[0].cardImgSrc);
+			
+			for(var i=0; i<cardList.length; i++){
+				cardRender(cardList[i], "down", i);	
+			} */
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
 
 </script>
 

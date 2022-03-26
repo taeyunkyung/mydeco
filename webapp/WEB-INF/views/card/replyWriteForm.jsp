@@ -78,7 +78,7 @@
 			                <div class="row btnmargin">
 			                    <div class="col-xs-12 btncenter">
 			                        <button type="submit" class="btn-writeComment">
-										<a href="${pageContext.request.contextPath}/card/main">댓글카드 작성</a>
+										<a href="${pageContext.request.contextPath}/card/main">작성 완료</a>
 									</button><!--list페이지로 이동-->
 			                    </div>
 			                </div>
@@ -116,7 +116,7 @@
 					           
 						           	<div class="modal-footer">
 							            <form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get" style="float:left; margin-left:170px; ">
-								      		<button type="button" id="modalModifyBtn" class="btn-modalComment">수정하기</button>
+								      		<button type="button" id="modalModifyBtn" class="btn-modalComment">적용하기</button>
 								      		<input type="hidden" name="modaldiaryNo" value="">
 								      	</form>
 							      	</div>
