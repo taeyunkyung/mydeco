@@ -458,7 +458,7 @@
 			
 			diaryItemVo.text = canvasObjList[i].text;
 			
-			canvas.bringToFront(diaryItemVo.text);
+			//canvas.bringToFront(diaryItemVo.text);
 			//canvas.setObjects(999).indexOf(diaryItemVo.text);
 			
 			diaryItemList.push(diaryItemVo);//배열에 추가
