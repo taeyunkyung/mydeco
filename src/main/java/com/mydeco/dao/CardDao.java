@@ -1,6 +1,7 @@
 package com.mydeco.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,44 @@ import org.springframework.stereotype.Repository;
 
 import com.mydeco.vo.CardReplyVo;
 import com.mydeco.vo.CardVo;
+import com.mydeco.vo.CardandReplyVo;
 
 @Repository
 public class CardDao {
 
 	@Autowired 
 	SqlSession sqlSession;
+	
+	/*보낸카드(자신이 작성한) 리스트 가져오기*/
+	public List<CardVo> selectListCard(int userNo){
+		System.out.println("CardDao.selectListCard()");
+		
+		List<CardVo> cardList = sqlSession.selectList("card.selectListCard", userNo);
+		return cardList; 
+		
+	}
+	
+	
+	/*받은 카드 리스트 출력*/											
+	public List<CardReplyVo> selectListReplyCard(int userNo){
+		System.out.println("CardDao.selectListReplyCard()");
+		
+		List<CardReplyVo> replyCardList = sqlSession.selectList("card.selectListReplyCard", userNo);
+		return replyCardList;
+	}
+	
+	
+	/*선택한 받은 카드 가져오기*/
+	public CardandReplyVo selectReplyOne(Map<String, Object> map) {
+		System.out.println("Dao > SelectReplyOne "+ map);
+		CardandReplyVo cardandreplyVo = sqlSession.selectOne("card.selectReplyOne", map);
+		System.out.println("ReplyVo반환확인용"+ cardandreplyVo);
+		return cardandreplyVo;
+	}
+	
+	
+	
+	
 	
 	//원본카드 저장
 	public void sendcard(CardVo cardVo) {
@@ -23,14 +56,7 @@ public class CardDao {
 		System.out.println("insert완료");
 	}
 	
-	/*내가 쓴 카드 리스트*/
-	public List<CardVo> ListaddCount(int no){
-		System.out.println("다오의 ListaddCount 접속");
-		List<CardVo> addList = sqlSession.selectList("card.ListaddCount", no);
-		System.out.println("다오의 ListaddCount확인용"+ addList);
-		return addList; 
-		
-	}
+	
 	
 	//카드수신 대상자 추출
 	public List<CardReplyVo> selectTargetList(CardVo cardVo) {
@@ -66,14 +92,7 @@ public class CardDao {
 
 	
 	
-	/*받은 카드 리스트 출력*/											
-	public List<CardReplyVo> receiveCardList(int no){
-		System.out.println("다오의 카드리스트 진입");
-		System.out.println("다오의 카드vo" + no);
-		List<CardReplyVo> dList = sqlSession.selectList("card.receiveCardList",no);
-		System.out.println("다오의 dList" +dList);
-		return dList;
-	}
+	
 	
 //	public 포캣몬빵 삼립(재료 포캣몬빵재료 ) {
 //		System.out.println("공장 진입");

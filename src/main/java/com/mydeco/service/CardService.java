@@ -1,6 +1,8 @@
 package com.mydeco.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mydeco.dao.CardDao;
 import com.mydeco.vo.CardReplyVo;
 import com.mydeco.vo.CardVo;
-import com.mydeco.vo.UserVo;
+import com.mydeco.vo.CardandReplyVo;
 
 @Service
 public class CardService {//�ڷ��� ����,���
@@ -16,6 +18,81 @@ public class CardService {//�ڷ��� ����,���
 	@Autowired
 	CardDao cardDao;
 
+	//소통카드 메인에 필요한 데이터 요청(작성카드 리스트, 받은카드 리스트))
+	public Map<String, Object> getMain(int userNo) {
+		System.out.println("CardService.getMain()");
+		
+		Map<String, Object> mainMap = new HashMap<String, Object>();
+		
+		//보낸카드(자신이 작성한) 리스트 가져오기
+		List<CardVo> cardList = cardDao.selectListCard(userNo);
+		
+		
+		//받은카드(자신이 답장 가능한) 리스트 가져오기
+		List<CardReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
+		
+		mainMap.put("cardList", cardList);
+		mainMap.put("replyCardList", replyCardList);
+		
+		return mainMap;
+	}
+	
+	
+	//답글 카드 폼에서 왼쪽(받은카드(자신이 답장 가능한) 리스트 가져오기)
+	public List<CardReplyVo> getReplyCardList(int userNo) {
+		
+		//받은카드(자신이 답장 가능한) 리스트 가져오기
+		List<CardReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
+				
+		return replyCardList;
+	}
+	
+	
+	//답글 카드 폼에서 왼쪽(작성카드 리스트 가져오기)
+		public List<CardVo> getCardList(int userNo) {
+			
+			//작성카드 리스트 가져오기
+			List<CardVo> CardList = cardDao.selectListCard(userNo);
+					
+			return CardList;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public CardandReplyVo selectReplyOne(Map<String, Object> map) {
+		System.out.println("service > selectReplyOne ");
+		CardandReplyVo cardandreplyVo = cardDao.selectReplyOne(map);
+		
+		return cardandreplyVo;
+	}
+	
+	
+	//보낸카드(자신이 작성한) 리스트 가져오기
+//	public List<CardVo> listAddCount(int no){
+//		System.out.println("CardService");
+//		List<CardVo> addList = cardDao.ListaddCount(no);
+//		System.out.println("서비스의 addList확인용"+addList);
+//		
+//		return addList;
+//	}
+	
+	//받은카드(자신이 답장 가능한) 리스트 가져오기
+	/*
+	 * public List<CardReplyVo> receiveCardList(int no){
+	 * System.out.println("서비스의 리시브카드리스트 진입"); List<CardReplyVo> dList =
+	 * cardDao.receiveCardList(no); System.out.println("서비스의 dList"+dList); return
+	 * dList; }
+	 */
+	
+	
+	
 	
 	public void sendcard(CardVo cardVo) {
 		System.out.println("service > dao 로 작성카드 전달");
@@ -38,7 +115,7 @@ public class CardService {//�ڷ��� ����,���
 		System.out.println("============================");
 		
 		//댓글카드 저장 여러개
-		for(int i=0; i<=cardReplyList.size(); i++) {
+		for(int i=0; i<cardReplyList.size(); i++) {
 			CardReplyVo cardReplyVo = cardReplyList.get(i);
 			cardReplyVo.setCardNo(cardNo);
 			cardReplyVo.setSendYN("N");
@@ -69,20 +146,9 @@ public class CardService {//�ڷ��� ����,���
 		return imgList;
 	}
 	
-	public List<CardVo> ListaddCount(int no){
-		System.out.println("서비스의 ListaddCount");
-		List<CardVo> addList = cardDao.ListaddCount(no);
-		System.out.println("서비스의 addList확인용"+addList);
-		
-		return addList;
-	}
+
 	
-	public List<CardReplyVo> receiveCardList(int no){
-		System.out.println("서비스의 리시브카드리스트 진입");
-		List<CardReplyVo> dList = cardDao.receiveCardList(no);
-		System.out.println("서비스의 dList"+dList);
-		return dList;
-	}
+	
 
 //	public String getOneAge(int no) {
 //		System.out.println("서비스의 겟원에이지");
