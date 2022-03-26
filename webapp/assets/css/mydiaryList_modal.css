@@ -146,7 +146,13 @@ button.mydiary-read-save-btn{
 	margin-top:3px; 
 	cursor:pointer;
 }
-/*
+
+.modalDiaryContent{
+	float:left; 
+	font-family:'SCDream4';
+}
+
+
 #modalDiaryDate{
 	float:left; 
 	font-family:'SCDream4'; 
@@ -156,7 +162,7 @@ button.mydiary-read-save-btn{
 #modalDiaryWeather{
 	float:left; 
 	font-family:'SCDream4'; 
-	width:50px; 
+	/*width:50px;*/ 
 	text-align:center;
 }
 
@@ -167,18 +173,22 @@ button.mydiary-read-save-btn{
 	text-align:center;
 }
 
+/*
 #modalDiaryTitle{
 	font-size:19px; 
 	font-weight:900"
 }
+*/
 
 .readcontent{
 	float:right; 
 	width:176px; 
-	margin-right:40px; 
+	/*margin-right:40px;*/
+	margin-right:21px; 
 	margin-top:7px;
 }
 
+/*
 .closef{
 	font-size:30px;
 }
@@ -187,3 +197,18 @@ button.mydiary-read-save-btn{
 	float:left; 
 	margin-left:41px;
 }*/
+
+#modalBtnDel{
+	margin-left:-220px;
+}
+
+.modalmodifyset{
+	float:left; 
+	margin-left:240px;
+}
+
+.modal-mydiary-weather{
+	margin-left:10px;
+	margin-right:5px;
+	width:11%;
+}

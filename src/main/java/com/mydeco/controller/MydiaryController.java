@@ -27,58 +27,6 @@ public class MydiaryController {
 	@Autowired 
 	MydiaryService mydiaryService;
 	
-	/*실험용메인*/
-	@RequestMapping("/applywriteForm")
-	public String applymain(Model model, HttpSession Session) {
-		System.out.println("mydiarycontroller-writeForm");
-		UserVo authUser = (UserVo)Session.getAttribute("authUser");
-		
-		if(authUser!= null) {
-			//db에 있는 이미지경로 이용해서 스티커들 갖고와야함.
-			//꾸미기 창 내용 가져오기-/*스티커목록(꾸기미패널) 가져오기 일은 서비스에 시키기*/
-			Map<String, List<StickerVo>> stickerMap = mydiaryService.getStickerList();
-			model.addAttribute("stickerMap",stickerMap);
-			System.out.println(stickerMap);
-			
-			/*bgm*/
-			List<BgmVo> bgmList = mydiaryService.getBgmList();
-			model.addAttribute("bgmList",bgmList);
-			
-			return "diary/mainlistpageapplymain";
-			
-		}else {
-			return "diary/list-notLogin";
-		}
-		
-		
-	}
-	
-	/*실험용*/
-	@RequestMapping("/applylist")
-	public String applylist(Model model, HttpSession Session, @RequestParam(value = "diaryDate", required=false, defaultValue="nodate") String diaryDate) {
-		System.out.println("mydiarycontroller-applylist");
-		UserVo authUser = (UserVo)Session.getAttribute("authUser");
-		System.out.println(diaryDate);
-		
-		/*로그인 사용자일때*/
-		if(authUser!= null) {
-			/*일기 리스트*/
-			List<DiaryContentVo> diarycontentList = mydiaryService.getDiaryContentList(authUser,diaryDate);
-			model.addAttribute("diarycontentList", diarycontentList);
-			System.out.println("=============================");
-			System.out.println(diarycontentList);
-			
-			/*일기쓴 날짜리스트*/
-			List<DiaryContentVo> day = mydiaryService.getDiaryDateList(authUser);
-			model.addAttribute("dayList", day);
-			return "diary/mainlistpageapply";
-			
-		}else {
-			/*비로그인 사용자*/
-			return "diary/list-notLogin";
-		}
-		
-	}
 	
 	/*리스트*/
 	@RequestMapping("/list")
@@ -107,22 +55,6 @@ public class MydiaryController {
 		
 	}
 	
-	/*일기 쓴 날짜 리스트*/
-	@ResponseBody
-	@RequestMapping("/datelist")
-	public List<DiaryContentVo> dateList(HttpSession Session) {
-		
-		UserVo authUser = (UserVo)Session.getAttribute("authUser");
-		System.out.println(authUser.getUserNo());
-		List<DiaryContentVo> day = mydiaryService.getDiaryDateList(authUser);
-		
-		System.out.println("=============================");
-		//System.out.println(diaryDayList);
-		System.out.println("=============================");
-		
-		return day;
-		
-	}
 	
 	/*달력에서 날짜 클릭시 해당 날짜에 쓴 일기리스트 출력*/
 	@ResponseBody
@@ -140,16 +72,6 @@ public class MydiaryController {
 		return mydiaryService.getclickDateDiaryList(diarycontentvo,authUser);
 	}
 	
-	/*상품등록한 일기판별*/
-	/*
-	@ResponseBody
-	@RequestMapping("/getProdNo")
-	public List<ProdDiaryVo> getProdNo( @RequestParam("diaryNo") int diaryNo) {
-		System.out.println(diaryNo);
-		
-		return mydiaryService.getProdNo(diaryNo);
-		
-	}
 	
 	/*상품등록한 일기판별*/
 	@ResponseBody
