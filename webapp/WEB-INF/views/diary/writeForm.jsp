@@ -122,7 +122,7 @@
 				                                </div>
 				                            </form>
 				                            <div class="writeform-btn-right">
-				                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+				                                <input type="submit" name="textbox" data-stickerno="999" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
 				                            </div>
 				                        </div>
 				
