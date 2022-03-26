@@ -83,7 +83,7 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-replyread2">
-					                                <div class="replyRead-subcard">
+					                                <div id="leftCard" class="replyRead-subcard2">
 					                                    <div class="imgdate">2022-02-03</div>
 					                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
 					                                </div>

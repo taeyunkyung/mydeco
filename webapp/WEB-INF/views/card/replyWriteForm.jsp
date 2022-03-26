@@ -49,8 +49,8 @@
 			                <div class="row">
 			                    <div class="col-xs-6">
 			                        <div class="row">
-			                            <div class="col-xs-12 border-replyread1"><!--내가 작성한 카드-->
-			                                <div id="leftCard" class="cardRead-subcard">
+			                            <div class="col-xs-12 border-replywrite1"><!--내가 작성한 카드-->
+			                                <div id="leftCard" class="replyWrite-subcard">
 			                                    <div class="imgdate">2022-03-03</div>
 			                                    <div class="cardContent">원본글...</div>
         										<img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg">
@@ -63,8 +63,8 @@
 
 			                    <div class="col-xs-6">
 			                        <div class="row">
-			                            <div class="col-xs-12 border-replyread2">
-			                                <div class="replyWrite-subcard">
+			                            <div class="col-xs-12 border-replywrite2">
+			                                <div id="" class="replyWrite-subcard2">
 			                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
 			                                	<textarea id="r-text" name="cardContent" cols="30" rows="10"></textarea>
 						                        <div id="text_rnt" style="position: relative;bottom: 280px;left: 130px;">(0 / 300)</div>

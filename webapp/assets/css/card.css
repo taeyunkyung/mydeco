@@ -540,14 +540,15 @@ width: 350px;
 }
 
 .replyRead-subcard{
-margin-top: -20px;
+margin-top: -40px;
     margin-bottom: 10px;
 }
 
 .replyRead-subcard img{
-    width: 320px;
-    height: 340px;
- }
+width: 350px;
+    height: 350px;
+    padding-right: 20px;
+}
  
 
 .border-cardread1{
@@ -566,6 +567,21 @@ margin-top: -20px;
     padding : 0px 10px 0px 10px;
 }
 
+.border-replywrite1{
+	    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 0px 10px 0px 10px;
+}
+
+.border-replywrite2{
+	    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 0px 10px 0px 10px;
+}
 
 .replyReadImg{
   display: flex;
@@ -593,11 +609,6 @@ margin-top: -20px;
   justify-content: space-around;
 }
 
-.replyRead-subcard img{
-width: 350px;
-    height: 350px;
-    padding-right: 20px;
-}
 
 
 .border-replyread1{
@@ -609,13 +620,21 @@ width: 350px;
 }
 
 .border-replyread2{
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding : 0px 10px 0px 10px;
+}
+
+/* .border-replyread2{
     height: 372px;
     width: 350px;
     border: 1px solid #c4c4c2f8;
     margin-top: 10px;
     margin-left: 15px;
     padding: 30px 10px 0px 10px;
-}
+} */
 
 .button-center{
   margin-top: 25px;
@@ -749,12 +768,12 @@ color: #fff;
    }
 
 .replyWrite-subcard{
-	margin-top: -20px;
+	margin-top: -40px;
     margin-bottom: 10px;
 }
 .replyWrite-subcard .imgdate{
   position:relative; 
-  top: 40px;
+  top: 60px;
   left: 40px;
   z-index: 1;
   color: black;
@@ -762,18 +781,91 @@ color: #fff;
   width: 200px;
   height: 30px;
 }
+
+.replyWrite-subcard .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+   }
+   
+   
+.replyWrite-subcard img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+} 
+
+
+
+.replyWrite-subcard2{
+	height: 400px;
+	margin-top: -40px;
+    margin-bottom: 10px;
+}
+
+.replyWrite-subcard2 img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+        margin-top: 50px;
+} 
+
+.replyWrite-subcard2 .imgdate{
+  position:relative; 
+  top: 60px;
+  left: 40px;
+  z-index: 1;
+  color: black;
+  font-size: 20px;
+  width: 200px;
+  height: 30px;
+}
+
+.replyWrite-subcard2 .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+   }
 
 .replyRead-subcard .imgdate{
-  position:relative; 
-  top: 40px;
-  left: 40px;
-  z-index: 1;
-  color: black;
-  font-size: 20px;
-  width: 200px;
-  height: 30px;
+position: relative;
+    top: 60px;
+    left: 40px;
+    z-index: 1;
+    color: black;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
 }
 
+.replyRead-subcard .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+}
+
+.replyRead-subcard2 {
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+
+.replyRead-subcard2 img{
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+}
+
+
+.replyRead-subcard2 .imgdate {
+    position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+    color: black;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+}
 /**********cardReply.html***********/
 
 .border-replyread{
