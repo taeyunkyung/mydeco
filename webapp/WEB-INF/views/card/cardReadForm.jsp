@@ -168,7 +168,7 @@ function getCardList(){
 			
 			
 			for(var i=0; i<cardList.length; i++){
-				cardRender(cardList[i], "up");	
+				cardRender(cardList[i], "down");	
 			}
 			
 			
