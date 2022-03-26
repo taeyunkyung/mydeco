@@ -58,7 +58,7 @@
 					                        </div>
 					                        <div class="row">
 					                            <div class="col-xs-12">
-					                                <div class="ment">나님이 작성한 최근 댓글카드ㅁㅁ</div>
+					                                <div class="ment">나님이 작성한 최근 댓글카드</div>
 					                            </div>
 					                            <div class="row">
 					                                <div class="col-xs-12">
@@ -94,7 +94,7 @@
 					                                <div class="ment2">총 50개 댓글</div>
 					                            </div>
 					                        </div>
-					                        <%-- 
+ 					                        
 					                        <div class="row">
 					                            <div class="col-xs-12">
 					                                <div class="replyReadImg2">
@@ -110,7 +110,6 @@
 					                                </div>
 					                            </div>
 					                        </div>
-					                         --%>
 					                        
 					                    </div>
 					                </div>

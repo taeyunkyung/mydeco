@@ -47,7 +47,7 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-cardread1"><!--내가 작성한 카드-->
-					                                <div class="cardRead-subcard">
+					                                <div id="leftCard" class="cardRead-subcard">
 					                                    <div class="imgdate">${CardList[0].cardRegdate}</div>
 					                                    <div class="cardContent">${CardList[0].cardContent}</div>
 					                                    <img src="${CardList[0].cardImgSrc}" alt="">
@@ -63,7 +63,7 @@
 					                                    <div class="cardReadImg">
 					                                        <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
 					                                        
-				                                        	<div id="cardThumbNailBox">
+				                                        	<div id="leftItemBox">
 					                                        	<!-- 원본 카드 썸네일 리스트 -->
 					                                        		
 				                                        	</div>
@@ -80,8 +80,9 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-cardread2">
-					                                <div class="cardRead-subcard">
+					                                <div class="cardRead-subcard2">
 					                                    <div class="imgdate">2022-02-03</div>
+					                                    <div class="cardContent">댓글달린내용</div>
 					                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
 					                                </div>
 					                            </div>
@@ -147,6 +148,8 @@
 </body>
 <script type="text/javascript">
 
+var cardInfoList;
+//화면이 그려지기 직전
 $(document).ready(function(){ 
 	// 실행할 기능을 정의해주세요. 
 
@@ -154,7 +157,7 @@ $(document).ready(function(){
 	
 });
 
-
+//카드 리스트 요청
 
 function getCardList(){
 	$.ajax({
@@ -166,6 +169,12 @@ function getCardList(){
 		dataType : "json",
 		success : function(cardList) {
 			
+			cardInfoList = cardList;
+
+			
+			$("#leftCard .imgdate").html(cardInfoList[0].cardRegdate);
+			$("#leftCard .cardContent").html(cardInfoList[0].cardContent);
+			$("#leftCard img").attr("src", cardInfoList[0].cardImgSrc);
 			
 			for(var i=0; i<cardList.length; i++){
 				cardRender(cardList[i], "down");	
@@ -183,16 +192,30 @@ function getCardList(){
 function cardRender(cardVo, direction){
 	console.log(cardVo);
 	var str ='';
-	str +='<div><img src="'+cardVo.cardImgSrc+'"></div>';
+	str +='<div><img class="leftItem pointer" data-lno="'+index+'" src="'+cardVo.cardImgSrc+'"></div>';
 	
 	
 	if(direction == "up"){
-		$("#cardThumbNailBox").prepend(str);
+		$("#leftItemBox").prepend(str);
 	}else if(direction == "down"){
-		$("#cardThumbNailBox").append(str);
+		$("#leftItemBox").append(str);
 	}else{
 		console.log("direction 오류");
 	}
 }
+
+//왼쪽 아이템을 클릭할때
+
+$("#leftItemBox").on("click", ".leftItem", function(){
+	
+	var index = $(this).data("lno");
+	console.log(cardInfoList[index]);
+	
+	$("#leftCard .imgdate").html(cardInfoList[index].cardRegdate);
+	$("#leftCard .cardContent").html(cardInfoList[index].cardContent);
+	$("#leftCard img").attr("src", cardInfoList[index].cardImgSrc);
+	
+});
+
 </script>
 </html>

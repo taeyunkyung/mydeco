@@ -21,14 +21,15 @@
 	<div id="wrap">
 		
 		<div class="container">
+		
 			<!-- header -->
 			<div class="row">
 	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
 			</div>
 			<!-- //header -->
-		
-			<div class="row">
 			
+			<div class="row">
+				
 				<!-- content -->
 				<div id="content" class="col-xs-12">
 					
@@ -37,19 +38,23 @@
 						<c:import url="/WEB-INF/views/include/mydiaryaside.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<h3 class="subtitle">
-								소통 카드
-							</h3>
+							<div id="cTitle">
+								<h3>소통 카드</h3>
+							</div>
 							
-						<div id="main">
+							<div id="main">
+                   		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
+								
+								
 			                <div class="row">
 			                    <div class="col-xs-6">
 			                        <div class="row">
 			                            <div class="col-xs-12 border-replyread1"><!--내가 작성한 카드-->
-			                                <div class="cardRead-subcard">
-			                                    <div class="imgdate">2022-02-03</div>
-			                                    <img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt="">
-			                                </div>
+			                                <div id="leftCard" class="cardRead-subcard">
+			                                    <div class="imgdate">2022-03-03</div>
+			                                    <div class="cardContent">원본글...</div>
+        										<img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg">
+					                        </div>
 			                            </div>
 			                        </div>
 			                    </div>
@@ -59,9 +64,10 @@
 			                    <div class="col-xs-6">
 			                        <div class="row">
 			                            <div class="col-xs-12 border-replyread2">
-			                                <div class="cardRead-subcard">
-			                                    <div class="imgdate">2022-02-03</div>
+			                                <div class="replyWrite-subcard">
 			                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+			                                	<textarea id="r-text" name="cardContent" cols="30" rows="10"></textarea>
+						                        <div id="text_rnt" style="position: relative;bottom: 280px;left: 130px;">(0 / 300)</div>
 			                                </div>
 			                            </div>
 			                        </div>
@@ -136,6 +142,20 @@
     
 </body>
     <script type="text/javascript">
+    
+    //글자수 표시하기
+    $(document).ready(function() {
+        $('#r-text').on('keyup', function() {
+            $('#text_rnt').html("("+$(this).val().length+" / 300)");
+ 
+            if($(this).val().length > 300) {
+                $(this).val($(this).val().substring(0, 300));
+                $('#text_rnt').html("(300 / 300)");
+            }
+        });
+    });
+    
+    
     /*하나의 일기 div 클릭했을 때 모달창 보이기*/
     $("#popup_open_btn").on("click",function(){
    	/*모달창 보이기*/
