@@ -267,6 +267,36 @@ ul.tabs{
 }
 
 
+
+
+.sticker-bgm-box4{
+    width:238px;
+    height: 504px;
+    overflow-x: hidden;
+}
+
+
+
+ /*스크롤바 설정*/ 
+.sticker-bgm-box4::-webkit-scrollbar{ 
+    /* 스크롤바 막대 너비 설정 */ 
+    width: 12px; 
+} 
+/* 스크롤바 막대 설정*/ 
+.sticker-bgm-box4::-webkit-scrollbar-thumb{ 
+    /* 스크롤바 막대 높이 설정 */ 
+    height: 17%; 
+    background-color: #686099; 
+    /* 스크롤바 둥글게 설정 */
+    border-radius: 0px; 
+} 
+/* 스크롤바 뒷 배경 설정*/ 
+.sticker-bgm-box4::-webkit-scrollbar-track{ 
+    background-color: rgba(0,0,0,0); 
+}
+
+
+
 .mydiary-writeForm-content{
     width: 680px;
     height: 490px;

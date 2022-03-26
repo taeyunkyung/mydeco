@@ -48,10 +48,11 @@
 						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<h3 class="subtitle">
-								Shopping
-							</h3>
-							
+							<div class="row div-sub">
+								<div class="col-xs-12">
+									<h3 class="subtitle">Shopping</h3>
+								</div>
+							</div>
 							<div id="main">
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
 			
@@ -106,7 +107,7 @@
 									</div>
 									<div class="col-xs-7">${product.delivery}</div>
 								</div>
-								<div class="row infomargin div-sub">
+								<div class="row infomargin div-sub3">
 									<div class="col-xs-5">
 										<span class="infotext">공유</span>
 									</div>
@@ -116,12 +117,14 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12 text-right">
-										<p class="infotext">${product.price}원</p>
+										<p class="infotext2">${product.price}원</p>
 									</div>
 								</div>
 								<div class="row text-center">
 									<div class="col-xs-12">
-										<a href="${pageContext.request.contextPath}/myshop/chatList" class="button marginauto r-button">채팅 거래하기</a>
+										<div class="height100">
+											<a href="${pageContext.request.contextPath}/myshop/chatList" class="button marginauto r-button" id="chattrade">채팅 거래하기</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -145,7 +148,7 @@
 
 						<div class="row">
 							<div class="div-sub">
-								<h3>일기장</h3>
+								<h3 id="h3z">일기장</h3>
 							</div>
 							<div class="col-xs-12 height320 overf">
 
@@ -247,7 +250,7 @@
 						<div class="row text-left">
 							<div class="col-xs-12">
 								<!-- ajax로 출력할부분 -->
-								<div class="row purpleback">
+								<!-- <div class="row purpleback">
 									<div class="col-xs-10">
 										<span class="recomandfontstyle">명수박님</span>
 									</div>
@@ -265,7 +268,7 @@
 										<button id="recmt">댓글</button>
 									</div>
 								</div>
-
+ -->
 								<!--/ajax로 출력할부분  -->
 
 								<!-- ajax로 출력할부분 -->

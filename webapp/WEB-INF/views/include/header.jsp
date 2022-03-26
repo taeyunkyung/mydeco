@@ -11,7 +11,7 @@
 				<ul id="category" class="clearfix">
 				
 					<li class="dropdown">
-						<a href="">About</a>
+						<a href="">&#160; &#160; &#160; &#160; &#160; About</a>
 						<div class="dropbtn">
 							<ul class="dropdown-content">
 								<li><a href="">이용 안내</a></li>
@@ -21,7 +21,7 @@
 					</li>
 					
 					<li class="dropdown">
-						<a href="">Pen &#38; Paper</a>
+						<a href="">&#160; &#160; &#160; Pen &#38; Paper</a>
 						<div class="dropbtn">
 							<ul class="dropdown-content">
                                 <li><a href="${pageContext.request.contextPath}/diary/list">나의 일기</a></li>
@@ -33,12 +33,12 @@
 					
 					
 					<li class="dropdown">
-						<a href="${pageContext.request.contextPath}/shopping/main">Shopping</a>
+						<a href="${pageContext.request.contextPath}/shopping/main">&#160; &#160; Shopping</a>
 					</li>
 					
 					
 					<li class="dropdown">
-						<a href="">Mood</a>
+						<a href="">&#160; &#160; &#160; &#160; &#160; Mood</a>
 						<div class="dropbtn">
 							<ul class="dropdown-content">
 								<li><a href="${pageContext.request.contextPath}/mood/daily">마법의 소라고둥</a></li>

@@ -40,12 +40,16 @@
 					
 					<div class="row">
 					
-						<c:import url="/WEB-INF/views/include/aside2.jsp"></c:import>
+						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<h3 class="subtitle">
-								나의 일기 목록
-							</h3>
+							<div class="row div-sub">
+								<div class="col-xs-12">
+									<h3 class="subtitle">
+										나의 일기 목록
+									</h3>								
+								</div>
+							</div>
 							
 							<div id="main">
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
@@ -85,7 +89,25 @@
 	                                <div class="col-xs-9">
 	                                    <!-- 여기 3줄나눔 -->
 	                                    <div class="row">
-	                                        <div class="col-xs-12"><button type="button">${vo.emotion}</button><input type="hidden" name="no" value="${vo.prodNo}"></div>
+	                                        <div class="col-xs-12">
+	                                        	<c:if test="${vo.emotion == 'happy'}">
+	                                        		<button type="button" class="yellow">${vo.emotion}</button>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.emotion == 'sad'}">
+	                                        		<button type="button" class="blue">${vo.emotion}</button>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.emotion == 'angry'}">
+	                                        		<button type="button" class="orange">${vo.emotion}</button>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.emotion == 'annoyed'}">
+	                                        		<button type="button" class="green">${vo.emotion}</button>
+	                                        	</c:if>
+	                                        	<c:if test="${vo.emotion == 'relieved'}">
+	                                        		<button type="button" class="pink">${vo.emotion}</button>
+	                                        	</c:if>
+	                            
+	                                        	<input type="hidden" name="no" value="${vo.prodNo}">
+	                                        </div>
 	                                    </div>
 	                                    <div class="row">
 	                                        <div class="col-xs-12 fontstyle">
@@ -199,8 +221,41 @@
 	<!-- //wrap -->
 	
 </body>
+<script type="text/javascript">
+  $(".pickButton").on("click",function(){
+    	 
+		var prodNo =  $(this).data("prodno");
+		console.log(prodNo);    	 
 
+     	$.ajax({
+     		url : "${pageContext.request.contextPath }/shopping/addpick",		
+     		type : "post",
+     		contentType : "application/json",
+     		data : JSON.stringify({prodNo : prodNo}),
 
+     		dataType : "json",
+     		success : function(pickResult){
+     			console.log(pickResult);
+     			if(pickResult == 'addPick'){
+     				//찜 카운트 올리기
+     				var pickCnt = $("#pp"+prodNo).text();
+     				var newPickCnt = parseInt(pickCnt)+1;
+     			 	$("#pp"+prodNo).text(newPickCnt); 
+     			}else if(pickResult == 'delPick'){
+     				////카운트 줄이기
+     				var pickCnt = $("#pp"+prodNo).text();
+     				var newPickCnt = parseInt(pickCnt)-1;
+     			 	$("#pp"+prodNo).text(newPickCnt); 
+     			}
+     			
+     			
+     		},
+     		error : function(XHR, status, error) {
+     			console.error(status + " : " + error);
+     		}
+     	});
+     });
+ </script>
 
 
 </html>

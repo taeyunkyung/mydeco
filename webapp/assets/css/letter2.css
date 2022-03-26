@@ -178,6 +178,7 @@ label[for=chooseFile]{
 	width:238px;
     height: 504px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /*탭메뉴*/

@@ -237,6 +237,7 @@ background-color: #ebebeb; }
   
       
 .height37{
+	text-align: -webkit-center;
     height: 37px;
     margin-top: 11px;
 }

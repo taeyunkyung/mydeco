@@ -122,7 +122,7 @@
 				                                </div>
 				                            </form>
 				                            <div class="writeform-btn-right">
-				                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+				                                <input type="submit" name="textbox" data-stickerno="999" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
 				                            </div>
 				                        </div>
 				
@@ -163,7 +163,7 @@
 				                            </div>
 				
 				                            
-				                            <div id="tab-3" class="tab-content">
+				                            <div id="tab-3" class="tab-content sticker-bgm-box4">
 												<c:forEach items="${bgmList}" var="bgmVo">
 													<div class="mydiary-writeForm-bgmList" data-bgmtitle="${bgmVo.bgmTitle}" data-bgmsrc="${bgmVo.bgmSrc}">
 				                                    	${bgmVo.bgmTitle}
@@ -260,6 +260,7 @@
 
 	//로딩된 후 요청
 
+	
 	/*220316 수정*/
 	//종이를 클릭했을때--배경은 canvas.getObject안먹어서 이렇게만들었음
 	var paperNo ;//전역변수
@@ -308,6 +309,19 @@
 			oImg.stickerSrc = stickerSrc;
 			canvas.add(oImg);
 			console.log(oImg);
+			
+			/*
+			const zIndex = oImg.zIndex();
+			//var zIndex = oImg.zIndex();
+			console.log(zIndex);
+			console.log("==========");
+			
+			oImg.zIndex(1);
+			
+			console.log("=====zindex 1로추가=====");
+			console.log(oImg);
+			console.log("=====zindex 추가=====");*/
+			
 		});
 		
 	});
@@ -333,6 +347,15 @@
 		
 		canvas.add(text);
 		canvas.setActiveObject(text);
+		/*zindex처럼 쓰려고 맨앞으로 가져오기*/
+		//canvas.bringToFront(text); 
+		
+		//canvas.bringForward(text);
+		
+		var zindex = canvas.getObjects().indexOf(text);
+		console.log(zindex);
+		console.log("====zindex3번째실험=====");
+		
 		text.selectAll();
 		text.enterEditing();
 		text.hiddenTextarea.focus();
@@ -426,11 +449,26 @@
 			diaryItemVo.stickerNo = canvasObjList[i].stickerNo;
 			diaryItemVo.stickerSrc = canvasObjList[i].stickerSrc;
 			
-			diaryItemVo.text = canvasObjList[i].text;
+			/*저장할때 한번더 추가 제발 ㅠ*/
+			//canvas.bringToFront(canvasObjList[i].text); 
+			
+			//canvas.bringForward(canvasObjList[i].text);
 	
+			//원래있던코드 diaryItemVo.text = canvasObjList[i].text;
+			
+			diaryItemVo.text = canvasObjList[i].text;
+			
+			//canvas.bringToFront(diaryItemVo.text);
+			//canvas.setObjects(999).indexOf(diaryItemVo.text);
+			
 			diaryItemList.push(diaryItemVo);//배열에 추가
 			console.log("==========================");			
 			console.log(canvasObjList[i]); 
+			
+			var zindex = canvas.getObjects().indexOf(diaryItemVo);
+			console.log("====3번째기반으로한4번째실험=====")
+			console.log(zindex);
+			console.log("====3번째기반으로한4번째실험=====")
 		}
 
 		/*220316수정*/
@@ -467,6 +505,7 @@
 	//저장 함수
 	function writeDiary(diarycontentvo){
 	   
+		
 	   $.ajax({
 	      url : "${pageContext.request.contextPath}/diary/write",
 	      type : "post",

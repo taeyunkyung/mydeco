@@ -28,7 +28,7 @@ public class UserContoroller {
 	public String mainlogin() {
 		System.out.println("메인로그인 도킹");
 		
-		return "shopping/loginform";
+		return "shopping/loginForm";
 	}
 	
 	

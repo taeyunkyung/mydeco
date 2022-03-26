@@ -144,11 +144,12 @@
 			select  rt.rn,
 			        rt.letterNo,
 			        rt.userNo,
-				    to_char(rt.regDate, 'yyyy-mm-dd') regDate,
-					to_char(rt.openDay, 'yyyy-mm-dd') openDay,
+			        to_char(regDate, 'yyyy-mm-dd') regDate,
+					to_char(openDay, 'yyyy-mm-dd') openDay,
 			        rt.bgmSrc,
 			        rt.readYN,
 			        rt.saveYN,
+			        rt.dDay,
 			        rt.letterSticNo,
 			        rt.sticNo,
 			        rt.text,
@@ -165,6 +166,7 @@
 			        ot.bgmSrc,
 			        ot.readYN,
 			        ot.saveYN,
+			        ot.dDay,
 			        ot.letterSticNo,
 			        ot.sticNo,
 			        ot.text,
@@ -180,6 +182,7 @@
 			                lt.bgmSrc,
 			                lt.readYN,
 			                lt.saveYN,
+			                TO_DATE(TO_CHAR(openDay, 'YYYYMMDD')) - TO_DATE(sysdate) dDay,
 			                st.letterSticNo,
 			                st.sticNo,
 			                st.text,
@@ -350,7 +353,8 @@
 				set	regDate = sysdate,
 					openDay = #{openDay},
 					bgmSrc = #{bgmSrc},
-					saveYN = #{saveYN}
+					saveYN = #{saveYN},
+					readYN = #{readYN}
 				where	letterNo = #{letterNo}
 			]]>
 	</update>

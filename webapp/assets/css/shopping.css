@@ -6,6 +6,13 @@
     border-bottom: 1px solid #686099;
     text-align: left; }
 
+
+.div-sub3 {
+    width: auto;
+    padding: 10px 10px 10px 0px;
+    border-bottom: 1px solid #686099;
+    text-align: left; }
+
 .padding0{
     padding-left: 0px;
     padding-right: 0px;
@@ -24,7 +31,7 @@
     } 
     #search2 {
    
-        padding-left: 56%;
+        padding-left: 55%;
     }
     #searchBtn {
         width: 35px; height: 35px;
@@ -58,6 +65,7 @@
 .imgcenter{
     margin: 10px auto;
     padding: auto auto;
+    text-align: center;
 }
 .mainImgbox{
     width: 300px;
@@ -79,10 +87,22 @@
 .height30{
 	height: 30px;
 }
+.height100{
+	height: 100px;
+	margin-top: 30px;
+}
 .infotext{
     font-family: 'Montserrat';
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.infotext2{
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
 }
 .infomargin{
     margin: 15px 0px;
@@ -98,7 +118,7 @@
 .button2{
     width: 100%;
     height: 60px;
-    font-size: 21px;
+    font-size: 17px;
     margin: 0px 0px;
     padding: 0px 0px;
 }
@@ -148,7 +168,8 @@ color: #fff;
 }
 
 .overf{
-	overflow : auto;
+	 overflow-x:hidden; 
+	 overflow-y:auto;
 }
 
 .text-left{
@@ -166,5 +187,74 @@ color: #fff;
     background: #72B1E3;
     font-weight: 400;
     color: #fff;
+    border-radius: 3px;
+}
+#content #main-content{
+	padding: 0px 0px 0px 15px;
+}
+
+#main-content h3.subtitle{
+	border-bottom: 0px solid #686099;
+}
+
+.merchaninfobox p{
+	margin: 20px 0px 0px 10px;
+}
+
+.infotext p{
+	text-align: right;
+}
+#chattrade{
+	color: #fff;
+	font-family: 'SCDream4';
+	font-size: 19px;
+	
+}
+
+
+#h3z{
+   font-size: 20px;
+    font-family: 'SCDream4';
+    margin: 20px 0px 15px 0px;
+    font-weight: bold;
+}
+
+/*지우씨꺼
+#main-content h3.subtitle {
+    border-bottom: #CEC9EF;
+    border-width: 2px;
+    border-bottom-style: solid;
+    margin: 20px 0px 15px 0px;
+
+}*/
+
+.yellow{
+	border: none;
+	background: #FAE100;
+	color: #fff;
+    border-radius: 3px;
+}
+.blue{
+	border: none;
+	background: #0B83C2;
+	color: #fff;
+    border-radius: 3px;
+}
+.orange{
+	border: none;
+	background: #FFC000;
+	color: #fff;
+    border-radius: 3px;
+}
+.green{
+	border: none;
+	background: #00B050;
+	color: #fff;
+    border-radius: 3px;	
+}
+.pink{
+	border: none;
+	background: #F8A1A4;
+	color: #fff;
     border-radius: 3px;
 }

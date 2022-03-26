@@ -73,15 +73,15 @@ a:hover {text-decoration: none; color: #000000;}
     font-family: 'SCDream4';
     font-weight: bold; 
     float: left;
-    margin: 20px 0px 0px 80px;
+    margin: 20px 0px 0px 40px;
     padding: 0px 0px 0px 0px;
     text-align: center;
 }
 #category>li {
     float: left;
-    margin: 0px 80px 0px 0px;
+    margin: 0px 40px 0px 0px;
     padding: 0px 0px 0px 0px;
-    text-align: center;
+    text-align: center; 
 }
 
 #user {
