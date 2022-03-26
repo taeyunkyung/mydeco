@@ -12,7 +12,7 @@
 <title>MyDeco</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main2.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/signup2.css">
 <!-- 이부분에 이페이지에 필요한 css 추가 -->	
 
@@ -30,7 +30,7 @@
 		
 			<!-- header -->
 			<div class="row">
-	            <c:import url="/WEB-INF/views/include/header2.jsp"></c:import>    
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
 			</div>
 			<!-- //header -->
 			

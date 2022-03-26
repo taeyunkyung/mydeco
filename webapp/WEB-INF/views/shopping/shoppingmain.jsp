@@ -29,7 +29,7 @@
 		
 			<!-- header -->
 			<div class="row">
-	            <c:import url="/WEB-INF/views/include/header2.jsp"></c:import>    
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
 			</div>
 			<!-- //header -->
 			
