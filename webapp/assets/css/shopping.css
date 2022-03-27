@@ -258,3 +258,9 @@ color: #fff;
 	color: #fff;
     border-radius: 3px;
 }
+
+
+.link-icon { position: relative; display: inline-block; width: auto;   width : 25px; height : 25px;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px;}
+.link-icon.twitter { background-image: url("mydeco/assets/img/icon/share/icon-twitter.png"); background-repeat: no-repeat; }
+.link-icon.facebook { background-image: url("mydeco/assets/img/icon/share/icon-facebook.png"); background-repeat: no-repeat; } 
+.link-icon.kakao { background-image: url("mydeco/assets/img/icon/share/icon-kakao.png"); background-repeat: no-repeat; }

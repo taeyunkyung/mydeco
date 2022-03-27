@@ -14,6 +14,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
@@ -59,7 +60,7 @@ svg {width: 40%; height: 40%;}
 							</h3>
 
 							<div id="main">
-								<form action="${pageContext.request.contextPath}/myshop/add"
+								<form action="${pageContext.request.contextPath}/myshop/update"
 									method="post" enctype="multipart/form-data">
 									<table id="a-table">
 										<colgroup>
@@ -272,7 +273,7 @@ function renderTable(diaryVo, count) {
 		str += '<td>'+ diaryVo.rn +'</td>';
 		str += '<td class="diaryView" data-no="'+ diaryVo.diaryNo +'" data-toggle="modal" data-target=".diaryview" style="cursor: pointer;">'+ diaryVo.title +'</td>';
 		str += '<td>'+ diaryVo.diaryDate +'</td>';
-		str += '<td><input style="width: 13px" type="checkbox" class="diarySelect" id="ds'+ diaryVo.diaryNo +'" value="'+ diaryVo.diaryNo +'" data-no="'+ diaryVo.diaryNo +'"></td>';
+		str += '<td><input style="width: 13px" type="checkbox" name="chkbox[]" value="'+ diaryVo.diaryNo +'" class="diarySelect" data-no="'+ diaryVo.diaryNo +'"></td>';
 		str += '</tr>';
 	}
 	$("#tbody"+count).append(str);
@@ -298,13 +299,16 @@ $(document).ready(function() {
 	var added = document.getElementById("diary-area").innerText;
 	
 	for(var i=0; i<$("#diary-area").data("added"); i++) {
-		prodDiary = added.split(",");
-		console.log(prodDiary[i]);		
-		
+		prodDiary = added.split(",");		
 		diary.push(parseInt(prodDiary[i]));
-		console.log(diary);		
 	}
-	console.log($(".diarySelect").val());
+	
+	$(".diarySelect").each(function() {
+		console.log($(this).data("no"));
+		/*if($(this).val()==parsInt(prodDiary[i])) {
+			$(this).prop("checked", true);	
+		}*/
+	});
 });
 
 $(".d-table").on("click", ".diaryView", function() {	
@@ -466,13 +470,13 @@ var canvas = new fabric.Canvas("paper", {
 	
 	// 일기 추가
 	var diary = [];
-	$(".d-table").on("click", ".diarySelect", function() {
+	/*$(".d-table").on("click", ".diarySelect", function() {
 		var $this = $(this);
 		var diaryNo = $this.data("no");
 		diary.push(diaryNo);
 		
 		console.log(diary);
-	});
+	});*/
 		
 	$("#submitBtn").on("click", function() {
 		var input = document.createElement("input");

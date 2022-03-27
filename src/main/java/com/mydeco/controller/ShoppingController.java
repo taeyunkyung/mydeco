@@ -54,7 +54,7 @@ public class ShoppingController {
 		model.addAttribute("merchandiseList", merchandiseList);
 
 		System.out.println("최종 이모션 리스트 :" + merchandiseList);
-		return "shopping/shoppingmain";
+		return "shopping/shopmain";
 	}
 
 	@ResponseBody
@@ -94,7 +94,7 @@ public class ShoppingController {
 		model.addAttribute("merchandiseList", merchandiseList);
 
 		System.out.println("최종 서치 리스트 :" + merchandiseList);
-		return "shopping/shoppingmain";	
+		return "shopping/shopmain";	
 	}
 	
 ///////////////////////////상품상세정보와 ajax리스트 정보까지 동시에/////////////////////////////////////////////////////////////
