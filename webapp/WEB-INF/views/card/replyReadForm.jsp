@@ -52,8 +52,8 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-replyread1"><!--내가 작성한 카드-->
-					                                <div id="leftCard" class="replyRead-subcard" style="margin-top: -80px;">
-					                                    <div class="imgdate" style="position: relative;top: 100px;left: 40px;font-size: 20px;color: black;width: 200px;    height: 30px;">${replyCardList[0].cardRegdate}</div>
+					                                <div id="leftCard" class="replyRead-subcard" style="margin-bottom: 10px;margin-top: -60px;">
+					                                    <div class="imgdate" style="position: relative;top: 80px;left: 40px;font-size: 20px;color: black;width: 200px;    height: 30px;">${replyCardList[0].cardRegdate}</div>
 					                                    <div class="cardContent">${replyCardList[0].cardContent}</div>
 					                                   	<img src="${replyCardList[0].cardImgSrc}">
 					                                </div>
