@@ -50,7 +50,7 @@
 						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<div class="row div-sub">
+							<div class="row div-sub4">
 								<div class="col-xs-12">
 									<h3 class="subtitle">Shopping</h3>
 								</div>
@@ -133,7 +133,7 @@
 								<div class="row text-center">
 									<div class="col-xs-12">
 										<div class="height100">
-											<a href="${pageContext.request.contextPath}/myshop/chatList" class="button marginauto r-button" id="chattrade">채팅 거래하기</a>
+											<a href="${pageContext.request.contextPath}/myshop/chatList?$" class="button marginauto r-button" id="chattrade">채팅 거래하기</a>
 										</div>
 									</div>
 								</div>

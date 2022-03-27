@@ -43,12 +43,12 @@
 						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<div class="row div-sub">
-								<div class="col-xs-12">
+							<div class="row">
+							
 									<h3 class="subtitle">
-										나의 일기 목록
+										Shopping
 									</h3>								
-								</div>
+							
 							</div>
 							
 							<div id="main">
