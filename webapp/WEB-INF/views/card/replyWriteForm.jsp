@@ -11,8 +11,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.css">
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/card.css">
-        <!--제이쿼리-->
-<!--         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>-->
+
 		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script> 
 		<script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
  
@@ -44,45 +43,50 @@
 							
 							<div id="main">
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
-								
-								
-			                <div class="row">
-			                    <div class="col-xs-6">
-			                        <div class="row">
-			                            <div class="col-xs-12 border-replywrite1"><!--내가 작성한 카드-->
-			                                <div id="leftCard" class="replyWrite-subcard">
-			                                    <div class="imgdate">2022-03-03</div>
-			                                    <div class="cardContent">원본글...</div>
-        										<img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg">
-					                        </div>
-			                            </div>
-			                        </div>
-			                    </div>
-
-
-
-			                    <div class="col-xs-6">
-			                        <div class="row">
-			                            <div class="col-xs-12 border-replywrite2">
-			                                <div id="" class="replyWrite-subcard2">
-			                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
-			                                	<textarea id="r-text" name="cardContent" cols="30" rows="10"></textarea>
-						                        <div id="text_rnt" style="position: relative;bottom: 280px;left: 130px;">(0 / 300)</div>
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
-			                <div class="r-text"></div>
-			                <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
-			                <div class="row btnmargin">
-			                    <div class="col-xs-12 btncenter">
-			                        <button type="submit" class="btn-writeComment">
-										<a href="${pageContext.request.contextPath}/card/main">작성 완료</a>
-									</button><!--list페이지로 이동-->
-			                    </div>
-			                </div>
-
+							<form action="${pageContext.request.contextPath}/card/replyWrite" method="get">	
+				                <div class="row">
+				                    <div class="col-xs-6">
+				                        <div class="row">
+				                            <div class="col-xs-12 border-replywrite1"><!--내가 작성한 카드-->
+				                                <div id="leftCard" class="replyWrite-subcard">
+				                                    <div class="imgdate">${cardandReplyVo.cardRegdate}</div>
+				                                    <div class="cardContent">${cardandReplyVo.cardContentFull}</div>
+	        										<img src="${cardandReplyVo.cardImgSrc}">
+						                        </div>
+				                            </div>
+				                        </div>
+				                    </div>
+	
+	
+	
+				                    <div class="col-xs-6">
+				                        <div class="row">
+				                            <div class="col-xs-12 border-replywrite2">
+				                                <div id="" class="replyWrite-subcard2">
+				                                    <img id="replayCardBG" src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+				                                	<textarea id="r-text" name="replyContent" cols="30" rows="10"></textarea>
+							                        <div id="text_rnt" style="position: relative;bottom: 280px;left: 130px;">(0 / 300)</div>
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				                
+				                
+				                
+				                <div class="r-text"></div>
+				                <div class="r-bgtext"><button type="button" id="popup_open_btn">배경선택</button></div><!--모달창-->
+				                <div class="row btnmargin">
+				                    <div class="col-xs-12 btncenter">
+				                        <button type="submit" class="btn-writeComment">
+											작성완료
+										</button><!--list페이지로 이동-->
+				                    </div>
+				                </div>
+				                
+				                <input type="text" name="replycardno"  value="${cardandReplyVo.replycardno}">
+				                <input type="text" name="recardImgSrc" value="">
+							</form>
 
 		                   <div id="modal_write" class="modal fade">
 					   		<div class="modal-dialog modal-lg">
@@ -102,14 +106,14 @@
 					         
 					           		<div class="modal-body">
 					        			<div class="replyWriteimg">
-					        				<img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
-				        					<img src="${pageContext.request.contextPath}/assets/img/card/img2.jpg">
-		        							<img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg">
-		        							<img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg">
-	        								<img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg">
-        									<img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg">
-        									<img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg">
-        									<img src="${pageContext.request.contextPath}/assets/img/card/img8.jpg">
+					        				<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
+				        					<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img2.jpg">
+		        							<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img3.jpg">
+		        							<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img4.jpg">
+	        								<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img5.jpg">
+        									<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img6.jpg">
+        									<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img7.jpg">
+        									<img class="pointer" src="${pageContext.request.contextPath}/assets/img/card/img8.jpg">
 					        			</div>
 					           		<!-- 모달창 주요 컨텐츠 -->
 					           		</div>
@@ -158,10 +162,22 @@
     
     /*하나의 일기 div 클릭했을 때 모달창 보이기*/
     $("#popup_open_btn").on("click",function(){
-   	/*모달창 보이기*/
-   	$("#modal_write").modal('show');
-
+	   	/*모달창 보이기*/
+	   	$("#modal_write").modal('show');
     });
+    
+    
+    /* 모달창에서 이미지 선택 */
+    $(".replyWriteimg img").on("click",function(){
+    	console.log("이미지선택");
+    	
+    	console.log($(this).attr("src"));
+    	$("[name='recardImgSrc']").val($(this).attr("src"));
+    	$("#replayCardBG").attr("src", $(this).attr("src"));
+    	
+    	$("#modal_write").modal('hide');
+    });
+   
     </script>
 
 </body>

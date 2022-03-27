@@ -29,20 +29,46 @@ public class CardService {//�ڷ��� ����,���
 		
 		
 		//받은카드(자신이 답장 가능한) 리스트 가져오기
-		List<CardReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
+		List<CardandReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
 		
 		mainMap.put("cardList", cardList);
-		mainMap.put("replyCardList", replyCardList);
+	    mainMap.put("replyCardList", replyCardList);
 		
 		return mainMap;
 	}
 	
 	
+
+	//원본카드 쓰기(타켓설정, 저장)
+	public void sendcard(CardVo cardVo) {
+		System.out.println("service > dao 로 작성카드 전달");
+		System.out.println(cardVo);
+		
+		//원본카드 저장
+		cardDao.sendcard(cardVo);
+		
+		//저장후 카드번호 가져오기 selectKey 사용
+		int cardNo = cardVo.getCardNo();
+		
+		//대상자 뽑기   유저 테이블 조회 리스트로 가져온다
+		List<CardReplyVo> cardReplyList = cardDao.selectTargetList(cardVo);
+
+		//댓글카드 저장 여러개
+		for(int i=0; i<cardReplyList.size(); i++) {
+			CardReplyVo cardReplyVo = cardReplyList.get(i);
+			cardReplyVo.setCardNo(cardNo);
+			cardReplyVo.setSendYN("N");
+			cardDao.replyCardInsert(cardReplyVo);
+		}
+		
+	}
+	
+	
 	//답글 카드 폼에서 왼쪽(받은카드(자신이 답장 가능한) 리스트 가져오기)
-	public List<CardReplyVo> getReplyCardList(int userNo) {
+	public List<CardandReplyVo> getReplyCardList(int userNo) {
 		
 		//받은카드(자신이 답장 가능한) 리스트 가져오기
-		List<CardReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
+		List<CardandReplyVo> replyCardList = cardDao.selectListReplyCard(userNo);
 				
 		return replyCardList;
 	}
@@ -64,6 +90,35 @@ public class CardService {//�ڷ��� ����,���
 		
 		return cardDao.getReplyCardCommentList(cardVo);
 	}
+	
+	
+	
+	/* 댓글 달기용 댓글 카드 가져오기 */
+	public CardandReplyVo selectOneCardAndReplyCard(CardandReplyVo cardandReplyVo) {
+		
+		int replycardNo = cardDao.getReplyCardNo(cardandReplyVo);
+		
+		return cardDao.selectOneCardAndReplyCard(replycardNo);
+	}
+	
+	
+	/* 댓글저장 */
+	public int replyWrite(CardandReplyVo cardandReplyVo) {
+		
+		return cardDao.replyWrite(cardandReplyVo);
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -98,38 +153,6 @@ public class CardService {//�ڷ��� ����,���
 	 */
 	
 	
-	
-	
-	public void sendcard(CardVo cardVo) {
-		System.out.println("service > dao 로 작성카드 전달");
-		System.out.println(cardVo);
-		
-		//원본카드 저장
-		cardDao.sendcard(cardVo);
-		
-		//저장후 카드번호 가져오기 selectKey 사용
-		int cardNo = cardVo.getCardNo();
-		
-		System.out.println("============================");
-		System.out.println(cardVo);
-		System.out.println("============================");
-		
-		//대상자 뽑기   유저 테이블 조회 리스트로 가져온다
-		List<CardReplyVo> cardReplyList = cardDao.selectTargetList(cardVo);
-		System.out.println("============================");
-		System.out.println(cardVo);
-		System.out.println("============================");
-		
-		//댓글카드 저장 여러개
-		for(int i=0; i<cardReplyList.size(); i++) {
-			CardReplyVo cardReplyVo = cardReplyList.get(i);
-			cardReplyVo.setCardNo(cardNo);
-			cardReplyVo.setSendYN("N");
-			cardDao.replyCardInsert(cardReplyVo);
-		}
-		
-		
-	}
 	
 	public void receivecard(CardVo cardVo) {
 		System.out.println("service > dao 로 받은카드 전달");

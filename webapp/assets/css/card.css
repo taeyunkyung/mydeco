@@ -201,7 +201,7 @@ input {
 
 
 .fitems{
-  flex: auto; 
+  /* flex: auto;  */
   border-radius: 2px;
   height: 200px;
   margin-left:13px;
@@ -567,9 +567,12 @@ width: 350px;
 }
 
 .replyReadImg{
-  display: flex;
+   /*  display: flex;
   width: calc(100% / 1);
-  justify-content: space-around;
+  justify-content: space-around; */
+  height: 50px;
+  /* background-color: #000000; */
+  
 }
 
 .replyReadImg2{
@@ -579,10 +582,12 @@ width: 350px;
 }
 
 .replyReadImg img{
-  margin-top: 10px;
+ /*  margin-top: 10px; */
+  margin: 0px 2px 0px 2px;
+  float: left;
   width: 50px;
   height: 50px;
-  justify-content: space-around;
+/*   justify-content: space-around; */
 }
 
 .replyReadImg2 img{
@@ -818,7 +823,7 @@ margin-top: 20px;
 
 
 .replyRead-subcard{
-margin-top: -80px;
+	margin-top: -60px;
     margin-bottom: 10px;
 }
 
@@ -827,7 +832,6 @@ width: 350px;
     height: 350px;
     padding-right: 20px;
 }
- s
 
 .replyRead-subcard .imgdate{
 position: relative;
