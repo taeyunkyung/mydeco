@@ -6,6 +6,7 @@ public class CardandReplyVo {
 	private int userNo;
 	private int count;
 	private String cardContent;
+	private String cardContentFull;
 	private String cardRegdate;
 	private String cardAge;
 	private String cardGender;
@@ -17,19 +18,23 @@ public class CardandReplyVo {
 	private String targetGender;
 	private String sendyn;
 	private String replyContent;
+	private String replyContentFull;
 	private String replyRegdate;
 	private String recardImgSrc;
 
 	public CardandReplyVo() {
 	}
 
-	public CardandReplyVo(int cardNo, int userNo, int count, String cardContent, String cardRegdate, String cardAge,
-			String cardGender, String cardImgSrc, int replycardno, int reUserNo, String targetAge, String targetGender,
-			String sendyn, String replyContent, String replyRegdate, String recardImgSrc) {
+	public CardandReplyVo(int cardNo, int userNo, int count, String cardContent, String cardContentFull,
+			String cardRegdate, String cardAge, String cardGender, String cardImgSrc, int replycardno, int reUserNo,
+			String targetAge, String targetGender, String sendyn, String replyContent, String replyContentFull,
+			String replyRegdate, String recardImgSrc) {
+		super();
 		this.cardNo = cardNo;
 		this.userNo = userNo;
 		this.count = count;
 		this.cardContent = cardContent;
+		this.cardContentFull = cardContentFull;
 		this.cardRegdate = cardRegdate;
 		this.cardAge = cardAge;
 		this.cardGender = cardGender;
@@ -40,6 +45,7 @@ public class CardandReplyVo {
 		this.targetGender = targetGender;
 		this.sendyn = sendyn;
 		this.replyContent = replyContent;
+		this.replyContentFull = replyContentFull;
 		this.replyRegdate = replyRegdate;
 		this.recardImgSrc = recardImgSrc;
 	}
@@ -74,6 +80,14 @@ public class CardandReplyVo {
 
 	public void setCardContent(String cardContent) {
 		this.cardContent = cardContent;
+	}
+
+	public String getCardContentFull() {
+		return cardContentFull;
+	}
+
+	public void setCardContentFull(String cardContentFull) {
+		this.cardContentFull = cardContentFull;
 	}
 
 	public String getCardRegdate() {
@@ -156,6 +170,14 @@ public class CardandReplyVo {
 		this.replyContent = replyContent;
 	}
 
+	public String getReplyContentFull() {
+		return replyContentFull;
+	}
+
+	public void setReplyContentFull(String replyContentFull) {
+		this.replyContentFull = replyContentFull;
+	}
+
 	public String getReplyRegdate() {
 		return replyRegdate;
 	}
@@ -175,11 +197,11 @@ public class CardandReplyVo {
 	@Override
 	public String toString() {
 		return "CardandReplyVo [cardNo=" + cardNo + ", userNo=" + userNo + ", count=" + count + ", cardContent="
-				+ cardContent + ", cardRegdate=" + cardRegdate + ", cardAge=" + cardAge + ", cardGender=" + cardGender
-				+ ", cardImgSrc=" + cardImgSrc + ", replycardno=" + replycardno + ", reUserNo=" + reUserNo
-				+ ", targetAge=" + targetAge + ", targetGender=" + targetGender + ", sendyn=" + sendyn
-				+ ", replyContent=" + replyContent + ", replyRegdate=" + replyRegdate + ", recardImgSrc=" + recardImgSrc
-				+ "]";
+				+ cardContent + ", cardContentFull=" + cardContentFull + ", cardRegdate=" + cardRegdate + ", cardAge="
+				+ cardAge + ", cardGender=" + cardGender + ", cardImgSrc=" + cardImgSrc + ", replycardno=" + replycardno
+				+ ", reUserNo=" + reUserNo + ", targetAge=" + targetAge + ", targetGender=" + targetGender + ", sendyn="
+				+ sendyn + ", replyContent=" + replyContent + ", replyContentFull=" + replyContentFull
+				+ ", replyRegdate=" + replyRegdate + ", recardImgSrc=" + recardImgSrc + "]";
 	}
 
 }

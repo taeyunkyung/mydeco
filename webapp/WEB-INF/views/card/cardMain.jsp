@@ -50,10 +50,7 @@
 									<div class="card_list">
 										<div id="card_tap">
 											<div class="btn-card-write">
-												<c:if test="${!empty authUser}"><!-- 클릭시 로그인 후 사용가능한 서비스입니다 뜨면서 회원가입 페이지로 이동되게끔 -->
-													<a href="${pageContext.request.contextPath}/card/cardWriteForm" id="notSign">카드
-														쓰기</a>
-												</c:if>
+												<a href="${pageContext.request.contextPath}/card/cardWriteForm" id="notSign">카드쓰기</a>
 											</div>
 
 											<input id="tab1" type="radio" name="tabs" checked>
@@ -106,14 +103,14 @@
 												<!-- <div class="tap_content"> -->
 												
 												<div class="flex-container">
-													<c:forEach items="${mainMap.replyCardList}" var="replyVo">
+													<c:forEach items="${mainMap.replyCardList}" var="cardandReplyVo">
 												 		<div class="fitems">
-															<img src="${replyVo.cardImgSrc}">
-															<div class="imgdate">${replyVo.replyRegdate}</div>
-															<a href="${pageContext.request.contextPath}/card/replyReadForm?cardNo=${replyVo.cardNo}">
-																<div class="imgtext">${replyVo.replyContent}</div>
+															<img src="${cardandReplyVo.cardImgSrc}">
+															<div class="imgdate">${cardandReplyVo.cardRegdate}</div>
+															<a href="${pageContext.request.contextPath}/card/replyReadForm?cardNo=${cardandReplyVo.cardNo}">
+																<div class="imgtext">${cardandReplyVo.cardContent}</div>
 															</a>
-															<div class="imgnum">답장${replyVo.count}개</div>
+															<div class="imgnum">답장${cardandReplyVo.count}개</div>
 															<div class="chk-subcard"><input type="checkbox" class="chk-del" name="del" /></div>
 														</div>
 													</c:forEach>
@@ -164,15 +161,9 @@
 	
 </body>	
 	
-<!-- 	<script type="text/javascript">
-	$("#notSign").on("click",function(){
-	alert("로그인 후 이용 가능한 서비스입니다.");	
+<script type="text/javascript">
 	
-	setTimeout(function(){
-		location.href="${pageContext.request.contextPath}/mydeco/loginForm";
-	},1000);
-	
-	});
-	
-	</script> -->
+
+
+</script>
 </html>
