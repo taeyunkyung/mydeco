@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mydeco.service.CardService;
 import com.mydeco.vo.CardReplyVo;
 import com.mydeco.vo.CardVo;
+import com.mydeco.vo.CardandReplyVo;
 import com.mydeco.vo.UserVo;
 
 @Controller
@@ -91,11 +92,28 @@ public class CardController {
 	}
 	
 	
+	/* 특정카드의 댓글 모두 가져오기 */
+	@ResponseBody
+	@RequestMapping("/getReplyCardCommentList")
+	public List<CardandReplyVo> getReplyCardCommentList(@ModelAttribute CardVo cardVo){
+
+		System.out.println(cardVo);
+		List<CardandReplyVo> cardandReplyList = cardService.getReplyCardCommentList(cardVo);
+		
+		System.out.println(cardandReplyList);
+		return cardandReplyList;
+	}
+	
+	
+	
+	
 	//보낸 카드 읽기폼
 	@RequestMapping("/cardReadForm")
 	public String cardReadForm(HttpSession session, Model model){
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		int userNo = authUser.getUserNo();
+		
+		
 		
 		return "card/cardReadForm";
 	}
@@ -106,10 +124,14 @@ public class CardController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		int userNo = authUser.getUserNo();
 
-		List<CardVo> CardList = cardService.getCardList(userNo);
+		List<CardVo> cardList = cardService.getCardList(userNo);
 		
-		return CardList;
+		return cardList;
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/replyWriteForm")
 	public String replyWriteForm(){

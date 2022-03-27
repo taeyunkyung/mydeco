@@ -55,9 +55,6 @@
 		                        <!--검색창/수정/삭제/정렬-->
 		                        <div class="li_nav clearfix">
 		                            <div class="searchfor5">
-		                                <!--
-		                                <input type="text" class="search">
-		                                <img class="glass" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">-->
 		
 		                                <input type="text" class="search_new" name="" value="" placeholder="검색어를 입력해주세요">
 		                                <button class="btn-search">
@@ -66,7 +63,7 @@
 		                            </div>
 		
 		                            <!--선택박스-->
-		                            <div class="selectbox sel-diary" style="margin-right:21px;">
+		                            <div class="selectbox sel-diary">
 		                                <form>
 		                                    <select name="option" class="selectbox-small">
 		                                        <option value="none">ㅡㅡ 선택 ㅡㅡ</option>

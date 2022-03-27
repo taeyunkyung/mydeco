@@ -14,6 +14,7 @@
 	
 }
 
+
 #cTitle >h3 {
   font-size: 20px;
   margin: 20px 0px 15px 0px;
@@ -411,6 +412,20 @@ position: relative;
     left: 180px;
 }
 
+
+#r-text{
+	border:none;
+	font-family: 'SCDream4';
+    font-size: medium;
+    background-color: #00ff0000;
+    position: relative;
+	bottom: 310px;
+    left: 25px;
+    resize: none;
+    width: 280px;
+    height: 250px;
+}
+
 #c-text{
 	border:none;
 	font-family: 'SCDream4';
@@ -423,6 +438,7 @@ position: relative;
     width: 300px;
     height: 300px;
 }
+
 
 .marginleft50{
 	margin-left:50px;
@@ -511,22 +527,12 @@ position: relative;
   justify-content: space-around;
 }
 
-.cardRead-subcard img{
+.replyWrite-subcard img{
 width: 350px;
     height: 350px;
     padding-right: 20px;
 }
 
-.replyRead-subcard{
-margin-top: -20px;
-    margin-bottom: 10px;
-}
-
-.replyRead-subcard img{
-    width: 320px;
-    height: 340px;
- }
- 
 
 .border-cardread1{
     width: 350px;
@@ -544,6 +550,21 @@ margin-top: -20px;
     padding : 0px 10px 0px 10px;
 }
 
+.border-replywrite1{
+	    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 0px 10px 0px 10px;
+}
+
+.border-replywrite2{
+	    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 0px 10px 0px 10px;
+}
 
 .replyReadImg{
   display: flex;
@@ -571,11 +592,6 @@ margin-top: -20px;
   justify-content: space-around;
 }
 
-.replyRead-subcard img{
-width: 350px;
-    height: 350px;
-    padding-right: 20px;
-}
 
 
 .border-replyread1{
@@ -593,6 +609,15 @@ width: 350px;
     margin-left: 15px;
     padding : 0px 10px 0px 10px;
 }
+
+/* .border-replyread2{
+    height: 372px;
+    width: 350px;
+    border: 1px solid #c4c4c2f8;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 30px 10px 0px 10px;
+} */
 
 .button-center{
   margin-top: 25px;
@@ -639,10 +664,10 @@ display: inline-block;
 }
 
 .btn-writeComment{
-bottom: 40px;
+bottom: 300px;
 position: relative;
 font-family: 'SCDream4';
-width: 140px;
+width: 120px;
 height: 40px;
 font-weight: 400;
 font-size: 13px;
@@ -675,13 +700,48 @@ color: #fff;
   color:#fff;
 }
 
-.cardRead-subcard{
-	margin-top: -20px;
+.cardRead-subcard {
+    margin-top: -80px;
     margin-bottom: 10px;
 }
-.cardRead-subcard .imgdate{
+
+.cardRead-subcard .imgdate {
+    position: relative;
+    top: 100px;
+    left: 40px;
+    z-index: 1;
+    color: black;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+}
+.cardRead-subcard .cardContent {
+    position: relative;
+    top: 130px;
+    left: 45px;
+}
+
+.cardRead-subcard img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+margin-top: 20px;
+}
+
+.cardRead-subcard2{
+	margin-top: -40px;
+    margin-bottom: 10px;
+}
+
+.cardRead-subcard2 img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+} 
+    
+.cardRead-subcard2 .imgdate{
   position:relative; 
-  top: 40px;
+  top: 60px;
   left: 40px;
   z-index: 1;
   color: black;
@@ -689,18 +749,125 @@ color: #fff;
   width: 200px;
   height: 30px;
 }
+
+.cardRead-subcard2 .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+   }
+
+.replyWrite-subcard{
+	margin-top: -40px;
+    margin-bottom: 10px;
+}
+.replyWrite-subcard .imgdate{
+  position:relative; 
+  top: 60px;
+  left: 40px;
+  z-index: 1;
+  color: black;
+  font-size: 20px;
+  width: 200px;
+  height: 30px;
+}
+
+.replyWrite-subcard .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+   }
+   
+   
+.replyWrite-subcard img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+} 
+
+
+
+.replyWrite-subcard2{
+	height: 400px;
+	margin-top: -40px;
+    margin-bottom: 10px;
+}
+
+.replyWrite-subcard2 img {
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+        margin-top: 50px;
+} 
+
+.replyWrite-subcard2 .imgdate{
+  position:relative; 
+  top: 60px;
+  left: 40px;
+  z-index: 1;
+  color: black;
+  font-size: 20px;
+  width: 200px;
+  height: 30px;
+}
+
+.replyWrite-subcard2 .cardContent{
+    position: relative;
+    top: 70px;
+    left: 45px;
+   }
+
+
+.replyRead-subcard{
+margin-top: -80px;
+    margin-bottom: 10px;
+}
+
+.replyRead-subcard img{
+width: 350px;
+    height: 350px;
+    padding-right: 20px;
+}
+ s
 
 .replyRead-subcard .imgdate{
-  position:relative; 
-  top: 40px;
-  left: 40px;
-  z-index: 1;
-  color: black;
-  font-size: 20px;
-  width: 200px;
-  height: 30px;
+position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+    color: black;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
 }
 
+.replyRead-subcard .cardContent{
+    position: relative;
+    top: 110px;
+    left: 45px;
+}
+
+.replyRead-subcard2 {
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+
+.replyRead-subcard2 img{
+    width: 350px;
+    height: 350px;
+    padding-right: 20px;
+}
+
+
+.replyRead-subcard2 .imgdate {
+    position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+    color: black;
+    font-size: 20px;
+    width: 200px;
+    height: 30px;
+}
 /**********cardReply.html***********/
 
 .border-replyread{
@@ -736,16 +903,21 @@ color: #fff;
 
 
 .r-text{
- font-size: 20px;
+font-family: 'SCDream4';
+    font-size: medium;
+    background-color: #00ff0000;
     position: relative;
-    bottom: 480px;
-    left: 230px;
+    bottom: 300px;
+    left: 40px;
+    resize: none;
+    width: 250px;
+    height: 250px;
 }
 
 .r-bgtext{
 	width: 200px;
     position: relative;
-    top: 25px;
+    bottom:235px;
     left: 600px;
 }
 
@@ -841,3 +1013,19 @@ width:500px;
   width: 100px;
   height: 100px;
 }
+
+.cardContent{
+	width:250px;
+/* 	display: inline-block;
+	overflow: hidden;  */
+	}
+
+
+
+
+
+
+.pointer {
+	cursor: pointer
+}
+

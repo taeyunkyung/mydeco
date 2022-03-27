@@ -36,18 +36,6 @@ public class CardDao {
 	}
 	
 	
-	/*선택한 받은 카드 가져오기*/
-	public CardandReplyVo selectReplyOne(Map<String, Object> map) {
-		System.out.println("Dao > SelectReplyOne "+ map);
-		CardandReplyVo cardandreplyVo = sqlSession.selectOne("card.selectReplyOne", map);
-		System.out.println("ReplyVo반환확인용"+ cardandreplyVo);
-		return cardandreplyVo;
-	}
-	
-	
-	
-	
-	
 	//원본카드 저장
 	public void sendcard(CardVo cardVo) {
 		System.out.println("dao.sendcard 접속완");
@@ -66,6 +54,39 @@ public class CardDao {
 		
 		return cardReplyList;
 	}
+	
+	
+	/* 특정카드의 댓글 모두 가져오기 */
+	public List<CardandReplyVo> getReplyCardCommentList(CardVo cardVo) {
+		
+		return sqlSession.selectList("getReplyCardCommentList", cardVo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*선택한 받은 카드 가져오기*/
+	public CardandReplyVo selectReplyOne(Map<String, Object> map) {
+		System.out.println("Dao > SelectReplyOne "+ map);
+		CardandReplyVo cardandreplyVo = sqlSession.selectOne("card.selectReplyOne", map);
+		System.out.println("ReplyVo반환확인용"+ cardandreplyVo);
+		return cardandreplyVo;
+	}
+	
+	
+	
+	
+	
+
 	
 	//답장카드 저장 보내기 개념
 	public int replyCardInsert(CardReplyVo cardReplyVo) {

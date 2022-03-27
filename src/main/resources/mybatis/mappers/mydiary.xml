@@ -96,17 +96,6 @@
 	</select>
 
 	
-	<!-- 일기를 사용해 등록한 상품의 상품번호 -->
-	<!--  
-	<select id="getProdNo" parameterType="int" resultType="com.mydeco.vo.ProdDiaryVo">
-			<![CDATA[
-				select prodNo,
-					   count(prodNo) count
-				from prodDiary
-				where diaryNo = #{diaryNo}
-				group by prodNo
-			]]>
-	</select>-->
 	
 	<!-- 일기를 사용해 등록한 상품의 상품번호 -->
 	<select id="getProdNo" parameterType="int" resultType="com.mydeco.vo.ProdDiaryVo">

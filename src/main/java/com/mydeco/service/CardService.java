@@ -48,16 +48,22 @@ public class CardService {//�ڷ��� ����,���
 	}
 	
 	
-	//답글 카드 폼에서 왼쪽(작성카드 리스트 가져오기)
-		public List<CardVo> getCardList(int userNo) {
-			
-			//작성카드 리스트 가져오기
-			List<CardVo> CardList = cardDao.selectListCard(userNo);
-					
-			return CardList;
-		}
 	
+	//내가보낸 카드 폼에서 왼쪽(작성카드 리스트 가져오기)
+	public List<CardVo> getCardList(int userNo) {
+		
+		//작성카드 리스트 가져오기
+		List<CardVo> CardList = cardDao.selectListCard(userNo);
+				
+		return CardList;
+	}
+
 	
+	/* 특정카드의 댓글 모두 가져오기 */
+	public List<CardandReplyVo> getReplyCardCommentList(CardVo cardVo) {
+		
+		return cardDao.getReplyCardCommentList(cardVo);
+	}
 	
 	
 	

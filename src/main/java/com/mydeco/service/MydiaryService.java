@@ -49,25 +49,7 @@ public class MydiaryService {
 		return mydiaryDao.getDiaryDateList(authUser);
 	}
 	
-	/*상품등록한 일기판별*/
-	/*
-	public String getProdNo(int diaryNo) {
-		int prodNo = mydiaryDao.getProdNo(diaryNo);
-		Integer IprodNo = Integer.valueOf(prodNo);
-		if(IprodNo != null) {
-			return "1";
-		}else {
-			return "0";
-		}
-		
-	}*/
 	
-	
-	/*상품등록한 일기판별*/
-	/*
-	public List<ProdDiaryVo> getProdNo(int diaryNo) {
-		return mydiaryDao.getProdNo(diaryNo);
-	}
 	
 	/*상품등록한 일기판별*/
 	public ProdDiaryVo getProdNo(int diaryNo) {
