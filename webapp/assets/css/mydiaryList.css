@@ -143,6 +143,7 @@ div.addAudioDiv{
     width: 100px;
     height: 30px;
     float: right;
+    /*margin-right:22px;*/
     margin-right:22px;
 }
 
@@ -473,7 +474,7 @@ div.mydiary-Date{
     width: 21px;
     height: 21px;
     margin-top: -8px;
-    margin-left: -5px;
+    /*margin-left: 17px;*/
  }
 
 .mydiary-list-box{
@@ -778,6 +779,16 @@ input[type=checkbox].mydiary-checkbox{
     color: white;
 }
 
+#modalDiaryTitle{
+	font-size:19px; 
+	font-weight:900
+}
+
+.modaltitlediv{
+	float:left; 
+	margin-left:41px;
+}
+
 .glass_new{
     position : relative;
     width: 17px;
@@ -980,3 +991,35 @@ td.ui-datepicker-week-end.writedDay{
     padding: 10px;
     cursor: pointer; 
 }   */ 
+
+.close{
+	font-size:30px;
+}
+
+.saveImgbtn{
+	margin-right:11px; 
+	width: 19px; 
+	height: 19px; 
+	margin-top:3px; 
+	cursor:pointer;
+}
+
+.audiodivmodal{
+	 float:left; 
+	 margin-right:15px; 
+	 margin-top:3px;
+}
+
+.audiomsize{
+	height:20px; 
+	width:300px; 
+	margin-left:38px;
+}
+
+.modalmargin{
+	margin-top:28px;
+}
+
+.fr{
+	float:right;
+}

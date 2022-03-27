@@ -53,10 +53,9 @@
 				                          
 				                          	<input type="hidden" name="userNo" value="${authUser.userNo}"><!-- 유저번호 -->
 				                          
-				                            <div class="mydiary-weather2" style="margin-left: 22px;">작성일 :</div>
+				                            <div class="mydiary-weather2">작성일 :</div>
 				                            <div class="mydiarywriteForm-inform">
-				                                <!-- <div class="mydiarywriteForm-inform">2022-03-24</div> -->
-				                                <input type="text" id="datepicker" name="diaryDate" style="width: 110px; height: 30px; padding: 15px;">
+				                                <input type="text" id="datepicker" name="diaryDate">
 				                            </div>                          
 				 
 				                            <!--날씨/선택박스-->
@@ -76,7 +75,7 @@
 				                                </div>
 				                            </div>
 											 
-				                            <div class="clearfix" style="margin-right:20px;">
+				                            <div class="clearfix mr20">
 				                                <div class="diary-private">
 				                                    <label><input class="diaryset_private" type="radio" name="protect" value="비공개">비공개</label>
 				                                </div>
@@ -90,14 +89,14 @@
 				                        
 				                        <!--제목/내용-->
 				                        <div>
-				                            <input type="text" maxlength='35' style="width: 680px; margin-top: 25px;" class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
+				                            <input type="text" maxlength='35' class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
 				                        </div>
 				                        <div>
-				                            <canvas style="margin-left:12px;" id="paper"></canvas>                                                               
+				                            <canvas id="paper"></canvas>                                                               
 				                        </div>
 				                        <div class="clearfix">
-				                        	<div id="audioDiv" style="float:left; margin-top:10px;">
-				                        		<audio id="audio" src="" controls autoplay style="height:20px; width:300px; margin-left:11px;"></audio>
+				                        	<div id="audioDiv">
+				                        		<audio id="audio" src="" controls autoplay ></audio>
 				                        	</div>
 				                        
 				                            <div class="writeform-button">
@@ -110,19 +109,9 @@
 				                    </div>                                                    
 				
 				                    <div class="mydiarywriteForm-right2">
-				                        <!--이미지/지도-->
 				                        <div class="clearfix">
-				                            <form method="post" enctype="multipart/form-data">
-				                                <div class="button writeform-btn-left writeform-deco-btn">
-				                                    <label for="chooseFile">
-				                                    	<div id="btnPhoto" class="photowid">사진</div>
-				                                    </label>
-				                            
-				                                    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)"> 
-				                                </div>
-				                            </form>
 				                            <div class="writeform-btn-right">
-				                                <input type="submit" name="textbox" data-stickerno="0" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
+				                                <input type="submit" name="textbox" data-stickerno="999" data-stickersrc="n" class="button writeform-deco-btn" value="텍스트">
 				                            </div>
 				                        </div>
 				
@@ -142,7 +131,7 @@
 				                            <div id="tab-1" class="tab-content current sticker-bgm-box2">
 				                            
 				                            	<c:forEach items="${stickerMap.stickerList}" var="stickerVo">
-				                            		<div style="float:left; margin-left:12px;">
+				                            		<div class="sticker-box">
 				                           				<img class="writeform-sticker-size sticker" data-stickerno="${stickerVo.stickerNo}" data-stickersrc="${stickerVo.stickerSrc}" src="${stickerVo.stickerSrc}">
 				                                	</div>
 				                            	</c:forEach>
@@ -439,7 +428,7 @@
 		var diaryItemList = [];
 		
 		for(var i=0; i<canvasObjList.length; i++){
-			var diaryItemVo = {};
+			var diaryItemVo = {}; //변수선언--변수안에 빈배열
 			diaryItemVo.top = canvasObjList[i].top;
 			diaryItemVo.left = canvasObjList[i].left;
 			diaryItemVo.scaleX = canvasObjList[i].scaleX;

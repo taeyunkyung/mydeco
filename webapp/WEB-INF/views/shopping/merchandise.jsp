@@ -9,7 +9,7 @@
 <title>MyDeco</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main2.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiaryList.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mydiaryList_modal.css">
@@ -34,7 +34,7 @@
 		
 			<!-- header -->
 			<div class="row">
-	            <c:import url="/WEB-INF/views/include/header2.jsp"></c:import>    
+	            <c:import url="/WEB-INF/views/include/header.jsp"></c:import>    
 			</div>
 			<!-- //header -->
 			

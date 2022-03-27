@@ -69,7 +69,7 @@
 		                            <!--선택박스-->
 		                            <div class="selectbox sel-diary">
 		                                <form>
-		                                    <select name="option" class="selectbox-small" style="text-align:center;">
+		                                    <select name="option" class="selectbox-small" >
 		                                        <option value="none">ㅡㅡ 선택 ㅡㅡ</option>
 		                                        <option value="recently" selected>최신순</option>
 		                                        <option value="old">오래된순</option>
@@ -90,7 +90,7 @@
 		
 		                            <!--목록/사진 하나분량의 박스-일기 하나의  div-->
 		                            <c:forEach items="${diarycontentList}" var="dcvo">
-			                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}" style=" border-bottom: 1px solid #686099;">
+			                            <div class="clearfix mydiary-list-box2" data-diaryno="${dcvo.diaryNo}" data-title="${dcvo.title}">
 			                                <div class="mydiaryText-list2">
 			                                    <div class="mydiaryText7 clearfix">
 			                                        <div class="mydiary-Date">Date:</div>
@@ -114,18 +114,13 @@
 			                                </div>
 			                            </div>
 		                            </c:forEach>
-		                            
 		                        </div>
-						                        
 	
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->
 					
 							</div>	
-						
 						</div>
 						<!-- //main-content -->
-						
-						
 					
 					</div>
 					<!-- //row -->
@@ -137,29 +132,28 @@
 			<!-- //row -->
 			
 			
-			
 			<!--목록 해당일기 클릭시 해당일기 읽기 모달창의 내용-->
 		     <div id="diaryModal" class="modal fade">
 			  <div class="modal-dialog modal-lg">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close" style="font-size:30px;"><span aria-hidden="true">&times;</span></button>
+			        <button type="button" id="closebtn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <div class="clearfix">
-				        <div style="float: right;">
-		                   <img class="saveImgbtn" style="margin-right:11px; width: 19px; height: 19px; margin-top:3px; cursor:pointer;" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
+				        <div class="fr">
+		                   <img class="saveImgbtn" src="${pageContext.request.contextPath}/assets/img/icon/save.png" onclick="downImg();">
 		                </div>
-				        <div class="audiodiv" style="float:left; margin-right:15px; margin-top:3px;">
-				        	<audio id="audio" src="" controls autoplay loop style="height:20px; width:300px; margin-left:38px;"></audio>
+				        <div class="audiodivmodal" >
+				        	<audio id="audio" class="audiomsize" src="" controls autoplay loop></audio>
 				        </div>	
 			        </div>
 			       
 			        
-			        <div class="clearfix" style="margin-top:28px;">
-				        <div style="float:left; margin-left:41px;"><h4 class="modal-title" id="modalDiaryTitle" style="font-size:19px; font-weight:900"></h4></div>
-				        <div class="readcontent clearfix" style="float:right; width:176px; margin-right:40px; margin-top:7px;" >
-				        	<div style="float:left; font-family:'SCDream4'; width:84px;"id="modalDiaryDate"></div>
-				        	<div style="float:left; font-family:'SCDream4'; width:50px; text-align:center;"id="modalDiaryWeather"></div>
-				        	<div style="float:left; font-family:'SCDream4'; width:42px; text-align:center;"id="modalDiaryProtect"></div>
+			        <div class="clearfix modalmargin">
+				        <div class="modaltitlediv"><h4 class="modal-title" id="modalDiaryTitle"></h4></div>
+				        <div class="readcontent clearfix">
+				        	<div id="modalDiaryDate"></div>
+				        	<div><img id="modalDiaryWeather" src="" class="modal-mydiary-weather"></div>
+				        	<div id="modalDiaryProtect"></div>
 				        </div>
 			        </div>
 			      </div>
@@ -169,12 +163,12 @@
 			      	
 			      </div>
 			      <div class="modal-footer">
-			      	<form id="modifyForm" action="${pageContext.request.contextPath}/diary/modifyForm" method="get" style="float:left; margin-left:240px; ">
+			      	<form id="modifyForm" class="modalmodifyset" action="${pageContext.request.contextPath}/diary/modifyForm" method="get">
 			      		<button type="button" id="modalModifyBtn" class="modal-button-read">수정하기</button>
 			      		<input type="hidden" name="modaldiaryNo" value="">
 			      	</form>
 			      
-			      	<button type="button" id="modalBtnDel" class="modal-button-read" style="margin-left:-220px;">삭제하기</button>
+			      	<button type="button" id="modalBtnDel" class="modal-button-read">삭제하기</button>
 			      </div>
 			    </div><!-- /.modal-content -->
 			  </div><!-- /.modal-dialog -->
@@ -244,7 +238,17 @@ $(".mydiary-list-box2").on("click",function(){
 		    //제목쓰기
 		    $("#modalDiaryTitle").text(DiaryContent.title);
 		    $("#modalDiaryDate").text(DiaryContent.diaryDate);
-		    $("#modalDiaryWeather").text(DiaryContent.weather);
+		    
+		    var weather = DiaryContent.weather;
+		    if(weather == "sunny"){
+		    	$("#modalDiaryWeather").attr("src","${pageContext.request.contextPath}/assets/img/weather/sunny-day.png");
+		    }else if(weather == "rainy"){
+		    	$("#modalDiaryWeather").attr("src","${pageContext.request.contextPath}/assets/img/weather/rainy.png");
+		    }else{
+		    	$("#modalDiaryWeather").attr("src","${pageContext.request.contextPath}/assets/img/weather/snowflake.png");
+		    }
+		    
+		    //$("#modalDiaryWeather").text(DiaryContent.weather);
 		    $("#modalDiaryProtect").text(DiaryContent.protect);
 		    $("#audio").attr("src",DiaryContent.diaryBgmSrc);
 		    

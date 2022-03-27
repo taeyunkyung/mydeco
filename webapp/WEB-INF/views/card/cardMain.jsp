@@ -13,11 +13,13 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/assets/css/card.css">
+	
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.js"></script>
 <body>
 
 	<div id="wrap">
@@ -69,12 +71,14 @@
 												<div class="flex-container">
 												<!-- for문으로 돌리는구간 -->
 												
-												<c:forEach items="${addList}" var="vo">
+												<c:forEach items="${mainMap.cardList}" var="cardVo">
 													<div class="fitems">
-														<img src="${vo.cardImgSrc}">
-														<div class="imgdate">${vo.cardRegdate}</div>
-														<div class="imgtext">${vo.cardContent}</div>
-														<div class="imgnum">답장 ${vo.count}개</div>
+														<img src="${cardVo.cardImgSrc}">
+														<div class="imgdate">${cardVo.cardRegdate}</div>
+														<a href="${pageContext.request.contextPath}/card/cardReadForm?cardNo=${cardVo.cardNo}">
+														<div class="imgtext">${cardVo.cardContent}</div>
+														</a>
+														<div class="imgnum">답장 ${cardVo.count}개</div>
 													</div>
 												</c:forEach>	
 													
@@ -102,12 +106,14 @@
 												<!-- <div class="tap_content"> -->
 												
 												<div class="flex-container">
-													<c:forEach items="${dList}" var="vo">
+													<c:forEach items="${mainMap.replyCardList}" var="replyVo">
 												 		<div class="fitems">
-															<img src="${vo.cardImgSrc}">
-															<div class="imgdate">${vo.replyRegdate}</div>
-															<div class="imgtext">${vo.replyContent}</div>
-															<div class="imgnum">답장개</div>
+															<img src="${replyVo.cardImgSrc}">
+															<div class="imgdate">${replyVo.replyRegdate}</div>
+															<a href="${pageContext.request.contextPath}/card/replyReadForm?cardNo=${replyVo.cardNo}">
+																<div class="imgtext">${replyVo.replyContent}</div>
+															</a>
+															<div class="imgnum">답장${replyVo.count}개</div>
 															<div class="chk-subcard"><input type="checkbox" class="chk-del" name="del" /></div>
 														</div>
 													</c:forEach>
@@ -158,7 +164,7 @@
 	
 </body>	
 	
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 	$("#notSign").on("click",function(){
 	alert("로그인 후 이용 가능한 서비스입니다.");	
 	
@@ -168,5 +174,5 @@
 	
 	});
 	
-	</script>
+	</script> -->
 </html>
