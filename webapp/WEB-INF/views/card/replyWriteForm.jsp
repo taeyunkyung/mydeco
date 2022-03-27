@@ -83,7 +83,7 @@
 										</button><!--list페이지로 이동-->
 				                    </div>
 				                </div>
-				                
+				                <input type="text" name="cardNo"  value="${param.cardNo}">
 				                <input type="text" name="replycardno"  value="${cardandReplyVo.replycardno}">
 				                <input type="text" name="recardImgSrc" value="">
 							</form>

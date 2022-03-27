@@ -94,10 +94,15 @@
 					                        </div>
 					                        
 					                       <div class="row">
-					                            <div class="col-xs-12">
-					                                <div id="rightItemBox" class="replyReadImg">
+					                            <div class="col-xs-12 replyReadImg2">
+					                            	<div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+					                                        
+					                                <div id="rightItemBox">
 					                                    <!-- 답글 카드 썸네일 리스트 -->
 					                                </div>
+					                                
+					                                <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
+					                                        
 					                            </div>
 					                        </div>
 					                        
@@ -154,6 +159,7 @@ $(document).ready(function(){
 	$("#replyTotalCnt").html(replyCardInfoList.length);
 	
 });
+
 
 //왼쪽 카드 리스트 요청
 function getCardList(){
@@ -232,14 +238,22 @@ function getReplyCardCommentList(cardNo){
 			replyCardInfoList = replyCardList;
 			console.log(replyCardList);
 			
-			$("#rightCard .imgdate").html(replyCardInfoList[0].replyRegdate);
-			$("#rightCard .replyCardContent").html(replyCardInfoList[0].replyContentFull);
-			$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
+			if(replyCardList.length != 0){
+				$("#rightCard .imgdate").html(replyCardInfoList[0].replyRegdate);
+				$("#rightCard .replyCardContent").html(replyCardInfoList[0].replyContentFull);
+				$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
+				
+				$("#rightItemBox > div").remove();
+				for(var i=0; i<replyCardInfoList.length; i++){
+					replyCardRender(replyCardInfoList[i], "down", i);	
+				}
+			}else {
+				$("#rightCard .imgdate").html("<strong>아직 댓글이 없어요</strong>");
+				$("#rightCard .replyCardContent").html("${pageContext.request.contextPath}/assets/img/card/img0.jpg");
+				$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
+			}
 			
-			$("#rightItemBox > div").remove();
-			for(var i=0; i<replyCardInfoList.length; i++){
-				replyCardRender(replyCardInfoList[i], "down", i);	
-			} 
+			 
 		
 			
 		},
