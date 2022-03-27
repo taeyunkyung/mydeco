@@ -105,7 +105,7 @@
 										</c:forEach>
 									</ol>
 								</div>
-								<!-- product-area -->
+								<!-- //product-area -->
 								<nav>
 									<ul class="pagination pagination-sm">
 										<c:if test="${map.prev == true}">
