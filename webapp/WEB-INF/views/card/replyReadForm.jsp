@@ -122,7 +122,7 @@
 					                    <div class="col-xs-1">
 											<div class="button-right">
 												<button type="submit" class="btn-ReadComment">
-													<a href="${pageContext.request.contextPath}/card/replyWriteForm?cardNo=${param.cardNo}">댓글카드 작성</a>
+													<a href="${pageContext.request.contextPath}/card/replyWriteForm?cardNo=${param.cardNo}">답글카드 작성</a>
 												</button>
 											</div>
 										</div>

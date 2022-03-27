@@ -163,7 +163,7 @@
     });
     
     
-    /*하나의 일기 div 클릭했을 때 모달창 보이기*/
+    /*하나의 카드 div 클릭했을 때 모달창 보이기*/
     $("#popup_open_btn").on("click",function(){
 	   	/*모달창 보이기*/
 	   	$("#modal_write").modal('show');
