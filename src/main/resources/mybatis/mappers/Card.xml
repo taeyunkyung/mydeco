@@ -274,9 +274,7 @@
 			     replyRegDate = sysdate,
 			     cardimgsrc = #{recardImgSrc},
 			     sendyn = 'Y'
-			where cardNo = #{cardNo}
-			and userNo = #{reUserNo}
-			
+			where replycardno = #{replycardno}
 		]]>
 	</update>
 	

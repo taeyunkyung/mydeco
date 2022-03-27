@@ -95,9 +95,14 @@
 					                        
 					                       <div class="row">
 					                            <div class="col-xs-12">
+					                            	<div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
+					                                        
 					                                <div id="rightItemBox" class="replyReadImg">
 					                                    <!-- 답글 카드 썸네일 리스트 -->
 					                                </div>
+					                                
+					                                <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
+					                                        
 					                            </div>
 					                        </div>
 					                        
@@ -154,6 +159,7 @@ $(document).ready(function(){
 	$("#replyTotalCnt").html(replyCardInfoList.length);
 	
 });
+
 
 //왼쪽 카드 리스트 요청
 function getCardList(){
