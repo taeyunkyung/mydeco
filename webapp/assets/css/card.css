@@ -650,7 +650,7 @@ width: 400px;
 .border-replyread1{
     width: 350px;
     border: 1px solid #c4c4c2f8;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-left: 15px;
     padding : 0px 10px 0px 10px;
 }
