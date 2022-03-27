@@ -89,7 +89,7 @@
 					                                   <div id="rightCard" class="cardRead-subcard2">
 					                                    <div class="imgdate"></div>
 					                                    <div class="cardContent replyCardContent"></div>
-					                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+					                                    <img src="" alt="">
 					                                </div>
 					                            </div>
 					                        </div>
@@ -265,7 +265,7 @@ function getReplyCardCommentList(cardNo){
 			}else {
 				$("#rightCard .imgdate").html("");
 				$("#rightCard .replyCardContent").html("");
-				$("#rightCard img").attr("src", "${pageContext.request.contextPath}/assets/img/card/img1.jpg");
+				$("#rightCard img").attr("src", "${pageContext.request.contextPath}/assets/img/card/img0.jpg");
 				$("#replyTotalCnt").html(replyCardInfoList.length);
 			}
 			

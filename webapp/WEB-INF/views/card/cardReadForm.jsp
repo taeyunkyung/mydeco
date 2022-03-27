@@ -242,7 +242,7 @@ function getReplyCardCommentList(cardNo){
 			}else {
 				$("#rightCard .imgdate").html("");
 				$("#rightCard .replyCardContent").html("");
-				$("#rightCard img").attr("src", "${pageContext.request.contextPath}/assets/img/card/img1.jpg");
+				$("#rightCard img").attr("src", "${pageContext.request.contextPath}/assets/img/card/img0.jpg");
 				$("#replyTotalCnt").html(replyCardInfoList.length);
 			}
 		
