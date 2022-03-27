@@ -201,7 +201,7 @@ input {
 
 
 .fitems{
-  flex: auto; 
+  /* flex: auto;  */
   border-radius: 2px;
   height: 200px;
   margin-left:13px;
@@ -491,7 +491,7 @@ position: relative;
 
 .ment{
 	    font-family: 'SCDream4';
- margin: 10px 0px 10px 0px;
+ margin: 10px 0px 20px 0px;
   text-align: center;
 }
 
@@ -501,7 +501,7 @@ position: relative;
 }
 
 
-.cardReadImg{
+/* .cardReadImg{
   display: flex;
   width: calc(100% / 1);
   justify-content: space-around;
@@ -526,7 +526,7 @@ position: relative;
   height: 50px;
   justify-content: space-around;
 }
-
+ */
 .replyWrite-subcard img{
 width: 350px;
     height: 350px;
@@ -567,25 +567,78 @@ width: 350px;
 }
 
 .replyReadImg{
-  display: flex;
+	width: 400px;
+   /*  display: flex;
   width: calc(100% / 1);
-  justify-content: space-around;
+  justify-content: space-around; */
+  height: 50px;
+  /* background-color: #000000; */
+  
 }
 
 .replyReadImg2{
+width: 400px;
+   /*  display: flex;
+  width: calc(100% / 1);
+  justify-content: space-around; */
+  height: 50px;
+  /* background-color: #000000; */
+  
+}
+
+.replyReadImg img{
+ /*  margin-top: 10px; */
+  margin: 0px 2px 0px 2px;
+  float: left;
+  width: 50px;
+  height: 50px;
+/*   justify-content: space-around; */
+}
+
+.replyReadImg2 img{
+ /*  margin-top: 10px; */
+  margin: 0px 2px 0px 2px;
+  float: left;
+  width: 50px;
+  height: 50px;
+/*   justify-content: space-around; */
+}
+
+
+<!---->
+
+.cardReadImg{
+   /*  display: flex;
+  width: calc(100% / 1);
+  justify-content: space-around; */
+  height: 50px;
+  /* background-color: #000000; */
+  
+}
+
+.cardReadImg2{
     display: flex;
     width: calc(110% / 1);
     justify-content: space-around;
 }
 
-.replyReadImg img{
-  margin-top: 10px;
+.cardReadImg img{
+ /*  margin-top: 10px; */
+  margin: 0px 2px 0px 2px;
+  float: left;
+  width: 50px;
+  height: 50px;
+/*   justify-content: space-around; */
+}
+
+.cardReadImg2 img{
+  margin-left: -20px;
   width: 50px;
   height: 50px;
   justify-content: space-around;
 }
 
-.replyReadImg2 img{
+.cardReadImg2 img{
   margin-left: -20px;
   width: 50px;
   height: 50px;
@@ -728,20 +781,19 @@ color: #fff;
 margin-top: 20px;
 }
 
-.cardRead-subcard2{
-	margin-top: -40px;
+.cardRead-subcard2 {
     margin-bottom: 10px;
 }
 
 .cardRead-subcard2 img {
+    margin-top: -40px;
     width: 350px;
     height: 350px;
     padding-right: 20px;
-} 
-    
+}
 .cardRead-subcard2 .imgdate{
   position:relative; 
-  top: 60px;
+  top: 20px;
   left: 40px;
   z-index: 1;
   color: black;
@@ -752,7 +804,7 @@ margin-top: 20px;
 
 .cardRead-subcard2 .cardContent{
     position: relative;
-    top: 70px;
+    top: 30px;
     left: 45px;
    }
 
@@ -817,17 +869,17 @@ margin-top: 20px;
    }
 
 
+<<<<<<< HEAD
 /* .replyRead-subcard{
 margin-top: -80px;
+=======
+.replyRead-subcard{
+	margin-top: -60px;
+>>>>>>> branch 'master' of https://github.com/taeyunkyung/mydeco.git
     margin-bottom: 10px;
 }
  */
-.replyRead-subcard img{
-width: 350px;
-    height: 350px;
-    padding-right: 20px;
-}
- s
+
 
 .replyRead-subcard .imgdate{
 position: relative;
@@ -842,8 +894,14 @@ position: relative;
 
 .replyRead-subcard .cardContent{
     position: relative;
-    top: 110px;
+    top: 90px;
     left: 45px;
+}
+
+.replyRead-subcard img{
+width: 350px;
+    height: 350px;
+    padding-right: 20px;
 }
 
 .replyRead-subcard2 {

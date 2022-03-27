@@ -23,27 +23,16 @@ public class CardDao {
 		
 		List<CardVo> cardList = sqlSession.selectList("card.selectListCard", userNo);
 		return cardList; 
-		
 	}
 	
 	
-	/*받은 카드 리스트 출력*/											
-	public List<CardReplyVo> selectListReplyCard(int userNo){
+	/*받은카드(자신이 답장 가능한) 리스트 가져오기*/											
+	public List<CardandReplyVo> selectListReplyCard(int userNo){
 		System.out.println("CardDao.selectListReplyCard()");
 		
-		List<CardReplyVo> replyCardList = sqlSession.selectList("card.selectListReplyCard", userNo);
+		List<CardandReplyVo> replyCardList = sqlSession.selectList("card.selectListReplyCard", userNo);
 		return replyCardList;
 	}
-	
-	
-	//원본카드 저장
-	public void sendcard(CardVo cardVo) {
-		System.out.println("dao.sendcard 접속완");
-		System.out.println(cardVo);
-		sqlSession.insert("card.sendcard", cardVo);
-		System.out.println("insert완료");
-	}
-	
 	
 	
 	//카드수신 대상자 추출
@@ -56,11 +45,61 @@ public class CardDao {
 	}
 	
 	
+	//원본카드 저장
+	public void sendcard(CardVo cardVo) {
+		System.out.println("dao.sendcard 접속완");
+		System.out.println(cardVo);
+		sqlSession.insert("card.sendcard", cardVo);
+		System.out.println("insert완료");
+	}
+	
+	
 	/* 특정카드의 댓글 모두 가져오기 */
 	public List<CardandReplyVo> getReplyCardCommentList(CardVo cardVo) {
 		
-		return sqlSession.selectList("getReplyCardCommentList", cardVo);
+		return sqlSession.selectList("card.getReplyCardCommentList", cardVo);
 	}
+	
+	
+	
+	/* 댓글번호로 원글 댓글 카드 가져오기 */
+	public CardandReplyVo selectOneCardAndReplyCard(int replyCardNo) {
+		
+		return sqlSession.selectOne("card.selectOneCardAndReplyCard", replyCardNo);
+	}
+	
+
+	
+	
+	/* 댓글저장 */
+	public int replyWrite(CardandReplyVo cardandReplyVo) {
+		
+		return sqlSession.update("card.replyCardUpdate", cardandReplyVo);
+	}
+	
+	
+	
+	
+	/* 댓글카드 번호 알아보기 */
+	public int getReplyCardNo(CardandReplyVo cardandReplyVo) {
+		
+		return sqlSession.selectOne("card.getReplyCardNo", cardandReplyVo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -87,6 +126,8 @@ public class CardDao {
 	
 	
 
+	
+	
 	
 	//답장카드 저장 보내기 개념
 	public int replyCardInsert(CardReplyVo cardReplyVo) {
