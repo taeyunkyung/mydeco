@@ -166,10 +166,10 @@ public class MyShopService {
 
 	public int updateInfo(ProductVo productVo, String[] diaryNoArr) {
 
-		for (int i = 0; i < diaryNoArr.length; i++) {
+		/*for (int i = 0; i < diaryNoArr.length; i++) {
 			ProdDiaryVo prodDiaryVo = new ProdDiaryVo(productVo.getProdNo(), Integer.parseInt(diaryNoArr[i]));
 			myProdImgDao.updateDiary(prodDiaryVo);
-		}
+		}*/
 
 		return myProductDao.update(productVo);
 	}

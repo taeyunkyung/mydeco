@@ -260,7 +260,7 @@ function renderTable(diaryVo, count) {
 		str += '<td>'+ diaryVo.rn +'</td>';
 		str += '<td class="diaryView" data-no="'+ diaryVo.diaryNo +'" data-toggle="modal" data-target=".diaryview" style="cursor: pointer;">'+ diaryVo.title +'</td>';
 		str += '<td>'+ diaryVo.diaryDate +'</td>';
-		str += '<td><input style="width: 13px" type="checkbox" class="diarySelect" data-no="'+ diaryVo.diaryNo +'"></td>';
+		str += '<td><input style="width: 13px" type="checkbox" name="chkbox[]" value="'+ diaryVo.diaryNo +'" class="diarySelect" data-no="'+ diaryVo.diaryNo +'"></td>';
 		str += '</tr>';
 	}
 	$("#tbody"+count).append(str);
@@ -434,7 +434,6 @@ var canvas = new fabric.Canvas("paper", {
 	
 	// 일기 추가
 	var diary = [];
-	var diaryTitle = [];
 	$(".d-table").on("click", ".diarySelect", function() {
 		var $this = $(this);
 		var diaryNo = $this.data("no");
