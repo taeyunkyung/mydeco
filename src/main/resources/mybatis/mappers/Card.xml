@@ -6,12 +6,13 @@
 	
 	
 	<!-- 내가 쓴 카드 리스트 가져오기 -->
-	<select id="selectListCard" parameterType="Int" resultType="CardVo">
+	<select id="selectListCard" parameterType="int" resultType="CardVo">
 	
 		<![CDATA[
 			select  c.cardNo cardNo,
 			        c.userNo userNo,
 			        substr(c.cardContent,1,50) as cardContent,
+			        c.cardContent as cardContentFull,
         			to_char(c.cardRegdate,'YYYY-MM-DD') cardRegdate,
 			        c.cardAge cardAge,
 			        c.cardGender cardGender,
@@ -20,6 +21,7 @@
 			from card c,  (select count(replyCardNo) count,
 							      cardNo
 				           from replyCard
+				           where sendyn = 'Y'
 				           group by cardNo) cnt
 			where c.cardNo = cnt.cardNo(+)
 			and c.userNo = #{no}
@@ -35,7 +37,8 @@
 			        ort.cardNo,
 			        ort.userNo,
 			        ort.count,
-			        ort.cardContent,
+			        substr(ort.cardContent,1,50) as cardContent,
+			        ort.cardContent as cardContentFull,
 			        ort.cardRegdate,
 			        ort.cardAge,
 			        ort.cardGender,
@@ -46,7 +49,8 @@
 			        ort.targetAge,
 			        ort.targetGender,
 			        ort.sendyn,
-			        ort.replyContent,
+			        substr(ort.replyContent,1,50) as replyContent,
+			        ort.replyContent as replyContentFull,
 			        ort.replyRegdate,
 			        ort.recardImgSrc
 			from(select rownum rn,
@@ -125,6 +129,79 @@
 	</select>
 	
 	
+	<!-- 내가 작성한 카드 넣기 -->
+	<insert id="sendcard" parameterType="CardVo">
+		<selectKey keyProperty="cardNo" resultType="int" order="BEFORE">
+			select seq_card_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into card 
+			values(#{cardNo}, #{userNo}, #{cardContent}, sysdate, #{cardAge}, #{cardGender}, #{cardImgSrc})
+		]]>
+	
+	</insert> 
+	
+	
+	
+	<!-- 연령대 조건 넣기-->
+	<select id="selectTargetList" parameterType="CardVo" resultType="CardReplyVo">
+		<![CDATA[
+			select a.trueAge targetAge,
+			       a.gender targetGender,
+			       a.userNo
+			from (select  to_number(to_char(sysdate, 'yyyy')) - to_number(to_char(substr(personalNo,1,4))) + 1 as trueage,
+			              gender,
+			              userNo
+			      from users
+			      where gender = #{cardGender}) a
+		]]>
+		<if test='cardAge == "teen"'>
+			<![CDATA[
+			where a.trueAge < 20
+			]]>
+		</if>	
+		<if test='cardAge == "twn"'>
+			<![CDATA[
+			where a.trueAge >= 20
+			and a.trueAge < 30
+			]]>
+		</if>	
+		<if test='cardAge == "trn"'>
+			<![CDATA[
+			where a.trueAge >= 30
+			and a.trueAge < 40
+			]]>
+		</if>
+		<if test='cardAge == "ftn"'>
+			<![CDATA[
+			where a.trueAge >= 40
+			]]>
+		</if>	
+		<![CDATA[
+			and userNo != #{userNo}
+		]]>		
+	</select>
+	
+		
+	<!-- 답장카드 저장  보내기 개념 -->
+	<insert id="replyCardInsert" parameterType="CardReplyVo" >
+		<![CDATA[
+			insert into replyCard (replyCardNo,
+                       userNo,
+                       cardNo,
+                       targetAge,
+                       targetGender,
+                       sendYN)
+			values(seq_replyCard_no.nextval,
+			       #{userNo},
+			       #{cardNo},
+			       #{targetAge},
+			       #{targetGender},
+			       #{sendYN})
+		]]>
+	</insert>
+	
+	
 	<!-- 특정카드의 댓글 모두 가져오기 -->
 	<select id="getReplyCardCommentList" parameterType="com.mydeco.vo.CardVo" resultType="com.mydeco.vo.CardandReplyVo">
 		<![CDATA[
@@ -133,14 +210,103 @@
 			       targetAge,
 			       targetGender,
 			       sendyn,
-			       replyContent,
-			       replyRegdate,
+			       substr(replyContent,1,50) as replyContent,
+			       replyContent as replyContentFull,
+			       to_char(replyRegdate,'YYYY-MM-DD') replyRegdate,
 			       cardImgSrc recardImgSrc
 			from replycard
 			where cardNo = #{cardNo}
 			and sendyn = 'Y'
 		]]>
 	</select>
+	
+	
+	<!-- 댓글번호로 원글 댓글 카드 가져오기 -->
+	<select id="selectOneCardAndReplyCard" parameterType="int" resultType="com.mydeco.vo.CardandReplyVo">
+		<![CDATA[
+			select c.cardNo,
+			       c.userNo,
+			       substr(c.cardContent,1,50) as cardContent,
+			       c.cardContent cardContentFull,
+			       to_char(c.cardRegdate,'YYYY-MM-DD') cardRegdate,
+			       c.cardAge,
+			       c.cardGender,
+			       c.cardImgSrc,
+			   
+			       rc.replycardno,
+			       rc.userNo reUserNo,
+			       rc.targetAge,
+			       rc.targetGender,
+			       rc.sendyn,
+			       substr(rc.replyContent,1,50) as replyContent,
+			       rc.replyContent replyContentFull,
+			       to_char(rc.replyRegdate,'YYYY-MM-DD') replyRegdate,
+			       rc.cardImgSrc recardImgSrc
+			from card c, replycard rc
+			where c.cardNo = rc.cardNo
+			and rc.replycardno = #{replycardno}
+		]]>
+	</select>
+	
+	
+	
+	
+	<!-- 댓글카드 번호 알아보기 -->
+	<select id="getReplyCardNo" parameterType="com.mydeco.vo.CardandReplyVo" resultType="int">
+		<![CDATA[
+			select 	replycardNo
+			from  replyCard
+			where cardNo = #{cardNo}
+			and userNo = #{reUserNo}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 답장카드 저장  보내기 개념 -->
+	<update id="replyCardUpdate" parameterType="com.mydeco.vo.CardandReplyVo" >
+		<![CDATA[
+			update replycard
+			set  replyContent = #{replyContent},
+			     replyRegDate = sysdate,
+			     cardimgsrc = #{recardImgSrc},
+			     sendyn = 'Y'
+			where cardNo = #{cardNo}
+			and userNo = #{reUserNo}
+			
+		]]>
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -245,64 +411,6 @@
 	
 	
 	
-	<!-- 연령대 조건 넣기-->
-	<select id="selectTargetList" parameterType="CardVo" resultType="CardReplyVo">
-		<![CDATA[
-			select a.trueAge targetAge,
-			       a.gender targetGender,
-			       a.userNo
-			from (select  to_number(to_char(sysdate, 'yyyy')) - to_number(to_char(substr(personalNo,1,4))) + 1 as trueage,
-			              gender,
-			              userNo
-			      from users
-			      where gender = #{cardGender}) a
-		]]>
-		<if test='cardAge == "teen"'>
-			<![CDATA[
-			where a.trueAge < 20
-			]]>
-		</if>	
-		<if test='cardAge == "twn"'>
-			<![CDATA[
-			where a.trueAge >= 20
-			and a.trueAge < 30
-			]]>
-		</if>	
-		<if test='cardAge == "trn"'>
-			<![CDATA[
-			where a.trueAge >= 30
-			and a.trueAge < 40
-			]]>
-		</if>
-		<if test='cardAge == "ftn"'>
-			<![CDATA[
-			where a.trueAge >= 40
-			]]>
-		</if>	
-		<![CDATA[
-			and userNo != #{userNo}
-		]]>		
-	</select>
-	
-		
-	
-	<!-- 답장카드 저장  보내기 개념 -->
-	<insert id="replyCardInsert" parameterType="CardReplyVo" >
-		<![CDATA[
-			insert into replyCard (replyCardNo,
-                       userNo,
-                       cardNo,
-                       targetAge,
-                       targetGender,
-                       sendYN)
-			values(seq_replyCard_no.nextval,
-			       #{userNo},
-			       #{cardNo},
-			       #{targetAge},
-			       #{targetGender},
-			       #{sendYN})
-		]]>
-	</insert>
 	
 	
 	
@@ -333,25 +441,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 내가 작성한 카드 넣기 -->
-	<insert id="sendcard" parameterType="CardVo">
-		<selectKey keyProperty="cardNo" resultType="int" order="BEFORE">
-			select seq_card_no.nextval from dual
-		</selectKey>
-		<![CDATA[
-			insert into card 
-			values(#{cardNo}, #{userNo}, #{cardContent}, sysdate, #{cardAge}, #{cardGender}, #{cardImgSrc})
-		]]>
-	
-	</insert> 
 	
 	
 	<!-- 이미지 넣기 -->

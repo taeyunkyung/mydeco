@@ -56,7 +56,7 @@
 					                        </div>
 					                        <div class="row">
 					                            <div class="col-xs-12">
-					                                <div class="ment">나님이 작성한 최근 카드</div>
+					                                <div class="ment"><span>${authUser.name}</span>이 작성한 최근 카드</div>
 					                            </div>
 					                            <div class="row">
 					                                <div class="col-xs-12">
@@ -80,33 +80,28 @@
 					                    <div class="col-xs-6">
 					                        <div class="row">
 					                            <div class="col-xs-12 border-cardread2">
-					                                <div class="cardRead-subcard2">
-					                                    <div class="imgdate">2022-02-03</div>
-					                                    <div class="cardContent">댓글달린내용</div>
-					                                    <img src="${pageContext.request.contextPath}/assets/img/card/img1.jpg" alt="">
+					                                   <div id="rightCard" class="replyRead-subcard2">
+					                                    <div class="imgdate"></div>
+					                                    <div class="cardContent replyCardContent"></div>
+					                                    <img src="" alt="">
 					                                </div>
 					                            </div>
 					                        </div>
 					                        <div class="row">
 					                            <div class="col-xs-12">
-					                                <div class="ment2">총 50개 댓글</div>
+					                                <div class="ment2">총 <span id="replyTotalCnt"></span>개 댓글</div>
 					                            </div>
 					                        </div>
-					                        <div class="row">
+					                        
+					                       <div class="row">
 					                            <div class="col-xs-12">
-					                                <div class="cardReadImg2">
-					
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideLeft.png"></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img3.jpg" alt=""></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img4.jpg" alt=""></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img5.jpg" alt=""></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img6.jpg" alt=""></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/img7.jpg" alt=""></div>
-					                                    <div><img src="${pageContext.request.contextPath}/assets/img/card/slideRight.png"></div>
-					                                    
+					                                <div id="rightItemBox" class="replyReadImg">
+					                                    <!-- 답글 카드 썸네일 리스트 -->
 					                                </div>
 					                            </div>
 					                        </div>
+					                        
+					                        
 					                    </div>
 					                </div>
 					                <div class="row btnmargin">
@@ -149,16 +144,18 @@
 <script type="text/javascript">
 
 var cardInfoList;
+var replyCardInfoList
 //화면이 그려지기 직전
 $(document).ready(function(){ 
 	// 실행할 기능을 정의해주세요. 
 
 	getCardList();
+	getReplyCardCommentList(cardInfoList[0].cardNo);
+	$("#replyTotalCnt").html(replyCardInfoList.length);
 	
 });
 
-//카드 리스트 요청
-
+//왼쪽 카드 리스트 요청
 function getCardList(){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/card/getCardList",
@@ -188,7 +185,7 @@ function getCardList(){
 	});
 }
 
-//리스트 그리기(1개씩)
+//왼쪽 카드 리스트 그리기(1개씩)
 function cardRender(cardVo, direction, index){
 	console.log(cardVo);
 	var str ='';
@@ -220,8 +217,9 @@ $("#leftItemBox").on("click", ".leftItem", function(){
 });
 
 
+/////////////////////////////////////////////////////////////////////
 
-
+//오른쪽 카드 리스트 요청
 function getReplyCardCommentList(cardNo){
 	$.ajax({
 		url : "${pageContext.request.contextPath}/card/getReplyCardCommentList",
@@ -231,21 +229,18 @@ function getReplyCardCommentList(cardNo){
 		async: false, 
 		dataType : "json",
 		success : function(replyCardList) {
-			console.log("======================================");
-			
+			replyCardInfoList = replyCardList;
 			console.log(replyCardList);
-			console.log("======================================");
 			
-			//replyCardInfoList = replyCardList;
+			$("#rightCard .imgdate").html(replyCardInfoList[0].replyRegdate);
+			$("#rightCard .replyCardContent").html(replyCardInfoList[0].replyContentFull);
+			$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
 			
-			/* 
-			$("#leftCard .imgdate").html(cardInfoList[0].cardRegdate);
-			$("#leftCard .cardContent").html(cardInfoList[0].cardContent);
-			$("#leftCard img").attr("src", cardInfoList[0].cardImgSrc);
-			
-			for(var i=0; i<cardList.length; i++){
-				cardRender(cardList[i], "down", i);	
-			} */
+			$("#rightItemBox > div").remove();
+			for(var i=0; i<replyCardInfoList.length; i++){
+				replyCardRender(replyCardInfoList[i], "down", i);	
+			} 
+		
 			
 		},
 		error : function(XHR, status, error) {
@@ -253,6 +248,41 @@ function getReplyCardCommentList(cardNo){
 		}
 	});
 }
+
+//오른쪽(답글) 카드 리스트 그리기(1개씩)
+function replyCardRender(cardVo, direction, index){
+	console.log(cardVo);
+	var str ='';
+	str +='<div><img class="rightItem pointer" data-rno="'+index+'" src="'+cardVo.recardImgSrc+'"></div>';
+	
+	
+	if(direction == "up"){
+		$("#rightItemBox").prepend(str);
+	}else if(direction == "down"){
+		$("#rightItemBox").append(str);
+	}else{
+		console.log("direction 오류");
+	}
+}
+
+
+//오른쪽 아이템을 클릭할때
+$("#rightItemBox").on("click", ".rightItem", function(){
+	console.log();
+	var index = $(this).data("rno");
+	console.log("===============================");
+	console.log(replyCardInfoList[index]);
+	console.log("===============================");
+	//상단에 정보 출력
+	$("#rightCard .imgdate").html(replyCardInfoList[index].replyRegdate);
+	$("#rightCard .replyCardContent").html(replyCardInfoList[index].replyContentFull);
+	$("#rightCard img").attr("src", replyCardInfoList[index].recardImgSrc);
+	
+});
+
+
+
+
 
 </script>
 </html>
