@@ -50,10 +50,10 @@
 						<c:import url="/WEB-INF/views/include/aside-shop.jsp"></c:import>
 					
 						<div class="col-xs-9" id="main-content">  <!-- aside가 없으면 col-xs-12 사용 -->    			
-							<div class="row div-sub4">
-								<div class="col-xs-12">
-									<h3 class="subtitle">Shopping</h3>
-								</div>
+							<div class="row ">
+								
+									<h3 class="subtitle">물품 상세페이지</h3>
+								
 							</div>
 							<div id="main">
                    		 	<!-- ---여기에 자신의 코드 작성--------------------------------------------------------------------------------- -->

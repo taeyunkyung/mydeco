@@ -38,13 +38,21 @@ public class ShoppingController {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-		productVo.setUserNo(authUser.getUserNo());
-		
-		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseList(productVo);
-		model.addAttribute("merchandiseList",merchandiseList);
+
 		
 		
-		return "shopping/shopmain";
+		if(authUser == null) {
+			return "shopping/loginForm";
+		}else {
+			
+			productVo.setUserNo(authUser.getUserNo());
+			
+			List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseList(productVo);
+			model.addAttribute("merchandiseList",merchandiseList);
+			return "shopping/shopmain";
+		}
+		
+		
 	}
 
 //////////////////////////////쇼핑몰 메인 감정///////////////////////////////////////////
