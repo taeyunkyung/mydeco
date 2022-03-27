@@ -91,7 +91,7 @@
 				                        <div>
 				                            <input type="text" maxlength='35' class="mydiary-writeForm-title" name="title" id="title" placeholder="제목을 입력해 주세요" value="">
 				                        </div>
-				                        <div>
+				                        <div class="paperdiv">
 				                            <canvas id="paper"></canvas>                                                               
 				                        </div>
 				                        <div class="clearfix">
