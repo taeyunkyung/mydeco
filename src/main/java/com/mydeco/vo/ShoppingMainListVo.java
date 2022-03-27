@@ -16,6 +16,7 @@ public class ShoppingMainListVo {
 	private int cmtCnt;
 	private int diaryCnt;
 	private int pickCnt;
+	private int pickNo;
 
 	public ShoppingMainListVo() {
 
@@ -23,7 +24,7 @@ public class ShoppingMainListVo {
 
 	public ShoppingMainListVo(int prodNo, int userNo, String prodName, String emotion, int price, String delivery,
 			String prodinfo, String regDate, int prodImgNo, String prodImgSrc, String prodImgName, int cmtCnt,
-			int diaryCnt, int pickCnt) {
+			int diaryCnt, int pickCnt, int pickNo) {
 
 		this.prodNo = prodNo;
 		this.userNo = userNo;
@@ -39,6 +40,7 @@ public class ShoppingMainListVo {
 		this.cmtCnt = cmtCnt;
 		this.diaryCnt = diaryCnt;
 		this.pickCnt = pickCnt;
+		this.pickNo = pickNo;
 	}
 
 	public int getProdNo() {
@@ -153,12 +155,20 @@ public class ShoppingMainListVo {
 		this.pickCnt = pickCnt;
 	}
 
+	public int getPickNo() {
+		return pickNo;
+	}
+
+	public void setPickNo(int pickNo) {
+		this.pickNo = pickNo;
+	}
+
 	@Override
 	public String toString() {
 		return "ShoppingMainListVo [prodNo=" + prodNo + ", userNo=" + userNo + ", prodName=" + prodName + ", emotion="
 				+ emotion + ", price=" + price + ", delivery=" + delivery + ", prodinfo=" + prodinfo + ", regDate="
 				+ regDate + ", prodImgNo=" + prodImgNo + ", prodImgSrc=" + prodImgSrc + ", prodImgName=" + prodImgName
-				+ ", cmtCnt=" + cmtCnt + ", diaryCnt=" + diaryCnt + ", pickCnt=" + pickCnt + "]";
+				+ ", cmtCnt=" + cmtCnt + ", diaryCnt=" + diaryCnt + ", pickCnt=" + pickCnt + ", pickNo=" + pickNo + "]";
 	}
 
 }

@@ -13,7 +13,6 @@ import com.mydeco.vo.ProdImgVo;
 import com.mydeco.vo.ProductVo;
 import com.mydeco.vo.ShoppingCmtVo;
 import com.mydeco.vo.ShoppingMainListVo;
-import com.mydeco.vo.UserVo;
 
 @Service
 public class ShoppingService {
@@ -62,10 +61,27 @@ public class ShoppingService {
 	}
 
 	/////////////////////// 쇼핑메인리스트가져오기//////////////
-	public List<ShoppingMainListVo> getmerchandiseList() {
+	public List<ShoppingMainListVo> getmerchandiseList(ProductVo productVo) {
 
 		List<ShoppingMainListVo> merchandiseList = shoppingDao.getmerchandiseList();
 
+		for(int i = 0; i < merchandiseList.size(); i++){
+		productVo.setProdNo(merchandiseList.get(i).getProdNo());
+		
+		ProductVo pVo = shoppingDao.pickCheck(productVo);
+		
+		
+		if(pVo == null) {
+			
+			merchandiseList.get(i).setPickNo(0);
+		
+		}else{
+			merchandiseList.get(i).setPickNo(1);
+		}
+		
+		}
+		
+		System.out.println("픽넘버 드갔는디 체크용" + merchandiseList);
 		return merchandiseList;
 	}
 
@@ -127,6 +143,25 @@ public class ShoppingService {
 
 		List<ShoppingMainListVo> merchandiseList = shoppingDao.getmerchandiseEmotionList(productVo);
 
+		
+
+		for(int i = 0; i < merchandiseList.size(); i++){
+		productVo.setProdNo(merchandiseList.get(i).getProdNo());
+		
+		ProductVo pVo = shoppingDao.pickCheck(productVo);
+		
+		
+		if(pVo == null) {
+			
+			merchandiseList.get(i).setPickNo(0);
+		
+		}else{
+			merchandiseList.get(i).setPickNo(1);
+		}
+		
+		}
+		
+		System.out.println("픽넘버 드갔는디 체크용" + merchandiseList);
 		return merchandiseList;
 	}
 

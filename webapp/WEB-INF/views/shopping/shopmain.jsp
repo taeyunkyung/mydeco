@@ -11,12 +11,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/shopping.css">
-<script src="../assets/js/jquery-1.12.4.js"></script>
-<script src="../assets/bootstrap/js/bootstrap.js"></script>
-<!-- 이부분에 이페이지에 필요한 css 추가 -->	    
-	    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- 이부분에 이페이지에 필요한 css 추가 -->	    
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui-1.13.1/jquery-ui.js"></script>
 
 
 </head>
@@ -132,9 +131,18 @@
 	                                </div>
 	                                
 	                                <div class="col-xs-1">
-	                                    <button type="button" class="btn btn-default btn-sm pickButton" data-prodno="${vo.prodNo}" >
-	                                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-	                                    </button>
+	                                	<c:choose>
+	                                		<c:when test="${vo.pickNo == 0}">
+	                                			 <button type="button" class="btn btn-default btn-sm pickButton" data-prodno="${vo.prodNo}" >
+	                                     			  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+	                                  			 </button>
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			 <button type="button" class="btn btn-default btn-sm pickButton redpick" data-prodno="${vo.prodNo}" >
+	                                       			 <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+	                                    		 </button>
+	                                		</c:otherwise>
+	                                	</c:choose>
 	                                </div>
 	
 	                            </div>
@@ -146,22 +154,22 @@
                             <!-- 페이징 -->
 						<ul class="pagination pagination-sm">
 							<c:if test="${map.prev == true}">
-								<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${map.startPageBtnNo-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/shopping/page?crtPage=${map.startPageBtnNo-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 							</c:if>
 							
 							<c:forEach begin="${map.startPageBtnNo}" end="${map.endPageBtnNo}" step="1" var="page">
 								<c:choose>
 									<c:when test="${param.crtPage == page}">
-										<li class="active"><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${page}">${page}</a></li>
+										<li class="active"><a href="${pageContext.request.contextPath}/shopping/page?crtPage=${page}">${page}</a></li>
 									</c:when>
 									<c:otherwise>									
-										<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${page}">${page}</a></li>
+										<li><a href="${pageContext.request.contextPath}/shopping/page?crtPage=${page}">${page}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							
 							<c:if test="${map.next == true}">
-								<li><a href="${pageContext.request.contextPath}/shopping/myProduct?crtPage=${map.endPageBtnNo+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/shopping/page?crtPage=${map.endPageBtnNo+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 							</c:if>
                         </ul>
 						<!-- /페이징 -->
@@ -223,11 +231,14 @@
 </body>
 <script type="text/javascript">
   $(".pickButton").on("click",function(){
-    	 
+     	var btn = $(this);
 		var prodNo =  $(this).data("prodno");
+		
+		
 		console.log(prodNo);    	 
-
-     	$.ajax({
+		
+		
+		$.ajax({
      		url : "${pageContext.request.contextPath }/shopping/addpick",		
      		type : "post",
      		contentType : "application/json",
@@ -240,21 +251,26 @@
      				//찜 카운트 올리기
      				var pickCnt = $("#pp"+prodNo).text();
      				var newPickCnt = parseInt(pickCnt)+1;
-     			 	$("#pp"+prodNo).text(newPickCnt); 
+     			 	$("#pp"+prodNo).text(newPickCnt);
+     			 	btn.addClass('redpick');
+     			 
+     			 	
      			}else if(pickResult == 'delPick'){
+     			    console.log(btn.data("prodno"));
      				////카운트 줄이기
      				var pickCnt = $("#pp"+prodNo).text();
      				var newPickCnt = parseInt(pickCnt)-1;
      			 	$("#pp"+prodNo).text(newPickCnt); 
+     			 	btn.removeClass('redpick');
      			}
-     			
      			
      		},
      		error : function(XHR, status, error) {
      			console.error(status + " : " + error);
      		}
      	});
-     });
+		
+  });
  </script>
 
 

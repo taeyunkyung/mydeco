@@ -265,6 +265,11 @@ h3{
 	font-weight: bold;
 }
 
+.redpick{
+	color: #ed0707;
+}
+
+
 
 .link-icon { position: relative; display: inline-block; width: auto;   width : 25px; height : 25px;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px;}
 .link-icon.twitter { background-image: url("mydeco/assets/img/icon/share/icon-twitter.png"); background-repeat: no-repeat; }

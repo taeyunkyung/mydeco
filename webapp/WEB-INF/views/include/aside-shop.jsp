@@ -10,5 +10,14 @@
                             <li><a class="annoyed" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=annoyed">짜증</a></li>
                             <li><a class="relieved" href="${pageContext.request.contextPath}/shopping/emotionMain?emotion=relieved">홀가분</a></li>
                         </ul>
-                        
+                        <ul>
+                        	<c:choose>
+                        		<c:when test="${empty authUser}">
+                        			<li><a class="color" href="${pageContext.request.contextPath}/loginForm">상품등록</a></li>                       		
+                        		</c:when>
+                        		<c:otherwise>
+                            		<li><a class="color" href="${pageContext.request.contextPath}/myshop/addProduct">상품등록</a></li>
+                            	</c:otherwise>
+                            </c:choose>
+                        </ul>                        
                     </div>

@@ -325,7 +325,7 @@
 			       regDate
 			from pick
 			where prodNo = #{prodNo}
-			and userNo = #{userNo}	
+			and userNo = #{userNo}
 		]]>
 	</select>
 	
