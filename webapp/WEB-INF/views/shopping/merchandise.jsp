@@ -18,7 +18,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/jquery-ui-1.13.1/jquery-ui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/fabric.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>	    
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/html2canvas.js"></script>	   
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -112,7 +114,15 @@
 										<span class="infotext">공유</span>
 									</div>
 									<div class="col-xs-7" id="share">
-										<a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/instagram.jpg"></a> <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/facebook.jpg"></a> <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/twiter.png"></a> <a href="#"><img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/youtube.png"></a>
+										<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">
+											<img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/share/icon-twitter.png">
+										</a>
+										<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">
+											<img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/share/icon-facebook.png">
+										</a>    
+										<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">
+											<img class="shareimg" src="${pageContext.request.contextPath}/assets/img/icon/share/icon-kakao.png">
+										</a>  
 									</div>
 								</div>
 								<div class="row">
@@ -958,9 +968,41 @@ $("#img4")
 
 
 
+////////////////////////////공유하기 기능////////////////////////////
+
+function shareTwitter() {
+    var sendText = "Mydeco의 링크"; // 전달할 텍스트
+    var sendUrl = "http://localhost:8088/mydeco/shopping/merchandise?no=${product.prodNo}"; // 전달할 URL
+    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+}
 
 
+function shareFacebook() {
+    var sendUrl = "devpad.tistory.com/localhost:8088/mydeco/shopping/merchandise?no=${product.prodNo}"; // 전달할 URL
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+}
 
+
+function shareKakao() {
+    
+    // 사용할 앱의 JavaScript 키 설정
+    Kakao.init('카카오에서 발급받은 API키');
+   
+    // 카카오링크 버튼 생성
+    Kakao.Link.createDefaultButton({
+      container: '#btnKakao', // 카카오공유버튼ID
+      objectType: 'feed',
+      content: {
+        title: "개발새발", // 보여질 제목
+        description: "개발새발 블로그입니다", // 보여질 설명
+        imageUrl: "devpad.tistory.com/", // 콘텐츠 URL
+        link: {
+           mobileWebUrl: "devpad.tistory.com/",
+           webUrl: "devpad.tistory.com/"
+        }
+      }
+    });
+  }
 
 	
 </script>
