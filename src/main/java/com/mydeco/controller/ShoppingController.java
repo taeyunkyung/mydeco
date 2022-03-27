@@ -33,10 +33,14 @@ public class ShoppingController {
 	
 //////////////////////////////쇼핑몰 메인///////////////////////////////////////////
 	@RequestMapping("/main")
-	public String main(Model model) {
+	public String main(Model model, HttpSession session, ProductVo productVo) {
 		System.out.println("쇼핑몰도킹");
 		
-		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseList();
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		productVo.setUserNo(authUser.getUserNo());
+		
+		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseList(productVo);
 		model.addAttribute("merchandiseList",merchandiseList);
 		
 		
@@ -45,11 +49,15 @@ public class ShoppingController {
 
 //////////////////////////////쇼핑몰 메인 감정///////////////////////////////////////////
 	@RequestMapping("/emotionMain")
-	public String emotionmain(@RequestParam("emotion") String emotion, Model model, ProductVo productVo) {
+	public String emotionmain(@RequestParam("emotion") String emotion, Model model, ProductVo productVo, HttpSession session) {
 		System.out.println("이모션 쇼핑몰도킹");
 		
 		productVo.setEmotion(emotion);
 
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		productVo.setUserNo(authUser.getUserNo());
+		
 		List<ShoppingMainListVo> merchandiseList = shoppingService.getmerchandiseEmotionList(productVo);
 		model.addAttribute("merchandiseList", merchandiseList);
 

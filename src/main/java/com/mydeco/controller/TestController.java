@@ -18,5 +18,21 @@ public class TestController {
 		testService.tests();
 		return "user/modifyForm";
 	}
+	
+	
+	@RequestMapping("/query")
+	public void query() {
+		
+	    for(int i=100; i<126; i++) {
+	    	String stickerName = i + ".png";
+	    	String stickerSrc = "/mydeco/assets/img/diarypaper/"+stickerName;
+	    	String insert = "Insert into STICKER (STICKERNO,STICKERCATENO,STICKERNAME,STICKERSRC) values (";
+	    
+	    	System.out.println(insert+i+" ,"+"1 ,'"+stickerName+"','"+stickerSrc+"');");
 
+	    }	
+	}
+	
+	
+	
 }

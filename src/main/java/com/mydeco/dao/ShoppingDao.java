@@ -85,6 +85,8 @@ public class ShoppingDao {
 		map.put("keyword", keyword);
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
+		
+		System.out.println(map);
 
 		return sqlSession.selectList("myProduct.myProductpgList", map);
 	}
