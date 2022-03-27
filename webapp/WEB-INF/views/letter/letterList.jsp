@@ -483,7 +483,7 @@ function itemRender(letterItemVo){
 		console.log(text);
 		console.log("===============================");
 	
-	}else if(letterItemVo.stickerCateNo == 1) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
+	}else if(letterItemVo.stickerCateNo == 3) { // 배경--캔버스 새로 만들듯 배경도 사용된 스티커 경로만 갖고와서 다시 그려주기
 		fabric.Image.fromURL(letterItemVo.stickerSrc, function(backImg) {
 
 			canvas.setBackgroundImage(backImg, canvas.renderAll.bind(canvas),{
