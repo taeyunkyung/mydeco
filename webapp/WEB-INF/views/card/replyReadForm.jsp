@@ -226,6 +226,7 @@ function cardRender(cardVo, direction, index){
 $("#leftItemBox").on("click", ".leftItem", function(){
 	
 	var index = $(this).data("lno");
+	console.log("-----------");
 	console.log(cardInfoList[index]);
 	
 	//상단에 정보 출력
@@ -253,13 +254,23 @@ function getReplyCardCommentList(cardNo){
 		dataType : "json",
 		success : function(replyCardList) {
 			replyCardInfoList = replyCardList;
+			console.log("==========");
 			console.log(replyCardList);
+			$("#rightItemBox  div").remove();
+			if(replyCardList > 0){
+				$("#rightCard .imgdate").html(replyCardInfoList[0].replyRegdate);
+				$("#rightCard .replyCardContent").html(replyCardInfoList[0].replyContentFull);
+				$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
+				$("#replyTotalCnt").html(replyCardInfoList.length);
+			}else {
+				$("#rightCard .imgdate").html("");
+				$("#rightCard .replyCardContent").html("");
+				$("#rightCard img").attr("src", "${pageContext.request.contextPath}/assets/img/card/img1.jpg");
+				$("#replyTotalCnt").html(replyCardInfoList.length);
+			}
 			
-			$("#rightCard .imgdate").html(replyCardInfoList[0].replyRegdate);
-			$("#rightCard .replyCardContent").html(replyCardInfoList[0].replyContentFull);
-			$("#rightCard img").attr("src", replyCardInfoList[0].recardImgSrc);
 			
-			$("#rightItemBox > div").remove();
+			
 			for(var i=0; i<replyCardInfoList.length; i++){
 				replyCardRender(replyCardInfoList[i], "down", i);	
 			} 

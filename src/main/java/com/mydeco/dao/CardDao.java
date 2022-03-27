@@ -73,7 +73,7 @@ public class CardDao {
 	
 	/* 댓글저장 */
 	public int replyWrite(CardandReplyVo cardandReplyVo) {
-		
+		System.out.println(cardandReplyVo);
 		return sqlSession.update("card.replyCardUpdate", cardandReplyVo);
 	}
 	

@@ -253,7 +253,9 @@ public class CardController {
 		int userNo = authUser.getUserNo();
 
 		List<CardVo> cardList = cardService.getCardList(userNo);
-		
+		System.out.println("================================================");
+		System.out.println(cardList);
+		System.out.println("================================================");
 		return cardList;
 	}
 	

@@ -11,8 +11,8 @@
 		<![CDATA[
 			select  c.cardNo cardNo,
 			        c.userNo userNo,
-			        substr(c.cardContent,1,50) as cardContent,
 			        c.cardContent as cardContentFull,
+			        substr(c.cardContent,1,50) as cardContent,
         			to_char(c.cardRegdate,'YYYY-MM-DD') cardRegdate,
 			        c.cardAge cardAge,
 			        c.cardGender cardGender,
@@ -277,6 +277,8 @@
 			where replycardno = #{replycardno}
 		]]>
 	</update>
+	
+	
 	
 	
 	

@@ -611,6 +611,7 @@ width: 400px;
    /*  display: flex;
   width: calc(100% / 1);
   justify-content: space-around; */
+      width: 400px;
   height: 50px;
   /* background-color: #000000; */
   
@@ -650,7 +651,7 @@ width: 400px;
 .border-replyread1{
     width: 350px;
     border: 1px solid #c4c4c2f8;
-    /* margin-top: 10px; */
+    margin-top: 10px;
     margin-left: 15px;
     padding : 0px 10px 0px 10px;
 }
@@ -754,13 +755,13 @@ color: #fff;
 }
 
 .cardRead-subcard {
-    margin-top: -100px;
     margin-bottom: 10px;
 }
 
+
 .cardRead-subcard .imgdate {
     position: relative;
-    top: 120px;
+    top: 20px;
     left: 40px;
     z-index: 1;
     color: black;
@@ -770,15 +771,16 @@ color: #fff;
 }
 .cardRead-subcard .cardContent {
     position: relative;
-    top: 130px;
+    top: 50px;
     left: 45px;
 }
 
-.cardRead-subcard img {
-    width: 350px;
+.cardRead-subcard img
+{
+	margin-top: -80px;
+	width: 350px;
     height: 350px;
     padding-right: 20px;
-margin-top: 20px;
 }
 
 .cardRead-subcard2 {

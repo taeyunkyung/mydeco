@@ -85,8 +85,11 @@
 				                </div>
 				                <input type="text" name="cardNo"  value="${param.cardNo}">
 				                <input type="text" name="replycardno"  value="${cardandReplyVo.replycardno}">
-				                <input type="text" name="recardImgSrc" value="">
+				                <input type="text" name="recardImgSrc" value="${pageContext.request.contextPath}/assets/img/card/img1.jpg">
 							</form>
+
+
+
 
 		                   <div id="modal_write" class="modal fade">
 					   		<div class="modal-dialog modal-lg">
